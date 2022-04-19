@@ -1,0 +1,469 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{a9f237e7-091e-44c9-8acf-4c5f4b2b9639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Entity">
+      <UniqueIdentifier>{9be5d990-6705-484e-a05c-7808581c5c12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Function">
+      <UniqueIdentifier>{4470892f-eaa9-43d6-934d-c7e0eda67c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Handle">
+      <UniqueIdentifier>{ebaa4ab5-90c5-41b6-9e8c-ede50c8e7a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\JobSystem">
+      <UniqueIdentifier>{674af4e5-b0d7-4791-90cc-20e5415e3963}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mutex">
+      <UniqueIdentifier>{ede85834-5f81-47ba-a9a5-9766e9a79d45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{48cded11-bfb2-46b6-a483-a376ad958b4d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\StaticVector">
+      <UniqueIdentifier>{6681c82c-6e29-4114-bd69-a0957a2607bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Thread">
+      <UniqueIdentifier>{13126c6f-95d5-4832-9c03-37cdb6734bb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Time">
+      <UniqueIdentifier>{0551f360-4f41-4bd3-9f2b-96849a376249}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Type">
+      <UniqueIdentifier>{bf73e61d-c06f-4bae-8522-aefeca2798c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Vec">
+      <UniqueIdentifier>{d03bca25-ba69-49a5-b417-9ab9f0618865}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mutex\Platform">
+      <UniqueIdentifier>{8aa70cf3-2222-4aef-947b-9d7e66b5d800}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Mutex\Platform\Win">
+      <UniqueIdentifier>{f1d24693-4646-4a2b-9b2d-083d73af5cac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Thread\Platform">
+      <UniqueIdentifier>{9c9f2f31-8c1f-41ca-874d-60a1e091232e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Thread\Platform\Win">
+      <UniqueIdentifier>{971815b8-5730-4318-9fc0-e3f4f16cbd68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Time\Platform">
+      <UniqueIdentifier>{255ff4ab-cdb7-4c54-8ff1-991a3d2ed94d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Time\Platform\Win">
+      <UniqueIdentifier>{04291611-39ae-441f-b649-b88c3f0b6a72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EntryPoint">
+      <UniqueIdentifier>{45812e8d-5a30-4512-8759-f52d46889b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EntryPoint\Platform">
+      <UniqueIdentifier>{156fdd85-ce8e-417b-bf5d-15653ad10573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\EntryPoint\Platform\Win">
+      <UniqueIdentifier>{afed68da-6854-4cc9-82f6-c1650d63bde4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hardware">
+      <UniqueIdentifier>{6cbc0cbd-5897-4d87-a362-87045e181802}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hardware\Platform">
+      <UniqueIdentifier>{761ac1f0-c0c3-48c4-9c7b-74b4a23a4c19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Hardware\Platform\Win">
+      <UniqueIdentifier>{8211a1d6-df63-403a-b107-262b1bf33165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility">
+      <UniqueIdentifier>{d918dc40-8c82-41c2-9dcf-f90f4ca04bc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Vec\Platform">
+      <UniqueIdentifier>{9ad78597-3059-4381-8958-e78d3f66971c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Vec\Platform\Win">
+      <UniqueIdentifier>{7ace03a7-663b-48dc-9e15-ec5685a79c0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Flow">
+      <UniqueIdentifier>{cf65321d-ee38-4c0d-be14-c6f50d55baec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\StateMachine">
+      <UniqueIdentifier>{401d0d1c-ebef-4435-a3b3-61b0f4445111}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Flow\Game">
+      <UniqueIdentifier>{09259e34-1764-4e77-9e09-d671566c3e1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Flow\Main">
+      <UniqueIdentifier>{024c2589-513d-4155-a90d-cfc5eba72421}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Flow\Scene">
+      <UniqueIdentifier>{0b2048b0-b6ee-4f79-9e9f-32cf24e0a013}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic">
+      <UniqueIdentifier>{3f498059-d54f-411e-8a71-adc3cb195c12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform">
+      <UniqueIdentifier>{addbb9fe-2a0d-494e-ae43-c0e978d2bfe7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win">
+      <UniqueIdentifier>{97a765fa-656f-4a11-a491-c1dae57d3da7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Buffer">
+      <UniqueIdentifier>{24c8f001-0322-45ba-ad1b-8ccaa0aa1170}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\Buffer">
+      <UniqueIdentifier>{210a94ad-bf63-4b64-b60c-fa27fae14a04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Device">
+      <UniqueIdentifier>{71184d11-df0f-46f9-92ef-39a72cc89474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\Device">
+      <UniqueIdentifier>{606fb09c-dacd-4e79-85f4-18bdf7485bf7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\BuildConfig">
+      <UniqueIdentifier>{f2b570cc-6894-4120-9197-de22e497d5b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\CommandQueue">
+      <UniqueIdentifier>{74d0e5cf-cd5c-4592-a9e9-ccfc49d9c8ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\CommandList">
+      <UniqueIdentifier>{c950baf9-42b8-4d9b-b2ab-22a22e5a9531}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\CommandQueue">
+      <UniqueIdentifier>{2dae1ce5-9105-4cc4-baab-0f342b0b7327}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\CommandList">
+      <UniqueIdentifier>{f66f4480-78e1-401e-94ae-fc86a676cd7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Debug">
+      <UniqueIdentifier>{1832a765-c631-4529-9097-4b3abbfb867f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Debug\Assert">
+      <UniqueIdentifier>{1cc1dd6f-8af5-4fa5-add2-b981bc5fc0a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Debug\Assert\Platform">
+      <UniqueIdentifier>{260567eb-193f-46a2-8c1f-2c208e45e7ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Debug\Assert\Platform\Win">
+      <UniqueIdentifier>{c8f2d23d-4738-415e-94b1-a67a43fe3f85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Debug\Log">
+      <UniqueIdentifier>{bfbbfc96-c2d0-4a7a-9ebf-23f7f0d7c316}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\ForceInclude.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\Entity.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\EntityHandle.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\EntityHandleSystem.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity\EntitySystem.h">
+      <Filter>src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Function\Function.h">
+      <Filter>src\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Handle\Handle.h">
+      <Filter>src\Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Handle\HandleSystem.h">
+      <Filter>src\Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\JobSystem\JobSystem.h">
+      <Filter>src\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mutex\CriticalSection.h">
+      <Filter>src\Mutex</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Mutex\Platform\Win\CriticalSectionImpl.h">
+      <Filter>src\Mutex\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\Platform.h">
+      <Filter>src\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\StaticVector\StaticVector.h">
+      <Filter>src\StaticVector</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Thread\ThreadSystem.h">
+      <Filter>src\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Thread\Thread.h">
+      <Filter>src\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Thread\ThreadDef.h">
+      <Filter>src\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Thread\Platform\Win\ThreadHandle.h">
+      <Filter>src\Thread\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Thread\Platform\Win\ThreadSystemImpl.h">
+      <Filter>src\Thread\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Time\Tick.h">
+      <Filter>src\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Time\Time.h">
+      <Filter>src\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Time\Platform\Win\TickImpl.h">
+      <Filter>src\Time\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Time\Platform\Win\TimeImpl.h">
+      <Filter>src\Time\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Type\ArithmetricType.h">
+      <Filter>src\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Type\ClassDefine.h">
+      <Filter>src\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vec\Vec4.h">
+      <Filter>src\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntryPoint\Platform\Win\MainImpl.h">
+      <Filter>src\EntryPoint\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hardware\Hardware.h">
+      <Filter>src\Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Hardware\Platform\Win\HardwareImpl.h">
+      <Filter>src\Hardware\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\UtilityDefine.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Vec\Platform\Win\Vec4Impl.h">
+      <Filter>src\Vec\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\StateMachine\StateMachine.h">
+      <Filter>src\Utility\StateMachine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flow\Game\GameFlow.h">
+      <Filter>src\Flow\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flow\Main\MainFlow.h">
+      <Filter>src\Flow\Main</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Flow\Scene\SceneFlow.h">
+      <Filter>src\Flow\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Buffer\GraphicBuffer.h">
+      <Filter>src\Graphic\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Device\GraphicDevice.h">
+      <Filter>src\Graphic\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\Device\GraphicDeviceImpl.h">
+      <Filter>src\Graphic\Platform\Win\Device</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\Buffer\GraphicBufferImpl.h">
+      <Filter>src\Graphic\Platform\Win\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\BuildConfig\BuildConfig.h">
+      <Filter>src\BuildConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Graphic.h">
+      <Filter>src\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\CommandQueue\GraphicCommandQueue.h">
+      <Filter>src\Graphic\CommandQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\CommandQueue\GraphicCommandQueueImpl.h">
+      <Filter>src\Graphic\Platform\Win\CommandQueue</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\CommandList\GraphicCommandListImpl.h">
+      <Filter>src\Graphic\Platform\Win\CommandList</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\CommandList\GraphicCommandList.h">
+      <Filter>src\Graphic\CommandList</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\GraphicDef.h">
+      <Filter>src\Graphic</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debug\Assert\Assert.h">
+      <Filter>src\Debug\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debug\Assert\Platform\Win\AssertImpl.h">
+      <Filter>src\Debug\Assert\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debug\Log\Log.h">
+      <Filter>src\Debug\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\GraphicDefWin.h">
+      <Filter>src\Graphic\Platform\Win</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Entity\__EntityCpp.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\Entity.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\EntityHandle.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\EntityHandleSystem.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity\EntitySystem.cpp">
+      <Filter>src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JobSystem\JobSystem.cpp">
+      <Filter>src\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mutex\__MutexCpp.cpp">
+      <Filter>src\Mutex</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mutex\CriticalSection.cpp">
+      <Filter>src\Mutex</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Mutex\Platform\Win\CriticalSectionImpl.cpp">
+      <Filter>src\Mutex\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Thread\ThreadSystem.cpp">
+      <Filter>src\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Thread\__ThreadCpp.cpp">
+      <Filter>src\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Thread\Thread.cpp">
+      <Filter>src\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Thread\Platform\Win\ThreadHandle.cpp">
+      <Filter>src\Thread\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Thread\Platform\Win\ThreadSystemImpl.cpp">
+      <Filter>src\Thread\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Time\__TimeCpp.cpp">
+      <Filter>src\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Time\Tick.cpp">
+      <Filter>src\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Time\Time.cpp">
+      <Filter>src\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Time\Platform\Win\TickImpl.cpp">
+      <Filter>src\Time\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Time\Platform\Win\TimeImpl.cpp">
+      <Filter>src\Time\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntryPoint\Main.cpp">
+      <Filter>src\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hardware\Hardware.cpp">
+      <Filter>src\Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hardware\Platform\Win\HardwareImpl.cpp">
+      <Filter>src\Hardware\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hardware\__HardwareCpp.cpp">
+      <Filter>src\Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntryPoint\Platform\Win\MainImpl.cpp">
+      <Filter>src\EntryPoint\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntryPoint\__EntryPointCpp.cpp">
+      <Filter>src\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="src\JobSystem\__JobSystemCpp.cpp">
+      <Filter>src\JobSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flow\__Flow.cpp">
+      <Filter>src\Flow</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\StateMachine\StateMachine.cpp">
+      <Filter>src\Utility\StateMachine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\__UtilityCpp.cpp">
+      <Filter>src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flow\Game\GameFlow.cpp">
+      <Filter>src\Flow\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flow\Main\MainFlow.cpp">
+      <Filter>src\Flow\Main</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Flow\Scene\SceneFlow.cpp">
+      <Filter>src\Flow\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\Device\GraphicDeviceImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Device\GraphicDevice.cpp">
+      <Filter>src\Graphic\Device</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Buffer\GraphicBuffer.cpp">
+      <Filter>src\Graphic\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\Buffer\GraphicBufferImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\__GraphicCpp.cpp">
+      <Filter>src\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Graphic.cpp">
+      <Filter>src\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\CommandQueue\GraphicCommandQueue.cpp">
+      <Filter>src\Graphic\CommandQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\CommandQueue\GraphicCommandQueueImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\CommandQueue</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\CommandList\GraphicCommandListImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\CommandList</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\CommandList\GraphicCommandList.cpp">
+      <Filter>src\Graphic\CommandList</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Debug\Assert\__AssertCpp.cpp">
+      <Filter>src\Debug\Assert</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Debug\Assert\Platform\Win\AssertImpl.cpp">
+      <Filter>src\Debug\Assert\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Debug\Log\Log.cpp">
+      <Filter>src\Debug\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Debug\Log\__LogCpp.cpp">
+      <Filter>src\Debug\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\GraphicDef.cpp">
+      <Filter>src\Graphic</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\GraphicDefWin.cpp">
+      <Filter>src\Graphic\Platform\Win</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\Function\Function.inl">
+      <Filter>src\Function</Filter>
+    </None>
+    <None Include="src\Handle\Handle.inl">
+      <Filter>src\Handle</Filter>
+    </None>
+    <None Include="src\Handle\HandleSystem.inl">
+      <Filter>src\Handle</Filter>
+    </None>
+    <None Include="src\StaticVector\StaticVector.inl">
+      <Filter>src\StaticVector</Filter>
+    </None>
+    <None Include="src\Vec\Platform\Win\Vec4Impl.inl">
+      <Filter>src\Vec\Platform\Win</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="src\StaticVector\StaticVector.natvis">
+      <Filter>src\StaticVector</Filter>
+    </Natvis>
+  </ItemGroup>
+</Project>

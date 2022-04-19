@@ -1,0 +1,13 @@
+#ifndef CANDY_UTILITY_DEFINE_H
+#define CANDY_UTILITY_DEFINE_H
+
+CANDY_NAMESPACE_BEGIN
+
+#define DO_WHILE_BEGIN do{
+#define DO_WHILE_END }while(false)
+
+#define CANDY_UNUSED_VALUE(VALUE) static_cast<void>(VALUE);
+
+CANDY_NAMESPACE_END
+
+#endif // CANDY_UTILITY_DEFINE_H

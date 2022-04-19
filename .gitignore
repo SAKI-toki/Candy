@@ -1,3 +1,5 @@
 /.vs
 /.git
 /Game/build
+desktop.ini
+Game/Game.vcxproj.user

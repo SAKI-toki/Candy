@@ -56,6 +56,11 @@ bool Hardware::Impl::IsClose()
 	return m_IsClose;
 }
 
+HWND Hardware::Impl::GetHwnd()
+{
+	return m_Hwnd;
+}
+
 LRESULT CALLBACK Hardware::Impl::WndProc(HWND _hwnd, UINT _message, WPARAM _wparam, LPARAM _lparam)
 {
 	switch (_message)

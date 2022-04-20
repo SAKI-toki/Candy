@@ -14,6 +14,7 @@ namespace Graphic
 		void cleanup();
 
 		ID3D12Device* getDevice()const { return m_Device.Get(); }
+		IDXGIFactory6* getFactory()const { return m_Factory.Get(); }
 
 	private:
 		ComPtr<IDXGIFactory6> m_Factory;

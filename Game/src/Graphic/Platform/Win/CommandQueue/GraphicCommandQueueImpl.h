@@ -12,6 +12,7 @@ namespace Graphic
 	public:
 		void startup(ID3D12Device* const _device, const COMMAND_LIST_TYPE _commandListType);
 		void cleanup();
+		ID3D12CommandQueue* getCommandQueue()const { return m_CommandQueue.Get(); }
 
 	private:
 		ComPtr<ID3D12CommandQueue> m_CommandQueue;

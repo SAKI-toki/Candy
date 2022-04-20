@@ -22,6 +22,8 @@ namespace Hardware::Impl
 	void Update();
 
 	bool IsClose();
+
+	HWND GetHwnd();
 }
 
 CANDY_NAMESPACE_END

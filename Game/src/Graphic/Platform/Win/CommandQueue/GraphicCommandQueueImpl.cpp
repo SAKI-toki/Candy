@@ -9,7 +9,7 @@ namespace Graphic
 		D3D12_COMMAND_QUEUE_DESC desc{};
 		desc.Type = ConvCommandListType(_commandListType);
 
-		CANDY_ASSERT(SUCCEEDED(_device->CreateCommandQueue(&desc, IID_PPV_ARGS(m_CommandQueue.GetAddressOf()))));
+		CANDY_ASSERT_HRESULT(_device->CreateCommandQueue(&desc, IID_PPV_ARGS(m_CommandQueue.GetAddressOf())));
 	}
 
 	void CommandQueueImpl::cleanup()

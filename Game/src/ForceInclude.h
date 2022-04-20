@@ -38,6 +38,7 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 #include <Utility/UtilityDefine.h>
 #include <Debug/Assert/Assert.h>
 #include <Debug/Log/Log.h>
+#include <Vec/Vec4.h>
 
 using namespace candy;
 

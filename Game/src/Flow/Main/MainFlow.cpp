@@ -26,7 +26,9 @@ void MainFlow::Update()
 	Hardware::Update();
 	GameFlow::Update();
 	Graphic::Update();
+	Graphic::DrawBegin();
 	GameFlow::Draw();
+	Graphic::DrawEnd();
 }
 
 bool MainFlow::IsEnd()

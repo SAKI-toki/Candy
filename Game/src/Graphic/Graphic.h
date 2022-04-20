@@ -10,6 +10,9 @@ namespace Graphic
 	void Startup();
 	void Cleanup();
 	void Update();
+	void DrawBegin();
+	void DrawEnd();
+
 }
 
 CANDY_NAMESPACE_END

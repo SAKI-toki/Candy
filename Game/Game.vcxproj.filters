@@ -106,12 +106,6 @@
     <Filter Include="src\Graphic\Platform\Win">
       <UniqueIdentifier>{97a765fa-656f-4a11-a491-c1dae57d3da7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Graphic\Buffer">
-      <UniqueIdentifier>{24c8f001-0322-45ba-ad1b-8ccaa0aa1170}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphic\Platform\Win\Buffer">
-      <UniqueIdentifier>{210a94ad-bf63-4b64-b60c-fa27fae14a04}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Graphic\Device">
       <UniqueIdentifier>{71184d11-df0f-46f9-92ef-39a72cc89474}</UniqueIdentifier>
     </Filter>
@@ -147,6 +141,18 @@
     </Filter>
     <Filter Include="src\Debug\Log">
       <UniqueIdentifier>{bfbbfc96-c2d0-4a7a-9ebf-23f7f0d7c316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\SwapChain">
+      <UniqueIdentifier>{cc5b99c9-7a12-4668-b38d-05495dbdbda8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\SwapChain">
+      <UniqueIdentifier>{f6801980-a209-4675-b1bc-bcebc6a2e4fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\RenderTarget">
+      <UniqueIdentifier>{210a94ad-bf63-4b64-b60c-fa27fae14a04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\RenderTarget">
+      <UniqueIdentifier>{24c8f001-0322-45ba-ad1b-8ccaa0aa1170}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -252,17 +258,11 @@
     <ClInclude Include="src\Flow\Scene\SceneFlow.h">
       <Filter>src\Flow\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphic\Buffer\GraphicBuffer.h">
-      <Filter>src\Graphic\Buffer</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphic\Device\GraphicDevice.h">
       <Filter>src\Graphic\Device</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphic\Platform\Win\Device\GraphicDeviceImpl.h">
       <Filter>src\Graphic\Platform\Win\Device</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphic\Platform\Win\Buffer\GraphicBufferImpl.h">
-      <Filter>src\Graphic\Platform\Win\Buffer</Filter>
     </ClInclude>
     <ClInclude Include="src\BuildConfig\BuildConfig.h">
       <Filter>src\BuildConfig</Filter>
@@ -296,6 +296,18 @@
     </ClInclude>
     <ClInclude Include="src\Graphic\Platform\Win\GraphicDefWin.h">
       <Filter>src\Graphic\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\SwapChain\GraphicSwapChain.h">
+      <Filter>src\Graphic\SwapChain</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\SwapChain\GraphicSwapChainImpl.h">
+      <Filter>src\Graphic\Platform\Win\SwapChain</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\RenderTarget\GraphicRenderTarget.h">
+      <Filter>src\Graphic\RenderTarget</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\RenderTarget\GraphicRenderTargetImpl.h">
+      <Filter>src\Graphic\Platform\Win\RenderTarget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -401,12 +413,6 @@
     <ClCompile Include="src\Graphic\Device\GraphicDevice.cpp">
       <Filter>src\Graphic\Device</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphic\Buffer\GraphicBuffer.cpp">
-      <Filter>src\Graphic\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphic\Platform\Win\Buffer\GraphicBufferImpl.cpp">
-      <Filter>src\Graphic\Platform\Win\Buffer</Filter>
-    </ClCompile>
     <ClCompile Include="src\Graphic\__GraphicCpp.cpp">
       <Filter>src\Graphic</Filter>
     </ClCompile>
@@ -442,6 +448,18 @@
     </ClCompile>
     <ClCompile Include="src\Graphic\Platform\Win\GraphicDefWin.cpp">
       <Filter>src\Graphic\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\SwapChain\GraphicSwapChain.cpp">
+      <Filter>src\Graphic\SwapChain</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\SwapChain\GraphicSwapChainImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\SwapChain</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\RenderTarget\GraphicRenderTarget.cpp">
+      <Filter>src\Graphic\RenderTarget</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\RenderTarget\GraphicRenderTargetImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\RenderTarget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

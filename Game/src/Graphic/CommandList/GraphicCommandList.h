@@ -12,7 +12,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	class CommandList : CommandListImpl
+	class CommandList : public CommandListImpl
 	{
 	public:
 		void startup(const Device& _device, const COMMAND_LIST_TYPE _commandListType);

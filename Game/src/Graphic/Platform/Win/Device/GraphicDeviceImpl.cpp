@@ -18,7 +18,7 @@ namespace Graphic
 		factoryFlag |= DXGI_CREATE_FACTORY_DEBUG;
 #endif // BUILD_DEBUG
 
-		CANDY_ASSERT(SUCCEEDED(CreateDXGIFactory2(factoryFlag, IID_PPV_ARGS(m_Factory.GetAddressOf()))));
+		CANDY_ASSERT_HRESULT(CreateDXGIFactory2(factoryFlag, IID_PPV_ARGS(m_Factory.GetAddressOf())));
 
 		ComPtr<IDXGIAdapter1> adapter;
 		for (u32 i = 0; ; ++i)
@@ -33,7 +33,7 @@ namespace Graphic
 			}
 		}
 
-		CANDY_ASSERT(SUCCEEDED(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(m_Device.GetAddressOf()))));
+		CANDY_ASSERT_HRESULT(D3D12CreateDevice(adapter.Get(), D3D_FEATURE_LEVEL_11_0, IID_PPV_ARGS(m_Device.GetAddressOf())));
 	}
 
 	void DeviceImpl::cleanup()

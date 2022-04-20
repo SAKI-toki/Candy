@@ -8,8 +8,10 @@ namespace Graphic
 	{
 		const auto CommandListType = ConvCommandListType(_commandListType);
 		
-		CANDY_ASSERT(SUCCEEDED(_device->CreateCommandAllocator(CommandListType, IID_PPV_ARGS(m_CommandAllocator.GetAddressOf()))));
-		CANDY_ASSERT(SUCCEEDED(_device->CreateCommandList(0, CommandListType, m_CommandAllocator.Get(), nullptr, IID_PPV_ARGS(m_CommandList.GetAddressOf()))));
+		CANDY_ASSERT_HRESULT(_device->CreateCommandAllocator(CommandListType,
+			IID_PPV_ARGS(m_CommandAllocator.GetAddressOf())));
+		CANDY_ASSERT_HRESULT(_device->CreateCommandList(0, CommandListType, 
+			m_CommandAllocator.Get(), nullptr, IID_PPV_ARGS(m_CommandList.GetAddressOf())));
 	}
 
 	void CommandListImpl::cleanup()

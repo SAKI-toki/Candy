@@ -39,7 +39,7 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 #include <Debug/Assert/Assert.h>
 #include <Debug/Log/Log.h>
 #include <Vec/Vec4.h>
-
-using namespace candy;
+#include <Math/Clamp/Clamp.h>
+#include <Math/Loop/Loop.h>
 
 #endif // CANDY_FORCE_INCLUDE_H

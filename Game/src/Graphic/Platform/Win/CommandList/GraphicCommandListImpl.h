@@ -10,12 +10,18 @@ namespace Graphic
 	class CommandListImpl
 	{
 	public:
-		void startup(ID3D12Device* const _device, const COMMAND_LIST_TYPE _commandListType);
+		void startup(ID3D12Device* const _device, const COMMAND_LIST_TYPE _commandListType, const s32 _backBufferCount);
 		void cleanup();
 
+		void drawBegin(const s32 _frameNo);
+
+		void close();
+
+		ID3D12GraphicsCommandList* getCommandList()const { return m_CommandList.Get(); }
+
 	private:
-		ComPtr<ID3D12CommandAllocator> m_CommandAllocator;
-		ComPtr<ID3D12CommandList> m_CommandList;
+		std::vector<ComPtr<ID3D12CommandAllocator>> m_CommandAllocators;
+		ComPtr<ID3D12GraphicsCommandList> m_CommandList;
 	};
 }
 

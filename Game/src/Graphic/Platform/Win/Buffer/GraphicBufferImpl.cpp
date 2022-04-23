@@ -1,10 +1,10 @@
-#include "GraphicRenderTargetImpl.h"
+#include "GraphicBufferImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	void RenderTargetImpl::startup(ID3D12Device* const _device, const TEXTURE_FORMAT _textureFormat, const s32 _width, const s32 _height)
+	void BufferImpl::startupRenderTarget(ID3D12Device* const _device, const TEXTURE_FORMAT _textureFormat, const s32 _width, const s32 _height)
 	{
 		D3D12_HEAP_PROPERTIES prop{};
 		prop.Type = D3D12_HEAP_TYPE_DEFAULT;
@@ -23,13 +23,15 @@ namespace Graphic
 		clearValue.Format = desc.Format;
 		clearValue.Color[0] = clearValue.Color[1] = clearValue.Color[2] = clearValue.Color[3] = 0.0f;
 
+		m_ResourceState = D3D12_RESOURCE_STATE_COMMON;
+
 		CANDY_ASSERT_HRESULT(_device->CreateCommittedResource(&prop, D3D12_HEAP_FLAG_NONE, &desc,
-			D3D12_RESOURCE_STATE_COMMON, &clearValue, IID_PPV_ARGS(m_RenderTarget.GetAddressOf())));
+			m_ResourceState, &clearValue, IID_PPV_ARGS(m_Buffer.GetAddressOf())));
 	}
 
-	void RenderTargetImpl::cleanup()
+	void BufferImpl::cleanup()
 	{
-		m_RenderTarget.Reset();
+		m_Buffer.Reset();
 	}
 }
 

@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-s32 Graphic::GetFrameCount()
+s32 Graphic::GetBackBufferCount()
 {
 	return 3;
 }

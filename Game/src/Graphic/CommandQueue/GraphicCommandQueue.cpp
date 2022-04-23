@@ -13,6 +13,11 @@ namespace Graphic
 	{
 		CommandQueueImpl::cleanup();
 	}
+
+	void CommandQueue::executeCommandList(CommandList& _commandList)
+	{
+		CommandQueueImpl::executeCommandList(_commandList.getCommandList());
+	}
 }
 
 CANDY_NAMESPACE_END

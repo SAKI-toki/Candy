@@ -3,6 +3,7 @@
 
 #include <Graphic/GraphicDef.h>
 #include <Graphic/Device/GraphicDevice.h>
+#include <Graphic/CommandList/GraphicCommandList.h>
 
 #if PLATFORM_WIN
 #include <Graphic/Platform/Win/CommandQueue/GraphicCommandQueueImpl.h>
@@ -17,6 +18,8 @@ namespace Graphic
 	public:
 		void startup(const Device& _device, const COMMAND_LIST_TYPE _commandListType);
 		void cleanup();
+
+		void executeCommandList(CommandList& _commandList);
 	};
 }
 

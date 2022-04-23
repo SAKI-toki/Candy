@@ -9,12 +9,12 @@ ENTRY_POINT_MAIN()
 {
 	ENTRY_POINT_STARTUP();
 
-	MainFlow::Startup();
-	while (!MainFlow::IsEnd())
+	candy::MainFlow::Startup();
+	while (!candy::MainFlow::IsEnd())
 	{
-		MainFlow::Update();
+		candy::MainFlow::Update();
 	}
-	MainFlow::Cleanup();
+	candy::MainFlow::Cleanup();
 
 	ENTRY_POINT_CLEANUP();
 

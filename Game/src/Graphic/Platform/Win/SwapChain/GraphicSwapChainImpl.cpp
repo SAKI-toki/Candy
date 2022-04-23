@@ -6,10 +6,10 @@ CANDY_NAMESPACE_BEGIN
 namespace Graphic
 {
 	void SwapChainImpl::startup(IDXGIFactory6* const _factory, ID3D12CommandQueue* const _commandQueue,
-		const TEXTURE_FORMAT _textureFormat, const s32 _frameCount, const s32 _width, const s32 _height)
+		const TEXTURE_FORMAT _textureFormat, const s32 _backBufferCount, const s32 _width, const s32 _height)
 	{
 		DXGI_SWAP_CHAIN_DESC1 desc{};
-		desc.BufferCount = _frameCount;
+		desc.BufferCount = _backBufferCount;
 		desc.Width = _width;
 		desc.Height = _height;
 		desc.Format = ConvTextureFormat(_textureFormat);
@@ -23,13 +23,6 @@ namespace Graphic
 		CANDY_ASSERT_HRESULT(_factory->CreateSwapChainForHwnd(_commandQueue, hwnd, &desc, nullptr, nullptr, &swapChainForHwnd));
 		CANDY_ASSERT_HRESULT(_factory->MakeWindowAssociation(hwnd, DXGI_MWA_NO_ALT_ENTER));
 		CANDY_ASSERT_HRESULT(swapChainForHwnd.As(&m_SwapChain));
-
-		m_BackBuffers.clear();
-		m_BackBuffers.resize(_frameCount);
-		for (s32 i = 0; i < _frameCount; ++i)
-		{
-			CANDY_ASSERT_HRESULT(m_SwapChain->GetBuffer(i, IID_PPV_ARGS(m_BackBuffers[i].GetAddressOf())));
-		}
 	}
 
 	void SwapChainImpl::cleanup()
@@ -40,6 +33,11 @@ namespace Graphic
 	void SwapChainImpl::present(const s32 _syncInterval)
 	{
 		CANDY_ASSERT_HRESULT(m_SwapChain->Present(_syncInterval, 0));
+	}
+
+	s32 SwapChainImpl::getBackBufferIndex()
+	{
+		return m_SwapChain->GetCurrentBackBufferIndex();
 	}
 }
 

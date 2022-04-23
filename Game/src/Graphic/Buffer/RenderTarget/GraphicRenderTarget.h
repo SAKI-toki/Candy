@@ -5,7 +5,7 @@
 #include <Graphic/Device/GraphicDevice.h>
 
 #if PLATFORM_WIN
-#include <Graphic/Platform/Win/RenderTarget/GraphicRenderTargetImpl.h>
+#include <Graphic/Platform/Win/Buffer/RenderTarget/GraphicRenderTargetImpl.h>
 #endif // PLATFORM_WIN
 
 CANDY_NAMESPACE_BEGIN

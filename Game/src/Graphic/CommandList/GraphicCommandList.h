@@ -15,8 +15,12 @@ namespace Graphic
 	class CommandList : public CommandListImpl
 	{
 	public:
-		void startup(const Device& _device, const COMMAND_LIST_TYPE _commandListType);
+		void startup(const Device& _device, const COMMAND_LIST_TYPE _commandListType, const s32 _backBufferCount);
 		void cleanup();
+
+		void drawBegin(const s32 _backBufferIndex);
+
+		void close();
 	};
 }
 

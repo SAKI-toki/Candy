@@ -16,6 +16,11 @@ namespace Graphic
 	{
 		m_CommandQueue.Reset();
 	}
+
+	void CommandQueueImpl::executeCommandList(ID3D12CommandList* const _commandList)
+	{
+		m_CommandQueue->ExecuteCommandLists(1, &_commandList);
+	}
 }
 
 CANDY_NAMESPACE_END

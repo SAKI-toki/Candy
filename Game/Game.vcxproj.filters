@@ -181,6 +181,21 @@
     <Filter Include="src\Graphic\Buffer\BackBuffer">
       <UniqueIdentifier>{4de0506a-5850-4630-a008-3cda196d7cd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Graphic\Viewport">
+      <UniqueIdentifier>{3d8c4e6b-0a93-46fd-95e4-e59451705b80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\ScissorRect">
+      <UniqueIdentifier>{ddbb08c9-9b7d-4f3b-a8a1-74312af0e69f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\Viewport">
+      <UniqueIdentifier>{48636476-d7ae-4f44-9780-811a7567237d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\ScissorRect">
+      <UniqueIdentifier>{3ec04b17-73c5-41d7-b1b4-10e7907ef795}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Rect">
+      <UniqueIdentifier>{ccc00da5-cbdb-40c5-9d71-2887469e95bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -357,6 +372,21 @@
     <ClInclude Include="src\Graphic\Buffer\BackBuffer\GraphicBackBuffer.h">
       <Filter>src\Graphic\Buffer\BackBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="src\Graphic\Viewport\GraphicViewport.h">
+      <Filter>src\Graphic\Viewport</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\Viewport\GraphicViewportImpl.h">
+      <Filter>src\Graphic\Platform\Win\Viewport</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\ScissorRect\GraphicScissorRect.h">
+      <Filter>src\Graphic\ScissorRect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\ScissorRect\GraphicScissorRectImpl.h">
+      <Filter>src\Graphic\Platform\Win\ScissorRect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Rect\Rect.h">
+      <Filter>src\Rect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity\__EntityCpp.cpp">
@@ -524,6 +554,18 @@
     <ClCompile Include="src\Graphic\Buffer\BackBuffer\GraphicBackBuffer.cpp">
       <Filter>src\Graphic\Buffer\BackBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphic\Viewport\GraphicViewport.cpp">
+      <Filter>src\Graphic\Viewport</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\Viewport\GraphicViewportImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\Viewport</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\ScissorRect\GraphicScissorRect.cpp">
+      <Filter>src\Graphic\ScissorRect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\ScissorRect\GraphicScissorRectImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\ScissorRect</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Function\Function.inl">
@@ -546,6 +588,9 @@
     </None>
     <None Include="src\Math\Loop\Loop.inl">
       <Filter>src\Math\Loop</Filter>
+    </None>
+    <None Include="src\Rect\Rect.inl">
+      <Filter>src\Rect</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

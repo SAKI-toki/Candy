@@ -39,6 +39,7 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 #include <Debug/Assert/Assert.h>
 #include <Debug/Log/Log.h>
 #include <Vec/Vec4.h>
+#include <Rect/Rect.h>
 #include <Math/Clamp/Clamp.h>
 #include <Math/Loop/Loop.h>
 

@@ -4,6 +4,7 @@ CANDY_NAMESPACE_BEGIN
 
 inline Vec4Impl::Vec4Impl()
 {
+	set(0.0f, 0.0f, 0.0f);
 }
 inline Vec4Impl::Vec4Impl(const f32 _x, const f32 _y, const f32 _z, const f32 _w)
 {

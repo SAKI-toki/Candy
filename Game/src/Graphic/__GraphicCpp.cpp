@@ -8,6 +8,8 @@
 #include "Buffer/RenderTarget/GraphicRenderTarget.cpp"
 #include "Buffer/BackBuffer/GraphicBackBuffer.cpp"
 #include "Fence/GraphicFence.cpp"
+#include "Viewport/GraphicViewport.cpp"
+#include "ScissorRect/GraphicScissorRect.cpp"
 
 #if PLATFORM_WIN
 #include "Platform/Win/GraphicDefWin.cpp"
@@ -19,4 +21,6 @@
 #include "Platform/Win/Buffer/RenderTarget/GraphicRenderTargetImpl.cpp"
 #include "Platform/Win/Buffer/BackBuffer/GraphicBackBufferImpl.cpp"
 #include "Platform/Win/Fence/GraphicFenceImpl.cpp"
+#include "Platform/Win/Viewport/GraphicViewportImpl.cpp"
+#include "Platform/Win/ScissorRect/GraphicScissorRectImpl.cpp"
 #endif // PLATFORM_WIN

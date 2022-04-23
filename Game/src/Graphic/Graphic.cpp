@@ -5,11 +5,15 @@
 #include "SwapChain/GraphicSwapChain.h"
 #include "Fence/GraphicFence.h"
 #include "Buffer/BackBuffer/GraphicBackBuffer.h"
+#include "Viewport/GraphicViewport.h"
+#include "ScissorRect/GraphicScissorRect.h"
 
 CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
+	Viewport m_Viewport;
+	ScissorRect m_ScissorRect;
 	Device m_Device;
 	CommandQueue m_CommandQueue;
 	CommandList m_CommandList;
@@ -17,13 +21,16 @@ namespace Graphic
 	std::vector<BackBuffer> m_BackBuffers;
 	Fence m_FrameFence;
 
-
 	s32 m_BackBufferIndex;
 	std::vector<u64> m_FrameFenceValues;
 }
 
 void Graphic::Startup()
 {
+	Rect screenRect{ 0.0f, 0.0f, static_cast<f32>(GetScreenWidth()), static_cast<f32>(GetScreenHeight()) };
+	m_Viewport.set(screenRect, 0.0f, 1.0f);
+	m_ScissorRect.set(screenRect);
+
 	m_Device.startup();
 
 	m_CommandQueue.startup(m_Device, COMMAND_LIST_TYPE::RENDERING);

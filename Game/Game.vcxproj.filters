@@ -172,14 +172,8 @@
     <Filter Include="src\Graphic\Viewport">
       <UniqueIdentifier>{3d8c4e6b-0a93-46fd-95e4-e59451705b80}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Graphic\ScissorRect">
-      <UniqueIdentifier>{ddbb08c9-9b7d-4f3b-a8a1-74312af0e69f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Graphic\Platform\Win\Viewport">
       <UniqueIdentifier>{48636476-d7ae-4f44-9780-811a7567237d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphic\Platform\Win\ScissorRect">
-      <UniqueIdentifier>{3ec04b17-73c5-41d7-b1b4-10e7907ef795}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Rect">
       <UniqueIdentifier>{ccc00da5-cbdb-40c5-9d71-2887469e95bd}</UniqueIdentifier>
@@ -207,6 +201,18 @@
     </Filter>
     <Filter Include="src\Graphic\Descriptor\Handle\GPU">
       <UniqueIdentifier>{b61b0f92-a635-42d2-8e89-36c951f16926}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\ScissorRect">
+      <UniqueIdentifier>{40f49fa8-53d2-45cb-b3c1-589762d4642b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\ScissorRect">
+      <UniqueIdentifier>{0991c520-a076-46b8-be7c-715286d58446}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Global">
+      <UniqueIdentifier>{d6d38465-e483-4694-8863-4d81c3622eff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Math\MinMax">
+      <UniqueIdentifier>{3e709a5a-1006-426b-aeb0-c0cfbdbc5d3c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -378,12 +384,6 @@
     <ClInclude Include="src\Graphic\Platform\Win\Viewport\GraphicViewportImpl.h">
       <Filter>src\Graphic\Platform\Win\Viewport</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphic\ScissorRect\GraphicScissorRect.h">
-      <Filter>src\Graphic\ScissorRect</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphic\Platform\Win\ScissorRect\GraphicScissorRectImpl.h">
-      <Filter>src\Graphic\Platform\Win\ScissorRect</Filter>
-    </ClInclude>
     <ClInclude Include="src\Rect\Rect.h">
       <Filter>src\Rect</Filter>
     </ClInclude>
@@ -410,6 +410,24 @@
     </ClInclude>
     <ClInclude Include="src\Graphic\Platform\Win\Descriptor\Handle\GPU\GraphicDescriptorGpuHandleImpl.h">
       <Filter>src\Graphic\Platform\Win\Descriptor\Handle\GPU</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Setting.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\ScissorRect\GraphicScissorRect.h">
+      <Filter>src\Graphic\ScissorRect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\ScissorRect\GraphicScissorRectImpl.h">
+      <Filter>src\Graphic\Platform\Win\ScissorRect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Global\Global.h">
+      <Filter>src\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\MinMax\MinMax.h">
+      <Filter>src\Math\MinMax</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Math\Math.h">
+      <Filter>src\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -572,12 +590,6 @@
     <ClCompile Include="src\Graphic\Platform\Win\Viewport\GraphicViewportImpl.cpp">
       <Filter>src\Graphic\Platform\Win\Viewport</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphic\ScissorRect\GraphicScissorRect.cpp">
-      <Filter>src\Graphic\ScissorRect</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphic\Platform\Win\ScissorRect\GraphicScissorRectImpl.cpp">
-      <Filter>src\Graphic\Platform\Win\ScissorRect</Filter>
-    </ClCompile>
     <ClCompile Include="src\Graphic\Descriptor\GraphicDescriptor.cpp">
       <Filter>src\Graphic\Descriptor</Filter>
     </ClCompile>
@@ -601,6 +613,24 @@
     </ClCompile>
     <ClCompile Include="src\Graphic\Platform\Win\Descriptor\Handle\GPU\GraphicDescriptorGpuHandleImpl.cpp">
       <Filter>src\Graphic\Platform\Win\Descriptor\Handle\GPU</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Setting.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\__RootCpp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\ScissorRect\GraphicScissorRect.cpp">
+      <Filter>src\Graphic\ScissorRect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\ScissorRect\GraphicScissorRectImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\ScissorRect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Global\Global.cpp">
+      <Filter>src\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Global\__GlobalCpp.cpp">
+      <Filter>src\Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -627,6 +657,9 @@
     </None>
     <None Include="src\Rect\Rect.inl">
       <Filter>src\Rect</Filter>
+    </None>
+    <None Include="src\Math\MinMax\MinMax.inl">
+      <Filter>src\Math\MinMax</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

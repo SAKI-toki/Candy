@@ -31,6 +31,7 @@ namespace Graphic
 		void setRenderTargets(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const s32 _renderTargetCount);
 		void setRenderTargetsDepthStencil(const DescriptorCpuHandle& _rtDescriptorCpuHandle,
 			const s32 _renderTargetCount, const DescriptorCpuHandle& _dsDescriptorCpuHandle);
+		void clearRenderTarget(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const Vec4 _color);
 	};
 }
 

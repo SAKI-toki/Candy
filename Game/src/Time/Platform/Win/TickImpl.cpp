@@ -21,7 +21,7 @@ f32 TickImpl::toMicroSec()const
 	return Time::Impl::ToMicroSec(m_Value);
 }
 
-TickImpl TickImpl::operator+(const TickImpl& _other)
+TickImpl TickImpl::operator+(const TickImpl& _other)const
 {
 	TickImpl tickImpl;
 	tickImpl.m_Value.QuadPart = m_Value.QuadPart + _other.m_Value.QuadPart;
@@ -32,7 +32,7 @@ TickImpl& TickImpl::operator+=(const TickImpl& _other)
 	m_Value.QuadPart += _other.m_Value.QuadPart;
 	return *this;
 }
-TickImpl TickImpl::operator-(const TickImpl& _other)
+TickImpl TickImpl::operator-(const TickImpl& _other)const
 {
 	TickImpl tickImpl;
 	tickImpl.m_Value.QuadPart = m_Value.QuadPart - _other.m_Value.QuadPart;

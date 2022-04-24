@@ -7,7 +7,7 @@ namespace Graphic
 	void CommandListImpl::startup(ID3D12Device* const _device, const COMMAND_LIST_TYPE _commandListType, const s32 _backBufferCount)
 	{
 		const auto CommandListType = ConvCommandListType(_commandListType);
-		
+
 		m_CommandAllocators.clear();
 		m_CommandAllocators.resize(_backBufferCount);
 		for (s32 i = 0; i < _backBufferCount; ++i)
@@ -15,7 +15,7 @@ namespace Graphic
 			CANDY_ASSERT_HRESULT(_device->CreateCommandAllocator(CommandListType,
 				IID_PPV_ARGS(m_CommandAllocators[i].GetAddressOf())));
 		}
-		CANDY_ASSERT_HRESULT(_device->CreateCommandList(0, CommandListType, 
+		CANDY_ASSERT_HRESULT(_device->CreateCommandList(0, CommandListType,
 			m_CommandAllocators[0].Get(), nullptr, IID_PPV_ARGS(m_CommandList.GetAddressOf())));
 	}
 
@@ -50,6 +50,11 @@ namespace Graphic
 		const s32 _renderTargetCount, const D3D12_CPU_DESCRIPTOR_HANDLE* const _dsDescriptorCpuHandle)
 	{
 		m_CommandList->OMSetRenderTargets(_renderTargetCount, _rtDescriptorCpuHandle, true, _dsDescriptorCpuHandle);
+	}
+
+	void CommandListImpl::clearRenderTarget(const D3D12_CPU_DESCRIPTOR_HANDLE& _rtDescriptorCpuHandle, const Vec4 _color)
+	{
+		m_CommandList->ClearRenderTargetView(_rtDescriptorCpuHandle, _color.m_f32Array, 0, nullptr);
 	}
 }
 

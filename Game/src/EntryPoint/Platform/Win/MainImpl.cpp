@@ -14,7 +14,7 @@ void entryPointStartup(_In_ HINSTANCE _instanceHandle,
 	Hardware::StartupInfo hardwareStartupInfo;
 	hardwareStartupInfo.m_InstanceHandle = _instanceHandle;
 	hardwareStartupInfo.m_CmdShowNum = _cmdShowNum;
-	hardwareStartupInfo.m_Name = "Candy";
+	hardwareStartupInfo.m_Name = Setting::GetAppName();
 	hardwareStartupInfo.m_Width = 1600;
 	hardwareStartupInfo.m_Height = 900;
 	Hardware::Startup(hardwareStartupInfo);

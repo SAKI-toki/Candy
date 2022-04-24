@@ -29,6 +29,13 @@ struct alignas(16) Vec4Impl
 		{
 			f32 x, y, z, w;
 		}m_f32;
+		struct
+		{
+			f32 r, g, b, a;
+		}m_f32Col;
+		
+		f32 m_f32Array[4];
+
 		__m128 m_m128;
 	};
 };

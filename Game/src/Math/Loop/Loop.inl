@@ -27,7 +27,7 @@ ResultT Math::LoopStrict(const T _v, const MinT _min, const MaxT _max)
 }
 
 template<typename T, typename MinT, typename MaxT, typename ResultT>
-ResultT LoopSizeStrict(const T _v, const MinT _min, const MaxT _max)
+ResultT Math::LoopSizeStrict(const T _v, const MinT _min, const MaxT _max)
 {
 	return Loop(_v, _min, _max - 1);
 }

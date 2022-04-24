@@ -12,7 +12,8 @@ namespace Graphic
 	public:
 		explicit DescriptorCpuHandleImpl(const D3D12_CPU_DESCRIPTOR_HANDLE _cpuDescriptorHandle);
 
-		const D3D12_CPU_DESCRIPTOR_HANDLE* getHandle()const { return &m_Handle; }
+		D3D12_CPU_DESCRIPTOR_HANDLE getHandle()const { return m_Handle; }
+		const D3D12_CPU_DESCRIPTOR_HANDLE* getHandleAddress()const { return &m_Handle; }
 
 	private:
 		D3D12_CPU_DESCRIPTOR_HANDLE m_Handle;

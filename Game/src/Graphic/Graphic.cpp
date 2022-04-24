@@ -29,6 +29,8 @@ namespace Graphic
 
 	s32 m_BackBufferIndex;
 	std::vector<u64> m_FrameFenceValues;
+
+	Vec4 m_BackBufferClearColor;
 }
 
 void Graphic::Startup()
@@ -78,7 +80,9 @@ void Graphic::Cleanup()
 
 void Graphic::Update()
 {
-
+	m_BackBufferClearColor.m_f32Col.r = (std::sin(Global::GetAppTimeAll() * 1) + 1.0f) / 2.0f;
+	m_BackBufferClearColor.m_f32Col.g = (std::sin(Global::GetAppTimeAll() * 2) + 1.0f) / 2.0f;
+	m_BackBufferClearColor.m_f32Col.b = (std::sin(Global::GetAppTimeAll() * 5) + 1.0f) / 2.0f;
 }
 
 void Graphic::DrawBegin()
@@ -91,6 +95,7 @@ void Graphic::DrawBegin()
 	m_BackBuffers[m_BackBufferIndex].translationBarrier(m_CommandList, BARRIER_STATE::RENDER_TARGET);
 
 	m_CommandList.setRenderTargets(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), 1);
+	m_CommandList.clearRenderTarget(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), m_BackBufferClearColor);
 
 	m_BackBuffers[m_BackBufferIndex].translationBarrier(m_CommandList, BARRIER_STATE::PRESENT);
 }
@@ -101,7 +106,7 @@ void Graphic::DrawEnd()
 
 	m_CommandQueue.executeCommandList(m_CommandList);
 
-	m_SwapChain.present(1);
+	m_SwapChain.present(0);
 
 	const u64 prevFrameFenceValue = m_FrameFenceValues[m_BackBufferIndex];
 	m_FrameFence.signalFromGpu(m_CommandQueue, m_FrameFenceValues[m_BackBufferIndex]);

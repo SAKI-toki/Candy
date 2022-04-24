@@ -11,6 +11,7 @@ namespace MainFlow
 
 void MainFlow::Startup()
 {
+	Global::Startup();
 	Graphic::Startup();
 	GameFlow::Startup();
 }
@@ -19,13 +20,16 @@ void MainFlow::Cleanup()
 {
 	GameFlow::Cleanup();
 	Graphic::Cleanup();
+	Global::Cleanup();
 }
 
 void MainFlow::Update()
 {
+	Global::Update();
 	Hardware::Update();
 	GameFlow::Update();
 	Graphic::Update();
+
 	Graphic::DrawBegin();
 	GameFlow::Draw();
 	Graphic::DrawEnd();

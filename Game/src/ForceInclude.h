@@ -14,6 +14,7 @@
 #include <vector>
 #include <algorithm>
 #include <array>
+#include <cmath>
 #include <cassert>
 
 inline void dummyFunc(...) {}
@@ -40,7 +41,8 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 #include <Debug/Log/Log.h>
 #include <Vec/Vec4.h>
 #include <Rect/Rect.h>
-#include <Math/Clamp/Clamp.h>
-#include <Math/Loop/Loop.h>
+#include <Math/Math.h>
+#include <Setting.h>
+#include <Global/Global.h>
 
 #endif // CANDY_FORCE_INCLUDE_H

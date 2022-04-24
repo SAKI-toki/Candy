@@ -12,10 +12,10 @@ public:
 	f32 toMilliSec()const;
 	f32 toMicroSec()const;
 
-	TickImpl operator+(const TickImpl&);
-	TickImpl& operator+=(const TickImpl&);
-	TickImpl operator-(const TickImpl&);
-	TickImpl& operator-=(const TickImpl&);
+	TickImpl operator+(const TickImpl& _other)const;
+	TickImpl& operator+=(const TickImpl& _other);
+	TickImpl operator-(const TickImpl& _other)const;
+	TickImpl& operator-=(const TickImpl& _other);
 
 private:
 	LARGE_INTEGER m_Value{};

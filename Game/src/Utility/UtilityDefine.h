@@ -6,7 +6,7 @@ CANDY_NAMESPACE_BEGIN
 #define CANDY_DO_WHILE_BEGIN do{
 #define CANDY_DO_WHILE_END }while(false)
 
-#define CANDY_UNUSED_VALUE(VALUE) static_cast<void>(VALUE);
+#define CANDY_UNUSED_VALUE(VALUE) static_cast<void>(VALUE)
 
 CANDY_NAMESPACE_END
 

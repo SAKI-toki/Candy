@@ -22,6 +22,7 @@ namespace Graphic
 
 		void setRenderTargets(const D3D12_CPU_DESCRIPTOR_HANDLE* const _rtDescriptorCpuHandle,
 			const s32 _renderTargetCount, const D3D12_CPU_DESCRIPTOR_HANDLE* const _dsDescriptorCpuHandle);
+		void clearRenderTarget(const D3D12_CPU_DESCRIPTOR_HANDLE& _rtDescriptorCpuHandle, const Vec4 _color);
 
 	public:
 		ID3D12GraphicsCommandList* getCommandList()const { return m_CommandList.Get(); }

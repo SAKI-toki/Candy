@@ -36,13 +36,19 @@ namespace Graphic
 
 	void CommandList::setRenderTargets(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const s32 _renderTargetCount)
 	{
-		CommandListImpl::setRenderTargets(_rtDescriptorCpuHandle.getHandle(), _renderTargetCount, nullptr);
+		CommandListImpl::setRenderTargets(_rtDescriptorCpuHandle.getHandleAddress(), _renderTargetCount, nullptr);
 	}
 
 	void CommandList::setRenderTargetsDepthStencil(const DescriptorCpuHandle& _rtDescriptorCpuHandle,
 		const s32 _renderTargetCount, const DescriptorCpuHandle& _dsDescriptorCpuHandle)
 	{
-		CommandListImpl::setRenderTargets(_rtDescriptorCpuHandle.getHandle(), _renderTargetCount, _dsDescriptorCpuHandle.getHandle());
+		CommandListImpl::setRenderTargets(_rtDescriptorCpuHandle.getHandleAddress(), 
+			_renderTargetCount, _dsDescriptorCpuHandle.getHandleAddress());
+	}
+
+	void CommandList::clearRenderTarget(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const Vec4 _color)
+	{
+		CommandListImpl::clearRenderTarget(_rtDescriptorCpuHandle.getHandle(), _color);
 	}
 }
 

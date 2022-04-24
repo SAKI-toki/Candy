@@ -166,20 +166,8 @@
     <Filter Include="src\Graphic\Buffer">
       <UniqueIdentifier>{dbaf791c-50a7-4c17-ba93-90e4f1959f09}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Graphic\Buffer\RenderTarget">
-      <UniqueIdentifier>{16faa791-02b6-4e3a-82f1-f1a9f6f424bc}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Graphic\Platform\Win\Buffer">
       <UniqueIdentifier>{d55f836a-fe50-4202-a8f5-a4c29297f680}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphic\Platform\Win\Buffer\RenderTarget">
-      <UniqueIdentifier>{210a94ad-bf63-4b64-b60c-fa27fae14a04}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphic\Platform\Win\Buffer\BackBuffer">
-      <UniqueIdentifier>{eb56f552-2e71-499e-a9c9-e76e70af4a17}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Graphic\Buffer\BackBuffer">
-      <UniqueIdentifier>{4de0506a-5850-4630-a008-3cda196d7cd0}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Graphic\Viewport">
       <UniqueIdentifier>{3d8c4e6b-0a93-46fd-95e4-e59451705b80}</UniqueIdentifier>
@@ -195,6 +183,30 @@
     </Filter>
     <Filter Include="src\Rect">
       <UniqueIdentifier>{ccc00da5-cbdb-40c5-9d71-2887469e95bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Descriptor">
+      <UniqueIdentifier>{5ed3c95e-c0c0-4046-8638-38ca70d32a63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\Descriptor">
+      <UniqueIdentifier>{4e1e0e3b-d67a-4a3a-8f3b-373660ef3ca9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\Descriptor\Handle">
+      <UniqueIdentifier>{fc16e39b-ade0-44f5-9cc4-61e8180c6eec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Descriptor\Handle">
+      <UniqueIdentifier>{94b0ced4-156b-41f8-88d7-63ed17bf7ad4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\Descriptor\Handle\GPU">
+      <UniqueIdentifier>{ddaee763-ea4e-40b9-b0a9-de0688ffa14f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Platform\Win\Descriptor\Handle\CPU">
+      <UniqueIdentifier>{1d8e095c-6a68-46dd-bad4-ae0d9e61a386}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Descriptor\Handle\CPU">
+      <UniqueIdentifier>{7e0e7a8d-3102-489f-b389-30a2ecb0989a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphic\Descriptor\Handle\GPU">
+      <UniqueIdentifier>{b61b0f92-a635-42d2-8e89-36c951f16926}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -357,20 +369,8 @@
     <ClInclude Include="src\Math\Loop\Loop.h">
       <Filter>src\Math\Loop</Filter>
     </ClInclude>
-    <ClInclude Include="src\Graphic\Platform\Win\Buffer\RenderTarget\GraphicRenderTargetImpl.h">
-      <Filter>src\Graphic\Platform\Win\Buffer\RenderTarget</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphic\Platform\Win\Buffer\GraphicBufferImpl.h">
       <Filter>src\Graphic\Platform\Win\Buffer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphic\Buffer\RenderTarget\GraphicRenderTarget.h">
-      <Filter>src\Graphic\Buffer\RenderTarget</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphic\Platform\Win\Buffer\BackBuffer\GraphicBackBufferImpl.h">
-      <Filter>src\Graphic\Platform\Win\Buffer\BackBuffer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Graphic\Buffer\BackBuffer\GraphicBackBuffer.h">
-      <Filter>src\Graphic\Buffer\BackBuffer</Filter>
     </ClInclude>
     <ClInclude Include="src\Graphic\Viewport\GraphicViewport.h">
       <Filter>src\Graphic\Viewport</Filter>
@@ -386,6 +386,30 @@
     </ClInclude>
     <ClInclude Include="src\Rect\Rect.h">
       <Filter>src\Rect</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Descriptor\GraphicDescriptor.h">
+      <Filter>src\Graphic\Descriptor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\Descriptor\GraphicDescriptorImpl.h">
+      <Filter>src\Graphic\Platform\Win\Descriptor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Buffer\GraphicBuffer.h">
+      <Filter>src\Graphic\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\GraphicImpl.h">
+      <Filter>src\Graphic\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\Descriptor\Handle\CPU\GraphicDescriptorCpuHandleImpl.h">
+      <Filter>src\Graphic\Platform\Win\Descriptor\Handle\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Descriptor\Handle\CPU\GraphicDescriptorCpuHandle.h">
+      <Filter>src\Graphic\Descriptor\Handle\CPU</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Descriptor\Handle\GPU\GraphicDescriptorGpuHandle.h">
+      <Filter>src\Graphic\Descriptor\Handle\GPU</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Graphic\Platform\Win\Descriptor\Handle\GPU\GraphicDescriptorGpuHandleImpl.h">
+      <Filter>src\Graphic\Platform\Win\Descriptor\Handle\GPU</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -539,20 +563,8 @@
     <ClCompile Include="src\Graphic\Platform\Win\Fence\GraphicFenceImpl.cpp">
       <Filter>src\Graphic\Platform\Win\Fence</Filter>
     </ClCompile>
-    <ClCompile Include="src\Graphic\Platform\Win\Buffer\RenderTarget\GraphicRenderTargetImpl.cpp">
-      <Filter>src\Graphic\Platform\Win\Buffer\RenderTarget</Filter>
-    </ClCompile>
     <ClCompile Include="src\Graphic\Platform\Win\Buffer\GraphicBufferImpl.cpp">
       <Filter>src\Graphic\Platform\Win\Buffer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphic\Buffer\RenderTarget\GraphicRenderTarget.cpp">
-      <Filter>src\Graphic\Buffer\RenderTarget</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphic\Platform\Win\Buffer\BackBuffer\GraphicBackBufferImpl.cpp">
-      <Filter>src\Graphic\Platform\Win\Buffer\BackBuffer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Graphic\Buffer\BackBuffer\GraphicBackBuffer.cpp">
-      <Filter>src\Graphic\Buffer\BackBuffer</Filter>
     </ClCompile>
     <ClCompile Include="src\Graphic\Viewport\GraphicViewport.cpp">
       <Filter>src\Graphic\Viewport</Filter>
@@ -565,6 +577,30 @@
     </ClCompile>
     <ClCompile Include="src\Graphic\Platform\Win\ScissorRect\GraphicScissorRectImpl.cpp">
       <Filter>src\Graphic\Platform\Win\ScissorRect</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Descriptor\GraphicDescriptor.cpp">
+      <Filter>src\Graphic\Descriptor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\Descriptor\GraphicDescriptorImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\Descriptor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Buffer\GraphicBuffer.cpp">
+      <Filter>src\Graphic\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\GraphicImpl.cpp">
+      <Filter>src\Graphic\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\Descriptor\Handle\CPU\GraphicDescriptorCpuHandleImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\Descriptor\Handle\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Descriptor\Handle\CPU\GraphicDescriptorCpuHandle.cpp">
+      <Filter>src\Graphic\Descriptor\Handle\CPU</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Descriptor\Handle\GPU\GraphicDescriptorGpuHandle.cpp">
+      <Filter>src\Graphic\Descriptor\Handle\GPU</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphic\Platform\Win\Descriptor\Handle\GPU\GraphicDescriptorGpuHandleImpl.cpp">
+      <Filter>src\Graphic\Platform\Win\Descriptor\Handle\GPU</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

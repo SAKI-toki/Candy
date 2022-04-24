@@ -9,7 +9,7 @@ namespace Graphic
 {
 	class CommandListImpl
 	{
-	public:
+	protected:
 		void startup(ID3D12Device* const _device, const COMMAND_LIST_TYPE _commandListType, const s32 _backBufferCount);
 		void cleanup();
 
@@ -17,6 +17,13 @@ namespace Graphic
 
 		void close();
 
+		void setViewport(const D3D12_VIEWPORT* const  _viewport);
+		void setScissorRect(const D3D12_RECT* const  _scissorRect);
+
+		void setRenderTargets(const D3D12_CPU_DESCRIPTOR_HANDLE* const _rtDescriptorCpuHandle,
+			const s32 _renderTargetCount, const D3D12_CPU_DESCRIPTOR_HANDLE* const _dsDescriptorCpuHandle);
+
+	public:
 		ID3D12GraphicsCommandList* getCommandList()const { return m_CommandList.Get(); }
 
 	private:

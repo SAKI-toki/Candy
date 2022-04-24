@@ -9,12 +9,13 @@ namespace Graphic
 {
 	class CommandQueueImpl
 	{
-	public:
+	protected:
 		void startup(ID3D12Device* const _device, const COMMAND_LIST_TYPE _commandListType);
 		void cleanup();
 
 		void executeCommandList(ID3D12CommandList* const _commandList);
 
+	public:
 		ID3D12CommandQueue* getCommandQueue()const { return m_CommandQueue.Get(); }
 
 	private:

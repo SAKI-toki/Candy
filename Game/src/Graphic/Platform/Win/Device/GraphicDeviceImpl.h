@@ -9,10 +9,11 @@ namespace Graphic
 {
 	class DeviceImpl
 	{
-	public:
+	protected:
 		void startup();
 		void cleanup();
 
+	public:
 		ID3D12Device* getDevice()const { return m_Device.Get(); }
 		IDXGIFactory6* getFactory()const { return m_Factory.Get(); }
 

@@ -14,11 +14,6 @@ namespace Graphic
 		m_Viewport.MinDepth = _minDepth;
 		m_Viewport.MaxDepth = _maxDepth;
 	}
-
-	void ViewportImpl::set(const Rect& _rect, const f32 _minDepth, const f32 _maxDepth)
-	{
-		set(_rect.m_X, _rect.m_Y, _rect.m_Width, _rect.m_Height, _minDepth, _maxDepth);
-	}
 }
 
 CANDY_NAMESPACE_END

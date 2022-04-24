@@ -4,9 +4,14 @@
 #include "CommandList/GraphicCommandList.h"
 #include "SwapChain/GraphicSwapChain.h"
 #include "Fence/GraphicFence.h"
-#include "Buffer/BackBuffer/GraphicBackBuffer.h"
+#include "Buffer/GraphicBuffer.h"
 #include "Viewport/GraphicViewport.h"
 #include "ScissorRect/GraphicScissorRect.h"
+#include "Descriptor/GraphicDescriptor.h"
+
+#if PLATFORM_WIN
+#include "Platform/Win/GraphicImpl.h"
+#endif // PLATFORM_WIN
 
 CANDY_NAMESPACE_BEGIN
 
@@ -18,7 +23,8 @@ namespace Graphic
 	CommandQueue m_CommandQueue;
 	CommandList m_CommandList;
 	SwapChain m_SwapChain;
-	std::vector<BackBuffer> m_BackBuffers;
+	std::vector<Buffer> m_BackBuffers;
+	Descriptor m_BackBufferDescriptor;
 	Fence m_FrameFence;
 
 	s32 m_BackBufferIndex;
@@ -27,11 +33,12 @@ namespace Graphic
 
 void Graphic::Startup()
 {
+	m_Device.startup();
+	Impl::preCalc(m_Device.getDevice());
+
 	Rect screenRect{ 0.0f, 0.0f, static_cast<f32>(GetScreenWidth()), static_cast<f32>(GetScreenHeight()) };
 	m_Viewport.set(screenRect, 0.0f, 1.0f);
 	m_ScissorRect.set(screenRect);
-
-	m_Device.startup();
 
 	m_CommandQueue.startup(m_Device, COMMAND_LIST_TYPE::RENDERING);
 	m_CommandList.startup(m_Device, COMMAND_LIST_TYPE::RENDERING, GetBackBufferCount());
@@ -40,10 +47,13 @@ void Graphic::Startup()
 	m_SwapChain.startup(m_Device, m_CommandQueue, TEXTURE_FORMAT::R8G8B8A8_UNORM,
 		GetBackBufferCount(), GetScreenWidth(), GetScreenHeight());
 	m_BackBufferIndex = m_SwapChain.getBackBufferIndex();
+
+	m_BackBufferDescriptor.startup(m_Device, DESCRIPTOR_TYPE::RENDER_TARGET, GetBackBufferCount());
 	m_BackBuffers.resize(GetBackBufferCount());
 	for (s32 i=0;i< m_BackBuffers.size();++i)
 	{
-		m_BackBuffers[i].startup(m_SwapChain, i);
+		m_BackBuffers[i].startupBackBuffer(m_SwapChain, i);
+		m_BackBufferDescriptor.bindingRenderTarget(m_Device, m_BackBuffers[i], i);
 	}
 
 	m_FrameFence.startup(m_Device);
@@ -56,6 +66,8 @@ void Graphic::Cleanup()
 	m_FrameFence.signalFromGpu(m_CommandQueue, m_FrameFenceValues[m_BackBufferIndex]);
 	m_FrameFence.waitCpu(m_FrameFenceValues[m_BackBufferIndex]);
 
+	m_FrameFence.cleanup();
+	m_BackBufferDescriptor.cleanup();
 	for (auto& backBuffer : m_BackBuffers)backBuffer.cleanup();
 	m_BackBuffers.clear();
 	m_SwapChain.cleanup();
@@ -72,6 +84,15 @@ void Graphic::Update()
 void Graphic::DrawBegin()
 {
 	m_CommandList.drawBegin(m_BackBufferIndex);
+
+	m_CommandList.setViewport(m_Viewport);
+	m_CommandList.setScissorRect(m_ScissorRect);
+
+	m_BackBuffers[m_BackBufferIndex].translationBarrier(m_CommandList, BARRIER_STATE::RENDER_TARGET);
+
+	m_CommandList.setRenderTargets(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), 1);
+
+	m_BackBuffers[m_BackBufferIndex].translationBarrier(m_CommandList, BARRIER_STATE::PRESENT);
 }
 
 void Graphic::DrawEnd()

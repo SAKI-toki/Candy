@@ -9,10 +9,10 @@ namespace Graphic
 {
 	class ScissorRectImpl
 	{
-	public:
+	protected:
 		void set(const f32 _left, const f32 _top, const f32 _right, const f32 _bottom);
-		void set(const Rect& _rect);
 
+	public:
 		const D3D12_RECT* getScissorRect()const { return &m_ScissorRect; }
 
 	private:

@@ -18,6 +18,22 @@ namespace Graphic
 		R8G8B8A8_UNORM,
 	};
 
+	enum class BARRIER_STATE
+	{
+		COMMON,
+		RENDER_TARGET,
+		PRESENT,
+	};
+
+
+	enum class DESCRIPTOR_TYPE
+	{
+		CONSTANT_BUFFER,
+		SHADER_RESOURCE,
+		UNORDERED_ACCESS,
+		RENDER_TARGET,
+	};
+
 	s32 GetBackBufferCount();
 
 	s32 GetScreenWidth();

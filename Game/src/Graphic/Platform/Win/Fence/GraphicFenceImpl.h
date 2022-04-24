@@ -9,7 +9,7 @@ namespace Graphic
 {
 	class FenceImpl
 	{
-	public:
+	protected:
 		void startup(ID3D12Device* const _device);
 		void cleanup();
 

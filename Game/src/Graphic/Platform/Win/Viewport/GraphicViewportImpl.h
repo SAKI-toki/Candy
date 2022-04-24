@@ -9,11 +9,11 @@ namespace Graphic
 {
 	class ViewportImpl
 	{
-	public:
+	protected:
 		void set(const f32 _topLeftX, const f32 _topLeftY, const f32 _width,
 			const f32 _height, const f32 _minDepth, const f32 _maxDepth);
-		void set(const Rect& _rect, const f32 _minDepth, const f32 _maxDepth);
 
+	public:
 		const D3D12_VIEWPORT* getViewport()const { return &m_Viewport; }
 
 	private:

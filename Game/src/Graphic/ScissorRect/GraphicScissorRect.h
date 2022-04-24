@@ -13,6 +13,9 @@ namespace Graphic
 {
 	class ScissorRect : public ScissorRectImpl
 	{
+	public:
+		void set(const f32 _left, const f32 _top, const f32 _right, const f32 _bottom);
+		void set(const Rect& _rect);
 	};
 }
 

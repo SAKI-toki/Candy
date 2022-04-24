@@ -1,7 +1,7 @@
 #ifndef CANDY_GRAPHIC_H
 #define CANDY_GRAPHIC_H
 
-#include <Graphic/GraphicDef.h>
+#include "GraphicDef.h"
 
 CANDY_NAMESPACE_BEGIN
 
@@ -12,7 +12,6 @@ namespace Graphic
 	void Update();
 	void DrawBegin();
 	void DrawEnd();
-
 }
 
 CANDY_NAMESPACE_END

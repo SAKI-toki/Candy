@@ -3,6 +3,9 @@
 
 #include <Graphic/GraphicDef.h>
 #include <Graphic/Device/GraphicDevice.h>
+#include <Graphic/Viewport/GraphicViewport.h>
+#include <Graphic/ScissorRect/GraphicScissorRect.h>
+#include <Graphic/Descriptor/Handle/CPU/GraphicDescriptorCpuHandle.h>
 
 #if PLATFORM_WIN
 #include <Graphic/Platform/Win/CommandList/GraphicCommandListImpl.h>
@@ -21,6 +24,13 @@ namespace Graphic
 		void drawBegin(const s32 _backBufferIndex);
 
 		void close();
+
+		void setViewport(const Viewport& _viewport);
+		void setScissorRect(const ScissorRect& _scissorRect);
+
+		void setRenderTargets(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const s32 _renderTargetCount);
+		void setRenderTargetsDepthStencil(const DescriptorCpuHandle& _rtDescriptorCpuHandle,
+			const s32 _renderTargetCount, const DescriptorCpuHandle& _dsDescriptorCpuHandle);
 	};
 }
 

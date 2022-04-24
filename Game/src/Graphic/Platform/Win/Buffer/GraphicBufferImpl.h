@@ -9,12 +9,16 @@ namespace Graphic
 {
 	class BufferImpl
 	{
-	public:
+	protected:
 		void startupRenderTarget(ID3D12Device* const _device, const TEXTURE_FORMAT _textureFormat, const s32 _width, const s32 _height);
+		void startupBackBuffer(IDXGISwapChain* const _swapChain, const s32 _backBufferIndex);
+
 		void cleanup();
 
+		void translationBarrier(ID3D12GraphicsCommandList* const _graphicCommandList, const BARRIER_STATE _nextBarrierState);
+
+	public:
 		ID3D12Resource* getBuffer()const { return m_Buffer.Get(); }
-		ID3D12Resource** getBufferAddress() { return m_Buffer.GetAddressOf(); }
 
 	private:
 		ComPtr<ID3D12Resource> m_Buffer;

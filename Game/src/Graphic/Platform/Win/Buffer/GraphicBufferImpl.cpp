@@ -29,9 +29,31 @@ namespace Graphic
 			m_ResourceState, &clearValue, IID_PPV_ARGS(m_Buffer.GetAddressOf())));
 	}
 
+	void BufferImpl::startupBackBuffer(IDXGISwapChain* const _swapChain, const s32 _backBufferIndex)
+	{
+		_swapChain->GetBuffer(_backBufferIndex, IID_PPV_ARGS(m_Buffer.GetAddressOf()));
+	}
+
 	void BufferImpl::cleanup()
 	{
 		m_Buffer.Reset();
+	}
+
+	void BufferImpl::translationBarrier(ID3D12GraphicsCommandList* const _commandList, const BARRIER_STATE _nextBarrierState)
+	{
+		const auto NextBarrierState = ConvBarrierState(_nextBarrierState);
+		if (NextBarrierState == m_ResourceState)return;
+
+		D3D12_RESOURCE_BARRIER barrier{};
+		barrier.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
+		barrier.Transition.pResource = m_Buffer.Get();
+		barrier.Transition.StateBefore = m_ResourceState;
+		barrier.Transition.StateAfter = NextBarrierState;
+		barrier.Transition.Subresource = D3D12_RESOURCE_BARRIER_ALL_SUBRESOURCES;
+
+		m_ResourceState = NextBarrierState;
+
+		_commandList->ResourceBarrier(1, &barrier);
 	}
 }
 

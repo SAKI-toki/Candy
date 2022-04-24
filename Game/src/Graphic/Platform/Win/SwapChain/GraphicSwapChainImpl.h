@@ -9,7 +9,7 @@ namespace Graphic
 {
 	class SwapChainImpl
 	{
-	public:
+	protected:
 		void startup(IDXGIFactory6* const _factory, ID3D12CommandQueue* const _commandQueue,
 			const TEXTURE_FORMAT _textureFormat, const s32 _backBufferCount, const s32 _width, const s32 _height);
 		void cleanup();
@@ -17,6 +17,7 @@ namespace Graphic
 		void present(const s32 _syncInterval);
 		s32 getBackBufferIndex();
 
+	public:
 		IDXGISwapChain3* getSwapChain()const { return m_SwapChain.Get(); }
 
 	private:

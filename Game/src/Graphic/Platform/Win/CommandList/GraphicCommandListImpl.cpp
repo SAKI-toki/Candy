@@ -35,6 +35,22 @@ namespace Graphic
 	{
 		CANDY_ASSERT_HRESULT(m_CommandList->Close());
 	}
+
+	void CommandListImpl::setViewport(const D3D12_VIEWPORT* const _viewport)
+	{
+		m_CommandList->RSSetViewports(1, _viewport);
+	}
+
+	void CommandListImpl::setScissorRect(const D3D12_RECT* const _scissorRect)
+	{
+		m_CommandList->RSSetScissorRects(1, _scissorRect);
+	}
+
+	void CommandListImpl::setRenderTargets(const D3D12_CPU_DESCRIPTOR_HANDLE* const _rtDescriptorCpuHandle,
+		const s32 _renderTargetCount, const D3D12_CPU_DESCRIPTOR_HANDLE* const _dsDescriptorCpuHandle)
+	{
+		m_CommandList->OMSetRenderTargets(_renderTargetCount, _rtDescriptorCpuHandle, true, _dsDescriptorCpuHandle);
+	}
 }
 
 CANDY_NAMESPACE_END

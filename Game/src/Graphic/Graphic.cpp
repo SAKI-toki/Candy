@@ -52,7 +52,7 @@ void Graphic::Startup()
 
 	m_BackBufferDescriptor.startup(m_Device, DESCRIPTOR_TYPE::RENDER_TARGET, GetBackBufferCount());
 	m_BackBuffers.resize(GetBackBufferCount());
-	for (s32 i=0;i< m_BackBuffers.size();++i)
+	for (s32 i = 0; i < m_BackBuffers.size(); ++i)
 	{
 		m_BackBuffers[i].startupBackBuffer(m_SwapChain, i);
 		m_BackBufferDescriptor.bindingRenderTarget(m_Device, m_BackBuffers[i], i);

@@ -6,6 +6,13 @@
 #define CANDY_NAMESPACE_BEGIN namespace CANDY_NAMESPACE_NAME{
 #define CANDY_NAMESPACE_END }
 
+#define CANDY_DO_WHILE_BEGIN do{
+#define CANDY_DO_WHILE_END }while(false)
+
+#define CANDY_UNUSED_VALUE(VALUE) static_cast<void>(VALUE)
+
+inline void dummyFunc(...) {}
+
 #include <utility>
 #include <cstdint>
 #include <memory>
@@ -16,8 +23,6 @@
 #include <array>
 #include <cmath>
 #include <cassert>
-
-inline void dummyFunc(...) {}
 
 #include "BuildConfig/BuildConfig.h"
 #include "Platform/Platform.h"
@@ -36,13 +41,12 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 
 #include <Type/ArithmetricType.h>
 #include <Type/ClassDefine.h>
-#include <Utility/UtilityDefine.h>
 #include <Debug/Assert/Assert.h>
 #include <Debug/Log/Log.h>
 #include <Vec/Vec4.h>
 #include <Rect/Rect.h>
-#include <Math/Math.h>
 #include <Setting.h>
+#include <Utility/Utility.h>
 #include <Global/Global.h>
 
 #endif // CANDY_FORCE_INCLUDE_H

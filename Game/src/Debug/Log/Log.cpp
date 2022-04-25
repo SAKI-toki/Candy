@@ -50,8 +50,6 @@ void Log::AddLog(const char* const _message, const char* const _fileName, const 
 	logInfo.m_LineNo = _lineNo;
 	logInfo.m_FuncName = _funcName;
 
-	std::printf("[%s(%d)(%s)]%s", _fileName, _lineNo, _funcName, _message);
-
 	m_LogInfos.push_back(std::move(logInfo));
 #else
 	CANDY_UNUSED_VALUE(_message);

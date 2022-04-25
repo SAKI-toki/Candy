@@ -3,7 +3,7 @@
 CANDY_NAMESPACE_BEGIN
 
 template<typename T, typename MinT, typename MaxT, typename ResultT>
-ResultT Math::Clamp(const T _v, const MinT _min, const MaxT _max)
+ResultT Clamp(const T _v, const MinT _min, const MaxT _max)
 {
 	CANDY_ASSERT(_min < _max);
 	if (_v < _min)return _min;
@@ -12,7 +12,7 @@ ResultT Math::Clamp(const T _v, const MinT _min, const MaxT _max)
 }
 
 template<typename T>
-T Math::Clamp01(const T _v)
+T Clamp01(const T _v)
 {
 	return Clamp(_v, static_cast<T>(0), static_cast<T>(1));
 }

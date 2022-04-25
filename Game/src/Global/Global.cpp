@@ -23,7 +23,7 @@ void Global::Cleanup()
 void Global::Update()
 {
 	const auto tick = Time::GetTick();
-	m_AppTime = Math::Min((tick - m_PrevFrameTick).toSec(), Setting::GetMaxAppTime());
+	m_AppTime = Min((tick - m_PrevFrameTick).toSec(), Setting::GetMaxAppTime());
 	m_PrevFrameTick = tick;
 	m_AppTimeAll += m_AppTime;
 }

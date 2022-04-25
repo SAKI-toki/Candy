@@ -85,9 +85,6 @@
     <Filter Include="src\Flow">
       <UniqueIdentifier>{cf65321d-ee38-4c0d-be14-c6f50d55baec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Utility\StateMachine">
-      <UniqueIdentifier>{401d0d1c-ebef-4435-a3b3-61b0f4445111}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Flow\Game">
       <UniqueIdentifier>{09259e34-1764-4e77-9e09-d671566c3e1a}</UniqueIdentifier>
     </Filter>
@@ -154,15 +151,6 @@
     <Filter Include="src\Graphic\Platform\Win\Fence">
       <UniqueIdentifier>{58987b8d-6c0f-4348-a578-50ba6aef3074}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Math">
-      <UniqueIdentifier>{4b330196-a00d-42bd-9e62-0609f00bf7dc}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Math\Clamp">
-      <UniqueIdentifier>{f4ef35c5-b8ed-4631-8d35-914b98b8ba76}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Math\Loop">
-      <UniqueIdentifier>{141e7e93-4fd6-4fe0-8bfc-905e67f028f9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Graphic\Buffer">
       <UniqueIdentifier>{dbaf791c-50a7-4c17-ba93-90e4f1959f09}</UniqueIdentifier>
     </Filter>
@@ -211,8 +199,20 @@
     <Filter Include="src\Global">
       <UniqueIdentifier>{d6d38465-e483-4694-8863-4d81c3622eff}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Math\MinMax">
-      <UniqueIdentifier>{3e709a5a-1006-426b-aeb0-c0cfbdbc5d3c}</UniqueIdentifier>
+    <Filter Include="src\Shader">
+      <UniqueIdentifier>{2c5fc5b7-108d-4e8b-81a5-8ef7443ebd95}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\Clamp">
+      <UniqueIdentifier>{bd538241-d750-4617-a841-6421d0abf473}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\Loop">
+      <UniqueIdentifier>{ca0cf6e9-8ad6-4266-8adc-056c72326401}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\MinMax">
+      <UniqueIdentifier>{a2e3f877-b4d9-4651-96e1-df0aad79f052}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\Hash">
+      <UniqueIdentifier>{98753207-4426-408e-9b7b-b030033118fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -300,14 +300,8 @@
     <ClInclude Include="src\Hardware\Platform\Win\HardwareImpl.h">
       <Filter>src\Hardware\Platform\Win</Filter>
     </ClInclude>
-    <ClInclude Include="src\Utility\UtilityDefine.h">
-      <Filter>src\Utility</Filter>
-    </ClInclude>
     <ClInclude Include="src\Vec\Platform\Win\Vec4Impl.h">
       <Filter>src\Vec\Platform\Win</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Utility\StateMachine\StateMachine.h">
-      <Filter>src\Utility\StateMachine</Filter>
     </ClInclude>
     <ClInclude Include="src\Flow\Game\GameFlow.h">
       <Filter>src\Flow\Game</Filter>
@@ -369,12 +363,6 @@
     <ClInclude Include="src\Graphic\Platform\Win\Fence\GraphicFenceImpl.h">
       <Filter>src\Graphic\Platform\Win\Fence</Filter>
     </ClInclude>
-    <ClInclude Include="src\Math\Clamp\Clamp.h">
-      <Filter>src\Math\Clamp</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Math\Loop\Loop.h">
-      <Filter>src\Math\Loop</Filter>
-    </ClInclude>
     <ClInclude Include="src\Graphic\Platform\Win\Buffer\GraphicBufferImpl.h">
       <Filter>src\Graphic\Platform\Win\Buffer</Filter>
     </ClInclude>
@@ -423,11 +411,23 @@
     <ClInclude Include="src\Global\Global.h">
       <Filter>src\Global</Filter>
     </ClInclude>
-    <ClInclude Include="src\Math\MinMax\MinMax.h">
-      <Filter>src\Math\MinMax</Filter>
+    <ClInclude Include="src\Shader\ShaderManager.h">
+      <Filter>src\Shader</Filter>
     </ClInclude>
-    <ClInclude Include="src\Math\Math.h">
-      <Filter>src\Math</Filter>
+    <ClInclude Include="src\Utility\Clamp\Clamp.h">
+      <Filter>src\Utility\Clamp</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Loop\Loop.h">
+      <Filter>src\Utility\Loop</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\MinMax\MinMax.h">
+      <Filter>src\Utility\MinMax</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Utility.h">
+      <Filter>src\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Hash\Hash.h">
+      <Filter>src\Utility\Hash</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -511,9 +511,6 @@
     </ClCompile>
     <ClCompile Include="src\Flow\__Flow.cpp">
       <Filter>src\Flow</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Utility\StateMachine\StateMachine.cpp">
-      <Filter>src\Utility\StateMachine</Filter>
     </ClCompile>
     <ClCompile Include="src\Utility\__UtilityCpp.cpp">
       <Filter>src\Utility</Filter>
@@ -632,6 +629,12 @@
     <ClCompile Include="src\Global\__GlobalCpp.cpp">
       <Filter>src\Global</Filter>
     </ClCompile>
+    <ClCompile Include="src\Shader\__ShaderCpp.cpp">
+      <Filter>src\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shader\ShaderManager.cpp">
+      <Filter>src\Shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="src\Function\Function.inl">
@@ -649,17 +652,20 @@
     <None Include="src\Vec\Platform\Win\Vec4Impl.inl">
       <Filter>src\Vec\Platform\Win</Filter>
     </None>
-    <None Include="src\Math\Clamp\Clamp.inl">
-      <Filter>src\Math\Clamp</Filter>
-    </None>
-    <None Include="src\Math\Loop\Loop.inl">
-      <Filter>src\Math\Loop</Filter>
-    </None>
     <None Include="src\Rect\Rect.inl">
       <Filter>src\Rect</Filter>
     </None>
-    <None Include="src\Math\MinMax\MinMax.inl">
-      <Filter>src\Math\MinMax</Filter>
+    <None Include="src\Utility\Clamp\Clamp.inl">
+      <Filter>src\Utility\Clamp</Filter>
+    </None>
+    <None Include="src\Utility\Loop\Loop.inl">
+      <Filter>src\Utility\Loop</Filter>
+    </None>
+    <None Include="src\Utility\MinMax\MinMax.inl">
+      <Filter>src\Utility\MinMax</Filter>
+    </None>
+    <None Include="src\Utility\Hash\Hash.inl">
+      <Filter>src\Utility\Hash</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

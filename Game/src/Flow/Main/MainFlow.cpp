@@ -2,6 +2,7 @@
 #include <Flow/Game/GameFlow.h>
 #include <Hardware/Hardware.h>
 #include <Graphic/Graphic.h>
+#include <FileSystem/FileSystem.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -12,6 +13,7 @@ namespace MainFlow
 void MainFlow::Startup()
 {
 	Global::Startup();
+	FileSystem::Startup();
 	Graphic::Startup();
 	GameFlow::Startup();
 }
@@ -20,6 +22,7 @@ void MainFlow::Cleanup()
 {
 	GameFlow::Cleanup();
 	Graphic::Cleanup();
+	FileSystem::Cleanup();
 	Global::Cleanup();
 }
 

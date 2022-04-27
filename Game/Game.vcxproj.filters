@@ -214,6 +214,33 @@
     <Filter Include="src\Utility\Hash">
       <UniqueIdentifier>{98753207-4426-408e-9b7b-b030033118fd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FileSystem">
+      <UniqueIdentifier>{040d70fd-dabb-4ae8-84e2-d5fba2b13c18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\Platform">
+      <UniqueIdentifier>{092d519f-21ca-404b-9db4-d1fdb9380320}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\Platform\Win">
+      <UniqueIdentifier>{34dc3541-8b23-415b-894b-be3c7af1f6d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\FileInfo">
+      <UniqueIdentifier>{e11d23df-45a3-4a44-a145-1347216ae90a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\FileHandle">
+      <UniqueIdentifier>{b55f2533-d20b-4d9f-8c19-44801b2cf895}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\DirectoryInfo">
+      <UniqueIdentifier>{05468bb3-84bf-4d69-a89d-43f6a0e9fc7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\Platform\Win\FileHandle">
+      <UniqueIdentifier>{829ac2af-eb86-4ed0-a703-84a4ec230ef6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\StringSystem">
+      <UniqueIdentifier>{55e8b7b9-e7c7-4993-b6f7-4dcc8ee39901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\StringSystem\UpperLower">
+      <UniqueIdentifier>{eaf797f7-b71f-4516-9749-3ff9b4fdaf72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -411,7 +438,7 @@
     <ClInclude Include="src\Global\Global.h">
       <Filter>src\Global</Filter>
     </ClInclude>
-    <ClInclude Include="src\Shader\ShaderManager.h">
+    <ClInclude Include="src\Shader\Shader.h">
       <Filter>src\Shader</Filter>
     </ClInclude>
     <ClInclude Include="src\Utility\Clamp\Clamp.h">
@@ -428,6 +455,30 @@
     </ClInclude>
     <ClInclude Include="src\Utility\Hash\Hash.h">
       <Filter>src\Utility\Hash</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\FileSystem.h">
+      <Filter>src\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\Platform\Win\FileSystemImpl.h">
+      <Filter>src\FileSystem\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\FileInfo\FileSystemFileInfo.h">
+      <Filter>src\FileSystem\FileInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\FileHandle\FileSystemFileHandle.h">
+      <Filter>src\FileSystem\FileHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\DirectoryInfo\FileSystemDirectoryInfo.h">
+      <Filter>src\FileSystem\DirectoryInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\Platform\Win\FileHandle\FileSystemFileHandleImpl.h">
+      <Filter>src\FileSystem\Platform\Win\FileHandle</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\StringSystem\StringSystem.h">
+      <Filter>src\Utility\StringSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\StringSystem\UpperLower\StringSystemToUpperLower.h">
+      <Filter>src\Utility\StringSystem\UpperLower</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -632,8 +683,29 @@
     <ClCompile Include="src\Shader\__ShaderCpp.cpp">
       <Filter>src\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="src\Shader\ShaderManager.cpp">
+    <ClCompile Include="src\Shader\Shader.cpp">
       <Filter>src\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\FileSystem.cpp">
+      <Filter>src\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\__FileSystemCpp.cpp">
+      <Filter>src\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\Platform\Win\FileSystemImpl.cpp">
+      <Filter>src\FileSystem\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\FileInfo\FileSystemFileInfo.cpp">
+      <Filter>src\FileSystem\FileInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\FileHandle\FileSystemFileHandle.cpp">
+      <Filter>src\FileSystem\FileHandle</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\DirectoryInfo\FileSystemDirectoryInfo.cpp">
+      <Filter>src\FileSystem\DirectoryInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\Platform\Win\FileHandle\FileSystemFileHandleImpl.cpp">
+      <Filter>src\FileSystem\Platform\Win\FileHandle</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -666,6 +738,9 @@
     </None>
     <None Include="src\Utility\Hash\Hash.inl">
       <Filter>src\Utility\Hash</Filter>
+    </None>
+    <None Include="src\Utility\StringSystem\UpperLower\StringSystemToUpperLower.inl">
+      <Filter>src\Utility\StringSystem\UpperLower</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -7,6 +7,8 @@ namespace Setting
 {
 	const char* GetAppName();
 	f32 GetMaxAppTime();
+	const char* GetBasePath();
+	const char* GetDataPath();
 }
 
 CANDY_NAMESPACE_END

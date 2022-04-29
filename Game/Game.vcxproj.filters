@@ -7,9 +7,6 @@
     <Filter Include="src\Entity">
       <UniqueIdentifier>{9be5d990-6705-484e-a05c-7808581c5c12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Function">
-      <UniqueIdentifier>{4470892f-eaa9-43d6-934d-c7e0eda67c57}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Handle">
       <UniqueIdentifier>{ebaa4ab5-90c5-41b6-9e8c-ede50c8e7a1a}</UniqueIdentifier>
     </Filter>
@@ -217,29 +214,44 @@
     <Filter Include="src\FileSystem">
       <UniqueIdentifier>{040d70fd-dabb-4ae8-84e2-d5fba2b13c18}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\FileSystem\Platform">
-      <UniqueIdentifier>{092d519f-21ca-404b-9db4-d1fdb9380320}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\FileSystem\Platform\Win">
-      <UniqueIdentifier>{34dc3541-8b23-415b-894b-be3c7af1f6d6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\FileSystem\FileInfo">
       <UniqueIdentifier>{e11d23df-45a3-4a44-a145-1347216ae90a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\FileSystem\FileHandle">
-      <UniqueIdentifier>{b55f2533-d20b-4d9f-8c19-44801b2cf895}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\FileSystem\DirectoryInfo">
-      <UniqueIdentifier>{05468bb3-84bf-4d69-a89d-43f6a0e9fc7f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\FileSystem\Platform\Win\FileHandle">
-      <UniqueIdentifier>{829ac2af-eb86-4ed0-a703-84a4ec230ef6}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Utility\StringSystem">
       <UniqueIdentifier>{55e8b7b9-e7c7-4993-b6f7-4dcc8ee39901}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\Utility\StringSystem\UpperLower">
       <UniqueIdentifier>{eaf797f7-b71f-4516-9749-3ff9b4fdaf72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\StringSystem\Split">
+      <UniqueIdentifier>{0de7e941-3a7d-4c22-bf37-deb1621d3278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\Work">
+      <UniqueIdentifier>{7fea40c2-8716-430d-8c61-7fd48adc0662}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Debug\Log\Platform">
+      <UniqueIdentifier>{3c3fb9a2-991a-4b54-ac66-ea203e53d2ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Debug\Log\Platform\Win">
+      <UniqueIdentifier>{20e75a27-a0be-4ecd-b633-eb3f19378158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\Platform">
+      <UniqueIdentifier>{74de5684-b877-45ef-9eb8-e73fdffa2640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\Platform\Win">
+      <UniqueIdentifier>{be220cbe-0f75-4f30-a055-18194da2bc63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\Platform\Win\FileEnumerator">
+      <UniqueIdentifier>{0b377ebb-7c80-4461-9db4-be23daab053f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\FileEnumerator">
+      <UniqueIdentifier>{3fb38796-bc5d-485d-80f6-d90ceeb80fb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FileSystem\Platform\Win\FileInfo">
+      <UniqueIdentifier>{335249e3-75fa-48bc-b132-ad23c9e911e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utility\Path">
+      <UniqueIdentifier>{be5e251a-2d8e-4084-a4d3-39401242e82c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -257,9 +269,6 @@
     </ClInclude>
     <ClInclude Include="src\Entity\EntitySystem.h">
       <Filter>src\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Function\Function.h">
-      <Filter>src\Function</Filter>
     </ClInclude>
     <ClInclude Include="src\Handle\Handle.h">
       <Filter>src\Handle</Filter>
@@ -459,26 +468,41 @@
     <ClInclude Include="src\FileSystem\FileSystem.h">
       <Filter>src\FileSystem</Filter>
     </ClInclude>
-    <ClInclude Include="src\FileSystem\Platform\Win\FileSystemImpl.h">
-      <Filter>src\FileSystem\Platform\Win</Filter>
-    </ClInclude>
     <ClInclude Include="src\FileSystem\FileInfo\FileSystemFileInfo.h">
       <Filter>src\FileSystem\FileInfo</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FileSystem\FileHandle\FileSystemFileHandle.h">
-      <Filter>src\FileSystem\FileHandle</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FileSystem\DirectoryInfo\FileSystemDirectoryInfo.h">
-      <Filter>src\FileSystem\DirectoryInfo</Filter>
-    </ClInclude>
-    <ClInclude Include="src\FileSystem\Platform\Win\FileHandle\FileSystemFileHandleImpl.h">
-      <Filter>src\FileSystem\Platform\Win\FileHandle</Filter>
     </ClInclude>
     <ClInclude Include="src\Utility\StringSystem\StringSystem.h">
       <Filter>src\Utility\StringSystem</Filter>
     </ClInclude>
     <ClInclude Include="src\Utility\StringSystem\UpperLower\StringSystemToUpperLower.h">
       <Filter>src\Utility\StringSystem\UpperLower</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\StringSystem\Split\StringSystemSplit.h">
+      <Filter>src\Utility\StringSystem\Split</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\Work\FileSystemWork.h">
+      <Filter>src\FileSystem\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Debug\Log\Platform\Win\LogImpl.h">
+      <Filter>src\Debug\Log\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\Work\FileSystemWorkHandle.h">
+      <Filter>src\FileSystem\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\FileEnumerator\FileSystemFileEnumerator.h">
+      <Filter>src\FileSystem\FileEnumerator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\Platform\Win\FileEnumerator\FileSystemFileEnumeratorImpl.h">
+      <Filter>src\FileSystem\Platform\Win\FileEnumerator</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\Platform\Win\FileInfo\FileSystemFileInfoImpl.h">
+      <Filter>src\FileSystem\Platform\Win\FileInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utility\Path\Path.h">
+      <Filter>src\Utility\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FileSystem\Platform\Win\FileSystemImpl.h">
+      <Filter>src\FileSystem\Platform</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -692,26 +716,35 @@
     <ClCompile Include="src\FileSystem\__FileSystemCpp.cpp">
       <Filter>src\FileSystem</Filter>
     </ClCompile>
-    <ClCompile Include="src\FileSystem\Platform\Win\FileSystemImpl.cpp">
-      <Filter>src\FileSystem\Platform\Win</Filter>
-    </ClCompile>
     <ClCompile Include="src\FileSystem\FileInfo\FileSystemFileInfo.cpp">
       <Filter>src\FileSystem\FileInfo</Filter>
     </ClCompile>
-    <ClCompile Include="src\FileSystem\FileHandle\FileSystemFileHandle.cpp">
-      <Filter>src\FileSystem\FileHandle</Filter>
+    <ClCompile Include="src\FileSystem\Work\FileSystemWork.cpp">
+      <Filter>src\FileSystem\Work</Filter>
     </ClCompile>
-    <ClCompile Include="src\FileSystem\DirectoryInfo\FileSystemDirectoryInfo.cpp">
-      <Filter>src\FileSystem\DirectoryInfo</Filter>
+    <ClCompile Include="src\Debug\Log\Platform\Win\LogImpl.cpp">
+      <Filter>src\Debug\Log\Platform\Win</Filter>
     </ClCompile>
-    <ClCompile Include="src\FileSystem\Platform\Win\FileHandle\FileSystemFileHandleImpl.cpp">
-      <Filter>src\FileSystem\Platform\Win\FileHandle</Filter>
+    <ClCompile Include="src\FileSystem\Work\FileSystemWorkHandle.cpp">
+      <Filter>src\FileSystem\Work</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\FileEnumerator\FileSystemFileEnumerator.cpp">
+      <Filter>src\FileSystem\FileEnumerator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\Platform\Win\FileEnumerator\FileSystemFileEnumeratorImpl.cpp">
+      <Filter>src\FileSystem\Platform\Win\FileEnumerator</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\Platform\Win\FileInfo\FileSystemFileInfoImpl.cpp">
+      <Filter>src\FileSystem\Platform\Win\FileInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Utility\Path\Path.cpp">
+      <Filter>src\Utility\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FileSystem\Platform\Win\FileSystemImpl.cpp">
+      <Filter>src\FileSystem\Platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="src\Function\Function.inl">
-      <Filter>src\Function</Filter>
-    </None>
     <None Include="src\Handle\Handle.inl">
       <Filter>src\Handle</Filter>
     </None>
@@ -741,6 +774,9 @@
     </None>
     <None Include="src\Utility\StringSystem\UpperLower\StringSystemToUpperLower.inl">
       <Filter>src\Utility\StringSystem\UpperLower</Filter>
+    </None>
+    <None Include="src\Utility\StringSystem\Split\StringSystemSplit.inl">
+      <Filter>src\Utility\StringSystem\Split</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

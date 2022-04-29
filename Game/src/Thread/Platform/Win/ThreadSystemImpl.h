@@ -16,6 +16,8 @@ namespace ThreadSystem::Impl
 	s32 GetCurrentThreadNo();
 	ThreadHandle GetCurrentThreadHandle();
 	void SetThreadNo(const ThreadHandle _handle, const s32 _no);
+	void SetPriority(const ThreadHandle _handle, const THREAD_PRIORITY _priority);
+	void SleepThread(const s32 _milliSecond);
 }
 
 CANDY_NAMESPACE_END

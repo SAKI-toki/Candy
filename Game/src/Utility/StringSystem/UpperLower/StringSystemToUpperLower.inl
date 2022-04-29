@@ -1,5 +1,7 @@
 #include "StringSystemToUpperLower.h"
 
+CANDY_NAMESPACE_BEGIN
+
 inline constexpr char StringSystem::ToUpper(const char _c)
 {
 	if ('a' <= _c && _c <= 'z')
@@ -17,3 +19,5 @@ inline constexpr char StringSystem::ToLower(const char _c)
 	}
 	return _c;
 }
+
+CANDY_NAMESPACE_END

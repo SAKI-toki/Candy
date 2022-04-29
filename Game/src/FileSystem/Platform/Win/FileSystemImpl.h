@@ -1,16 +1,11 @@
 #ifndef CANDY_FILE_SYSTEM_IMPL_H
 #define CANDY_FILE_SYSTEM_IMPL_H
 
-#include <FileSystem/DirectoryInfo/FileSystemDirectoryInfo.h>
-
 CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem::Impl
 {
-	void Startup();
-	void Cleanup();
-
-	DirectoryInfo GetFileInfos(const std::string& _basePath);
+	void FileRead(const HANDLE _handle, std::byte* _buf, const u64 _readSize);
 }
 
 CANDY_NAMESPACE_END

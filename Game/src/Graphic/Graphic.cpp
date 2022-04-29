@@ -9,6 +9,8 @@
 #include "ScissorRect/GraphicScissorRect.h"
 #include "Descriptor/GraphicDescriptor.h"
 
+#include <FileSystem/FileSystem.h>
+
 #if PLATFORM_WIN
 #include "Platform/Win/GraphicImpl.h"
 #endif // PLATFORM_WIN
@@ -31,6 +33,9 @@ namespace Graphic
 	std::vector<u64> m_FrameFenceValues;
 
 	Vec4 m_BackBufferClearColor;
+
+	std::byte* m_Data[3];
+	FileSystem::WorkHandle m_Handle[3];
 }
 
 void Graphic::Startup()
@@ -61,6 +66,16 @@ void Graphic::Startup()
 	m_FrameFence.startup(m_Device);
 	m_FrameFenceValues.resize(GetBackBufferCount());
 	m_FrameFenceValues[m_BackBufferIndex] = 1;
+
+	const u64 size1 = FileSystem::GetFileSize(std::string{ Setting::GetDataPath() } + "video1.xp3");
+	const u64 size2 = FileSystem::GetFileSize(std::string{ Setting::GetDataPath() } + "video2.xp3");
+	const u64 size3 = FileSystem::GetFileSize(std::string{ Setting::GetDataPath() } + "video3.xp3");
+	m_Data[0] = new std::byte[size1];
+	m_Data[1] = new std::byte[size2];
+	m_Data[2] = new std::byte[size3];
+	m_Handle[0] = FileSystem::RequestRead(std::string{ Setting::GetDataPath() } + "video1.xp3", m_Data[0], size1);
+	m_Handle[1] = FileSystem::RequestRead(std::string{ Setting::GetDataPath() } + "video2.xp3", m_Data[1], size2);
+	m_Handle[2] = FileSystem::RequestRead(std::string{ Setting::GetDataPath() } + "video3.xp3", m_Data[2], size3);
 }
 
 void Graphic::Cleanup()
@@ -80,9 +95,16 @@ void Graphic::Cleanup()
 
 void Graphic::Update()
 {
-	m_BackBufferClearColor.m_f32Col.r = (std::sin(Global::GetAppTimeAll() * 1) + 1.0f) / 2.0f;
-	m_BackBufferClearColor.m_f32Col.g = (std::sin(Global::GetAppTimeAll() * 2) + 1.0f) / 2.0f;
-	m_BackBufferClearColor.m_f32Col.b = (std::sin(Global::GetAppTimeAll() * 5) + 1.0f) / 2.0f;
+	if (m_Handle[0].isEnd() && m_Handle[1].isEnd() && m_Handle[2].isEnd())
+	{
+		m_BackBufferClearColor.m_f32Col.r = (std::sin(Global::GetAppTimeAll() * 1) + 1.0f) / 2.0f;
+		m_BackBufferClearColor.m_f32Col.g = (std::sin(Global::GetAppTimeAll() * 2) + 1.0f) / 2.0f;
+		m_BackBufferClearColor.m_f32Col.b = (std::sin(Global::GetAppTimeAll() * 5) + 1.0f) / 2.0f;
+	}
+	else
+	{
+		m_BackBufferClearColor.setZero();
+	}
 }
 
 void Graphic::DrawBegin()
@@ -106,7 +128,7 @@ void Graphic::DrawEnd()
 
 	m_CommandQueue.executeCommandList(m_CommandList);
 
-	m_SwapChain.present(0);
+	m_SwapChain.present(1);
 
 	const u64 prevFrameFenceValue = m_FrameFenceValues[m_BackBufferIndex];
 	m_FrameFence.signalFromGpu(m_CommandQueue, m_FrameFenceValues[m_BackBufferIndex]);

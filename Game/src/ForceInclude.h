@@ -1,6 +1,8 @@
 #ifndef CANDY_FORCE_INCLUDE_H
 #define CANDY_FORCE_INCLUDE_H
 
+#define _CRT_SECURE_NO_WARNINGS
+
 #define CANDY_NAMESPACE_NAME candy
 
 #define CANDY_NAMESPACE_BEGIN namespace CANDY_NAMESPACE_NAME{
@@ -21,6 +23,19 @@ inline void dummyFunc(...) {}
 #include <vector>
 #include <algorithm>
 #include <array>
+#include <functional>
+#include <filesystem>
+#include <fstream>
+#include <list>
+#include <deque>
+#include <stack>
+#include <queue>
+#include <map>
+#include <unordered_map>
+#include <set>
+#include <unordered_set>
+#include <cstdlib>
+#include <cstdio>
 #include <cmath>
 #include <cassert>
 

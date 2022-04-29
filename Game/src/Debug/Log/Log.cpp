@@ -1,6 +1,10 @@
 #include "Log.h"
 #include <Mutex/CriticalSection.h>
 
+#if PLATFORM_WIN
+#include "Platform/Win/LogImpl.h"
+#endif // PLATFORM_WIN
+
 CANDY_NAMESPACE_BEGIN
 
 namespace Log
@@ -15,6 +19,7 @@ namespace Log
 	};
 	std::vector<LogInfo> m_LogInfos;
 	CriticalSection m_CriticalSection;
+
 #endif // BUILD_DEBUG
 }
 
@@ -39,18 +44,25 @@ void Log::Update()
 #endif // BUILD_DEBUG
 }
 
-void Log::AddLog(const char* const _message, const char* const _fileName, const s32 _lineNo, const char* const _funcName)
+void Log::AddLog(const char* const _fileName, const s32 _lineNo, const char* const _funcName, const char* const _messageFmt, ...)
 {
 #if BUILD_DEBUG
-	CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 
 	LogInfo logInfo;
-	logInfo.m_Message = _message;
 	logInfo.m_FileName = _fileName;
 	logInfo.m_LineNo = _lineNo;
 	logInfo.m_FuncName = _funcName;
 
-	m_LogInfos.push_back(std::move(logInfo));
+	va_list args;
+	va_start(args, _messageFmt);
+	char buf[4096];
+	vsprintf(buf, _messageFmt, args);
+	va_end(args);
+	logInfo.m_Message = buf;
+
+	CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
+	LogImpl::OutputDebugLog("%s(%d) : %s", _fileName, _lineNo, logInfo.m_Message.c_str());
+	m_LogInfos.push_back(logInfo);
 #else
 	CANDY_UNUSED_VALUE(_message);
 	CANDY_UNUSED_VALUE(_fileName);

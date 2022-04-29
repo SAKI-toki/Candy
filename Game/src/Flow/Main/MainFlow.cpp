@@ -3,6 +3,7 @@
 #include <Hardware/Hardware.h>
 #include <Graphic/Graphic.h>
 #include <FileSystem/FileSystem.h>
+#include <Thread/ThreadSystem.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -12,6 +13,10 @@ namespace MainFlow
 
 void MainFlow::Startup()
 {
+	Log::Startup();
+	auto threadHandle = ThreadSystem::GetCurrentThreadHandle();
+	ThreadSystem::SetThreadNo(threadHandle, 0);
+	ThreadSystem::SetPriority(threadHandle, THREAD_PRIORITY::NORMAL);
 	Global::Startup();
 	FileSystem::Startup();
 	Graphic::Startup();
@@ -24,10 +29,12 @@ void MainFlow::Cleanup()
 	Graphic::Cleanup();
 	FileSystem::Cleanup();
 	Global::Cleanup();
+	Log::Cleanup();
 }
 
 void MainFlow::Update()
 {
+	Log::Update();
 	Global::Update();
 	Hardware::Update();
 	GameFlow::Update();

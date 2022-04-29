@@ -26,7 +26,7 @@ private:
 		HandleType m_Handle;
 	};
 
-	StaticVector<Unit, 0xffff> m_Units;
+	std::vector<Unit> m_Units;
 	StaticVector<u64, 0xffff> m_ReleaseUnitIndices;
 	uint64_t m_Index = 0;
 	uint64_t m_Count = 0;

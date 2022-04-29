@@ -4,19 +4,53 @@ CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	void FileInfo::setName(const std::string& _name)
+	void FileInfo::startup(const std::string& _path)
 	{
-		m_Name = _name;
+		FileInfoImpl::mount(_path);
+		m_Path = Path::FormatPath(_path);
+		m_Hash = Fnv::Hash32Low(m_Path);
+		m_Size = FileInfoImpl::getSize();
 	}
 
-	void FileInfo::setHash(const u32 _hash)
+	void FileInfo::cleanup()
 	{
-		m_Hash = _hash;
+		FileInfoImpl::close();
 	}
 
-	void FileInfo::setFileHandle(const FileHandle _fileHandle)
+	u64 FileInfo::getSize()const
 	{
-		m_FileHandle = _fileHandle;
+		return m_Size;
+	}
+	u64 FileInfo::getHash()const
+	{
+		return m_Hash;
+	}
+
+	bool FileInfo::operator==(const FileInfo& _other)const
+	{
+		return m_Hash == _other.m_Hash;
+	}
+	bool FileInfo::operator!=(const FileInfo& _other)const
+	{
+		return !(*this == _other);
+	}
+
+	bool FileInfo::operator==(const u32 _hash)const
+	{
+		return m_Hash == _hash;
+	}
+	bool FileInfo::operator!=(const u32 _hash)const
+	{
+		return !(*this == _hash);
+	}
+
+	bool FileInfo::operator==(const std::string& _path)const
+	{
+		return m_Hash == Fnv::Hash32Low(Path::FormatPath(_path));
+	}
+	bool FileInfo::operator!=(const std::string& _path)const
+	{
+		return !(*this == _path);
 	}
 }
 

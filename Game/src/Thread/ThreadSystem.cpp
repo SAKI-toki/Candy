@@ -48,4 +48,14 @@ void ThreadSystem::SetThreadNo(const ThreadHandle _handle, const s32 _no)
 	return Impl::SetThreadNo(_handle, _no);
 }
 
+void ThreadSystem::SetPriority(const ThreadHandle _handle, const THREAD_PRIORITY _priority)
+{
+	return Impl::SetPriority(_handle, _priority);
+}
+
+void ThreadSystem::SleepThread(const s32 _milliSecond)
+{
+	Impl::SleepThread(_milliSecond);
+}
+
 CANDY_NAMESPACE_END

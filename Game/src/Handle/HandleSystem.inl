@@ -8,6 +8,7 @@ void HandleSystem<T, HandleType>::startup()
 	m_Count = 0;
 	m_Index = 0;
 	m_Units.clear();
+	m_Units.resize(0xffff);
 	m_ReleaseUnitIndices.clear();
 }
 
@@ -67,6 +68,7 @@ template<typename T, typename HandleType>
 HandleSystem<T, HandleType>::ValuePtrType HandleSystem<T, HandleType>::getPtr(HandleType handle)const
 {
 	if (m_Units.empty())return nullptr;
+	if (handle.m_Value.m_Index == static_cast<u64>(-1))return nullptr;
 	if (m_Units[handle.m_Value.m_Index].m_Handle != handle)return nullptr;
 	return m_Units[handle.m_Value.m_Index].m_pVaule;
 }

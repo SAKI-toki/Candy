@@ -8,7 +8,7 @@ Thread::Thread(const ThreadHandle _handle):m_Handle{ _handle }
 
 }
 
-void Thread::create(Function<void(void*)> _func, void* _args, const CreateThreadOption _option)
+void Thread::create(std::function<void(void*)> _func, void* _args, const CreateThreadOption _option)
 {
 	m_Handle.Close();
 	m_ThreadFunctionArgPtr = std::make_unique<ThreadFunctionArg>();
@@ -16,6 +16,10 @@ void Thread::create(Function<void(void*)> _func, void* _args, const CreateThread
 	m_ThreadFunctionArgPtr->m_Args = _args;
 	m_ThreadFunctionArgPtr->m_Option = _option;
 	m_Handle = ThreadSystem::CreateThread(m_ThreadFunctionArgPtr.get());
+}
+void Thread::create(std::function<void()> _func, const CreateThreadOption _option)
+{
+	create([_func](void*) { _func(); }, nullptr, _option);
 }
 void Thread::suspend()
 {

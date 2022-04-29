@@ -17,7 +17,8 @@ public:
 	DELETE_COPY(Thread);
 	DEFAULT_MOVE(Thread);
 
-	void create(Function<void(void*)> _func, void* _args, const CreateThreadOption _option = CreateThreadOption{});
+	void create(std::function<void(void*)> _func, void* _args, const CreateThreadOption _option = CreateThreadOption{});
+	void create(std::function<void()> _func, const CreateThreadOption _option = CreateThreadOption{});
 	void suspend();
 	void resume();
 	void wait();

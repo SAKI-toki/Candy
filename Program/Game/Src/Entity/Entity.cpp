@@ -1,0 +1,5 @@
+﻿#include "Entity.h"
+
+CANDY_NAMESPACE_BEGIN
+
+CANDY_NAMESPACE_END

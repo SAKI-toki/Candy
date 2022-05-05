@@ -1,6 +1,6 @@
-/.vs
+/Program/.vs
 /.git
-/Game/build
+/Program/Game/build
 desktop.ini
-Game/Game.vcxproj.user
+Program/Game/Game.vcxproj.user
 Data/Win/

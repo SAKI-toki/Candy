@@ -1,0 +1,135 @@
+#include "GraphicDefWin.h"
+#include "GraphicImpl.h"
+
+CANDY_NAMESPACE_BEGIN
+
+D3D12_COMMAND_LIST_TYPE Graphic::ConvCommandListType(const COMMAND_LIST_TYPE _commandListType)
+{
+	switch (_commandListType)
+	{
+	case COMMAND_LIST_TYPE::RENDERING:	return D3D12_COMMAND_LIST_TYPE_DIRECT;
+	case COMMAND_LIST_TYPE::COMPUTE:	return D3D12_COMMAND_LIST_TYPE_COMPUTE;
+	}
+
+	CANDY_LOG("未設定のコマンドリストタイプです");
+	return D3D12_COMMAND_LIST_TYPE_DIRECT;
+}
+
+DXGI_FORMAT Graphic::ConvGraphicFormat(const GRAPHIC_FORMAT _graphicFormat)
+{
+	switch (_graphicFormat)
+	{
+	case GRAPHIC_FORMAT::R8G8B8A8_UNORM:	return DXGI_FORMAT_R8G8B8A8_UNORM;
+	case GRAPHIC_FORMAT::D32_FLOAT:			return DXGI_FORMAT_D32_FLOAT;
+	}
+
+	CANDY_LOG("未設定のグラフィックフォーマットです");
+	return DXGI_FORMAT_UNKNOWN;
+}
+
+D3D12_RESOURCE_STATES Graphic::ConvBarrierState(const BARRIER_STATE _barrierState)
+{
+	switch (_barrierState)
+	{
+	case BARRIER_STATE::COMMON:			return D3D12_RESOURCE_STATE_COMMON;
+	case BARRIER_STATE::RENDER_TARGET:	return D3D12_RESOURCE_STATE_RENDER_TARGET;
+	case BARRIER_STATE::PRESENT:		return D3D12_RESOURCE_STATE_PRESENT;
+	}
+
+	CANDY_LOG("未設定のバリアステートです");
+	return D3D12_RESOURCE_STATE_COMMON;
+}
+
+D3D12_DESCRIPTOR_HEAP_TYPE Graphic::ConvDescriptorType(const DESCRIPTOR_TYPE _descriptorType)
+{
+	switch (_descriptorType)
+	{
+	case DESCRIPTOR_TYPE::CONSTANT_BUFFER:	return D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	case DESCRIPTOR_TYPE::SHADER_RESOURCE:	return D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	case DESCRIPTOR_TYPE::UNORDERED_ACCESS:	return D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+	case DESCRIPTOR_TYPE::RENDER_TARGET:	return D3D12_DESCRIPTOR_HEAP_TYPE_RTV;
+	}
+
+	CANDY_LOG("未設定のデスクリプタタイプです");
+	return D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
+}
+
+D3D12_DESCRIPTOR_RANGE_TYPE Graphic::ConvDescriptorRangeType(const DESCRIPTOR_TYPE _descriptorType)
+{
+	switch (_descriptorType)
+	{
+	case DESCRIPTOR_TYPE::CONSTANT_BUFFER:	return D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
+	case DESCRIPTOR_TYPE::SHADER_RESOURCE:	return D3D12_DESCRIPTOR_RANGE_TYPE_SRV;
+	case DESCRIPTOR_TYPE::UNORDERED_ACCESS:	return D3D12_DESCRIPTOR_RANGE_TYPE_UAV;
+	}
+
+	CANDY_LOG("未設定のデスクリプタレンジタイプです");
+	return D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
+}
+
+const char* Graphic::GetShaderSemanticName(const SHADER_SEMANTIC_TYPE _shaderSemanticType)
+{
+	switch (_shaderSemanticType)
+	{
+	case SHADER_SEMANTIC_TYPE::POSITION:		return "POSITION";
+	case SHADER_SEMANTIC_TYPE::TEXCOORD:		return "TEXCOORD";
+	case SHADER_SEMANTIC_TYPE::COLOR:			return "COLOR";
+	case SHADER_SEMANTIC_TYPE::NORMAL:			return "NORMAL";
+	case SHADER_SEMANTIC_TYPE::BINORMAL:		return "BINORMAL";
+	case SHADER_SEMANTIC_TYPE::TANGENT:			return "TANGENT";
+	case SHADER_SEMANTIC_TYPE::BLENDINDICES:	return "BLENDINDICES";
+	case SHADER_SEMANTIC_TYPE::BLENDWEIGHT:		return "BLENDWEIGHT";
+	}
+
+	CANDY_LOG("未設定のシェーダーセマンティックタイプです");
+	return "TEXCOORD";
+}
+
+D3D12_FILTER Graphic::ConvFilterType(const FILTER_TYPE _filterType)
+{
+	switch (_filterType)
+	{
+	case FILTER_TYPE::ANISOTROPIC:	return D3D12_FILTER_ANISOTROPIC;
+	}
+
+	CANDY_LOG("未設定のフィルタータイプです");
+	return D3D12_FILTER_ANISOTROPIC;
+}
+
+D3D12_SHADER_VISIBILITY Graphic::ConvShaderVisibilityType(const SHADER_VISIBILITY_TYPE _shaderVisibilityType)
+{
+	switch (_shaderVisibilityType)
+	{
+	case SHADER_VISIBILITY_TYPE::VERTEX:	return D3D12_SHADER_VISIBILITY_VERTEX;
+	case SHADER_VISIBILITY_TYPE::PIXEL:		return D3D12_SHADER_VISIBILITY_PIXEL;
+	case SHADER_VISIBILITY_TYPE::ALL:		return D3D12_SHADER_VISIBILITY_ALL;
+	}
+
+	CANDY_LOG("未設定のシェーダー可視タイプです");
+	return D3D12_SHADER_VISIBILITY_ALL;
+}
+
+D3D12_COMPARISON_FUNC Graphic::ConvComparisonFuncType(const COMPARISON_TYPE _comparisonType)
+{
+	switch (_comparisonType)
+	{
+	case COMPARISON_TYPE::NEVER:		return D3D12_COMPARISON_FUNC_NEVER;
+	case COMPARISON_TYPE::LESS:			return D3D12_COMPARISON_FUNC_LESS;
+	case COMPARISON_TYPE::EQUAL:		return D3D12_COMPARISON_FUNC_EQUAL;
+	case COMPARISON_TYPE::LESS_EQUAL:	return D3D12_COMPARISON_FUNC_LESS_EQUAL;
+	case COMPARISON_TYPE::GREATER:		return D3D12_COMPARISON_FUNC_GREATER;
+	case COMPARISON_TYPE::NOT_EQUAL:	return D3D12_COMPARISON_FUNC_NOT_EQUAL;
+	case COMPARISON_TYPE::GREATER_EQUAL:return D3D12_COMPARISON_FUNC_GREATER_EQUAL;
+	case COMPARISON_TYPE::ALWAYS:		return D3D12_COMPARISON_FUNC_ALWAYS;
+	}
+
+	CANDY_LOG("未設定の比較関数タイプです");
+	return D3D12_COMPARISON_FUNC_NEVER;
+}
+
+s32 Graphic::GetDesciptorHandleIncrementSize(const D3D12_DESCRIPTOR_HEAP_TYPE _descriptorType)
+{
+	return Graphic::Impl::GetDesciptorHandleIncrementSize(_descriptorType);
+}
+
+CANDY_NAMESPACE_END

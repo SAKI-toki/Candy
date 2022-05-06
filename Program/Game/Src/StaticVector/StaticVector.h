@@ -57,7 +57,7 @@ public:
 	void clear();
 
 private:
-	T m_Arr[Size];
+	T m_Arr[Size]{};
 	T* m_EndIterator = m_Arr;
 };
 

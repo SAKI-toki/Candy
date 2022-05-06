@@ -13,10 +13,15 @@ namespace Graphic
 	protected:
 		RootSignatureStartupInfoImpl();
 
-		void setDescriptorRange(const s32 _rootParameterIndex, const ShaderRegisterType& _shaderRegisterType, const DescriptorImpl& _descriptor);
+		void initialize();
+
+		void setDescriptorRange(const s32 _rootParameterIndex, const ShaderRegisterInfo _shaderRegisterInfo, const DescriptorImpl& _descriptor);
 		void setRootParameterCount(const s32 _count);
-		void setStaticSampler(const s32 _index, const ShaderRegisterType _shaderRegisterType, const FILTER_TYPE _filterType);
+		void setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo, const FILTER_TYPE _filterType);
 		void setStaticSamplerCount(const s32 _count);
+
+		void onRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag);
+		void offRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag);
 
 	public:
 		D3D12_ROOT_SIGNATURE_DESC getStartupInfo()const { return m_StartupInfo; }

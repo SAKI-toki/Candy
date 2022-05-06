@@ -4,10 +4,15 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	void RootSignatureStartupInfo::setDescriptorRange(const s32 _rootParameterIndex, 
-		const ShaderRegisterType& _shaderRegisterType, const Descriptor& _descriptor)
+	void RootSignatureStartupInfo::initialize()
 	{
-		RootSignatureStartupInfoImpl::setDescriptorRange(_rootParameterIndex, _shaderRegisterType, _descriptor);
+		RootSignatureStartupInfoImpl::initialize();
+	}
+
+	void RootSignatureStartupInfo::setDescriptorRange(const s32 _rootParameterIndex, 
+		const ShaderRegisterInfo _shaderRegisterInfo, const Descriptor& _descriptor)
+	{
+		RootSignatureStartupInfoImpl::setDescriptorRange(_rootParameterIndex, _shaderRegisterInfo, _descriptor);
 	}
 
 	void RootSignatureStartupInfo::setRootParameterCount(const s32 _count)
@@ -16,14 +21,24 @@ namespace Graphic
 	}
 
 	void RootSignatureStartupInfo::setStaticSampler(const s32 _index, 
-		const ShaderRegisterType _shaderRegisterType, const FILTER_TYPE _filterType)
+		const ShaderRegisterInfo _shaderRegisterInfo, const FILTER_TYPE _filterType)
 	{
-		RootSignatureStartupInfoImpl::setStaticSampler(_index, _shaderRegisterType, _filterType);
+		RootSignatureStartupInfoImpl::setStaticSampler(_index, _shaderRegisterInfo, _filterType);
 	}
 
 	void RootSignatureStartupInfo::setStaticSamplerCount(const s32 _count)
 	{
 		RootSignatureStartupInfoImpl::setStaticSamplerCount(_count);
+	}
+
+	void RootSignatureStartupInfo::onRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag)
+	{
+		RootSignatureStartupInfoImpl::onRootSignatureFlag(_rootSignatureFlag);
+	}
+
+	void RootSignatureStartupInfo::offRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag)
+	{
+		RootSignatureStartupInfoImpl::offRootSignatureFlag(_rootSignatureFlag);
 	}
 }
 

@@ -2,10 +2,6 @@
 #define CANDY_GRAPHIC_COMMAND_LIST_H
 
 #include <Graphic/GraphicDef.h>
-#include <Graphic/Device/GraphicDevice.h>
-#include <Graphic/Viewport/GraphicViewport.h>
-#include <Graphic/ScissorRect/GraphicScissorRect.h>
-#include <Graphic/Descriptor/Handle/CPU/GraphicDescriptorCpuHandle.h>
 
 #if PLATFORM_WIN
 #include <Graphic/Platform/Win/CommandList/GraphicCommandListImpl.h>
@@ -15,6 +11,13 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
+	class Device;
+	class Viewport;
+	class ScissorRect;
+	class DescriptorCpuHandle;
+	class RootSignature;
+	class Pipeline;
+
 	class CommandList : public CommandListImpl
 	{
 	public:
@@ -32,6 +35,9 @@ namespace Graphic
 		void setRenderTargetsDepthStencil(const DescriptorCpuHandle& _rtDescriptorCpuHandle,
 			const s32 _renderTargetCount, const DescriptorCpuHandle& _dsDescriptorCpuHandle);
 		void clearRenderTarget(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const Vec4 _color);
+
+		void setRootSignature(const RootSignature& _rootSignature);
+		void setPipeline(const Pipeline& _pipeline);
 	};
 }
 

@@ -12,7 +12,7 @@ namespace Graphic
 	protected:
 		PipelineStartupInfoImpl();
 
-		void startup();
+		void initialize();
 
 		void setVertexShader(const D3D12_SHADER_BYTECODE& _shader);
 		void setPixelShader(const D3D12_SHADER_BYTECODE& _shader);
@@ -22,6 +22,7 @@ namespace Graphic
 		void setInputLayoutElement(const s32 _index, const SHADER_SEMANTIC_TYPE _shaderSemanticType,
 			const s32 _semanticIndex, const GRAPHIC_FORMAT _graphicFormat);
 		void setInputLayoutCount(const s32 _count);
+		void setEnableDepth(const bool _isEnableDepth);
 		void setRootSignature(ID3D12RootSignature* const _rootSignature);
 
 	public:

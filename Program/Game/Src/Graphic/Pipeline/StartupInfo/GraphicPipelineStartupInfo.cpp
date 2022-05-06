@@ -1,9 +1,17 @@
 #include "GraphicPipelineStartupInfo.h"
+#include <Graphic/RootSignature/GraphicRootSignature.h>
+#include <Shader/Vertex/VertexShader.h>
+#include <Shader/Pixel/PixelShader.h>
 
 CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
+	void PipelineStartupInfo::initialize()
+	{
+		PipelineStartupInfoImpl::initialize();
+	}
+
 	void PipelineStartupInfo::setVertexShader(const Shader::VertexShader& _shader)
 	{
 		PipelineStartupInfoImpl::setVertexShader(_shader.getShader());
@@ -38,6 +46,11 @@ namespace Graphic
 	void PipelineStartupInfo::setInputLayoutCount(const s32 _count)
 	{
 		PipelineStartupInfoImpl::setInputLayoutCount(_count);
+	}
+
+	void PipelineStartupInfo::setEnableDepth(const bool _isEnableDepth)
+	{
+		PipelineStartupInfoImpl::setEnableDepth(_isEnableDepth);
 	}
 
 	void PipelineStartupInfo::setRootSignature(const RootSignature& _rootSignature)

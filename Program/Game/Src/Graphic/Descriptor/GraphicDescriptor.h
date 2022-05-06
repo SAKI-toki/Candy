@@ -2,7 +2,6 @@
 #define CANDY_GRAPHIC_DESCRIPTOR_H
 
 #include <Graphic/GraphicDef.h>
-#include <Graphic/Device/GraphicDevice.h>
 #include "Handle/CPU/GraphicDescriptorCpuHandle.h"
 #include "Handle/GPU/GraphicDescriptorGpuHandle.h"
 
@@ -14,6 +13,9 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
+	class Device;
+	class Buffer;
+
 	class Descriptor : public DescriptorImpl
 	{
 	public:

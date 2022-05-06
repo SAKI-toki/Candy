@@ -2,8 +2,6 @@
 #define CANDY_GRAPHIC_COMMAND_QUEUE_H
 
 #include <Graphic/GraphicDef.h>
-#include <Graphic/Device/GraphicDevice.h>
-#include <Graphic/CommandList/GraphicCommandList.h>
 
 #if PLATFORM_WIN
 #include <Graphic/Platform/Win/CommandQueue/GraphicCommandQueueImpl.h>
@@ -13,6 +11,9 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
+	class Device;
+	class CommandList;
+
 	class CommandQueue : public CommandQueueImpl
 	{
 	public:

@@ -56,6 +56,16 @@ namespace Graphic
 	{
 		m_CommandList->ClearRenderTargetView(_rtDescriptorCpuHandle, _color.m_f32Array, 0, nullptr);
 	}
+
+	void CommandListImpl::setRootSignature(ID3D12RootSignature* const _rootSignature)
+	{
+		m_CommandList->SetGraphicsRootSignature(_rootSignature);
+	}
+
+	void CommandListImpl::setPipeline(ID3D12PipelineState* const _pipeline)
+	{
+		m_CommandList->SetPipelineState(_pipeline);
+	}
 }
 
 CANDY_NAMESPACE_END

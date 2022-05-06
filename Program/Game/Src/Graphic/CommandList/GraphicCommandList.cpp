@@ -1,4 +1,10 @@
 #include "GraphicCommandList.h"
+#include <Graphic/Device/GraphicDevice.h>
+#include <Graphic/Viewport/GraphicViewport.h>
+#include <Graphic/ScissorRect/GraphicScissorRect.h>
+#include <Graphic/Descriptor/Handle/CPU/GraphicDescriptorCpuHandle.h>
+#include <Graphic/RootSignature/GraphicRootSignature.h>
+#include <Graphic/Pipeline/GraphicPipeline.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -42,13 +48,23 @@ namespace Graphic
 	void CommandList::setRenderTargetsDepthStencil(const DescriptorCpuHandle& _rtDescriptorCpuHandle,
 		const s32 _renderTargetCount, const DescriptorCpuHandle& _dsDescriptorCpuHandle)
 	{
-		CommandListImpl::setRenderTargets(_rtDescriptorCpuHandle.getHandleAddress(), 
+		CommandListImpl::setRenderTargets(_rtDescriptorCpuHandle.getHandleAddress(),
 			_renderTargetCount, _dsDescriptorCpuHandle.getHandleAddress());
 	}
 
 	void CommandList::clearRenderTarget(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const Vec4 _color)
 	{
 		CommandListImpl::clearRenderTarget(_rtDescriptorCpuHandle.getHandle(), _color);
+	}
+
+	void CommandList::setRootSignature(const RootSignature& _rootSignature)
+	{
+		CommandListImpl::setRootSignature(_rootSignature.getRootSignature());
+	}
+
+	void CommandList::setPipeline(const Pipeline& _pipeline)
+	{
+		CommandListImpl::setPipeline(_pipeline.getPipeline());
 	}
 }
 

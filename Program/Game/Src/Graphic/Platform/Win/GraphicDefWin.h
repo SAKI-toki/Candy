@@ -18,6 +18,7 @@ namespace Graphic
 	D3D12_FILTER ConvFilterType(const FILTER_TYPE _filterType);
 	D3D12_SHADER_VISIBILITY ConvShaderVisibilityType(const SHADER_VISIBILITY_TYPE _shaderVisibilityType);
 	D3D12_COMPARISON_FUNC ConvComparisonFuncType(const COMPARISON_TYPE _comparisonType);
+	D3D12_ROOT_SIGNATURE_FLAGS ConvRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag);
 
 	s32 GetDesciptorHandleIncrementSize(const D3D12_DESCRIPTOR_HEAP_TYPE _descriptorType);
 }

@@ -13,8 +13,11 @@ namespace Graphic
 
 	enum class GRAPHIC_FORMAT
 	{
+		UNKNOWN,
 		R8G8B8A8_UNORM,
+		R32G32B32A32_FLOAT,
 		D32_FLOAT,
+		R32_UINT,
 	};
 
 	enum class BARRIER_STATE
@@ -68,11 +71,26 @@ namespace Graphic
 		ALWAYS,
 	};
 
-	struct ShaderRegisterType
+	enum class ROOT_SIGNATURE_FLAG
 	{
-		s32 m_ShaderRegister;
-		s32 m_RegisterSpace;
-		SHADER_VISIBILITY_TYPE m_ShaderVisibilityType;
+		NONE,
+		ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT,
+	};
+
+	struct ShaderRegisterInfo
+	{
+		ShaderRegisterInfo() = default;
+		ShaderRegisterInfo(const s32 _shaderRegister, const s32 _registerSpace, const SHADER_VISIBILITY_TYPE _shaderVisibilityType) :
+			m_ShaderRegister{ _shaderRegister },
+			m_RegisterSpace{ _registerSpace },
+			m_ShaderVisibilityType{ _shaderVisibilityType }
+		{
+
+		}
+
+		s32 m_ShaderRegister{ 0 };
+		s32 m_RegisterSpace{ 0 };
+		SHADER_VISIBILITY_TYPE m_ShaderVisibilityType{ SHADER_VISIBILITY_TYPE::ALL };
 	};
 }
 

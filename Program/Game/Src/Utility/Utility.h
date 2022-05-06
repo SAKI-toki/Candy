@@ -8,4 +8,11 @@
 #include "Path/Path.h"
 #include "StringSystem/StringSystem.h"
 
+CANDY_NAMESPACE_BEGIN
+
+template<typename T, s32 N>
+inline constexpr s32 GetArraySize(T(&)[N]) { return N; }
+
+CANDY_NAMESPACE_END
+
 #endif // CANDY_UTILITY_H

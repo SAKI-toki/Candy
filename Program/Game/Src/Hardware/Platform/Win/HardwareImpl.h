@@ -10,10 +10,10 @@ namespace Hardware::Impl
 		virtual ~StartupInfo() = default;
 
 		HINSTANCE m_InstanceHandle;
-		int m_CmdShowNum;
+		int m_CmdShowNum{};
 		std::string m_Name;
-		f32 m_Width;
-		f32 m_Height;
+		f32 m_Width{};
+		f32 m_Height{};
 	};
 
 	void Startup(const StartupInfo& _startupInfo);

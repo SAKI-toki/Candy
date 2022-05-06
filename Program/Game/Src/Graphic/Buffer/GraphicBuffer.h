@@ -2,9 +2,7 @@
 #define CANDY_GRAPHIC_BUFFER_H
 
 #include <Graphic/GraphicDef.h>
-#include <Graphic/Device/GraphicDevice.h>
-#include <Graphic/SwapChain/GraphicSwapChain.h>
-#include <Graphic/CommandList/GraphicCommandList.h>
+#include "StartupInfo/GraphicBufferStartupInfo.h"
 
 #if PLATFORM_WIN
 #include <Graphic/Platform/Win/Buffer/GraphicBufferImpl.h>
@@ -14,14 +12,20 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
+	class Device;
+	class SwapChain;
+	class CommandList;
+
 	class Buffer : public BufferImpl
 	{
 	public:
-		void startupRenderTarget(const Device& _device, const GRAPHIC_FORMAT _graphicFormat, const s32 _width, const s32 _height);
+		void startup(const Device& _device, const BufferStartupInfo& _startupInfo);
 		void startupBackBuffer(const SwapChain& _swapChain, const s32 _backBufferIndex);
 		void cleanup();
 
 		void translationBarrier(const CommandList& _commandList, const BARRIER_STATE _barrierState);
+
+		void store(const std::byte* const _buf, const u64 _size, const u64 _offset);
 	};
 }
 

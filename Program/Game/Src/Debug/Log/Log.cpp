@@ -14,7 +14,7 @@ namespace Log
 	{
 		std::string m_Message;
 		std::string m_FileName;
-		s32 m_LineNo;
+		s32 m_LineNo{};
 		std::string m_FuncName;
 	};
 	std::vector<LogInfo> m_LogInfos;

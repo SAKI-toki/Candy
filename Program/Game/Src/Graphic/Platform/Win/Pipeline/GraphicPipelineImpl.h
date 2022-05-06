@@ -14,6 +14,9 @@ namespace Graphic
 		void startup(ID3D12Device* const _device, const D3D12_GRAPHICS_PIPELINE_STATE_DESC _pipelineStateDesc);
 		void cleanup();
 
+	public:
+		ID3D12PipelineState* getPipeline()const { return m_Pipeline.Get(); }
+
 	private:
 		ComPtr<ID3D12PipelineState> m_Pipeline;
 	};

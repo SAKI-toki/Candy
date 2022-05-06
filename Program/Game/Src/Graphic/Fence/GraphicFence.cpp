@@ -1,4 +1,6 @@
 #include "GraphicFence.h"
+#include <Graphic/Device/GraphicDevice.h>
+#include <Graphic/CommandQueue/GraphicCommandQueue.h>
 
 CANDY_NAMESPACE_BEGIN
 

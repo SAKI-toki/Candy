@@ -1,4 +1,6 @@
 #include "GraphicPipeline.h"
+#include <Graphic/Device/GraphicDevice.h>
+#include "StartupInfo/GraphicPipelineStartupInfo.h"
 
 CANDY_NAMESPACE_BEGIN
 

@@ -20,9 +20,9 @@ namespace FileSystem
 		void setHandle(const WorkHandle _handle);
 
 	private:
-		WorkHandle m_Handle;
-		u32 m_Hash;
-		std::byte* m_Buffer;
+		WorkHandle m_Handle{};
+		u32 m_Hash{};
+		std::byte* m_Buffer = nullptr;
 	};
 }
 

@@ -2,7 +2,6 @@
 #define CANDY_GRAPHIC_PIPELINE_H
 
 #include <Graphic/GraphicDef.h>
-#include <Graphic/Device/GraphicDevice.h>
 #include "StartupInfo/GraphicPipelineStartupInfo.h"
 
 #if PLATFORM_WIN
@@ -13,6 +12,8 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
+	class Device;
+
 	class Pipeline : public PipelineImpl
 	{
 	public:

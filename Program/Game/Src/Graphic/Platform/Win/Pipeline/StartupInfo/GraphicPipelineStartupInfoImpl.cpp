@@ -9,7 +9,7 @@ namespace Graphic
 		m_StartupInfo.InputLayout.pInputElementDescs = m_InputElementDescs;
 	}
 
-	void PipelineStartupInfoImpl::startup()
+	void PipelineStartupInfoImpl::initialize()
 	{
 		m_StartupInfo.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID;
 		m_StartupInfo.RasterizerState.CullMode = D3D12_CULL_MODE_BACK;
@@ -67,6 +67,11 @@ namespace Graphic
 	void PipelineStartupInfoImpl::setInputLayoutCount(const s32 _count)
 	{
 		m_StartupInfo.InputLayout.NumElements = _count;
+	}
+
+	void PipelineStartupInfoImpl::setEnableDepth(const bool _isEnableDepth)
+	{
+		m_StartupInfo.DepthStencilState.DepthEnable = _isEnableDepth;
 	}
 
 	void PipelineStartupInfoImpl::setRootSignature(ID3D12RootSignature* const _rootSignature)

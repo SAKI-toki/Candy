@@ -295,6 +295,30 @@
     <Filter Include="Src\FileSystem\FileEnumerator">
       <UniqueIdentifier>{3fb38796-bc5d-485d-80f6-d90ceeb80fb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Graphic\Platform\Win\Buffer\StartupInfo">
+      <UniqueIdentifier>{6dc36674-9b17-4169-b1c5-4c6ef0618aaf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Graphic\Buffer\StartupInfo">
+      <UniqueIdentifier>{e8cd6fe2-102c-4466-bf2c-1874cf7efd15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Graphic\BufferView">
+      <UniqueIdentifier>{79420953-9dce-4fa7-8088-75f28319889d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Graphic\Platform\Win\BufferView">
+      <UniqueIdentifier>{c4200128-dcce-4b12-87b1-4193f4d80bbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Graphic\Platform\Win\BufferView\Vertex">
+      <UniqueIdentifier>{a0508922-92cd-4a04-8710-2404337147e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Graphic\Platform\Win\BufferView\Index">
+      <UniqueIdentifier>{9d9142ba-cc99-47a7-9478-d874b8717267}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Graphic\BufferView\Vertex">
+      <UniqueIdentifier>{efc52fcf-a10b-4cf4-91f2-46b2054b7c30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Graphic\BufferView\Index">
+      <UniqueIdentifier>{78b94e28-2803-4444-a48c-e2345aa25321}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -585,6 +609,24 @@
     <ClInclude Include="src\Graphic\GraphicType.h">
       <Filter>Src\Graphic</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Graphic\Platform\Win\Buffer\StartupInfo\GraphicBufferStartupInfoImpl.h">
+      <Filter>Src\Graphic\Platform\Win\Buffer\StartupInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Graphic\Buffer\StartupInfo\GraphicBufferStartupInfo.h">
+      <Filter>Src\Graphic\Buffer\StartupInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Graphic\Platform\Win\BufferView\Vertex\GraphicVertexBufferViewImpl.h">
+      <Filter>Src\Graphic\Platform\Win\BufferView\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Graphic\Platform\Win\BufferView\Index\GraphicIndexBufferViewImpl.h">
+      <Filter>Src\Graphic\Platform\Win\BufferView\Index</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Graphic\BufferView\Vertex\GraphicVertexBufferView.h">
+      <Filter>Src\Graphic\BufferView\Vertex</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Graphic\BufferView\Index\GraphicIndexBufferView.h">
+      <Filter>Src\Graphic\BufferView\Index</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity\__EntityCpp.cpp">
@@ -859,6 +901,24 @@
     </ClCompile>
     <ClCompile Include="src\Graphic\RootSignature\StartupInfo\GraphicRootSignatureStartupInfo.cpp">
       <Filter>Src\Graphic\RootSignature\StartupInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Graphic\Platform\Win\Buffer\StartupInfo\GraphicBufferStartupInfoImpl.cpp">
+      <Filter>Src\Graphic\Platform\Win\Buffer\StartupInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Graphic\Buffer\StartupInfo\GraphicBufferStartupInfo.cpp">
+      <Filter>Src\Graphic\Buffer\StartupInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Graphic\Platform\Win\BufferView\Vertex\GraphicVertexBufferViewImpl.cpp">
+      <Filter>Src\Graphic\Platform\Win\BufferView\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Graphic\Platform\Win\BufferView\Index\GraphicIndexBufferViewImpl.cpp">
+      <Filter>Src\Graphic\Platform\Win\BufferView\Index</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Graphic\BufferView\Vertex\GraphicVertexBufferView.cpp">
+      <Filter>Src\Graphic\BufferView\Vertex</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Graphic\BufferView\Index\GraphicIndexBufferView.cpp">
+      <Filter>Src\Graphic\BufferView\Index</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

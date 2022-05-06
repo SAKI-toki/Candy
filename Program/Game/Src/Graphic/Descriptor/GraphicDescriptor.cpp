@@ -1,4 +1,6 @@
 #include "GraphicDescriptor.h"
+#include <Graphic/Device/GraphicDevice.h>
+#include <Graphic/Buffer/GraphicBuffer.h>
 
 CANDY_NAMESPACE_BEGIN
 

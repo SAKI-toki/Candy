@@ -11,6 +11,22 @@ namespace Graphic
 
 	void PipelineStartupInfoImpl::initialize()
 	{
+		m_StartupInfo.BlendState.AlphaToCoverageEnable = FALSE;
+		m_StartupInfo.BlendState.IndependentBlendEnable = FALSE;
+		for (int i = 0; i < D3D12_SIMULTANEOUS_RENDER_TARGET_COUNT; ++i)
+		{
+			m_StartupInfo.BlendState.RenderTarget[i].BlendEnable = FALSE;
+			m_StartupInfo.BlendState.RenderTarget[i].LogicOpEnable = FALSE;
+			m_StartupInfo.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_ONE;
+			m_StartupInfo.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_ZERO;
+			m_StartupInfo.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
+			m_StartupInfo.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_ONE;
+			m_StartupInfo.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_ZERO;
+			m_StartupInfo.BlendState.RenderTarget[i].BlendOpAlpha = D3D12_BLEND_OP_ADD;
+			m_StartupInfo.BlendState.RenderTarget[i].LogicOp = D3D12_LOGIC_OP_NOOP;
+			m_StartupInfo.BlendState.RenderTarget[i].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
+		}
+
 		m_StartupInfo.RasterizerState.FillMode = D3D12_FILL_MODE_SOLID;
 		m_StartupInfo.RasterizerState.CullMode = D3D12_CULL_MODE_BACK;
 		m_StartupInfo.RasterizerState.FrontCounterClockwise = FALSE;

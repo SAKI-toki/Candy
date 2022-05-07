@@ -23,6 +23,8 @@ namespace Graphic
 		void cleanup();
 
 		void bindingRenderTarget(const Device& _device, const Buffer& _buffer, const s32 _index);
+		void bindingConstantBuffer(const Device& _device, const u32 _index, const Buffer& _buffer,
+			const u32 _offset, const u32 _size);
 
 		DescriptorCpuHandle getCpuHandle(const s32 _offsetIndex)const;
 		DescriptorGpuHandle getGpuHandle(const s32 _offsetIndex)const;

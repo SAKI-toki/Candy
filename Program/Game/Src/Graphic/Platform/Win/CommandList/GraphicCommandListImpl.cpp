@@ -66,6 +66,38 @@ namespace Graphic
 	{
 		m_CommandList->SetPipelineState(_pipeline);
 	}
+
+	void CommandListImpl::setPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType)
+	{
+		m_CommandList->IASetPrimitiveTopology(ConvPrimitiveTopology(_primitiveTopologyType));
+	}
+
+	void CommandListImpl::setVertexBuffers(const D3D12_VERTEX_BUFFER_VIEW* const _vertexBufferView)
+	{
+		m_CommandList->IASetVertexBuffers(0, 1, _vertexBufferView);
+	}
+
+	void CommandListImpl::setIndexBuffer(const D3D12_INDEX_BUFFER_VIEW* const _indexBufferView)
+	{
+		m_CommandList->IASetIndexBuffer(_indexBufferView);
+	}
+
+	void CommandListImpl::setDescriptor(ID3D12DescriptorHeap* const _descriptor)
+	{
+		m_CommandList->SetDescriptorHeaps(1, &_descriptor);
+	}
+
+	void CommandListImpl::setDescriptorTable(const s32 _rootParameterIndex, const D3D12_GPU_DESCRIPTOR_HANDLE& _descriptorCpuHandle)
+	{
+		m_CommandList->SetGraphicsRootDescriptorTable(_rootParameterIndex, _descriptorCpuHandle);
+	}
+
+	void CommandListImpl::drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
+		const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation)
+	{
+		m_CommandList->DrawIndexedInstanced(_indexCountPerInstance, _instanceCount,
+			_startIndexLocation, _baseVertexLocation, _startInstanceLocation);
+	}
 }
 
 CANDY_NAMESPACE_END

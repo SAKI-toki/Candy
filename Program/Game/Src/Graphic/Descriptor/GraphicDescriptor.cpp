@@ -21,6 +21,12 @@ namespace Graphic
 		DescriptorImpl::bindingRenderTarget(_device.getDevice(), _buffer.getBuffer(), _index);
 	}
 
+	void Descriptor::bindingConstantBuffer(const Device& _device, const u32 _index, 
+		const Buffer& _buffer, const u32 _offset, const u32 _size)
+	{
+		DescriptorImpl::bindingConstantBuffer(_device.getDevice(), _index, _buffer.getBuffer(), _offset, _size);
+	}
+
 	DescriptorCpuHandle Descriptor::getCpuHandle(const s32 _offsetIndex)const
 	{
 		return DescriptorCpuHandle{ DescriptorImpl::getCpuHandle(_offsetIndex) };

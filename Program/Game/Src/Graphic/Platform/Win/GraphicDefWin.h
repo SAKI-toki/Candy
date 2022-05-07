@@ -19,6 +19,7 @@ namespace Graphic
 	D3D12_SHADER_VISIBILITY ConvShaderVisibilityType(const SHADER_VISIBILITY_TYPE _shaderVisibilityType);
 	D3D12_COMPARISON_FUNC ConvComparisonFuncType(const COMPARISON_TYPE _comparisonType);
 	D3D12_ROOT_SIGNATURE_FLAGS ConvRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag);
+	D3D12_PRIMITIVE_TOPOLOGY ConvPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType);
 
 	s32 GetDesciptorHandleIncrementSize(const D3D12_DESCRIPTOR_HEAP_TYPE _descriptorType);
 }

@@ -15,6 +15,7 @@ namespace Graphic
 	{
 		UNKNOWN,
 		R8G8B8A8_UNORM,
+		R8G8B8A8_TYPELESS,
 		R32G32B32A32_FLOAT,
 		D32_FLOAT,
 		R32_UINT,
@@ -75,6 +76,12 @@ namespace Graphic
 	{
 		NONE,
 		ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT,
+	};
+
+	enum class PRIMITIVE_TOPOLOGY_TYPE
+	{
+		TRIANGLE_LIST,
+		TRIANGLE_STRIP,
 	};
 
 	struct ShaderRegisterInfo

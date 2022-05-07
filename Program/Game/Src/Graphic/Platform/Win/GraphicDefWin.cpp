@@ -142,6 +142,18 @@ D3D12_ROOT_SIGNATURE_FLAGS Graphic::ConvRootSignatureFlag(const ROOT_SIGNATURE_F
 	return D3D12_ROOT_SIGNATURE_FLAG_NONE;
 }
 
+D3D12_PRIMITIVE_TOPOLOGY Graphic::ConvPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType)
+{
+	switch (_primitiveTopologyType)
+	{
+	case PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST:	return D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+	case PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_STRIP:	return D3D_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP;
+	}
+
+	CANDY_LOG("未設定のプリミティブトポロジータイプです");
+	return D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+}
+
 s32 Graphic::GetDesciptorHandleIncrementSize(const D3D12_DESCRIPTOR_HEAP_TYPE _descriptorType)
 {
 	return Graphic::Impl::GetDesciptorHandleIncrementSize(_descriptorType);

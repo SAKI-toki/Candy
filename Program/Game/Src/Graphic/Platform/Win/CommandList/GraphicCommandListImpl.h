@@ -27,6 +27,16 @@ namespace Graphic
 		void setRootSignature(ID3D12RootSignature* const _rootSignature);
 		void setPipeline(ID3D12PipelineState* const _pipeline);
 
+		void setPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType);
+		void setVertexBuffers(const D3D12_VERTEX_BUFFER_VIEW* const  _vertexBufferView);
+		void setIndexBuffer(const D3D12_INDEX_BUFFER_VIEW* const  _indexBufferView);
+
+		void setDescriptor(ID3D12DescriptorHeap* const _descriptor);
+		void setDescriptorTable(const s32 _rootParameterIndex, const D3D12_GPU_DESCRIPTOR_HANDLE& _descriptorCpuHandle);
+
+		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
+			const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation);
+
 	public:
 		ID3D12GraphicsCommandList* getCommandList()const { return m_CommandList.Get(); }
 

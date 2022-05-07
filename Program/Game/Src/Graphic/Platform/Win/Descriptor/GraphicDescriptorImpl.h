@@ -16,6 +16,8 @@ namespace Graphic
 		void cleanup();
 
 		void bindingRenderTarget(ID3D12Device* const _device, ID3D12Resource* const _buffer, const s32 _index);
+		void bindingConstantBuffer(ID3D12Device* const _device, const u32 _index,
+			ID3D12Resource* const _buffer, const u32 _offset, const u32 _size);
 
 		DescriptorCpuHandleImpl getCpuHandle(const s32 _offsetIndex)const;
 		DescriptorGpuHandleImpl getGpuHandle(const s32 _offsetIndex)const;

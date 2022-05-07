@@ -2,7 +2,7 @@
 #include <Graphic/Device/GraphicDevice.h>
 #include <Graphic/Viewport/GraphicViewport.h>
 #include <Graphic/ScissorRect/GraphicScissorRect.h>
-#include <Graphic/Descriptor/Handle/CPU/GraphicDescriptorCpuHandle.h>
+#include <Graphic/Descriptor/GraphicDescriptor.h>
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/Pipeline/GraphicPipeline.h>
 
@@ -65,6 +65,38 @@ namespace Graphic
 	void CommandList::setPipeline(const Pipeline& _pipeline)
 	{
 		CommandListImpl::setPipeline(_pipeline.getPipeline());
+	}
+
+	void CommandList::setPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType)
+	{
+		CommandListImpl::setPrimitiveTopology(_primitiveTopologyType);
+	}
+
+	void CommandList::setVertexBuffers(const VertexBufferView& _vertexBufferView)
+	{
+		CommandListImpl::setVertexBuffers(_vertexBufferView.getVertexBufferViewAddress());
+	}
+
+	void CommandList::setIndexBuffer(const IndexBufferView& _indexBufferView)
+	{
+		CommandListImpl::setIndexBuffer(_indexBufferView.getIndexBufferViewAddress());
+	}
+
+	void CommandList::setDescriptor(const Descriptor& _descriptor)
+	{
+		CommandListImpl::setDescriptor(_descriptor.getDescriptor());
+	}
+
+	void CommandList::setDescriptorTable(const s32 _rootParameterIndex, const Descriptor& _descriptor, const s32 _offsetIndex)
+	{
+		CommandListImpl::setDescriptorTable(_rootParameterIndex, _descriptor.getGpuHandle(_offsetIndex).getHandle());
+	}
+
+	void CommandList::drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
+		const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation)
+	{
+		CommandListImpl::drawIndexedInstanced(_indexCountPerInstance, _instanceCount,
+			_startIndexLocation, _baseVertexLocation, _startInstanceLocation);
 	}
 }
 

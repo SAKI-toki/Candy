@@ -319,6 +319,9 @@
     <Filter Include="Src\Graphic\BufferView\Index">
       <UniqueIdentifier>{78b94e28-2803-4444-a48c-e2345aa25321}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Color">
+      <UniqueIdentifier>{a21ac3ac-2d60-484c-a822-2c129d4f7bdc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -626,6 +629,12 @@
     </ClInclude>
     <ClInclude Include="Src\Graphic\BufferView\Index\GraphicIndexBufferView.h">
       <Filter>Src\Graphic\BufferView\Index</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Color\Color.h">
+      <Filter>Src\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Color\ConvColor.h">
+      <Filter>Src\Color</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

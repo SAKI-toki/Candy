@@ -17,6 +17,9 @@ namespace Graphic
 	class DescriptorCpuHandle;
 	class RootSignature;
 	class Pipeline;
+	class VertexBufferView;
+	class IndexBufferView;
+	class Descriptor;
 
 	class CommandList : public CommandListImpl
 	{
@@ -38,6 +41,16 @@ namespace Graphic
 
 		void setRootSignature(const RootSignature& _rootSignature);
 		void setPipeline(const Pipeline& _pipeline);
+
+		void setPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType);
+		void setVertexBuffers(const VertexBufferView& _vertexBufferView);
+		void setIndexBuffer(const IndexBufferView& _indexBufferView);
+
+		void setDescriptor(const Descriptor& _descriptor);
+		void setDescriptorTable(const s32 _rootParameterIndex, const Descriptor& _descriptor, const s32 _offsetIndex);
+
+		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
+			const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation);
 	};
 }
 

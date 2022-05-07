@@ -60,6 +60,7 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 #include <Debug/Log/Log.h>
 #include <Vec/Vec4.h>
 #include <Rect/Rect.h>
+#include <Color/Color.h>
 #include <Setting.h>
 #include <Utility/Utility.h>
 #include <Global/Global.h>

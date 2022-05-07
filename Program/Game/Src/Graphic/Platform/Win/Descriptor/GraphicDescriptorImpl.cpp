@@ -40,6 +40,19 @@ namespace Graphic
 		_device->CreateRenderTargetView(_buffer, &rtv_desc, descriptorHandle);
 	}
 
+	void DescriptorImpl::bindingConstantBuffer(ID3D12Device* const _device, const u32 _index,
+		ID3D12Resource* const _buffer, const u32 _offset, const u32 _size)
+	{
+		D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+		descriptorHandle.ptr += GetDesciptorHandleIncrementSize(m_RealDescriptorType) * _index;
+
+		D3D12_CONSTANT_BUFFER_VIEW_DESC cbv_desc{};
+		cbv_desc.BufferLocation = _buffer->GetGPUVirtualAddress() + _offset;
+		cbv_desc.SizeInBytes = _size;
+
+		_device->CreateConstantBufferView(&cbv_desc, descriptorHandle);
+	}
+
 	DescriptorCpuHandleImpl DescriptorImpl::getCpuHandle(const s32 _offsetIndex)const
 	{
 		auto handle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();

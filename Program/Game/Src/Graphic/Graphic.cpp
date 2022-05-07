@@ -38,13 +38,17 @@ namespace Graphic
 	Pipeline m_Pipeline;
 	Buffer m_VertexBuffer;
 	Buffer m_IndexBuffer;
+	Buffer m_ConstantBuffer;
 	VertexBufferView m_VertexBufferView;
 	IndexBufferView m_IndexBufferView;
 
 	s32 m_BackBufferIndex;
 	std::vector<u64> m_FrameFenceValues;
 
-	Vec4 m_BackBufferClearColor;
+	struct ConstantInfo
+	{
+		Vec4 time;
+	};
 }
 
 void Graphic::Startup()
@@ -77,13 +81,13 @@ void Graphic::Startup()
 	m_FrameFenceValues.resize(GetBackBufferCount());
 	m_FrameFenceValues[m_BackBufferIndex] = 1;
 
-	m_Descriptor.startup(m_Device, DESCRIPTOR_TYPE::SHADER_RESOURCE, 1);
+	m_Descriptor.startup(m_Device, DESCRIPTOR_TYPE::CONSTANT_BUFFER, GetBackBufferCount());
 
 	RootSignatureStartupInfo rootSignatureStartupInfo;
 	rootSignatureStartupInfo.initialize();
-	//rootSignatureStartupInfo.setDescriptorRange(0, { 0, 0, SHADER_VISIBILITY_TYPE::PIXEL }, m_Descriptor);
+	rootSignatureStartupInfo.setDescriptorRange(0, { 0, 0, SHADER_VISIBILITY_TYPE::ALL }, m_Descriptor);
 	//rootSignatureStartupInfo.setStaticSampler(0, { 0, 0, SHADER_VISIBILITY_TYPE::PIXEL }, FILTER_TYPE::ANISOTROPIC);
-	rootSignatureStartupInfo.setRootParameterCount(0);
+	rootSignatureStartupInfo.setRootParameterCount(1);
 	rootSignatureStartupInfo.setStaticSamplerCount(0);
 	rootSignatureStartupInfo.onRootSignatureFlag(ROOT_SIGNATURE_FLAG::ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 	m_RootSignature.startup(m_Device, rootSignatureStartupInfo);
@@ -93,34 +97,50 @@ void Graphic::Startup()
 	pipelineStartupInfo.setVertexShader(Shader::GetVertexShader(SHADER_TYPE::TEST));
 	pipelineStartupInfo.setPixelShader(Shader::GetPixelShader(SHADER_TYPE::TEST));
 	pipelineStartupInfo.setInputLayoutElement(0, SHADER_SEMANTIC_TYPE::POSITION, 0, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
-	pipelineStartupInfo.setInputLayoutCount(1);
+	pipelineStartupInfo.setInputLayoutElement(1, SHADER_SEMANTIC_TYPE::COLOR, 0, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+	pipelineStartupInfo.setInputLayoutCount(2);
 	pipelineStartupInfo.setRenderTaretFormat(0, GRAPHIC_FORMAT::R8G8B8A8_UNORM);
 	pipelineStartupInfo.setRenderTaretCount(1);
 	pipelineStartupInfo.setEnableDepth(false);
 	pipelineStartupInfo.setRootSignature(m_RootSignature);
 	m_Pipeline.startup(m_Device, pipelineStartupInfo);
 
-	Vec4 vertices[] =
+	struct VertexInfo
 	{
-		{ 0.0f, 0.25f, 0.0f },
-		{ 0.25f, -0.25f, 0.0f },
-		{ -0.25f, -0.25f, 0.0f },
+		Vec4 position;
+		Color color;
+	};	
+	VertexInfo vertices[] =
+	{
+		{ { -0.25f, +0.25f, 0.0f }, CANDY_COLOR_RGB32(0xff, 0xa5, 0x00) }, // ç∂è„
+		{ { +0.25f, +0.25f, 0.0f }, CANDY_COLOR_RGB32(0x00, 0x00, 0xff) }, // âEè„
+		{ { -0.25f, -0.25f, 0.0f }, CANDY_COLOR_RGB32(0xbb, 0x00, 0x00) }, // ç∂â∫
+		{ { +0.25f, -0.25f, 0.0f }, CANDY_COLOR_RGB32(0xbb, 0xbb, 0xbb) }, // âEâ∫
 	};
 	BufferStartupInfo vertexBufferStartupInfo;
-	vertexBufferStartupInfo.setBufferStartupInfo(sizeof(Vec4) * GetArraySize(vertices));
+	vertexBufferStartupInfo.setBufferStartupInfo(sizeof(VertexInfo) * GetArraySize(vertices));
 	m_VertexBuffer.startup(m_Device, vertexBufferStartupInfo);
-	m_VertexBuffer.store(reinterpret_cast<std::byte*>(vertices), sizeof(Vec4) * GetArraySize(vertices), 0);
-	m_VertexBufferView.startup(m_VertexBuffer, 0, sizeof(Vec4) * GetArraySize(vertices), sizeof(Vec4));
+	m_VertexBuffer.store(reinterpret_cast<std::byte*>(vertices), sizeof(VertexInfo) * GetArraySize(vertices), 0);
+	m_VertexBufferView.startup(m_VertexBuffer, 0, sizeof(VertexInfo) * GetArraySize(vertices), sizeof(VertexInfo));
 
 	u32 indices[] =
 	{
 		0, 1, 2,
+		1, 3, 2,
 	};
 	BufferStartupInfo indexBufferStartupInfo;
 	indexBufferStartupInfo.setBufferStartupInfo(sizeof(u32) * GetArraySize(indices));
 	m_IndexBuffer.startup(m_Device, indexBufferStartupInfo);
 	m_IndexBuffer.store(reinterpret_cast<std::byte*>(indices), sizeof(u32) * GetArraySize(indices), 0);
-	m_IndexBufferView.startup(m_IndexBuffer, 0, sizeof(Vec4) * GetArraySize(vertices), GRAPHIC_FORMAT::R32_UINT);
+	m_IndexBufferView.startup(m_IndexBuffer, 0, sizeof(u32) * GetArraySize(indices), GRAPHIC_FORMAT::R32_UINT);
+
+	BufferStartupInfo constantBufferStartupInfo;
+	constantBufferStartupInfo.setBufferStartupInfo(0x100 * GetBackBufferCount());
+	m_ConstantBuffer.startup(m_Device, constantBufferStartupInfo);
+	for (s32 i = 0; i < GetBackBufferCount(); ++i)
+	{
+		m_Descriptor.bindingConstantBuffer(m_Device, i, m_ConstantBuffer, 0x100 * i, 0x100);
+	}
 }
 
 void Graphic::Cleanup()
@@ -143,25 +163,33 @@ void Graphic::Cleanup()
 
 void Graphic::Update()
 {
-	m_BackBufferClearColor.m_f32Col.r = (std::sin(Global::GetAppTimeAll() * 1) + 1.0f) / 2.0f;
-	m_BackBufferClearColor.m_f32Col.g = (std::sin(Global::GetAppTimeAll() * 2) + 1.0f) / 2.0f;
-	m_BackBufferClearColor.m_f32Col.b = (std::sin(Global::GetAppTimeAll() * 5) + 1.0f) / 2.0f;
+	ConstantInfo constantInfo;
+	constantInfo.time = Vec4{ Global::GetAppTimeAll(), Global::GetAppTimeAll(), Global::GetAppTimeAll(), Global::GetAppTimeAll() };
+	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&constantInfo), sizeof(constantInfo), 0x100 * m_BackBufferIndex);
 }
 
 void Graphic::DrawBegin()
 {
 	m_CommandList.drawBegin(m_BackBufferIndex);
 
-	m_CommandList.setViewport(m_Viewport);
-	m_CommandList.setScissorRect(m_ScissorRect);
-
 	m_BackBuffers[m_BackBufferIndex].translationBarrier(m_CommandList, BARRIER_STATE::RENDER_TARGET);
 
 	m_CommandList.setRenderTargets(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), 1);
-	m_CommandList.clearRenderTarget(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), m_BackBufferClearColor);
+	m_CommandList.clearRenderTarget(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), CANDY_COLOR_RGB32(0x20, 0x20, 0x20));
+
+	m_CommandList.setViewport(m_Viewport);
+	m_CommandList.setScissorRect(m_ScissorRect);
 
 	m_CommandList.setRootSignature(m_RootSignature);
 	m_CommandList.setPipeline(m_Pipeline);
+	m_CommandList.setVertexBuffers(m_VertexBufferView);
+	m_CommandList.setIndexBuffer(m_IndexBufferView);
+	m_CommandList.setPrimitiveTopology(PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
+
+	m_CommandList.setDescriptor(m_Descriptor);
+	m_CommandList.setDescriptorTable(0, m_Descriptor, m_BackBufferIndex);
+
+	m_CommandList.drawIndexedInstanced(6, 1, 0, 0, 0);
 }
 
 void Graphic::DrawEnd()

@@ -17,11 +17,11 @@ namespace Graphic::Impl
 		{
 			m_StartupInfo.BlendState.RenderTarget[i].BlendEnable = FALSE;
 			m_StartupInfo.BlendState.RenderTarget[i].LogicOpEnable = FALSE;
-			m_StartupInfo.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_ONE;
-			m_StartupInfo.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_ZERO;
+			m_StartupInfo.BlendState.RenderTarget[i].SrcBlend = D3D12_BLEND_SRC_ALPHA;
+			m_StartupInfo.BlendState.RenderTarget[i].DestBlend = D3D12_BLEND_ONE;
 			m_StartupInfo.BlendState.RenderTarget[i].BlendOp = D3D12_BLEND_OP_ADD;
-			m_StartupInfo.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_ONE;
-			m_StartupInfo.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_ZERO;
+			m_StartupInfo.BlendState.RenderTarget[i].SrcBlendAlpha = D3D12_BLEND_SRC_ALPHA;
+			m_StartupInfo.BlendState.RenderTarget[i].DestBlendAlpha = D3D12_BLEND_DEST_ALPHA;
 			m_StartupInfo.BlendState.RenderTarget[i].BlendOpAlpha = D3D12_BLEND_OP_ADD;
 			m_StartupInfo.BlendState.RenderTarget[i].LogicOp = D3D12_LOGIC_OP_NOOP;
 			m_StartupInfo.BlendState.RenderTarget[i].RenderTargetWriteMask = D3D12_COLOR_WRITE_ENABLE_ALL;
@@ -88,6 +88,11 @@ namespace Graphic::Impl
 	void PipelineStartupInfoImpl::setEnableDepth(const bool _isEnableDepth)
 	{
 		m_StartupInfo.DepthStencilState.DepthEnable = _isEnableDepth;
+	}
+
+	void PipelineStartupInfoImpl::setEnableBlend(const s32 _renderTargetIndex, const bool _isEnableBlend)
+	{
+		m_StartupInfo.BlendState.RenderTarget[_renderTargetIndex].BlendEnable = _isEnableBlend;
 	}
 
 	void PipelineStartupInfoImpl::setRootSignature(ID3D12RootSignature* const _rootSignature)

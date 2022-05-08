@@ -18,6 +18,8 @@
 
 #include <FileSystem/FileSystem.h>
 
+#include <Texture/DDS/ReadDDS.h>
+
 #if PLATFORM_WIN
 #include "Platform/Win/GraphicImpl.h"
 #endif // PLATFORM_WIN
@@ -110,6 +112,7 @@ void Graphic::Startup()
 	pipelineStartupInfo.setRenderTaretFormat(0, GRAPHIC_FORMAT::R8G8B8A8_UNORM);
 	pipelineStartupInfo.setRenderTaretCount(1);
 	pipelineStartupInfo.setEnableDepth(false);
+	pipelineStartupInfo.setEnableBlend(0, true);
 	pipelineStartupInfo.setRootSignature(m_RootSignature);
 	m_Pipeline.startup(m_Device, pipelineStartupInfo);
 
@@ -154,19 +157,16 @@ void Graphic::Startup()
 	}
 
 	BufferStartupInfo textureBufferStartupInfo;
-	textureBufferStartupInfo.setTextureStartupInfo(GRAPHIC_FORMAT::R32G32B32A32_FLOAT, 256, 256);
+	textureBufferStartupInfo.setTextureStartupInfo(GRAPHIC_FORMAT::BC1_UNORM, 256, 256);
 	m_TextureBuffer.startup(m_Device, textureBufferStartupInfo);
-	m_TextureDescriptor.bindingTexture2D(m_Device, 0, m_TextureBuffer, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+	m_TextureDescriptor.bindingTexture2D(m_Device, 0, m_TextureBuffer, GRAPHIC_FORMAT::BC1_UNORM);
 
-	Vec4* data = new Vec4[256 * 256];
-	for (s32 i = 0; i < 256; ++i)
-	{
-		for (s32 j = 0; j < 256; ++j)
-		{
-			data[i * 256 + j] = CANDY_COLOR_RGB32(i, j, 0x00);
-		}
-	}
-	Texture::CreateTexture(m_TextureBuffer, reinterpret_cast<std::byte*>(data), sizeof(Vec4) * 256 * 256);
+	auto path = std::string{ Setting::GetDataPath() } + R"(Texture\mouse.dds)";
+	u64 size = FileSystem::GetFileSize(path);
+	std::byte* buf = new std::byte[size];
+	FileSystem::RequestReadNoWait(path, buf, size);
+	auto result = Texture::DDS::ReadAlloc(buf, size);
+	Texture::CreateTexture(m_TextureBuffer, result, 256 * 256 /2);
 }
 
 void Graphic::Cleanup()

@@ -26,13 +26,19 @@ namespace Graphic
 
 		void setVertexShader(const Shader::VertexShader& _shader);
 		void setPixelShader(const Shader::PixelShader& _shader);
+		
 		void setRenderTaretFormat(const s32 _index, const GRAPHIC_FORMAT _graphicFormat);
 		void setRenderTaretCount(const s32 _count);
 		void setDepthStencilFormat(const GRAPHIC_FORMAT _graphicFormat);
+		
 		void setInputLayoutElement(const s32 _index, const SHADER_SEMANTIC_TYPE _shaderSemanticType,
 			const s32 _semanticIndex, const GRAPHIC_FORMAT _graphicFormat);
 		void setInputLayoutCount(const s32 _count);
+		
 		void setEnableDepth(const bool _isEnableDepth);
+
+		void setEnableBlend(const s32 _renderTargetIndex, const bool _isEnableBlend);
+
 		void setRootSignature(const RootSignature& _rootSignature);
 	};
 }

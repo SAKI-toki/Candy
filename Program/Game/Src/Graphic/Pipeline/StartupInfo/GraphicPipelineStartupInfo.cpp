@@ -53,6 +53,11 @@ namespace Graphic
 		PipelineStartupInfoImpl::setEnableDepth(_isEnableDepth);
 	}
 
+	void PipelineStartupInfo::setEnableBlend(const s32 _renderTargetIndex, const bool _isEnableBlend)
+	{
+		PipelineStartupInfoImpl::setEnableBlend(_renderTargetIndex, _isEnableBlend);
+	}
+
 	void PipelineStartupInfo::setRootSignature(const RootSignature& _rootSignature)
 	{
 		PipelineStartupInfoImpl::setRootSignature(_rootSignature.getRootSignature());

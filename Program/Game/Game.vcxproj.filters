@@ -337,6 +337,9 @@
     <Filter Include="Src\Input\Platform\Win">
       <UniqueIdentifier>{1bea1689-f072-4fe9-a2d0-57a528c34fd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Texture\DDS">
+      <UniqueIdentifier>{24e3259c-6f94-4b93-a73d-8c784d283560}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -663,6 +666,9 @@
     <ClInclude Include="Src\Input\Platform\Win\Keyboard\InputKeyboardImpl.h">
       <Filter>Src\Input\Platform\Win</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Texture\DDS\ReadDDS.h">
+      <Filter>Src\Texture\DDS</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity\__EntityCpp.cpp">
@@ -973,6 +979,9 @@
     </ClCompile>
     <ClCompile Include="Src\Input\Platform\Win\Keyboard\InputKeyboardImpl.cpp">
       <Filter>Src\Input\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Texture\DDS\ReadDDS.cpp">
+      <Filter>Src\Texture\DDS</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

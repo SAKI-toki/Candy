@@ -322,6 +322,21 @@
     <Filter Include="Src\Color">
       <UniqueIdentifier>{a21ac3ac-2d60-484c-a822-2c129d4f7bdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Texture">
+      <UniqueIdentifier>{1ad8c54d-16cb-4e20-ae58-567cb483f3e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Input">
+      <UniqueIdentifier>{fad3427c-767d-4d64-83b0-267f7d91011f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Input\Keyboard">
+      <UniqueIdentifier>{fb4a2842-ddc0-4158-b9d0-8d60227648cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Input\Platform">
+      <UniqueIdentifier>{54aa7c68-b470-4940-9c85-ed0bc1c0f63c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Input\Platform\Win">
+      <UniqueIdentifier>{1bea1689-f072-4fe9-a2d0-57a528c34fd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -636,6 +651,18 @@
     <ClInclude Include="Src\Color\ConvColor.h">
       <Filter>Src\Color</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Texture\Texture.h">
+      <Filter>Src\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Input\Keyboard\InputKeyboard.h">
+      <Filter>Src\Input\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Input\Input.h">
+      <Filter>Src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Input\Platform\Win\Keyboard\InputKeyboardImpl.h">
+      <Filter>Src\Input\Platform\Win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity\__EntityCpp.cpp">
@@ -928,6 +955,24 @@
     </ClCompile>
     <ClCompile Include="Src\Graphic\BufferView\Index\GraphicIndexBufferView.cpp">
       <Filter>Src\Graphic\BufferView\Index</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Texture\Texture.cpp">
+      <Filter>Src\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Texture\__TextureCpp.cpp">
+      <Filter>Src\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Input\Keyboard\InputKeyboard.cpp">
+      <Filter>Src\Input\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Input\Input.cpp">
+      <Filter>Src\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Input\__InputCpp.cpp">
+      <Filter>Src\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Input\Platform\Win\Keyboard\InputKeyboardImpl.cpp">
+      <Filter>Src\Input\Platform\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

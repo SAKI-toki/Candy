@@ -3,7 +3,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	void BufferImpl::startup(ID3D12Device* const _device, const BufferStartupInfoImpl& _startupInfo)
 	{

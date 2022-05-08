@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	void FenceImpl::startup(ID3D12Device* const _device)
 	{

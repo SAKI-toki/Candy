@@ -11,11 +11,12 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	class BufferStartupInfo : public BufferStartupInfoImpl
+	class BufferStartupInfo : public Impl::BufferStartupInfoImpl
 	{
 	public:
 		void setBufferStartupInfo(const u64 _size);
 		void setRenderTargetStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
+		void setTextureStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
 	};
 }
 

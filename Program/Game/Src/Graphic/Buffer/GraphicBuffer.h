@@ -16,7 +16,7 @@ namespace Graphic
 	class SwapChain;
 	class CommandList;
 
-	class Buffer : public BufferImpl
+	class Buffer : public Impl::BufferImpl
 	{
 	public:
 		void startup(const Device& _device, const BufferStartupInfo& _startupInfo);

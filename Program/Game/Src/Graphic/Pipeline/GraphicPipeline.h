@@ -14,7 +14,7 @@ namespace Graphic
 {
 	class Device;
 
-	class Pipeline : public PipelineImpl
+	class Pipeline : public Impl::PipelineImpl
 	{
 	public:
 		void startup(const Device& _device, const PipelineStartupInfo& _startupInfo);

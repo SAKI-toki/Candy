@@ -13,11 +13,16 @@ namespace Graphic
 {
 	class Buffer;
 
-	class VertexBufferView : public VertexBufferViewImpl
+	class VertexBufferView : public Impl::VertexBufferViewImpl
 	{
 	public:
-		void startup(const Buffer& _buffer, const u64 _offset, const u32 _size, const u32 _byteStride);
+		void startup(const Buffer& _buffer, const u64 _offset, const u32 _vertexCount, const u32 _byteStride);
 		void cleanup();
+
+		u32 getVertexCount()const { return m_VertexCount; }
+
+	private:
+		u32 m_VertexCount{};
 	};
 }
 

@@ -11,7 +11,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	class Device : public DeviceImpl
+	class Device : public Impl::DeviceImpl
 	{
 	public:
 		void startup();

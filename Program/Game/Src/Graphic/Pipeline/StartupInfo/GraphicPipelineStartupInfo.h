@@ -19,7 +19,7 @@ namespace Graphic
 {
 	class RootSignature;
 
-	class PipelineStartupInfo : public PipelineStartupInfoImpl
+	class PipelineStartupInfo : public Impl::PipelineStartupInfoImpl
 	{
 	public:
 		void initialize();

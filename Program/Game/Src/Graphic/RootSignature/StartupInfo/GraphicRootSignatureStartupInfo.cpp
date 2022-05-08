@@ -20,10 +20,10 @@ namespace Graphic
 		RootSignatureStartupInfoImpl::setRootParameterCount(_count);
 	}
 
-	void RootSignatureStartupInfo::setStaticSampler(const s32 _index, 
-		const ShaderRegisterInfo _shaderRegisterInfo, const FILTER_TYPE _filterType)
+	void RootSignatureStartupInfo::setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo, 
+		const FILTER_TYPE _filterType, const TEXTURE_ADDRESS_MODE _textureAddressMode)
 	{
-		RootSignatureStartupInfoImpl::setStaticSampler(_index, _shaderRegisterInfo, _filterType);
+		RootSignatureStartupInfoImpl::setStaticSampler(_index, _shaderRegisterInfo, _filterType, _textureAddressMode);
 	}
 
 	void RootSignatureStartupInfo::setStaticSamplerCount(const s32 _count)

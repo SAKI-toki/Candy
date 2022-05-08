@@ -11,7 +11,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	class ScissorRect : public ScissorRectImpl
+	class ScissorRect : public Impl::ScissorRectImpl
 	{
 	public:
 		void set(const f32 _left, const f32 _top, const f32 _right, const f32 _bottom);

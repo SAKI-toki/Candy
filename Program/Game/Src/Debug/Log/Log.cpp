@@ -64,7 +64,7 @@ void Log::AddLog(const char* const _fileName, const s32 _lineNo, const char* con
 	LogImpl::OutputDebugLog("%s(%d) : %s", _fileName, _lineNo, logInfo.m_Message.c_str());
 	m_LogInfos.push_back(logInfo);
 #else
-	CANDY_UNUSED_VALUE(_message);
+	CANDY_UNUSED_VALUE(_messageFmt);
 	CANDY_UNUSED_VALUE(_fileName);
 	CANDY_UNUSED_VALUE(_lineNo);
 	CANDY_UNUSED_VALUE(_funcName);

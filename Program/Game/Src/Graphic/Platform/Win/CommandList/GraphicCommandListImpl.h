@@ -5,7 +5,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	class CommandListImpl
 	{
@@ -13,7 +13,7 @@ namespace Graphic
 		void startup(ID3D12Device* const _device, const COMMAND_LIST_TYPE _commandListType, const s32 _backBufferCount);
 		void cleanup();
 
-		void drawBegin(const s32 _frameNo);
+		void preDraw(const s32 _frameNo);
 
 		void close();
 
@@ -36,6 +36,8 @@ namespace Graphic
 
 		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
 			const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation);
+
+		void copyTexture(ID3D12Device* const _device, ID3D12Resource* const _dstBuffer, ID3D12Resource* const _srcBuffer);
 
 	public:
 		ID3D12GraphicsCommandList* getCommandList()const { return m_CommandList.Get(); }

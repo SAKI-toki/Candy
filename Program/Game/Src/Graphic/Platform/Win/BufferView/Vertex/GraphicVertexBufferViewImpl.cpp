@@ -3,12 +3,12 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
-	void VertexBufferViewImpl::startup(const BufferImpl& _buffer, const u64 _offset, const u32 _size, const u32 _byteStride)
+	void VertexBufferViewImpl::startup(const BufferImpl& _buffer, const u64 _offset, const u32 _vertexCount, const u32 _byteStride)
 	{
 		m_VertexBufferView.BufferLocation = _buffer.getGpuVirtualAddress() + _offset;
-		m_VertexBufferView.SizeInBytes = _size;
+		m_VertexBufferView.SizeInBytes = _vertexCount * _byteStride;
 		m_VertexBufferView.StrideInBytes = _byteStride;
 	}
 

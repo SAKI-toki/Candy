@@ -13,11 +13,16 @@ namespace Graphic
 {
 	class Buffer;
 
-	class IndexBufferView : public IndexBufferViewImpl
+	class IndexBufferView : public Impl::IndexBufferViewImpl
 	{
 	public:
-		void startup(const Buffer& _buffer, const u64 _offset, const u32 _size, const GRAPHIC_FORMAT _graphicFormat);
+		void startup(const Buffer& _buffer, const u64 _offset, const u32 _indexCount, const u32 _byteStride, const GRAPHIC_FORMAT _graphicFormat);
 		void cleanup();
+
+		u32 getIndexCount()const { return m_IndexCount; }
+
+	private:
+		u32 m_IndexCount{};
 	};
 }
 

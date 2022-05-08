@@ -19,6 +19,7 @@ namespace Graphic
 		R32G32B32A32_FLOAT,
 		D32_FLOAT,
 		R32_UINT,
+		BC1_UNORM,
 	};
 
 	enum class BARRIER_STATE
@@ -26,6 +27,7 @@ namespace Graphic
 		COMMON,
 		RENDER_TARGET,
 		PRESENT,
+		PIXEL_SHADER_RESOURCE,
 	};
 
 	enum class DESCRIPTOR_TYPE
@@ -51,6 +53,12 @@ namespace Graphic
 	enum class FILTER_TYPE
 	{
 		ANISOTROPIC,
+	};
+
+	enum class TEXTURE_ADDRESS_MODE
+	{
+		WRAP,
+		CLAMP,
 	};
 
 	enum class SHADER_VISIBILITY_TYPE

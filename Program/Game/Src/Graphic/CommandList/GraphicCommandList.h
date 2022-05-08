@@ -20,14 +20,15 @@ namespace Graphic
 	class VertexBufferView;
 	class IndexBufferView;
 	class Descriptor;
+	class Buffer;
 
-	class CommandList : public CommandListImpl
+	class CommandList : public Impl::CommandListImpl
 	{
 	public:
 		void startup(const Device& _device, const COMMAND_LIST_TYPE _commandListType, const s32 _backBufferCount);
 		void cleanup();
 
-		void drawBegin(const s32 _backBufferIndex);
+		void preDraw(const s32 _backBufferIndex);
 
 		void close();
 
@@ -51,6 +52,8 @@ namespace Graphic
 
 		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
 			const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation);
+
+		void copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer);
 	};
 }
 

@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	DescriptorGpuHandleImpl::DescriptorGpuHandleImpl(const D3D12_GPU_DESCRIPTOR_HANDLE _gpuDescriptorHandle) :
 		m_Handle{ _gpuDescriptorHandle }

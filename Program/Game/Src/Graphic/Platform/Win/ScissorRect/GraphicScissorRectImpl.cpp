@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	void ScissorRectImpl::set(const f32 _left, const f32 _top, const f32 _right, const f32 _bottom)
 	{

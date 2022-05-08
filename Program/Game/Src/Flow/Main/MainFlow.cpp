@@ -40,9 +40,9 @@ void MainFlow::Update()
 	GameFlow::Update();
 	Graphic::Update();
 
-	Graphic::DrawBegin();
+	Graphic::PreDraw();
 	GameFlow::Draw();
-	Graphic::DrawEnd();
+	Graphic::PostDraw();
 }
 
 bool MainFlow::IsEnd()

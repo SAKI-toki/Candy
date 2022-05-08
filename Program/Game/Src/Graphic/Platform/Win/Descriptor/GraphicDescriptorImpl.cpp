@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	void DescriptorImpl::startup(ID3D12Device* const _device, const DESCRIPTOR_TYPE _descriptorType, const s32 _count)
 	{
@@ -30,14 +30,30 @@ namespace Graphic
 		m_DescriptorHeap.Reset();
 	}
 
-	void DescriptorImpl::bindingRenderTarget(ID3D12Device* const _device, ID3D12Resource* const _buffer, const s32 _index)
+	void DescriptorImpl::bindingRenderTarget(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer)
 	{
 		D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 		descriptorHandle.ptr += GetDesciptorHandleIncrementSize(m_RealDescriptorType) * _index;
 
-		D3D12_RENDER_TARGET_VIEW_DESC rtv_desc{};
-		rtv_desc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
-		_device->CreateRenderTargetView(_buffer, &rtv_desc, descriptorHandle);
+		D3D12_RENDER_TARGET_VIEW_DESC rtvDesc{};
+		rtvDesc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
+
+		_device->CreateRenderTargetView(_buffer, &rtvDesc, descriptorHandle);
+	}
+
+	void DescriptorImpl::bindingTexture2D(ID3D12Device* const _device, const s32 _index,
+		ID3D12Resource* const _buffer, const GRAPHIC_FORMAT _graphicFormat)
+	{
+		D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+		descriptorHandle.ptr += GetDesciptorHandleIncrementSize(m_RealDescriptorType) * _index;
+
+		D3D12_SHADER_RESOURCE_VIEW_DESC srvDesc{};
+		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
+		srvDesc.Format = ConvGraphicFormat(_graphicFormat);
+		srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
+		srvDesc.Texture2D.MipLevels = 1;
+
+		_device->CreateShaderResourceView(_buffer, &srvDesc, descriptorHandle);
 	}
 
 	void DescriptorImpl::bindingConstantBuffer(ID3D12Device* const _device, const u32 _index,
@@ -46,11 +62,11 @@ namespace Graphic
 		D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 		descriptorHandle.ptr += GetDesciptorHandleIncrementSize(m_RealDescriptorType) * _index;
 
-		D3D12_CONSTANT_BUFFER_VIEW_DESC cbv_desc{};
-		cbv_desc.BufferLocation = _buffer->GetGPUVirtualAddress() + _offset;
-		cbv_desc.SizeInBytes = _size;
+		D3D12_CONSTANT_BUFFER_VIEW_DESC cbvDesc{};
+		cbvDesc.BufferLocation = _buffer->GetGPUVirtualAddress() + _offset;
+		cbvDesc.SizeInBytes = _size;
 
-		_device->CreateConstantBufferView(&cbv_desc, descriptorHandle);
+		_device->CreateConstantBufferView(&cbvDesc, descriptorHandle);
 	}
 
 	DescriptorCpuHandleImpl DescriptorImpl::getCpuHandle(const s32 _offsetIndex)const

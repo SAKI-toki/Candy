@@ -13,14 +13,15 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	class RootSignatureStartupInfo : public RootSignatureStartupInfoImpl
+	class RootSignatureStartupInfo : public Impl::RootSignatureStartupInfoImpl
 	{
 	public:
 		void initialize();
 
 		void setDescriptorRange(const s32 _rootParameterIndex, const ShaderRegisterInfo _shaderRegisterInfo, const Descriptor& _descriptor);
 		void setRootParameterCount(const s32 _count);
-		void setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo, const FILTER_TYPE _filterType);
+		void setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo, 
+			const FILTER_TYPE _filterType, const TEXTURE_ADDRESS_MODE _textureAddressMode);
 		void setStaticSamplerCount(const s32 _count);
 
 		void onRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag);

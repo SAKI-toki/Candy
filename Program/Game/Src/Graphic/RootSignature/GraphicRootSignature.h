@@ -13,7 +13,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	class RootSignature : public RootSignatureImpl
+	class RootSignature : public Impl::RootSignatureImpl
 	{
 	public:
 		void startup(const Device& _device, const RootSignatureStartupInfo& _startupInfo);

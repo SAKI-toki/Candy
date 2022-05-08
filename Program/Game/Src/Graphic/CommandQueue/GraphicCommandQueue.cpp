@@ -16,7 +16,7 @@ namespace Graphic
 		CommandQueueImpl::cleanup();
 	}
 
-	void CommandQueue::executeCommandList(CommandList& _commandList)
+	void CommandQueue::executeCommandList(CommandList& _commandList)const
 	{
 		CommandQueueImpl::executeCommandList(_commandList.getCommandList());
 	}

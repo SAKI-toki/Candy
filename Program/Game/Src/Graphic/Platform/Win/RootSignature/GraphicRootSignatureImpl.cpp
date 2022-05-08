@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	void RootSignatureImpl::startup(ID3D12Device* const _device, const D3D12_ROOT_SIGNATURE_DESC _rootSignatureDesc)
 	{

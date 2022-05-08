@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	RootSignatureStartupInfoImpl::RootSignatureStartupInfoImpl()
 	{
@@ -35,13 +35,14 @@ namespace Graphic
 		m_StartupInfo.NumParameters = _count;
 	}
 
-	void RootSignatureStartupInfoImpl::setStaticSampler(const s32 _index,
-		const ShaderRegisterInfo _shaderRegisterInfo, const FILTER_TYPE _filterType)
+	void RootSignatureStartupInfoImpl::setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo, 
+		const FILTER_TYPE _filterType, const TEXTURE_ADDRESS_MODE _textureAddressMode)
 	{
+		const auto textureAddressMode = ConvTextureAddressMode(_textureAddressMode);
 		m_StaticSamplerDescs[_index].Filter = ConvFilterType(_filterType);
-		m_StaticSamplerDescs[_index].AddressU = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-		m_StaticSamplerDescs[_index].AddressV = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
-		m_StaticSamplerDescs[_index].AddressW = D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+		m_StaticSamplerDescs[_index].AddressU = textureAddressMode;
+		m_StaticSamplerDescs[_index].AddressV = textureAddressMode;
+		m_StaticSamplerDescs[_index].AddressW = textureAddressMode;
 		m_StaticSamplerDescs[_index].MipLODBias = 0.0f;
 		m_StaticSamplerDescs[_index].MaxAnisotropy = 16;
 		m_StaticSamplerDescs[_index].ComparisonFunc = D3D12_COMPARISON_FUNC_LESS_EQUAL;

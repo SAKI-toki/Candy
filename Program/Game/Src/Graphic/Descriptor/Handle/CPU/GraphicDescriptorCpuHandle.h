@@ -11,7 +11,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	class DescriptorCpuHandle : public DescriptorCpuHandleImpl
+	class DescriptorCpuHandle : public Impl::DescriptorCpuHandleImpl
 	{
 
 	};

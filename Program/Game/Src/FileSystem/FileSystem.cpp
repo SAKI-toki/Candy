@@ -150,8 +150,6 @@ bool FileSystem::FileRead(Work* const _work)
 
 void FileSystem::CreateFileInfo(const std::string& _basePath)
 {
-	m_FileInfos.clear();
-
 	FileEnumerator fileEnumrator;
 	fileEnumrator.startup(_basePath);
 

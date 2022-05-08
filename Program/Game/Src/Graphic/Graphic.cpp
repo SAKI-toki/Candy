@@ -13,6 +13,8 @@
 #include "BufferView/Vertex/GraphicVertexBufferView.h"
 #include "BufferView/Index/GraphicIndexBufferView.h"
 #include <Shader/Shader.h>
+#include <Input/Input.h>
+#include <Texture/Texture.h>
 
 #include <FileSystem/FileSystem.h>
 
@@ -41,6 +43,8 @@ namespace Graphic
 	Buffer m_ConstantBuffer;
 	VertexBufferView m_VertexBufferView;
 	IndexBufferView m_IndexBufferView;
+	Buffer m_TextureBuffer;
+	Descriptor m_TextureDescriptor;
 
 	s32 m_BackBufferIndex;
 	std::vector<u64> m_FrameFenceValues;
@@ -74,7 +78,7 @@ void Graphic::Startup()
 	for (s32 i = 0; i < m_BackBuffers.size(); ++i)
 	{
 		m_BackBuffers[i].startupBackBuffer(m_SwapChain, i);
-		m_BackBufferDescriptor.bindingRenderTarget(m_Device, m_BackBuffers[i], i);
+		m_BackBufferDescriptor.bindingRenderTarget(m_Device, i, m_BackBuffers[i]);
 	}
 
 	m_FrameFence.startup(m_Device);
@@ -82,13 +86,16 @@ void Graphic::Startup()
 	m_FrameFenceValues[m_BackBufferIndex] = 1;
 
 	m_Descriptor.startup(m_Device, DESCRIPTOR_TYPE::CONSTANT_BUFFER, GetBackBufferCount());
+	m_TextureDescriptor.startup(m_Device, DESCRIPTOR_TYPE::SHADER_RESOURCE, 1);
 
 	RootSignatureStartupInfo rootSignatureStartupInfo;
 	rootSignatureStartupInfo.initialize();
 	rootSignatureStartupInfo.setDescriptorRange(0, { 0, 0, SHADER_VISIBILITY_TYPE::ALL }, m_Descriptor);
-	//rootSignatureStartupInfo.setStaticSampler(0, { 0, 0, SHADER_VISIBILITY_TYPE::PIXEL }, FILTER_TYPE::ANISOTROPIC);
-	rootSignatureStartupInfo.setRootParameterCount(1);
-	rootSignatureStartupInfo.setStaticSamplerCount(0);
+	rootSignatureStartupInfo.setDescriptorRange(1, { 0, 0, SHADER_VISIBILITY_TYPE::ALL }, m_TextureDescriptor);
+	rootSignatureStartupInfo.setStaticSampler(0, { 0, 0, SHADER_VISIBILITY_TYPE::ALL },
+		FILTER_TYPE::ANISOTROPIC, TEXTURE_ADDRESS_MODE::CLAMP);
+	rootSignatureStartupInfo.setRootParameterCount(2);
+	rootSignatureStartupInfo.setStaticSamplerCount(1);
 	rootSignatureStartupInfo.onRootSignatureFlag(ROOT_SIGNATURE_FLAG::ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 	m_RootSignature.startup(m_Device, rootSignatureStartupInfo);
 
@@ -97,31 +104,35 @@ void Graphic::Startup()
 	pipelineStartupInfo.setVertexShader(Shader::GetVertexShader(SHADER_TYPE::TEST));
 	pipelineStartupInfo.setPixelShader(Shader::GetPixelShader(SHADER_TYPE::TEST));
 	pipelineStartupInfo.setInputLayoutElement(0, SHADER_SEMANTIC_TYPE::POSITION, 0, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
-	pipelineStartupInfo.setInputLayoutElement(1, SHADER_SEMANTIC_TYPE::COLOR, 0, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
-	pipelineStartupInfo.setInputLayoutCount(2);
+	pipelineStartupInfo.setInputLayoutElement(1, SHADER_SEMANTIC_TYPE::TEXCOORD, 0, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+	pipelineStartupInfo.setInputLayoutElement(2, SHADER_SEMANTIC_TYPE::COLOR, 0, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+	pipelineStartupInfo.setInputLayoutCount(3);
 	pipelineStartupInfo.setRenderTaretFormat(0, GRAPHIC_FORMAT::R8G8B8A8_UNORM);
 	pipelineStartupInfo.setRenderTaretCount(1);
 	pipelineStartupInfo.setEnableDepth(false);
 	pipelineStartupInfo.setRootSignature(m_RootSignature);
 	m_Pipeline.startup(m_Device, pipelineStartupInfo);
 
+	Texture::Startup();
+
 	struct VertexInfo
 	{
 		Vec4 position;
+		Vec4 texcoord;
 		Color color;
 	};	
 	VertexInfo vertices[] =
 	{
-		{ { -0.25f, +0.25f, 0.0f }, CANDY_COLOR_RGB32(0xff, 0xa5, 0x00) }, // 左上
-		{ { +0.25f, +0.25f, 0.0f }, CANDY_COLOR_RGB32(0x00, 0x00, 0xff) }, // 右上
-		{ { -0.25f, -0.25f, 0.0f }, CANDY_COLOR_RGB32(0xbb, 0x00, 0x00) }, // 左下
-		{ { +0.25f, -0.25f, 0.0f }, CANDY_COLOR_RGB32(0xbb, 0xbb, 0xbb) }, // 右下
+		{ { -0.25f, +0.25f, 0.0f },{ 0.0f, 0.0f, 0.0f }, CANDY_COLOR_RGB32(0xff, 0xff, 0xff) }, // 左上
+		{ { +0.25f, +0.25f, 0.0f },{ 1.0f, 0.0f, 0.0f }, CANDY_COLOR_RGB32(0xff, 0xff, 0xff) }, // 右上
+		{ { -0.25f, -0.25f, 0.0f },{ 0.0f, 1.0f, 0.0f }, CANDY_COLOR_RGB32(0xff, 0xff, 0xff) }, // 左下
+		{ { +0.25f, -0.25f, 0.0f },{ 1.0f, 1.0f, 0.0f }, CANDY_COLOR_RGB32(0xff, 0xff, 0xff) }, // 右下
 	};
 	BufferStartupInfo vertexBufferStartupInfo;
 	vertexBufferStartupInfo.setBufferStartupInfo(sizeof(VertexInfo) * GetArraySize(vertices));
 	m_VertexBuffer.startup(m_Device, vertexBufferStartupInfo);
 	m_VertexBuffer.store(reinterpret_cast<std::byte*>(vertices), sizeof(VertexInfo) * GetArraySize(vertices), 0);
-	m_VertexBufferView.startup(m_VertexBuffer, 0, sizeof(VertexInfo) * GetArraySize(vertices), sizeof(VertexInfo));
+	m_VertexBufferView.startup(m_VertexBuffer, 0, GetArraySize(vertices), sizeof(VertexInfo));
 
 	u32 indices[] =
 	{
@@ -132,7 +143,7 @@ void Graphic::Startup()
 	indexBufferStartupInfo.setBufferStartupInfo(sizeof(u32) * GetArraySize(indices));
 	m_IndexBuffer.startup(m_Device, indexBufferStartupInfo);
 	m_IndexBuffer.store(reinterpret_cast<std::byte*>(indices), sizeof(u32) * GetArraySize(indices), 0);
-	m_IndexBufferView.startup(m_IndexBuffer, 0, sizeof(u32) * GetArraySize(indices), GRAPHIC_FORMAT::R32_UINT);
+	m_IndexBufferView.startup(m_IndexBuffer, 0, GetArraySize(indices), sizeof(u32), GRAPHIC_FORMAT::R32_UINT);
 
 	BufferStartupInfo constantBufferStartupInfo;
 	constantBufferStartupInfo.setBufferStartupInfo(0x100 * GetBackBufferCount());
@@ -141,12 +152,29 @@ void Graphic::Startup()
 	{
 		m_Descriptor.bindingConstantBuffer(m_Device, i, m_ConstantBuffer, 0x100 * i, 0x100);
 	}
+
+	BufferStartupInfo textureBufferStartupInfo;
+	textureBufferStartupInfo.setTextureStartupInfo(GRAPHIC_FORMAT::R32G32B32A32_FLOAT, 256, 256);
+	m_TextureBuffer.startup(m_Device, textureBufferStartupInfo);
+	m_TextureDescriptor.bindingTexture2D(m_Device, 0, m_TextureBuffer, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+
+	Vec4* data = new Vec4[256 * 256];
+	for (s32 i = 0; i < 256; ++i)
+	{
+		for (s32 j = 0; j < 256; ++j)
+		{
+			data[i * 256 + j] = CANDY_COLOR_RGB32(i, j, 0x00);
+		}
+	}
+	Texture::CreateTexture(m_TextureBuffer, reinterpret_cast<std::byte*>(data), sizeof(Vec4) * 256 * 256);
 }
 
 void Graphic::Cleanup()
 {
 	m_FrameFence.signalFromGpu(m_CommandQueue, m_FrameFenceValues[m_BackBufferIndex]);
 	m_FrameFence.waitCpu(m_FrameFenceValues[m_BackBufferIndex]);
+
+	Texture::Cleanup();
 
 	m_Pipeline.cleanup();
 	m_RootSignature.cleanup();
@@ -163,14 +191,24 @@ void Graphic::Cleanup()
 
 void Graphic::Update()
 {
-	ConstantInfo constantInfo;
-	constantInfo.time = Vec4{ Global::GetAppTimeAll(), Global::GetAppTimeAll(), Global::GetAppTimeAll(), Global::GetAppTimeAll() };
+	static ConstantInfo constantInfo;
+	//constantInfo.time = Vec4{ Global::GetAppTimeAll(), Global::GetAppTimeAll(), Global::GetAppTimeAll(), Global::GetAppTimeAll() };
+	if (Input::IsKeyOn('A'))
+	{
+		constantInfo.time.m_f32.w += Global::GetAppTime();
+	}
+	if (Input::IsKeyOn('D'))
+	{
+		constantInfo.time.m_f32.w -= Global::GetAppTime();
+	}
 	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&constantInfo), sizeof(constantInfo), 0x100 * m_BackBufferIndex);
 }
 
-void Graphic::DrawBegin()
+void Graphic::PreDraw()
 {
-	m_CommandList.drawBegin(m_BackBufferIndex);
+	Texture::ExecuteUploadTexture(m_CommandQueue);
+
+	m_CommandList.preDraw(m_BackBufferIndex);
 
 	m_BackBuffers[m_BackBufferIndex].translationBarrier(m_CommandList, BARRIER_STATE::RENDER_TARGET);
 
@@ -188,11 +226,13 @@ void Graphic::DrawBegin()
 
 	m_CommandList.setDescriptor(m_Descriptor);
 	m_CommandList.setDescriptorTable(0, m_Descriptor, m_BackBufferIndex);
+	m_CommandList.setDescriptor(m_TextureDescriptor);
+	m_CommandList.setDescriptorTable(1, m_TextureDescriptor, 0);
 
-	m_CommandList.drawIndexedInstanced(6, 1, 0, 0, 0);
+	m_CommandList.drawIndexedInstanced(m_IndexBufferView.getIndexCount(), 1, 0, 0, 0);
 }
 
-void Graphic::DrawEnd()
+void Graphic::PostDraw()
 {
 	m_BackBuffers[m_BackBufferIndex].translationBarrier(m_CommandList, BARRIER_STATE::PRESENT);
 
@@ -213,6 +253,17 @@ void Graphic::DrawEnd()
 	}
 	m_FrameFenceValues[m_BackBufferIndex] = prevFrameFenceValue + 1;
 
+	Texture::PostDraw();
+}
+
+Graphic::Device& Graphic::GetDevice()
+{
+	return m_Device;
+}
+
+s32 Graphic::GetBackBufferIndex()
+{
+	return m_BackBufferIndex;
 }
 
 CANDY_NAMESPACE_END

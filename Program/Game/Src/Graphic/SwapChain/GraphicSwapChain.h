@@ -13,7 +13,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic
 {
-	class SwapChain : public SwapChainImpl
+	class SwapChain : public Impl::SwapChainImpl
 	{
 	public:
 		void startup(const Device& _device, const CommandQueue& _commandQueue,

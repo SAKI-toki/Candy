@@ -16,13 +16,15 @@ namespace Graphic
 	class Device;
 	class Buffer;
 
-	class Descriptor : public DescriptorImpl
+	class Descriptor : public Impl::DescriptorImpl
 	{
 	public:
 		void startup(const Device& _device, const DESCRIPTOR_TYPE _descriptorType, const s32 _count);
 		void cleanup();
 
-		void bindingRenderTarget(const Device& _device, const Buffer& _buffer, const s32 _index);
+		void bindingRenderTarget(const Device& _device, const s32 _index, const Buffer& _buffer);
+		void bindingTexture2D(const Device& _device, const s32 _index,
+			const Buffer& _buffer, const GRAPHIC_FORMAT _graphicFormat);
 		void bindingConstantBuffer(const Device& _device, const u32 _index, const Buffer& _buffer,
 			const u32 _offset, const u32 _size);
 

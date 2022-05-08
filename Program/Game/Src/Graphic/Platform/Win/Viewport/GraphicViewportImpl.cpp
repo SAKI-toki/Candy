@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	void ViewportImpl::set(const f32 _topLeftX, const f32 _topLeftY, const f32 _width,
 		const f32 _height, const f32 _minDepth, const f32 _maxDepth)

@@ -14,7 +14,7 @@ namespace Graphic
 	class Device;
 	class CommandQueue;
 
-	class Fence : public FenceImpl
+	class Fence : public Impl::FenceImpl
 	{
 	public:
 		void startup(const Device& _device);

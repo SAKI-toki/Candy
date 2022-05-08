@@ -5,14 +5,14 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	class BufferImpl;
 
 	class VertexBufferViewImpl
 	{
 	protected:
-		void startup(const BufferImpl& _buffer, const u64 _offset, const u32 _size, const u32 _byteStride);
+		void startup(const BufferImpl& _buffer, const u64 _offset, const u32 _vertexCount, const u32 _byteStride);
 		void cleanup();
 
 	public:

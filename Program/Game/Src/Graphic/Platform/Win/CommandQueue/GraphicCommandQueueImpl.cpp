@@ -2,7 +2,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	void CommandQueueImpl::startup(ID3D12Device* const _device, const COMMAND_LIST_TYPE _commandListType)
 	{
@@ -17,7 +17,7 @@ namespace Graphic
 		m_CommandQueue.Reset();
 	}
 
-	void CommandQueueImpl::executeCommandList(ID3D12CommandList* const _commandList)
+	void CommandQueueImpl::executeCommandList(ID3D12CommandList* const _commandList)const
 	{
 		m_CommandQueue->ExecuteCommandLists(1, &_commandList);
 	}

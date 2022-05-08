@@ -6,7 +6,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	class RootSignatureStartupInfoImpl
 	{
@@ -17,7 +17,8 @@ namespace Graphic
 
 		void setDescriptorRange(const s32 _rootParameterIndex, const ShaderRegisterInfo _shaderRegisterInfo, const DescriptorImpl& _descriptor);
 		void setRootParameterCount(const s32 _count);
-		void setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo, const FILTER_TYPE _filterType);
+		void setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo,
+			const FILTER_TYPE _filterType, const TEXTURE_ADDRESS_MODE _textureAddressMode);
 		void setStaticSamplerCount(const s32 _count);
 
 		void onRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag);

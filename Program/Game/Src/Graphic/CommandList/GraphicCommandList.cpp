@@ -5,6 +5,7 @@
 #include <Graphic/Descriptor/GraphicDescriptor.h>
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/Pipeline/GraphicPipeline.h>
+#include <Graphic/Buffer/GraphicBuffer.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -20,9 +21,9 @@ namespace Graphic
 		CommandListImpl::cleanup();
 	}
 
-	void CommandList::drawBegin(const s32 _backBufferIndex)
+	void CommandList::preDraw(const s32 _backBufferIndex)
 	{
-		CommandListImpl::drawBegin(_backBufferIndex);
+		CommandListImpl::preDraw(_backBufferIndex);
 	}
 
 	void CommandList::close()
@@ -97,6 +98,11 @@ namespace Graphic
 	{
 		CommandListImpl::drawIndexedInstanced(_indexCountPerInstance, _instanceCount,
 			_startIndexLocation, _baseVertexLocation, _startInstanceLocation);
+	}
+
+	void CommandList::copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer)
+	{
+		CommandListImpl::copyTexture(_device.getDevice(), _dstBuffer.getBuffer(), _srcBuffer.getBuffer());
 	}
 }
 

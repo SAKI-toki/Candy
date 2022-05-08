@@ -14,13 +14,13 @@ namespace Graphic
 	class Device;
 	class CommandList;
 
-	class CommandQueue : public CommandQueueImpl
+	class CommandQueue : public Impl::CommandQueueImpl
 	{
 	public:
 		void startup(const Device& _device, const COMMAND_LIST_TYPE _commandListType);
 		void cleanup();
 
-		void executeCommandList(CommandList& _commandList);
+		void executeCommandList(CommandList& _commandList)const;
 	};
 }
 

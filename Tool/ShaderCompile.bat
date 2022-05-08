@@ -1,5 +1,5 @@
 @echo off
-set COMPILER_PATH=D:\Candy\Tools\Shader\Compiler\dxc.exe
+set COMPILER_PATH=D:\Candy\Tool\Shader\Compiler\dxc.exe
 set TARGET_HLSL=D:\Candy\Program\Shader\%1.hlsl
 set OUTPUT_PATH=D:\Candy\Data\Win\Shader\
 

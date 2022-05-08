@@ -1,9 +1,8 @@
 #include "GraphicDefWin.h"
-#include "GraphicImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 
-D3D12_COMMAND_LIST_TYPE Graphic::ConvCommandListType(const COMMAND_LIST_TYPE _commandListType)
+D3D12_COMMAND_LIST_TYPE Graphic::Impl::ConvCommandListType(const COMMAND_LIST_TYPE _commandListType)
 {
 	switch (_commandListType)
 	{
@@ -15,7 +14,7 @@ D3D12_COMMAND_LIST_TYPE Graphic::ConvCommandListType(const COMMAND_LIST_TYPE _co
 	return D3D12_COMMAND_LIST_TYPE_DIRECT;
 }
 
-DXGI_FORMAT Graphic::ConvGraphicFormat(const GRAPHIC_FORMAT _graphicFormat)
+DXGI_FORMAT Graphic::Impl::ConvGraphicFormat(const GRAPHIC_FORMAT _graphicFormat)
 {
 	switch (_graphicFormat)
 	{
@@ -24,26 +23,44 @@ DXGI_FORMAT Graphic::ConvGraphicFormat(const GRAPHIC_FORMAT _graphicFormat)
 	case GRAPHIC_FORMAT::R32G32B32A32_FLOAT:	return DXGI_FORMAT_R32G32B32A32_FLOAT;
 	case GRAPHIC_FORMAT::D32_FLOAT:				return DXGI_FORMAT_D32_FLOAT;
 	case GRAPHIC_FORMAT::R32_UINT:				return DXGI_FORMAT_R32_UINT;
+	case GRAPHIC_FORMAT::BC1_UNORM:				return DXGI_FORMAT_BC1_UNORM;
 	}
 
 	CANDY_LOG("未設定のグラフィックフォーマットです");
 	return DXGI_FORMAT_UNKNOWN;
 }
 
-D3D12_RESOURCE_STATES Graphic::ConvBarrierState(const BARRIER_STATE _barrierState)
+u64 Graphic::Impl::GetSizeGraphicFormat(const GRAPHIC_FORMAT _graphicFormat)
+{
+	switch (_graphicFormat)
+	{
+	case GRAPHIC_FORMAT::UNKNOWN:				return 0;
+	case GRAPHIC_FORMAT::R8G8B8A8_UNORM:		return 4;
+	case GRAPHIC_FORMAT::R32G32B32A32_FLOAT:	return 16;
+	case GRAPHIC_FORMAT::D32_FLOAT:				return 4;
+	case GRAPHIC_FORMAT::R32_UINT:				return 4;
+	case GRAPHIC_FORMAT::BC1_UNORM:				return 4;
+	}
+
+	CANDY_LOG("未設定のグラフィックフォーマットです");
+	return 0;
+}
+
+D3D12_RESOURCE_STATES Graphic::Impl::ConvBarrierState(const BARRIER_STATE _barrierState)
 {
 	switch (_barrierState)
 	{
-	case BARRIER_STATE::COMMON:			return D3D12_RESOURCE_STATE_COMMON;
-	case BARRIER_STATE::RENDER_TARGET:	return D3D12_RESOURCE_STATE_RENDER_TARGET;
-	case BARRIER_STATE::PRESENT:		return D3D12_RESOURCE_STATE_PRESENT;
+	case BARRIER_STATE::COMMON:					return D3D12_RESOURCE_STATE_COMMON;
+	case BARRIER_STATE::RENDER_TARGET:			return D3D12_RESOURCE_STATE_RENDER_TARGET;
+	case BARRIER_STATE::PRESENT:				return D3D12_RESOURCE_STATE_PRESENT;
+	case BARRIER_STATE::PIXEL_SHADER_RESOURCE:	return D3D12_RESOURCE_STATE_PIXEL_SHADER_RESOURCE;
 	}
 
 	CANDY_LOG("未設定のバリアステートです");
 	return D3D12_RESOURCE_STATE_COMMON;
 }
 
-D3D12_DESCRIPTOR_HEAP_TYPE Graphic::ConvDescriptorType(const DESCRIPTOR_TYPE _descriptorType)
+D3D12_DESCRIPTOR_HEAP_TYPE Graphic::Impl::ConvDescriptorType(const DESCRIPTOR_TYPE _descriptorType)
 {
 	switch (_descriptorType)
 	{
@@ -57,7 +74,7 @@ D3D12_DESCRIPTOR_HEAP_TYPE Graphic::ConvDescriptorType(const DESCRIPTOR_TYPE _de
 	return D3D12_DESCRIPTOR_HEAP_TYPE_CBV_SRV_UAV;
 }
 
-D3D12_DESCRIPTOR_RANGE_TYPE Graphic::ConvDescriptorRangeType(const DESCRIPTOR_TYPE _descriptorType)
+D3D12_DESCRIPTOR_RANGE_TYPE Graphic::Impl::ConvDescriptorRangeType(const DESCRIPTOR_TYPE _descriptorType)
 {
 	switch (_descriptorType)
 	{
@@ -70,7 +87,7 @@ D3D12_DESCRIPTOR_RANGE_TYPE Graphic::ConvDescriptorRangeType(const DESCRIPTOR_TY
 	return D3D12_DESCRIPTOR_RANGE_TYPE_CBV;
 }
 
-const char* Graphic::GetShaderSemanticName(const SHADER_SEMANTIC_TYPE _shaderSemanticType)
+const char* Graphic::Impl::GetShaderSemanticName(const SHADER_SEMANTIC_TYPE _shaderSemanticType)
 {
 	switch (_shaderSemanticType)
 	{
@@ -88,7 +105,7 @@ const char* Graphic::GetShaderSemanticName(const SHADER_SEMANTIC_TYPE _shaderSem
 	return "TEXCOORD";
 }
 
-D3D12_FILTER Graphic::ConvFilterType(const FILTER_TYPE _filterType)
+D3D12_FILTER Graphic::Impl::ConvFilterType(const FILTER_TYPE _filterType)
 {
 	switch (_filterType)
 	{
@@ -99,7 +116,19 @@ D3D12_FILTER Graphic::ConvFilterType(const FILTER_TYPE _filterType)
 	return D3D12_FILTER_ANISOTROPIC;
 }
 
-D3D12_SHADER_VISIBILITY Graphic::ConvShaderVisibilityType(const SHADER_VISIBILITY_TYPE _shaderVisibilityType)
+D3D12_TEXTURE_ADDRESS_MODE Graphic::Impl::ConvTextureAddressMode(const TEXTURE_ADDRESS_MODE _textureAddressMode)
+{
+	switch (_textureAddressMode)
+	{
+	case TEXTURE_ADDRESS_MODE::WRAP:	return D3D12_TEXTURE_ADDRESS_MODE_WRAP;
+	case TEXTURE_ADDRESS_MODE::CLAMP:	return D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+	}
+
+	CANDY_LOG("未設定のテクスチャアドレスモードです");
+	return D3D12_TEXTURE_ADDRESS_MODE_CLAMP;
+}
+
+D3D12_SHADER_VISIBILITY Graphic::Impl::ConvShaderVisibilityType(const SHADER_VISIBILITY_TYPE _shaderVisibilityType)
 {
 	switch (_shaderVisibilityType)
 	{
@@ -112,7 +141,7 @@ D3D12_SHADER_VISIBILITY Graphic::ConvShaderVisibilityType(const SHADER_VISIBILIT
 	return D3D12_SHADER_VISIBILITY_ALL;
 }
 
-D3D12_COMPARISON_FUNC Graphic::ConvComparisonFuncType(const COMPARISON_TYPE _comparisonType)
+D3D12_COMPARISON_FUNC Graphic::Impl::ConvComparisonFuncType(const COMPARISON_TYPE _comparisonType)
 {
 	switch (_comparisonType)
 	{
@@ -130,7 +159,7 @@ D3D12_COMPARISON_FUNC Graphic::ConvComparisonFuncType(const COMPARISON_TYPE _com
 	return D3D12_COMPARISON_FUNC_NEVER;
 }
 
-D3D12_ROOT_SIGNATURE_FLAGS Graphic::ConvRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag)
+D3D12_ROOT_SIGNATURE_FLAGS Graphic::Impl::ConvRootSignatureFlag(const ROOT_SIGNATURE_FLAG _rootSignatureFlag)
 {
 	switch (_rootSignatureFlag)
 	{
@@ -142,7 +171,7 @@ D3D12_ROOT_SIGNATURE_FLAGS Graphic::ConvRootSignatureFlag(const ROOT_SIGNATURE_F
 	return D3D12_ROOT_SIGNATURE_FLAG_NONE;
 }
 
-D3D12_PRIMITIVE_TOPOLOGY Graphic::ConvPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType)
+D3D12_PRIMITIVE_TOPOLOGY Graphic::Impl::ConvPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType)
 {
 	switch (_primitiveTopologyType)
 	{
@@ -152,11 +181,6 @@ D3D12_PRIMITIVE_TOPOLOGY Graphic::ConvPrimitiveTopology(const PRIMITIVE_TOPOLOGY
 
 	CANDY_LOG("未設定のプリミティブトポロジータイプです");
 	return D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
-}
-
-s32 Graphic::GetDesciptorHandleIncrementSize(const D3D12_DESCRIPTOR_HEAP_TYPE _descriptorType)
-{
-	return Graphic::Impl::GetDesciptorHandleIncrementSize(_descriptorType);
 }
 
 CANDY_NAMESPACE_END

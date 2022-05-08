@@ -5,7 +5,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	class DescriptorCpuHandleImpl
 	{

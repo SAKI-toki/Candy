@@ -3,7 +3,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-namespace Graphic
+namespace Graphic::Impl
 {
 	void SwapChainImpl::startup(IDXGIFactory6* const _factory, ID3D12CommandQueue* const _commandQueue,
 		const GRAPHIC_FORMAT _graphicFormat, const s32 _backBufferCount, const s32 _width, const s32 _height)

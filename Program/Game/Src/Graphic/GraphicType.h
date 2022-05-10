@@ -17,9 +17,11 @@ namespace Graphic
 		R8G8B8A8_UNORM,
 		R8G8B8A8_TYPELESS,
 		R32G32B32A32_FLOAT,
+		R16_UINT,
 		D32_FLOAT,
 		R32_UINT,
 		BC1_UNORM,
+		BC1_UNORM_SRGB,
 	};
 
 	enum class BARRIER_STATE
@@ -90,6 +92,12 @@ namespace Graphic
 	{
 		TRIANGLE_LIST,
 		TRIANGLE_STRIP,
+	};
+
+	enum class FILL_MODE
+	{
+		SOLID,
+		WIREFRAME,
 	};
 
 	struct ShaderRegisterInfo

@@ -29,6 +29,8 @@ namespace Graphic::Impl
 
 		void setEnableBlend(const s32 _renderTargetIndex, const bool _isEnableBlend);
 
+		void setFillMode(const FILL_MODE _fillMode);
+
 		void setRootSignature(ID3D12RootSignature* const _rootSignature);
 
 	public:

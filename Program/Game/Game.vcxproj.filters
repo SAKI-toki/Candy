@@ -340,6 +340,12 @@
     <Filter Include="Src\Texture\DDS">
       <UniqueIdentifier>{24e3259c-6f94-4b93-a73d-8c784d283560}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Model">
+      <UniqueIdentifier>{a0e9d4db-9d43-4725-9466-c015e6635c52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Model\Primitive">
+      <UniqueIdentifier>{9d8827ad-a964-4a98-a16b-37f8712ef6d6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -669,6 +675,12 @@
     <ClInclude Include="Src\Texture\DDS\ReadDDS.h">
       <Filter>Src\Texture\DDS</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Model\Primitive\ModelPrimitive.h">
+      <Filter>Src\Model\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Model\Model.h">
+      <Filter>Src\Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity\__EntityCpp.cpp">
@@ -982,6 +994,15 @@
     </ClCompile>
     <ClCompile Include="Src\Texture\DDS\ReadDDS.cpp">
       <Filter>Src\Texture\DDS</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Model\__ModelCpp.cpp">
+      <Filter>Src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Model\Primitive\ModelPrimitive.cpp">
+      <Filter>Src\Model\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Model\Model.cpp">
+      <Filter>Src\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

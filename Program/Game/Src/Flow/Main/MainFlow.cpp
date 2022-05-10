@@ -4,6 +4,7 @@
 #include <Graphic/Graphic.h>
 #include <FileSystem/FileSystem.h>
 #include <Thread/ThreadSystem.h>
+#include <Model/Model.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -20,12 +21,14 @@ void MainFlow::Startup()
 	Global::Startup();
 	FileSystem::Startup();
 	Graphic::Startup();
+	Model::Startup();
 	GameFlow::Startup();
 }
 
 void MainFlow::Cleanup()
 {
 	GameFlow::Cleanup();
+	Model::Cleanup();
 	Graphic::Cleanup();
 	FileSystem::Cleanup();
 	Global::Cleanup();
@@ -42,6 +45,7 @@ void MainFlow::Update()
 
 	Graphic::PreDraw();
 	GameFlow::Draw();
+	Model::Primitive::Draw(Graphic::GetCommandList());
 	Graphic::PostDraw();
 }
 

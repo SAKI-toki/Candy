@@ -19,7 +19,7 @@ struct PS_OUTPUT
 
 cbuffer CONSTANT : register(b0)
 {
-    float4 time;
+    float4 pos;
 };
 
 Texture2D<float4> testTexture : register(t0);
@@ -29,7 +29,7 @@ VS_OUTPUT vsMain(VS_INPUT _vsInput)
 {
 	VS_OUTPUT vsOutput;
 	
-    vsOutput.m_Position = _vsInput.m_Position + float4(sin(time.a), cos(time.a * 2.0f), 0.0f, 0.0f);
+    vsOutput.m_Position = _vsInput.m_Position + float4(pos.xyz, 0.0f);
     vsOutput.m_Color = _vsInput.m_Color;
     vsOutput.m_TexCoord = _vsInput.m_TexCoord;
     

@@ -7,7 +7,7 @@ namespace Graphic::Impl
 	s32 m_DescriptorHandleIncrementSizes[D3D12_DESCRIPTOR_HEAP_TYPE_NUM_TYPES]{};
 }
 
-void Graphic::Impl::preCalc(ID3D12Device* const _device)
+void Graphic::Impl::Startup(ID3D12Device* const _device)
 {
 	for (s32 i = 0; i < D3D12_DESCRIPTOR_HEAP_TYPE_NUM_TYPES; ++i)
 	{

@@ -39,6 +39,8 @@ namespace Graphic
 
 		void setEnableBlend(const s32 _renderTargetIndex, const bool _isEnableBlend);
 
+		void setFillMode(const FILL_MODE _fillMode);
+
 		void setRootSignature(const RootSignature& _rootSignature);
 	};
 }

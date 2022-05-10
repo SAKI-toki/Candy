@@ -4,9 +4,12 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Input::Impl
 {
-	bool KeyboardImpl::GetKeyboardState(u8(&_keyInfos)[256])
+	void KeyboardImpl::GetKeyboardState(bool(&_isOnKey)[256])
 	{
-		return ::GetKeyboardState(_keyInfos);
+		for (s32 i = 0; i < 256; ++i)
+		{
+			_isOnKey[i] = ::GetAsyncKeyState(i) & 0x8000;
+		}
 	}
 }
 

@@ -16,25 +16,23 @@ namespace Input
 
 	void Keyboard::update()
 	{
-		u8 keyInfos[256];
-		if (GetKeyboardState(keyInfos))
+		bool isOnKey[256];
+		GetKeyboardState(isOnKey);
+		for (u32 i = 0; i < 256; ++i)
 		{
-			for (u32 i = 0; i < 256; ++i)
+			bool isPrevOn = isOn(i);
+			bool isNextOn = isOnKey[i];
+			if (isPrevOn != isNextOn)
 			{
-				bool isPrevOn = isOn(i);
-				bool isNextOn = keyInfos[i] & 0x80;
-				if (isPrevOn != isNextOn)
-				{
-					if (isNextOn)setKey(m_Trigger, i, true);
-					if (isPrevOn)setKey(m_Release, i, true);
-				}
-				else
-				{
-					setKey(m_Trigger, i, false);
-					setKey(m_Release, i, false);
-				}
-				setKey(m_On, i, isNextOn);
+				if (isNextOn)setKey(m_Trigger, i, true);
+				if (isPrevOn)setKey(m_Release, i, true);
 			}
+			else
+			{
+				setKey(m_Trigger, i, false);
+				setKey(m_Release, i, false);
+			}
+			setKey(m_On, i, isNextOn);
 		}
 	}
 
@@ -63,10 +61,10 @@ namespace Input
 		return _keyStates[_key / 32] & (1 << _key % 32);
 	}
 
-	bool Keyboard::isTrigger(const u32 _key)const	{ return isKey(m_Trigger,_key); }
-	bool Keyboard::isOn(const u32 _key)const		{ return isKey(m_On, _key); }
-	bool Keyboard::isRelease(const u32 _key)const	{ return isKey(m_Release, _key); }
-	bool Keyboard::isRepeat(const u32 _key)const	{ return isKey(m_Repeat, _key); }
+	bool Keyboard::isTrigger(const u32 _key)const { return isKey(m_Trigger, _key); }
+	bool Keyboard::isOn(const u32 _key)const { return isKey(m_On, _key); }
+	bool Keyboard::isRelease(const u32 _key)const { return isKey(m_Release, _key); }
+	bool Keyboard::isRepeat(const u32 _key)const { return isKey(m_Repeat, _key); }
 }
 
 CANDY_NAMESPACE_END

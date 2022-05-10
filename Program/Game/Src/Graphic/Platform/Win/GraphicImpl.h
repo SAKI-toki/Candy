@@ -7,7 +7,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Graphic::Impl
 {
-	void preCalc(ID3D12Device* const _device);
+	void Startup(ID3D12Device* const _device);
 
 	s32 GetDesciptorHandleIncrementSize(const D3D12_DESCRIPTOR_HEAP_TYPE _descriptorType);
 }

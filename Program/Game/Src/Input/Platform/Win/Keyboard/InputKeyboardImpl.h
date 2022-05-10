@@ -8,7 +8,7 @@ namespace Input::Impl
 	class KeyboardImpl
 	{
 	protected:
-		bool GetKeyboardState(u8(&_keyInfos)[256]);
+		void GetKeyboardState(bool(&_isOnKey)[256]);
 	};
 }
 

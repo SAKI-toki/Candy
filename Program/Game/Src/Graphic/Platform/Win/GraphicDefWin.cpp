@@ -21,9 +21,11 @@ DXGI_FORMAT Graphic::Impl::ConvGraphicFormat(const GRAPHIC_FORMAT _graphicFormat
 	case GRAPHIC_FORMAT::UNKNOWN:				return DXGI_FORMAT_UNKNOWN;
 	case GRAPHIC_FORMAT::R8G8B8A8_UNORM:		return DXGI_FORMAT_R8G8B8A8_UNORM;
 	case GRAPHIC_FORMAT::R32G32B32A32_FLOAT:	return DXGI_FORMAT_R32G32B32A32_FLOAT;
+	case GRAPHIC_FORMAT::R16_UINT:				return DXGI_FORMAT_R16_UINT;
 	case GRAPHIC_FORMAT::D32_FLOAT:				return DXGI_FORMAT_D32_FLOAT;
 	case GRAPHIC_FORMAT::R32_UINT:				return DXGI_FORMAT_R32_UINT;
 	case GRAPHIC_FORMAT::BC1_UNORM:				return DXGI_FORMAT_BC1_UNORM;
+	case GRAPHIC_FORMAT::BC1_UNORM_SRGB:		return DXGI_FORMAT_BC1_UNORM_SRGB;
 	}
 
 	CANDY_LOG("未設定のグラフィックフォーマットです");
@@ -37,9 +39,11 @@ u64 Graphic::Impl::GetSizeGraphicFormat(const GRAPHIC_FORMAT _graphicFormat)
 	case GRAPHIC_FORMAT::UNKNOWN:				return 0;
 	case GRAPHIC_FORMAT::R8G8B8A8_UNORM:		return 4;
 	case GRAPHIC_FORMAT::R32G32B32A32_FLOAT:	return 16;
+	case GRAPHIC_FORMAT::R16_UINT:				return 2;
 	case GRAPHIC_FORMAT::D32_FLOAT:				return 4;
 	case GRAPHIC_FORMAT::R32_UINT:				return 4;
 	case GRAPHIC_FORMAT::BC1_UNORM:				return 4;
+	case GRAPHIC_FORMAT::BC1_UNORM_SRGB:		return 4;
 	}
 
 	CANDY_LOG("未設定のグラフィックフォーマットです");
@@ -181,6 +185,18 @@ D3D12_PRIMITIVE_TOPOLOGY Graphic::Impl::ConvPrimitiveTopology(const PRIMITIVE_TO
 
 	CANDY_LOG("未設定のプリミティブトポロジータイプです");
 	return D3D_PRIMITIVE_TOPOLOGY_TRIANGLELIST;
+}
+
+D3D12_FILL_MODE Graphic::Impl::ConvFillMode(const FILL_MODE _fillMode)
+{
+	switch (_fillMode)
+	{
+	case FILL_MODE::SOLID:		return D3D12_FILL_MODE_SOLID;
+	case FILL_MODE::WIREFRAME:	return D3D12_FILL_MODE_WIREFRAME;
+	}
+
+	CANDY_LOG("未設定のフィルモードです");
+	return D3D12_FILL_MODE_SOLID;
 }
 
 CANDY_NAMESPACE_END

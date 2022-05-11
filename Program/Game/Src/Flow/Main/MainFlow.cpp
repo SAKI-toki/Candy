@@ -47,6 +47,7 @@ void MainFlow::Update()
 	GameFlow::Draw();
 	Model::Primitive::Draw(Graphic::GetCommandList());
 	Graphic::PostDraw();
+	Graphic::Flip();
 }
 
 bool MainFlow::IsEnd()

@@ -19,6 +19,7 @@
 #include "Pipeline/StartupInfo/GraphicPipelineStartupInfo.cpp"
 #include "RootSignature/GraphicRootSignature.cpp"
 #include "RootSignature/StartupInfo/GraphicRootSignatureStartupInfo.cpp"
+#include "ResourceManager/GraphicResourceManager.cpp"
 
 #if PLATFORM_WIN
 #include "Platform/Win/GraphicImpl.cpp"

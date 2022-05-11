@@ -4,6 +4,8 @@
 #include "GraphicDef.h"
 #include "Device/GraphicDevice.h"
 #include "Buffer/GraphicBuffer.h"
+#include "RootSignature/GraphicRootSignature.h"
+#include "Pipeline/GraphicPipeline.h"
 #include "CommandList/GraphicCommandList.h"
 
 CANDY_NAMESPACE_BEGIN
@@ -15,8 +17,7 @@ namespace Graphic
 	void Update();
 	void PreDraw();
 	void PostDraw();
-
-	void RegistBuffer(const Graphic::Buffer& _buffer);
+	void Flip();
 
 	Device& GetDevice();
 	CommandList& GetCommandList();

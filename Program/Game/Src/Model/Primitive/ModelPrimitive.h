@@ -26,6 +26,14 @@ namespace Model::Primitive
 		const Color _color1, const Color _color2, const Color _color3);
 	void AddTriangle2D(const VertexInfo(&_vertices)[3]);
 
+	void AddRect2D(const Vec4 _pos, const Color _color);
+	void AddRect2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4, const Color _color);
+	void AddRect2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4,
+		const Color _color1, const Color _color2, const Color _color3, const Color _color4);
+	void AddRect2D(const Rect _rect, const Color _color);
+	void AddRect2D(const Rect _rect, const Color _color1, const Color _color2, const Color _color3, const Color _color4);
+	void AddRect2D(const VertexInfo(&_vertices)[4]);
+
 	void Add2D(const VertexInfo* const _vertices, const s32 _vertexCount, const u16* const _indices, const s32 _indexCount);
 }
 

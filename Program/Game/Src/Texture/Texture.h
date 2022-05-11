@@ -14,8 +14,9 @@ namespace Texture
 	void Startup();
 	void Cleanup();
 
+	void Flip(const s32 _prevBackBufferIndex, const s32 _nextBackBufferIndex);
+
 	void ExecuteUploadTexture(const Graphic::CommandQueue& _commandQueue);
-	void PostDraw();
 
 	void CreateTexture(Graphic::Buffer& _buffer, const std::byte* const _pixels, const u64 _size);
 }

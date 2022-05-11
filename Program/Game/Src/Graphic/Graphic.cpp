@@ -12,6 +12,7 @@
 #include "Pipeline/GraphicPipeline.h"
 #include "BufferView/Vertex/GraphicVertexBufferView.h"
 #include "BufferView/Index/GraphicIndexBufferView.h"
+#include "ResourceManager/GraphicResourceManager.h"
 #include <Shader/Shader.h>
 #include <Input/Input.h>
 #include <Texture/Texture.h>
@@ -55,14 +56,13 @@ namespace Graphic
 	{
 		Vec4 pos{};
 	};
-
-	std::vector<std::vector<Buffer>> m_RegistBufferLists;
 }
 
 void Graphic::Startup()
 {
 	m_Device.startup();
 	Impl::Startup(m_Device.getDevice());
+	ResourceManager::Startup();
 
 	Rect screenRect{ 0.0f, 0.0f, static_cast<f32>(GetScreenWidth()), static_cast<f32>(GetScreenHeight()) };
 	m_Viewport.set(screenRect, 0.0f, 1.0f);
@@ -120,8 +120,6 @@ void Graphic::Startup()
 	pipelineStartupInfo.setRootSignature(m_RootSignature);
 	m_Pipeline.startup(m_Device, pipelineStartupInfo);
 
-	m_RegistBufferLists.resize(GetBackBufferCount());
-
 	struct VertexInfo
 	{
 		Vec4 position;
@@ -170,7 +168,7 @@ void Graphic::Startup()
 	std::byte* buf = new std::byte[size];
 	FileSystem::RequestReadNoWait(path, buf, size);
 	auto result = Texture::DDS::ReadAlloc(buf, size);
-	Texture::CreateTexture(m_TextureBuffer, result, 256 * 256 /2);
+	Texture::CreateTexture(m_TextureBuffer, result, 256 * 256 / 2);
 }
 
 void Graphic::Cleanup()
@@ -180,6 +178,7 @@ void Graphic::Cleanup()
 
 	Texture::Cleanup();
 
+	ResourceManager::Cleanup();
 	m_Pipeline.cleanup();
 	m_RootSignature.cleanup();
 	m_FrameFence.cleanup();
@@ -272,13 +271,16 @@ void Graphic::PostDraw()
 	m_CommandList.close();
 
 	m_CommandQueue.executeCommandList(m_CommandList);
+}
 
+void Graphic::Flip()
+{
 	m_SwapChain.present(1);
 
 	const u64 prevFrameFenceValue = m_FrameFenceValues[m_BackBufferIndex];
 	m_FrameFence.signalFromGpu(m_CommandQueue, m_FrameFenceValues[m_BackBufferIndex]);
 
-	m_BackBufferIndex = m_SwapChain.getBackBufferIndex();
+	const s32 prevBackBufferIndex = std::exchange(m_BackBufferIndex, m_SwapChain.getBackBufferIndex());
 
 	if (m_FrameFence.getCompletedValue() < m_FrameFenceValues[m_BackBufferIndex])
 	{
@@ -286,15 +288,7 @@ void Graphic::PostDraw()
 	}
 	m_FrameFenceValues[m_BackBufferIndex] = prevFrameFenceValue + 1;
 
-	// 描画が終わったら登録しているバッファをクリア
-	m_RegistBufferLists[m_BackBufferIndex].clear();
-
-	Texture::PostDraw();
-}
-
-void Graphic::RegistBuffer(const Graphic::Buffer& _buffer)
-{
-	m_RegistBufferLists[GetBackBufferIndex()].push_back(_buffer);
+	ResourceManager::Flip(prevBackBufferIndex, m_BackBufferIndex);
 }
 
 Graphic::Device& Graphic::GetDevice()

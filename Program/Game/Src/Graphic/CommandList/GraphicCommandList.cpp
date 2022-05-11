@@ -6,6 +6,7 @@
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/Pipeline/GraphicPipeline.h>
 #include <Graphic/Buffer/GraphicBuffer.h>
+#include <Graphic/ResourceManager/GraphicResourceManager.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -61,11 +62,13 @@ namespace Graphic
 	void CommandList::setRootSignature(const RootSignature& _rootSignature)
 	{
 		CommandListImpl::setRootSignature(_rootSignature.getRootSignature());
+		ResourceManager::Regist(_rootSignature);
 	}
 
 	void CommandList::setPipeline(const Pipeline& _pipeline)
 	{
 		CommandListImpl::setPipeline(_pipeline.getPipeline());
+		ResourceManager::Regist(_pipeline);
 	}
 
 	void CommandList::setPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType)
@@ -103,6 +106,8 @@ namespace Graphic
 	void CommandList::copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer)
 	{
 		CommandListImpl::copyTexture(_device.getDevice(), _dstBuffer.getBuffer(), _srcBuffer.getBuffer());
+		ResourceManager::Regist(_dstBuffer);
+		ResourceManager::Regist(_srcBuffer);
 	}
 }
 

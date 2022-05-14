@@ -34,11 +34,11 @@ void Texture::Cleanup()
 
 void Texture::ExecuteUploadTexture(const Graphic::CommandQueue& _commandQueue)
 {
+	if (m_UploadBufferInfos.empty())return;
 	m_CommandList.preDraw(Graphic::GetBackBufferIndex());
 	for (auto& uploadBufferInfo : m_UploadBufferInfos)
 	{
 		m_CommandList.copyTexture(Graphic::GetDevice(), uploadBufferInfo.m_DstBuffer, uploadBufferInfo.m_SrcBuffer);
-		uploadBufferInfo.m_DstBuffer.translationBarrier(m_CommandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 	}
 	m_UploadBufferInfos.clear();
 	m_CommandList.close();

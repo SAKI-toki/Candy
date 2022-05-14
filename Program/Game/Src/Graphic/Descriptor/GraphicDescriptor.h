@@ -24,6 +24,7 @@ namespace Graphic
 
 		void bindingRenderTarget(const Device& _device, const s32 _index, const Buffer& _buffer, const GRAPHIC_FORMAT _graphicFormat);
 		void bindingDepthStencil(const Device& _device, const s32 _index, const Buffer& _buffer, const GRAPHIC_FORMAT _graphicFormat);
+		void bindingBackBuffer(const Device& _device, const s32 _index, const Buffer& _buffer);
 		void bindingTexture2D(const Device& _device, const s32 _index,
 			const Buffer& _buffer, const GRAPHIC_FORMAT _graphicFormat);
 		void bindingConstantBuffer(const Device& _device, const u32 _index, const Buffer& _buffer,

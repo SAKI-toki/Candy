@@ -53,7 +53,7 @@ namespace Graphic
 		void setIndexBuffer(const IndexBufferView& _indexBufferView);
 
 		void setDescriptor(const s32 _index, const Descriptor& _descriptor);
-		void registDescriptors(const s32 _count);
+		void registDescriptors(const s32 _count, const s32 _offsetIndex);
 		void setDescriptorTable(const s32 _rootParameterIndex, const Descriptor& _descriptor, const s32 _offsetIndex);
 
 		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,

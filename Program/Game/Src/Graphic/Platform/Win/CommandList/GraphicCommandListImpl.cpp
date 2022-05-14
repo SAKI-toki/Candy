@@ -102,9 +102,9 @@ namespace Graphic::Impl
 		m_DescriptorHeaps[_index] = _descriptor;
 	}
 
-	void CommandListImpl::registDescriptors(const s32 _count)
+	void CommandListImpl::registDescriptors(const s32 _count, const s32 _offsetIndex)
 	{
-		m_CommandList->SetDescriptorHeaps(_count, m_DescriptorHeaps);
+		m_CommandList->SetDescriptorHeaps(_count, m_DescriptorHeaps + _offsetIndex);
 	}
 
 	void CommandListImpl::setDescriptorTable(const s32 _rootParameterIndex, const D3D12_GPU_DESCRIPTOR_HANDLE& _descriptorCpuHandle)

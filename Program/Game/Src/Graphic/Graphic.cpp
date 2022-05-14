@@ -123,18 +123,17 @@ void Graphic::PreDraw()
 
 	m_BackBuffers[m_BackBufferIndex].translationBarrier(m_CommandList, BARRIER_STATE::RENDER_TARGET);
 
-	//m_CommandList.setRenderTargetsDepthStencil(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), 1,
-	//	m_DepthStencilBufferDescriptor.getCpuHandle(m_BackBufferIndex));
-	m_CommandList.setRenderTargets(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), 1);
-	m_CommandList.clearRenderTarget(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), CANDY_COLOR_RGB32(0x20, 0x20, 0x20));
-	//m_CommandList.clearDepthStencil(m_DepthStencilBufferDescriptor.getCpuHandle(m_BackBufferIndex), 1.0f, 0);
-	ResourceManager::Regist(m_BackBuffers[m_BackBufferIndex]);
-	//ResourceManager::Regist(m_DepthStencilBuffers[m_BackBufferIndex]);
-	ResourceManager::Regist(m_BackBufferDescriptor);
-	//ResourceManager::Regist(m_DepthStencilBufferDescriptor);
-
 	m_CommandList.setViewport(m_Viewport);
 	m_CommandList.setScissorRect(m_ScissorRect);
+
+	m_CommandList.setRenderTargetsDepthStencil(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), 1,
+		m_DepthStencilBufferDescriptor.getCpuHandle(m_BackBufferIndex));
+	m_CommandList.clearRenderTarget(m_BackBufferDescriptor.getCpuHandle(m_BackBufferIndex), CANDY_COLOR_RGB32(0x20, 0x20, 0x20));
+	m_CommandList.clearDepthStencil(m_DepthStencilBufferDescriptor.getCpuHandle(m_BackBufferIndex), 1.0f, 0);
+	ResourceManager::Regist(m_BackBuffers[m_BackBufferIndex]);
+	ResourceManager::Regist(m_DepthStencilBuffers[m_BackBufferIndex]);
+	ResourceManager::Regist(m_BackBufferDescriptor);
+	ResourceManager::Regist(m_DepthStencilBufferDescriptor);
 }
 
 void Graphic::PostDraw()

@@ -58,6 +58,14 @@ namespace Graphic::Impl
 		_device->CreateDepthStencilView(_buffer, &dsvDesc, descriptorHandle);
 	}
 
+	void DescriptorImpl::bindingBackBuffer(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer)
+	{
+		D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+		descriptorHandle.ptr += GetDesciptorHandleIncrementSize(m_RealDescriptorType) * _index;
+
+		_device->CreateRenderTargetView(_buffer, nullptr, descriptorHandle);
+	}
+
 	void DescriptorImpl::bindingTexture2D(ID3D12Device* const _device, const s32 _index,
 		ID3D12Resource* const _buffer, const GRAPHIC_FORMAT _graphicFormat)
 	{

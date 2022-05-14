@@ -20,6 +20,12 @@ namespace GameFlow
 	class TextureView
 	{
 	public:
+		struct VertexInfo
+		{
+			Vec4 position;
+			Vec4 texcoord;
+			Color color;
+		};
 		enum STARTUP_FLAG
 		{
 			STARTUP_FLAG_NONE = 0,
@@ -51,7 +57,7 @@ namespace GameFlow
 			pipelineStartupInfo.setInputLayoutElement(1, SHADER_SEMANTIC_TYPE::TEXCOORD, 0, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
 			pipelineStartupInfo.setInputLayoutElement(2, SHADER_SEMANTIC_TYPE::COLOR, 0, GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
 			pipelineStartupInfo.setInputLayoutCount(3);
-			pipelineStartupInfo.setDepthStencilFormat(GRAPHIC_FORMAT::D24_UNORM_S8_UINT);
+			//pipelineStartupInfo.setDepthStencilFormat(GRAPHIC_FORMAT::D24_UNORM_S8_UINT);
 			pipelineStartupInfo.setRenderTaretFormat(0, GRAPHIC_FORMAT::R8G8B8A8_UNORM);
 			pipelineStartupInfo.setRenderTaretCount(1);
 			if (_startupFlag & STARTUP_FLAG_WRITE_MASK)
@@ -63,12 +69,6 @@ namespace GameFlow
 			pipelineStartupInfo.setRootSignature(m_RootSignature);
 			m_Pipeline.startup(GetDevice(), pipelineStartupInfo);
 
-			struct VertexInfo
-			{
-				Vec4 position;
-				Vec4 texcoord;
-				Color color;
-			};
 			VertexInfo vertices[] =
 			{
 				{ Vec4{ -0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 0.0f, 0.0f }, CANDY_COLOR_RGBA32(0xff, 0xff, 0xff, 0xff) }, // ç∂è„
@@ -80,7 +80,6 @@ namespace GameFlow
 			vertexBufferStartupInfo.setBufferStartupInfo(sizeof(VertexInfo) * GetArraySize(vertices));
 			m_VertexBuffer.startup(GetDevice(), vertexBufferStartupInfo);
 			m_VertexBuffer.store(reinterpret_cast<std::byte*>(vertices), sizeof(VertexInfo) * GetArraySize(vertices), 0);
-			m_VertexBufferView.startup(m_VertexBuffer, 0, GetArraySize(vertices), sizeof(VertexInfo));
 
 			u32 indices[] =
 			{
@@ -91,7 +90,6 @@ namespace GameFlow
 			indexBufferStartupInfo.setBufferStartupInfo(sizeof(u32) * GetArraySize(indices));
 			m_IndexBuffer.startup(GetDevice(), indexBufferStartupInfo);
 			m_IndexBuffer.store(reinterpret_cast<std::byte*>(indices), sizeof(u32) * GetArraySize(indices), 0);
-			m_IndexBufferView.startup(m_IndexBuffer, 0, GetArraySize(indices), sizeof(u32), GRAPHIC_FORMAT::R32_UINT);
 
 			BufferStartupInfo constantBufferStartupInfo;
 			constantBufferStartupInfo.setBufferStartupInfo(0x100 * GetBackBufferCount());
@@ -122,8 +120,6 @@ namespace GameFlow
 			m_VertexBuffer.cleanup();
 			m_IndexBuffer.cleanup();
 			m_ConstantBuffer.cleanup();
-			m_VertexBufferView.cleanup();
-			m_IndexBufferView.cleanup();
 			m_TextureBuffer.cleanup();
 			m_TextureDescriptor.cleanup();
 		}
@@ -136,18 +132,26 @@ namespace GameFlow
 			auto& commandList = Graphic::GetCommandList();
 			commandList.setRootSignature(m_RootSignature);
 			commandList.setPipeline(m_Pipeline);
-			commandList.setPrimitiveTopology(Graphic::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
+
+			m_TextureBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 
 			commandList.setDescriptor(0, m_Descriptor);
-			commandList.registDescriptors(1);
+			commandList.setDescriptor(1, m_TextureDescriptor);
+			commandList.registDescriptors(1, 0);
 			commandList.setDescriptorTable(0, m_Descriptor, Graphic::GetBackBufferIndex());
 			commandList.setDescriptor(0, m_TextureDescriptor);
-			commandList.registDescriptors(1);
+			commandList.registDescriptors(1, 1);
 			commandList.setDescriptorTable(1, m_TextureDescriptor, 0);
-			commandList.setIndexBuffer(m_IndexBufferView);
-			commandList.setVertexBuffer(0, m_VertexBufferView);
+
+			Graphic::VertexBufferView vertexBufferView;
+			vertexBufferView.startup(m_VertexBuffer, 0, 4, sizeof(VertexInfo));
+			Graphic::IndexBufferView indexBufferView;
+			indexBufferView.startup(m_IndexBuffer, 0, 6, sizeof(u32), Graphic::GRAPHIC_FORMAT::R32_UINT);
+			commandList.setVertexBuffer(0, vertexBufferView);
 			commandList.registVertexBuffers(1);
-			commandList.drawIndexedInstanced(m_IndexBufferView.getIndexCount(), 1, 0, 0, 0);
+			commandList.setIndexBuffer(indexBufferView);
+			commandList.setPrimitiveTopology(Graphic::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
+			commandList.drawIndexedInstanced(indexBufferView.getIndexCount(), 1, 0, 0, 0);
 
 			Graphic::ResourceManager::Regist(m_VertexBuffer);
 			Graphic::ResourceManager::Regist(m_IndexBuffer);
@@ -168,8 +172,6 @@ namespace GameFlow
 		Graphic::Buffer m_VertexBuffer;
 		Graphic::Buffer m_IndexBuffer;
 		Graphic::Buffer m_ConstantBuffer;
-		Graphic::VertexBufferView m_VertexBufferView;
-		Graphic::IndexBufferView m_IndexBufferView;
 		Graphic::Buffer m_TextureBuffer;
 		Graphic::Descriptor m_TextureDescriptor;
 	};
@@ -255,6 +257,7 @@ void GameFlow::Update()
 	{
 		textureView.update();
 	}
+	Model::Primitive::AddRect2D(Vec4{ 0.0f, 0.3f, 0.0f, 1.0f }, CANDY_COLOR_RGB32(0xff, 0xff, 0xff));
 }
 
 void GameFlow::Draw()

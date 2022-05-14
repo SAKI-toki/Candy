@@ -35,7 +35,7 @@ namespace Graphic::Impl
 		void setIndexBuffer(const D3D12_INDEX_BUFFER_VIEW* const  _indexBufferView);
 
 		void setDescriptor(const s32 _index, ID3D12DescriptorHeap* const _descriptor);
-		void registDescriptors(const s32 _count);
+		void registDescriptors(const s32 _count, const s32 _offsetIndex);
 		void setDescriptorTable(const s32 _rootParameterIndex, const D3D12_GPU_DESCRIPTOR_HANDLE& _descriptorCpuHandle);
 
 		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,

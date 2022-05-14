@@ -15,7 +15,7 @@ namespace Log
 #if BUILD_DEBUG
 #define CANDY_LOG(MESSAGE_FMT, ...) Log::AddLog(__FILE__, __LINE__, __func__, MESSAGE_FMT, __VA_ARGS__)
 #else
-#define CANDY_LOG(MESSAGE_FMT)
+#define CANDY_LOG(...)
 #endif // BUILD_DEBUG
 
 

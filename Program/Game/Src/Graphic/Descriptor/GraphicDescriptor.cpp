@@ -25,6 +25,11 @@ namespace Graphic
 	{
 		DescriptorImpl::bindingDepthStencil(_device.getDevice(), _index, _buffer.getBuffer(), _graphicFormat);
 	}
+
+	void Descriptor::bindingBackBuffer(const Device& _device, const s32 _index, const Buffer& _buffer)
+	{
+		DescriptorImpl::bindingBackBuffer(_device.getDevice(), _index, _buffer.getBuffer());
+	}
 	
 	void Descriptor::bindingTexture2D(const Device& _device, const s32 _index,
 		const Buffer& _buffer, const GRAPHIC_FORMAT _graphicFormat)

@@ -117,9 +117,9 @@ namespace Graphic
 		ResourceManager::Regist(_descriptor);
 	}
 
-	void CommandList::registDescriptors(const s32 _count)
+	void CommandList::registDescriptors(const s32 _count, const s32 _offsetIndex)
 	{
-		CommandListImpl::registDescriptors(_count);
+		CommandListImpl::registDescriptors(_count, _offsetIndex);
 	}
 
 	void CommandList::setDescriptorTable(const s32 _rootParameterIndex, const Descriptor& _descriptor, const s32 _offsetIndex)

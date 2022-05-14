@@ -12,7 +12,7 @@ class Entity
 
 public:
 	Entity() = default;
-	virtual ~Entity() = default;
+	~Entity() = default;
 	Entity(const Entity&) = delete;
 	Entity& operator=(const Entity&) = delete;
 	Entity(Entity&&)noexcept = delete;

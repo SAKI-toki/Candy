@@ -23,15 +23,19 @@ namespace Graphic::Impl
 		void setRenderTargets(const D3D12_CPU_DESCRIPTOR_HANDLE* const _rtDescriptorCpuHandle,
 			const s32 _renderTargetCount, const D3D12_CPU_DESCRIPTOR_HANDLE* const _dsDescriptorCpuHandle);
 		void clearRenderTarget(const D3D12_CPU_DESCRIPTOR_HANDLE& _rtDescriptorCpuHandle, const Vec4 _color);
+		void clearDepthStencil(const D3D12_CPU_DESCRIPTOR_HANDLE& _dsDescriptorCpuHandle,
+			const bool _clearDepth, const f32 _depth, const bool _clearStencil, const u32 _stencil);
 
 		void setRootSignature(ID3D12RootSignature* const _rootSignature);
 		void setPipeline(ID3D12PipelineState* const _pipeline);
 
 		void setPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType);
-		void setVertexBuffers(const D3D12_VERTEX_BUFFER_VIEW* const  _vertexBufferView);
+		void setVertexBuffer(const s32 _index, const D3D12_VERTEX_BUFFER_VIEW& _vertexBufferView);
+		void registVertexBuffers(const s32 _count);
 		void setIndexBuffer(const D3D12_INDEX_BUFFER_VIEW* const  _indexBufferView);
 
-		void setDescriptor(ID3D12DescriptorHeap* const _descriptor);
+		void setDescriptor(const s32 _index, ID3D12DescriptorHeap* const _descriptor);
+		void registDescriptors(const s32 _count);
 		void setDescriptorTable(const s32 _rootParameterIndex, const D3D12_GPU_DESCRIPTOR_HANDLE& _descriptorCpuHandle);
 
 		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
@@ -45,6 +49,9 @@ namespace Graphic::Impl
 	private:
 		std::vector<ComPtr<ID3D12CommandAllocator>> m_CommandAllocators;
 		ComPtr<ID3D12GraphicsCommandList> m_CommandList;
+
+		D3D12_VERTEX_BUFFER_VIEW m_VertexBufferViews[32];
+		ID3D12DescriptorHeap* m_DescriptorHeaps[32];
 	};
 }
 

@@ -10,6 +10,7 @@ namespace Graphic
 	class Buffer;
 	class RootSignature;
 	class Pipeline;
+	class Descriptor;
 
 	namespace ResourceManager
 	{
@@ -21,6 +22,7 @@ namespace Graphic
 		void Regist(const Buffer& _buffer);
 		void Regist(const RootSignature& _rootSignature);
 		void Regist(const Pipeline& _pipeline);
+		void Regist(const Descriptor& _descriptor);
 	}
 }
 

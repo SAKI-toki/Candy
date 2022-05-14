@@ -14,6 +14,11 @@ namespace Graphic
 		BufferStartupInfoImpl::setRenderTargetStartupInfo(_graphicFormat, _width, _height);
 	}
 
+	void BufferStartupInfo::setDepthStencilStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height)
+	{
+		BufferStartupInfoImpl::setDepthStencilStartupInfo(_graphicFormat, _width, _height);
+	}
+
 	void BufferStartupInfo::setTextureStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height)
 	{
 		BufferStartupInfoImpl::setTextureStartupInfo(_graphicFormat, _width, _height);

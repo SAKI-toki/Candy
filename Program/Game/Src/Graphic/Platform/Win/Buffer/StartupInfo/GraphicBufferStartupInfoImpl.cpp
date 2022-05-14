@@ -6,6 +6,8 @@ namespace Graphic::Impl
 {
 	void BufferStartupInfoImpl::setBufferStartupInfo(const u64 _size)
 	{
+		reset();
+
 		m_HeapProperties.Type = D3D12_HEAP_TYPE_UPLOAD;
 
 		m_ResourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_BUFFER;
@@ -25,6 +27,8 @@ namespace Graphic::Impl
 
 	void BufferStartupInfoImpl::setRenderTargetStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height)
 	{
+		reset();
+
 		const auto graphicFormat = ConvGraphicFormat(_graphicFormat);
 
 		m_HeapProperties.Type = D3D12_HEAP_TYPE_DEFAULT;
@@ -43,8 +47,35 @@ namespace Graphic::Impl
 		m_UseClearValue = true;
 	}
 
+	void BufferStartupInfoImpl::setDepthStencilStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height)
+	{
+		reset();
+
+		const auto graphicFormat = ConvGraphicFormat(_graphicFormat);
+
+		m_HeapProperties.Type = D3D12_HEAP_TYPE_DEFAULT;
+
+		m_ResourceDesc.Dimension = D3D12_RESOURCE_DIMENSION_TEXTURE2D;
+		m_ResourceDesc.Format = graphicFormat;
+		m_ResourceDesc.Width = _width;
+		m_ResourceDesc.Height = static_cast<u32>(_height);
+		m_ResourceDesc.DepthOrArraySize = 1;
+		m_ResourceDesc.SampleDesc.Count = 1;
+		m_ResourceDesc.MipLevels = 1;
+		m_ResourceDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_DEPTH_STENCIL;
+
+		m_ClearValue.Format = graphicFormat;
+		m_ClearValue.DepthStencil.Depth = 1.0f;
+		m_ClearValue.DepthStencil.Stencil = 0;
+		m_UseClearValue = true;
+
+		m_InitState = D3D12_RESOURCE_STATE_DEPTH_WRITE;
+	}
+
 	void BufferStartupInfoImpl::setTextureStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height)
 	{
+		reset();
+
 		const auto graphicFormat = ConvGraphicFormat(_graphicFormat);
 
 		m_HeapProperties.Type = D3D12_HEAP_TYPE_DEFAULT;
@@ -61,6 +92,15 @@ namespace Graphic::Impl
 		m_UseClearValue = false;
 
 		m_InitState = D3D12_RESOURCE_STATE_COPY_DEST;
+	}
+
+	void BufferStartupInfoImpl::reset()
+	{
+		m_HeapProperties = D3D12_HEAP_PROPERTIES{};
+		m_ResourceDesc = D3D12_RESOURCE_DESC{};
+		m_ClearValue = D3D12_CLEAR_VALUE{};
+		m_InitState = D3D12_RESOURCE_STATE_COMMON;
+		m_UseClearValue = false;
 	}
 }
 

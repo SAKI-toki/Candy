@@ -37,6 +37,17 @@ namespace Graphic::Impl
 		m_StartupInfo.DepthStencilState.DepthEnable = TRUE;
 		m_StartupInfo.DepthStencilState.DepthWriteMask = D3D12_DEPTH_WRITE_MASK_ALL;
 		m_StartupInfo.DepthStencilState.DepthFunc = D3D12_COMPARISON_FUNC_LESS;
+		m_StartupInfo.DepthStencilState.StencilEnable = FALSE;
+		m_StartupInfo.DepthStencilState.StencilReadMask = D3D12_DEFAULT_STENCIL_READ_MASK;
+		m_StartupInfo.DepthStencilState.StencilWriteMask = D3D12_DEFAULT_STENCIL_WRITE_MASK;
+		m_StartupInfo.DepthStencilState.FrontFace.StencilFailOp = D3D12_STENCIL_OP_KEEP;
+		m_StartupInfo.DepthStencilState.FrontFace.StencilDepthFailOp = D3D12_STENCIL_OP_KEEP;
+		m_StartupInfo.DepthStencilState.FrontFace.StencilPassOp = D3D12_STENCIL_OP_REPLACE;
+		m_StartupInfo.DepthStencilState.FrontFace.StencilFunc = D3D12_COMPARISON_FUNC_ALWAYS;
+		m_StartupInfo.DepthStencilState.BackFace.StencilFailOp = D3D12_STENCIL_OP_KEEP;
+		m_StartupInfo.DepthStencilState.BackFace.StencilDepthFailOp = D3D12_STENCIL_OP_KEEP;
+		m_StartupInfo.DepthStencilState.BackFace.StencilPassOp = D3D12_STENCIL_OP_KEEP;
+		m_StartupInfo.DepthStencilState.BackFace.StencilFunc = D3D12_COMPARISON_FUNC_ALWAYS;
 
 		m_StartupInfo.SampleDesc.Count = 1;
 		m_StartupInfo.SampleMask = UINT_MAX;
@@ -88,6 +99,11 @@ namespace Graphic::Impl
 	void PipelineStartupInfoImpl::setEnableDepth(const bool _isEnableDepth)
 	{
 		m_StartupInfo.DepthStencilState.DepthEnable = _isEnableDepth;
+	}
+
+	void PipelineStartupInfoImpl::setEnableStencil(const bool _isEnableStencil)
+	{
+		m_StartupInfo.DepthStencilState.StencilEnable = _isEnableStencil;
 	}
 
 	void PipelineStartupInfoImpl::setEnableBlend(const s32 _renderTargetIndex, const bool _isEnableBlend)

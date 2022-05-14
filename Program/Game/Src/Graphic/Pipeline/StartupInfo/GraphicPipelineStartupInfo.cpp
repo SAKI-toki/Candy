@@ -53,6 +53,11 @@ namespace Graphic
 		PipelineStartupInfoImpl::setEnableDepth(_isEnableDepth);
 	}
 
+	void PipelineStartupInfo::setEnableStencil(const bool _isEnableStencil)
+	{
+		PipelineStartupInfoImpl::setEnableStencil(_isEnableStencil);
+	}
+
 	void PipelineStartupInfo::setEnableBlend(const s32 _renderTargetIndex, const bool _isEnableBlend)
 	{
 		PipelineStartupInfoImpl::setEnableBlend(_renderTargetIndex, _isEnableBlend);

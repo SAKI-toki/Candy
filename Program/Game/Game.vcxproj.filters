@@ -349,6 +349,9 @@
     <Filter Include="Src\Graphic\ResourceManager">
       <UniqueIdentifier>{839e59fc-13e2-443e-80b0-ce7d048ccc8c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\UI">
+      <UniqueIdentifier>{0a144a40-4925-4471-94f3-32e68b28a5be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -687,6 +690,9 @@
     <ClInclude Include="Src\Graphic\ResourceManager\GraphicResourceManager.h">
       <Filter>Src\Graphic\ResourceManager</Filter>
     </ClInclude>
+    <ClInclude Include="Src\UI\UI.h">
+      <Filter>Src\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity\__EntityCpp.cpp">
@@ -1012,6 +1018,12 @@
     </ClCompile>
     <ClCompile Include="Src\Graphic\ResourceManager\GraphicResourceManager.cpp">
       <Filter>Src\Graphic\ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\UI\UI.cpp">
+      <Filter>Src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\UI\__UICpp.cpp">
+      <Filter>Src\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

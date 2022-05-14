@@ -47,6 +47,11 @@ namespace Graphic
 		CommandListImpl::setRenderTargets(_rtDescriptorCpuHandle.getHandleAddress(), _renderTargetCount, nullptr);
 	}
 
+	void CommandList::setDepthStencil(const DescriptorCpuHandle& _dsDescriptorCpuHandle)
+	{
+		CommandListImpl::setRenderTargets(nullptr, 0, _dsDescriptorCpuHandle.getHandleAddress());
+	}
+
 	void CommandList::setRenderTargetsDepthStencil(const DescriptorCpuHandle& _rtDescriptorCpuHandle,
 		const s32 _renderTargetCount, const DescriptorCpuHandle& _dsDescriptorCpuHandle)
 	{
@@ -57,6 +62,21 @@ namespace Graphic
 	void CommandList::clearRenderTarget(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const Vec4 _color)
 	{
 		CommandListImpl::clearRenderTarget(_rtDescriptorCpuHandle.getHandle(), _color);
+	}
+
+	void CommandList::clearDepth(const DescriptorCpuHandle& _dsDescriptorCpuHandle, const f32 _depth)
+	{
+		CommandListImpl::clearDepthStencil(_dsDescriptorCpuHandle.getHandle(), true, _depth, false, 0);
+	}
+
+	void CommandList::clearStencil(const DescriptorCpuHandle& _dsDescriptorCpuHandle, const u32 _stencil)
+	{
+		CommandListImpl::clearDepthStencil(_dsDescriptorCpuHandle.getHandle(), false, 0.0f, true, _stencil);
+	}
+
+	void CommandList::clearDepthStencil(const DescriptorCpuHandle& _dsDescriptorCpuHandle, const f32 _depth, const u32 _stencil)
+	{
+		CommandListImpl::clearDepthStencil(_dsDescriptorCpuHandle.getHandle(), true, _depth, true, _stencil);
 	}
 
 	void CommandList::setRootSignature(const RootSignature& _rootSignature)
@@ -76,9 +96,14 @@ namespace Graphic
 		CommandListImpl::setPrimitiveTopology(_primitiveTopologyType);
 	}
 
-	void CommandList::setVertexBuffers(const VertexBufferView& _vertexBufferView)
+	void CommandList::setVertexBuffer(const s32 _index, const VertexBufferView& _vertexBufferView)
 	{
-		CommandListImpl::setVertexBuffers(_vertexBufferView.getVertexBufferViewAddress());
+		CommandListImpl::setVertexBuffer(_index, _vertexBufferView.getVertexBufferView());
+	}
+
+	void CommandList::registVertexBuffers(const s32 _count)
+	{
+		CommandListImpl::registVertexBuffers(_count);
 	}
 
 	void CommandList::setIndexBuffer(const IndexBufferView& _indexBufferView)
@@ -86,9 +111,15 @@ namespace Graphic
 		CommandListImpl::setIndexBuffer(_indexBufferView.getIndexBufferViewAddress());
 	}
 
-	void CommandList::setDescriptor(const Descriptor& _descriptor)
+	void CommandList::setDescriptor(const s32 _index, const Descriptor& _descriptor)
 	{
-		CommandListImpl::setDescriptor(_descriptor.getDescriptor());
+		CommandListImpl::setDescriptor(_index, _descriptor.getDescriptor());
+		ResourceManager::Regist(_descriptor);
+	}
+
+	void CommandList::registDescriptors(const s32 _count)
+	{
+		CommandListImpl::registDescriptors(_count);
 	}
 
 	void CommandList::setDescriptorTable(const s32 _rootParameterIndex, const Descriptor& _descriptor, const s32 _offsetIndex)

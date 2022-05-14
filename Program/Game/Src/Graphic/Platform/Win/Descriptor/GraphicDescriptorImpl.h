@@ -15,7 +15,8 @@ namespace Graphic::Impl
 		void startup(ID3D12Device* const _device, const DESCRIPTOR_TYPE _descriptorType, const s32 _count);
 		void cleanup();
 
-		void bindingRenderTarget(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer);
+		void bindingRenderTarget(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer, const GRAPHIC_FORMAT _graphicFormat);
+		void bindingDepthStencil(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer, const GRAPHIC_FORMAT _graphicFormat);
 		void bindingTexture2D(ID3D12Device* const _device, const s32 _index,
 			ID3D12Resource* const _buffer, const GRAPHIC_FORMAT _graphicFormat);
 		void bindingConstantBuffer(ID3D12Device* const _device, const u32 _index,

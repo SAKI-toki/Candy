@@ -88,7 +88,8 @@ namespace Model
 
 		_commandList.setRootSignature(m_RootSignature2D);
 		_commandList.setPipeline(m_Pipeline2D);
-		_commandList.setVertexBuffers(vertexBufferView2D);
+		_commandList.setVertexBuffer(0, vertexBufferView2D);
+		_commandList.registVertexBuffers(1);
 		_commandList.setIndexBuffer(indexBufferView2D);
 		_commandList.setPrimitiveTopology(Graphic::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
 		_commandList.drawIndexedInstanced(static_cast<u32>(m_Indices2D.size()), 1, 0, 0, 0);

@@ -12,7 +12,9 @@ namespace Graphic::Impl
 	protected:
 		void setBufferStartupInfo(const u64 _size);
 		void setRenderTargetStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
+		void setDepthStencilStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
 		void setTextureStartupInfo(const GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
+		void reset();
 
 	public:
 		const D3D12_HEAP_PROPERTIES& getHeapProperties()const { return m_HeapProperties; }

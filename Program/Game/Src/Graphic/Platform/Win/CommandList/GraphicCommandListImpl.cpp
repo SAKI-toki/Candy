@@ -28,6 +28,7 @@ namespace Graphic::Impl
 
 	void CommandListImpl::preDraw(const s32 _backBufferIndex)
 	{
+		m_CommandAllocators[_backBufferIndex]->Reset();
 		CANDY_ASSERT_HRESULT(m_CommandList->Reset(m_CommandAllocators[_backBufferIndex].Get(), nullptr));
 	}
 
@@ -57,6 +58,15 @@ namespace Graphic::Impl
 		m_CommandList->ClearRenderTargetView(_rtDescriptorCpuHandle, _color.m_f32Array, 0, nullptr);
 	}
 
+	void CommandListImpl::clearDepthStencil(const D3D12_CPU_DESCRIPTOR_HANDLE& _dsDescriptorCpuHandle,
+		const bool _clearDepth, const f32 _depth, const bool _clearStencil, const u32 _stencil)
+	{
+		D3D12_CLEAR_FLAGS flag = D3D12_CLEAR_FLAGS(0);
+		if (_clearDepth)flag |= D3D12_CLEAR_FLAG_DEPTH;
+		if (_clearStencil)flag |= D3D12_CLEAR_FLAG_STENCIL;
+		m_CommandList->ClearDepthStencilView(_dsDescriptorCpuHandle, flag, _depth, static_cast<u8>(_stencil), 0, nullptr);
+	}
+
 	void CommandListImpl::setRootSignature(ID3D12RootSignature* const _rootSignature)
 	{
 		m_CommandList->SetGraphicsRootSignature(_rootSignature);
@@ -72,9 +82,14 @@ namespace Graphic::Impl
 		m_CommandList->IASetPrimitiveTopology(ConvPrimitiveTopology(_primitiveTopologyType));
 	}
 
-	void CommandListImpl::setVertexBuffers(const D3D12_VERTEX_BUFFER_VIEW* const _vertexBufferView)
+	void CommandListImpl::setVertexBuffer(const s32 _index, const D3D12_VERTEX_BUFFER_VIEW& _vertexBufferView)
 	{
-		m_CommandList->IASetVertexBuffers(0, 1, _vertexBufferView);
+		m_VertexBufferViews[_index] = _vertexBufferView;
+	}
+
+	void CommandListImpl::registVertexBuffers(const s32 _count)
+	{
+		m_CommandList->IASetVertexBuffers(0, _count, m_VertexBufferViews);
 	}
 
 	void CommandListImpl::setIndexBuffer(const D3D12_INDEX_BUFFER_VIEW* const _indexBufferView)
@@ -82,9 +97,14 @@ namespace Graphic::Impl
 		m_CommandList->IASetIndexBuffer(_indexBufferView);
 	}
 
-	void CommandListImpl::setDescriptor(ID3D12DescriptorHeap* const _descriptor)
+	void CommandListImpl::setDescriptor(const s32 _index, ID3D12DescriptorHeap* const _descriptor)
 	{
-		m_CommandList->SetDescriptorHeaps(1, &_descriptor);
+		m_DescriptorHeaps[_index] = _descriptor;
+	}
+
+	void CommandListImpl::registDescriptors(const s32 _count)
+	{
+		m_CommandList->SetDescriptorHeaps(_count, m_DescriptorHeaps);
 	}
 
 	void CommandListImpl::setDescriptorTable(const s32 _rootParameterIndex, const D3D12_GPU_DESCRIPTOR_HANDLE& _descriptorCpuHandle)

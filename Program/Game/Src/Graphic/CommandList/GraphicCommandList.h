@@ -36,18 +36,24 @@ namespace Graphic
 		void setScissorRect(const ScissorRect& _scissorRect);
 
 		void setRenderTargets(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const s32 _renderTargetCount);
+		void setDepthStencil(const DescriptorCpuHandle& _dsDescriptorCpuHandle);
 		void setRenderTargetsDepthStencil(const DescriptorCpuHandle& _rtDescriptorCpuHandle,
 			const s32 _renderTargetCount, const DescriptorCpuHandle& _dsDescriptorCpuHandle);
 		void clearRenderTarget(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const Vec4 _color);
+		void clearDepth(const DescriptorCpuHandle& _dsDescriptorCpuHandle, const f32 _depth);
+		void clearStencil(const DescriptorCpuHandle& _dsDescriptorCpuHandle, const u32 _stencil);
+		void clearDepthStencil(const DescriptorCpuHandle& _dsDescriptorCpuHandle, const f32 _depth, const u32 _stencil);
 
 		void setRootSignature(const RootSignature& _rootSignature);
 		void setPipeline(const Pipeline& _pipeline);
 
 		void setPrimitiveTopology(const PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType);
-		void setVertexBuffers(const VertexBufferView& _vertexBufferView);
+		void setVertexBuffer(const s32 _index, const VertexBufferView& _vertexBufferView);
+		void registVertexBuffers(const s32 _count);
 		void setIndexBuffer(const IndexBufferView& _indexBufferView);
 
-		void setDescriptor(const Descriptor& _descriptor);
+		void setDescriptor(const s32 _index, const Descriptor& _descriptor);
+		void registDescriptors(const s32 _count);
 		void setDescriptorTable(const s32 _rootParameterIndex, const Descriptor& _descriptor, const s32 _offsetIndex);
 
 		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,

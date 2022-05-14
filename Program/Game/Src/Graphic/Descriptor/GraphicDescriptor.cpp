@@ -16,11 +16,16 @@ namespace Graphic
 		DescriptorImpl::cleanup();
 	}
 
-	void Descriptor::bindingRenderTarget(const Device& _device, const s32 _index, const Buffer& _buffer)
+	void Descriptor::bindingRenderTarget(const Device& _device, const s32 _index, const Buffer& _buffer, const GRAPHIC_FORMAT _graphicFormat)
 	{
-		DescriptorImpl::bindingRenderTarget(_device.getDevice(), _index, _buffer.getBuffer());
+		DescriptorImpl::bindingRenderTarget(_device.getDevice(), _index, _buffer.getBuffer(), _graphicFormat);
 	}
 
+	void Descriptor::bindingDepthStencil(const Device& _device, const s32 _index, const Buffer& _buffer, const GRAPHIC_FORMAT _graphicFormat)
+	{
+		DescriptorImpl::bindingDepthStencil(_device.getDevice(), _index, _buffer.getBuffer(), _graphicFormat);
+	}
+	
 	void Descriptor::bindingTexture2D(const Device& _device, const s32 _index,
 		const Buffer& _buffer, const GRAPHIC_FORMAT _graphicFormat)
 	{

@@ -30,15 +30,32 @@ namespace Graphic::Impl
 		m_DescriptorHeap.Reset();
 	}
 
-	void DescriptorImpl::bindingRenderTarget(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer)
+	void DescriptorImpl::bindingRenderTarget(ID3D12Device* const _device, const s32 _index, 
+		ID3D12Resource* const _buffer, const GRAPHIC_FORMAT _graphicFormat)
 	{
 		D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 		descriptorHandle.ptr += GetDesciptorHandleIncrementSize(m_RealDescriptorType) * _index;
 
 		D3D12_RENDER_TARGET_VIEW_DESC rtvDesc{};
+		rtvDesc.Format = ConvGraphicFormat(_graphicFormat);
 		rtvDesc.ViewDimension = D3D12_RTV_DIMENSION_TEXTURE2D;
+		rtvDesc.Texture2D.MipSlice = 0;
 
 		_device->CreateRenderTargetView(_buffer, &rtvDesc, descriptorHandle);
+	}
+
+	void DescriptorImpl::bindingDepthStencil(ID3D12Device* const _device, const s32 _index, 
+		ID3D12Resource* const _buffer, const GRAPHIC_FORMAT _graphicFormat)
+	{
+		D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();
+		descriptorHandle.ptr += GetDesciptorHandleIncrementSize(m_RealDescriptorType) * _index;
+
+		D3D12_DEPTH_STENCIL_VIEW_DESC dsvDesc{};
+		dsvDesc.Format = ConvGraphicFormat(_graphicFormat);
+		dsvDesc.ViewDimension = D3D12_DSV_DIMENSION_TEXTURE2D;
+		dsvDesc.Texture2D.MipSlice = 0;
+
+		_device->CreateDepthStencilView(_buffer, &dsvDesc, descriptorHandle);
 	}
 
 	void DescriptorImpl::bindingTexture2D(ID3D12Device* const _device, const s32 _index,

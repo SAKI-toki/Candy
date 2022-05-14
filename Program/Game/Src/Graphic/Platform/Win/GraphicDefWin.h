@@ -6,7 +6,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-#define CANDY_ASSERT_HRESULT(EXPR) CANDY_ASSERT(SUCCEEDED(EXPR))
+#define CANDY_ASSERT_HRESULT(EXPR) { const HRESULT candyAssertHresult = (EXPR); if(FAILED(candyAssertHresult)){ CANDY_LOG("0x%08x", candyAssertHresult); CANDY_ASSERT(false); } }
 
 namespace Graphic::Impl
 {

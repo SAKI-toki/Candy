@@ -36,6 +36,7 @@ namespace Graphic
 		void setInputLayoutCount(const s32 _count);
 		
 		void setEnableDepth(const bool _isEnableDepth);
+		void setEnableStencil(const bool _isEnableStencil);
 
 		void setEnableBlend(const s32 _renderTargetIndex, const bool _isEnableBlend);
 

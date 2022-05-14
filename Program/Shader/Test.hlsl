@@ -20,6 +20,7 @@ struct PS_OUTPUT
 cbuffer CONSTANT : register(b0)
 {
     float4 pos;
+    float4 col;
 };
 
 Texture2D<float4> testTexture : register(t0);
@@ -41,7 +42,7 @@ PS_OUTPUT psMain(VS_OUTPUT _vsOutput)
 	PS_OUTPUT psOutput;
 	
     float4 texCol = testTexture.Sample(testSampler, _vsOutput.m_TexCoord.xy);
-    psOutput.m_Color = texCol * _vsOutput.m_Color;
+    psOutput.m_Color = texCol * _vsOutput.m_Color * col;
     
 	
 	return psOutput;

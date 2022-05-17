@@ -1,6 +1,6 @@
 @echo off
 set TEXCONV_PATH=D:\Candy\Tool\Texture\texconv.exe
-set TARGET_TEXTURE=D:\Candy\RowData\Texture\%1
+set TARGET_TEXTURE=D:\Candy\RawData\Texture\%1
 set OUTPUT_PATH=D:\Candy\Data\Win\Texture\
 
 echo texconv start

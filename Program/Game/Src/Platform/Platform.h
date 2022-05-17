@@ -15,4 +15,8 @@ CANDY_NAMESPACE_BEGIN
 
 CANDY_NAMESPACE_END
 
+#if PLATFORM_WIN
+#include "Win/PlatformImpl.h"
+#endif // PLATFORM_WIN
+
 #endif // CANDY_PLATFORM_H

@@ -15,15 +15,15 @@ namespace Graphic::Impl
 
 	}
 
-	void RootSignatureStartupInfoImpl::setDescriptorRange(const s32 _rootParameterIndex,
-		const ShaderRegisterInfo _shaderRegisterInfo, const DescriptorImpl& _descriptor)
+	void RootSignatureStartupInfoImpl::setDescriptorRange(const s32 _rootParameterIndex, const ShaderRegisterInfo _shaderRegisterInfo,
+		const s32 _numDescriptor, const DESCRIPTOR_RANGE_TYPE _descriptorRangeType)
 	{
-		m_DescriptorRanges[_rootParameterIndex].NumDescriptors = _descriptor.getDescriptorCount();
+		m_DescriptorRanges[_rootParameterIndex].NumDescriptors = _numDescriptor;
 		m_DescriptorRanges[_rootParameterIndex].BaseShaderRegister = _shaderRegisterInfo.m_ShaderRegister;
 		m_DescriptorRanges[_rootParameterIndex].RegisterSpace = _shaderRegisterInfo.m_RegisterSpace;
-		m_DescriptorRanges[_rootParameterIndex].RangeType = ConvDescriptorRangeType(_descriptor.getDescriptorType());
+		m_DescriptorRanges[_rootParameterIndex].RangeType = ConvDescriptorRangeType(_descriptorRangeType);
 		m_DescriptorRanges[_rootParameterIndex].OffsetInDescriptorsFromTableStart = D3D12_DESCRIPTOR_RANGE_OFFSET_APPEND;
-		
+
 		m_RootParameters[_rootParameterIndex].ParameterType = D3D12_ROOT_PARAMETER_TYPE_DESCRIPTOR_TABLE;
 		m_RootParameters[_rootParameterIndex].ShaderVisibility = ConvShaderVisibilityType(_shaderRegisterInfo.m_ShaderVisibilityType);
 		m_RootParameters[_rootParameterIndex].DescriptorTable.NumDescriptorRanges = 1;
@@ -35,7 +35,7 @@ namespace Graphic::Impl
 		m_StartupInfo.NumParameters = _count;
 	}
 
-	void RootSignatureStartupInfoImpl::setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo, 
+	void RootSignatureStartupInfoImpl::setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo,
 		const FILTER_TYPE _filterType, const TEXTURE_ADDRESS_MODE _textureAddressMode)
 	{
 		const auto textureAddressMode = ConvTextureAddressMode(_textureAddressMode);

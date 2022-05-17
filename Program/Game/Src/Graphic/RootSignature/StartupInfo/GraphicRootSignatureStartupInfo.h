@@ -18,9 +18,10 @@ namespace Graphic
 	public:
 		void initialize();
 
-		void setDescriptorRange(const s32 _rootParameterIndex, const ShaderRegisterInfo _shaderRegisterInfo, const Descriptor& _descriptor);
+		void setDescriptorRange(const s32 _rootParameterIndex, const ShaderRegisterInfo _shaderRegisterInfo,
+			const s32 _numDescriptor, const DESCRIPTOR_RANGE_TYPE _descriptorRangeType);
 		void setRootParameterCount(const s32 _count);
-		void setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo, 
+		void setStaticSampler(const s32 _index, const ShaderRegisterInfo _shaderRegisterInfo,
 			const FILTER_TYPE _filterType, const TEXTURE_ADDRESS_MODE _textureAddressMode);
 		void setStaticSamplerCount(const s32 _count);
 

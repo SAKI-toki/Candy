@@ -24,7 +24,6 @@ cbuffer CONSTANT : register(b0)
 };
 
 Texture2D<float4> testTexture : register(t0);
-Texture2D<float4> maskTexture : register(t1);
 SamplerState testSampler : register(s0);
 
 VS_OUTPUT vsMain(VS_INPUT _vsInput)
@@ -43,8 +42,7 @@ PS_OUTPUT psMain(VS_OUTPUT _vsOutput)
 	PS_OUTPUT psOutput;
 	
     float4 texCol = testTexture.Sample(testSampler, _vsOutput.m_TexCoord.xy);
-    float4 maskCol = maskTexture[_vsOutput.m_Position.xy];
-    psOutput.m_Color = texCol * _vsOutput.m_Color * col * (1.0f - maskCol.a);
+    psOutput.m_Color = texCol * _vsOutput.m_Color * col;
     
 	
 	return psOutput;

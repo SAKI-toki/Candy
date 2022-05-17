@@ -7,6 +7,7 @@
 #include "RootSignature/GraphicRootSignature.h"
 #include "Pipeline/GraphicPipeline.h"
 #include "CommandList/GraphicCommandList.h"
+#include "Descriptor/GraphicDescriptor.h"
 
 CANDY_NAMESPACE_BEGIN
 
@@ -21,6 +22,7 @@ namespace Graphic
 
 	Device& GetDevice();
 	CommandList& GetCommandList();
+	Descriptor& GetBackBufferDescriptor();
 	s32 GetBackBufferIndex();
 }
 

@@ -34,8 +34,6 @@ namespace Texture
         };
         constexpr u64 HeaderSize = sizeof(Header);
         static_assert(HeaderSize == 128);
-
-#define	MAKE_FOURCC(x, y, z, w)  (((w) << 24) | ((z) << 16) | ((y) << 8) | (x))
 	}
 
     std::byte* DDS::ReadAlloc(const std::byte* const _bytes, const u64 _byteSize)

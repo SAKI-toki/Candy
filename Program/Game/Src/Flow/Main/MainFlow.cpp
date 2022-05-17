@@ -5,11 +5,13 @@
 #include <FileSystem/FileSystem.h>
 #include <Thread/ThreadSystem.h>
 #include <Model/Model.h>
+#include <Sound/Sound.h>
 
 CANDY_NAMESPACE_BEGIN
 
 namespace MainFlow
 {
+
 }
 
 void MainFlow::Startup()
@@ -21,6 +23,7 @@ void MainFlow::Startup()
 	Global::Startup();
 	FileSystem::Startup();
 	Graphic::Startup();
+	Sound::Startup();
 	Model::Startup();
 	GameFlow::Startup();
 }
@@ -29,6 +32,7 @@ void MainFlow::Cleanup()
 {
 	GameFlow::Cleanup();
 	Model::Cleanup();
+	Sound::Cleanup();
 	Graphic::Cleanup();
 	FileSystem::Cleanup();
 	Global::Cleanup();
@@ -42,6 +46,7 @@ void MainFlow::Update()
 	Hardware::Update();
 	GameFlow::Update();
 	Graphic::Update();
+	Sound::Update();
 
 	Graphic::PreDraw();
 	GameFlow::Draw();

@@ -68,14 +68,14 @@ void Graphic::Startup()
 	for (s32 i = 0; i < m_BackBuffers.size(); ++i)
 	{
 		m_BackBuffers[i].startupBackBuffer(m_SwapChain, i);
-		m_BackBufferDescriptor.bindingRenderTarget(m_Device, i, m_BackBuffers[i], GRAPHIC_FORMAT::R8G8B8A8_UNORM);
+		m_BackBufferDescriptor.bindingBackBuffer(m_Device, i, m_BackBuffers[i]);
 	}
 
 	BufferStartupInfo depthStencilBufferStartupInfo;
 	depthStencilBufferStartupInfo.setDepthStencilStartupInfo(GRAPHIC_FORMAT::D24_UNORM_S8_UINT, GetScreenWidth(), GetScreenHeight());
 	m_DepthStencilBufferDescriptor.startup(m_Device, DESCRIPTOR_TYPE::DEPTH_STENCIL, GetBackBufferCount());
 	m_DepthStencilBuffers.resize(GetBackBufferCount());
-	for (s32 i = 0; i < m_BackBuffers.size(); ++i)
+	for (s32 i = 0; i < m_DepthStencilBuffers.size(); ++i)
 	{
 		m_DepthStencilBuffers[i].startup(m_Device, depthStencilBufferStartupInfo);
 		m_DepthStencilBufferDescriptor.bindingDepthStencil(m_Device, i, m_DepthStencilBuffers[i], GRAPHIC_FORMAT::D24_UNORM_S8_UINT);
@@ -171,6 +171,11 @@ Graphic::Device& Graphic::GetDevice()
 Graphic::CommandList& Graphic::GetCommandList()
 {
 	return m_CommandList;
+}
+
+Graphic::Descriptor& Graphic::GetBackBufferDescriptor()
+{
+	return m_BackBufferDescriptor;
 }
 
 s32 Graphic::GetBackBufferIndex()

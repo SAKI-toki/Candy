@@ -352,6 +352,18 @@
     <Filter Include="Src\UI">
       <UniqueIdentifier>{0a144a40-4925-4471-94f3-32e68b28a5be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Sound">
+      <UniqueIdentifier>{fa20e68d-cdb1-425c-9a21-d7aff87716b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Sound\Platform">
+      <UniqueIdentifier>{90dd8d57-d34c-49c9-8cef-ba872a6989d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Sound\Platform\Win">
+      <UniqueIdentifier>{3f9f879b-e6c5-478f-892b-8d8b85962181}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win">
+      <UniqueIdentifier>{d01fb814-542f-4b35-9b27-a091cf87a53a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\ForceInclude.h">
@@ -693,6 +705,15 @@
     <ClInclude Include="Src\UI\UI.h">
       <Filter>Src\UI</Filter>
     </ClInclude>
+    <ClInclude Include="Src\Sound\Sound.h">
+      <Filter>Src\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Sound\Platform\Win\SoundImpl.h">
+      <Filter>Src\Sound\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="Src\Platform\Win\PlatformImpl.h">
+      <Filter>Src\Platform\Win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Entity\__EntityCpp.cpp">
@@ -1024,6 +1045,15 @@
     </ClCompile>
     <ClCompile Include="Src\UI\__UICpp.cpp">
       <Filter>Src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Sound\__SoundCpp.cpp">
+      <Filter>Src\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Sound\Sound.cpp">
+      <Filter>Src\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Src\Sound\Platform\Win\SoundImpl.cpp">
+      <Filter>Src\Sound\Platform\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

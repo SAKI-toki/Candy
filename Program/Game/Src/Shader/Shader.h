@@ -10,6 +10,7 @@ enum class SHADER_TYPE
 {
 	PRIMITIVE_2D,
 	TEST,
+	TEST_MASK,
 
 	SIZE,
 };
@@ -17,6 +18,7 @@ inline constexpr const char* const ShaderFileNames[] =
 {
 	"Primitive/2D",
 	"Test",
+	"TestMask",
 };
 static_assert((s32)SHADER_TYPE::SIZE == GetArraySize(ShaderFileNames));
 

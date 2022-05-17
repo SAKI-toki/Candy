@@ -42,18 +42,6 @@ inline void dummyFunc(...) {}
 #include "BuildConfig/BuildConfig.h"
 #include "Platform/Platform.h"
 
-#if PLATFORM_WIN
-#include <Windows.h>
-#include <d3d12.h>
-#include <dxgi1_6.h>
-#include <wrl/client.h>
-#include <xmmintrin.h>
-
-template<typename T>
-using ComPtr = Microsoft::WRL::ComPtr<T>;
-
-#endif // PLATFORM_WIN
-
 #include <Type/ArithmetricType.h>
 #include <Type/ClassDefine.h>
 #include <Debug/Assert/Assert.h>

@@ -635,7 +635,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d12.lib;$(SolutionDir)Build\Bin\Graphic\$(Platform)\$(Configuration)\Graphic.lib;$(SolutionDir)Build\Bin\Sound\$(Platform)\$(Configuration)\Sound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d12.lib;xaudio2.lib;$(SolutionDir)Build\Bin\Graphic\$(Platform)\$(Configuration)\Graphic.lib;$(SolutionDir)Build\Bin\Sound\$(Platform)\$(Configuration)\Sound.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -660,7 +660,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d12.lib;$(SolutionDir)Build\Bin\Graphic\$(Platform)\$(Configuration)\Graphic.lib;$(SolutionDir)Build\Bin\Sound\$(Platform)\$(Configuration)\Sound.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>dxgi.lib;dxguid.lib;d3d12.lib;xaudio2.lib;$(SolutionDir)Build\Bin\Graphic\$(Platform)\$(Configuration)\Graphic.lib;$(SolutionDir)Build\Bin\Sound\$(Platform)\$(Configuration)\Sound.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

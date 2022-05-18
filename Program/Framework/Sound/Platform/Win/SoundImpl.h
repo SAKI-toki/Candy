@@ -1,6 +1,8 @@
 #ifndef CANDY_SOUND_IMPL_H
 #define CANDY_SOUND_IMPL_H
 
+#include <Sound/SoundDef.h>
+
 CANDY_NAMESPACE_BEGIN
 
 namespace Sound::Impl
@@ -10,7 +12,7 @@ namespace Sound::Impl
 
 	void Update();
 
-	void CallSe(const std::byte* const _buf, const u64 _bufSize);
+	void CallSe(const std::string& _soundName, const u32 _callSeFlag);
 }
 
 CANDY_NAMESPACE_END

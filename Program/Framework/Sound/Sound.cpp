@@ -27,13 +27,9 @@ void Sound::Update()
 	Impl::Update();
 }
 
-void Sound::CallSe(const std::string& _soundName)
+void Sound::CallSe(const std::string& _soundName, const u32 _callSeFlag)
 {
-	std::string path = Setting::GetDataPath() + std::string{ R"(\Sound\)" } + _soundName;
-	const u64 bufSize = FileSystem::GetFileSize(path);
-	std::byte* buf = new std::byte[bufSize];
-	FileSystem::RequestReadNoWait(path, buf, bufSize);
-	Sound::Impl::CallSe(buf, bufSize);
+	Sound::Impl::CallSe(_soundName, _callSeFlag);
 }
 
 CANDY_NAMESPACE_END

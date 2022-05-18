@@ -22,6 +22,9 @@
     <ClCompile Include="..\..\..\Framework\Sound\Platform\Win\SoundImpl.cpp">
       <Filter>Src\Platform\Win</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Framework\Sound\SoundDef.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Framework\Sound\Sound.h">
@@ -29,6 +32,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Framework\Sound\Platform\Win\SoundImpl.h">
       <Filter>Src\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Framework\Sound\SoundDef.h">
+      <Filter>Src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,6 +5,7 @@
 #include <d3d12.h>
 #include <dxgi1_6.h>
 #include <xaudio2.h>
+#include <xaudio2fx.h>
 #include <wrl/client.h>
 #include <xmmintrin.h>
 

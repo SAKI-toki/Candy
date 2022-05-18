@@ -228,7 +228,7 @@ void GameFlow::Startup()
 	m_TextureViews[2].m_Constant.m_Position.m_f32.y = -0.65f;
 	m_TextureViews[3].m_Constant.m_Position.m_f32.y = -0.65f;
 
-	Sound::CallSe("TestSound.wav");
+	Sound::CallSe("TestBgm.wav", Sound::CALL_SE_FLAG_LOOP);
 }
 
 void GameFlow::Cleanup()

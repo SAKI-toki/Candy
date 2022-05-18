@@ -53,13 +53,19 @@ namespace Sound
 
 	void Impl::Update()
 	{
-		std::erase_if(m_SoundInfos,
+		auto removeItr = std::remove_if(m_SoundInfos.begin(), m_SoundInfos.end(),
 			[](const auto& _soundInfo)
 			{
 				XAUDIO2_VOICE_STATE state{};
 				_soundInfo.m_SourceVoice->GetState(&state);
 				return state.BuffersQueued == 0;
 			});
+		for (auto itr = removeItr; itr != m_SoundInfos.end(); ++itr)
+		{
+			if (itr->m_SourceVoice)itr->m_SourceVoice->DestroyVoice();
+			if (itr->m_Buffer)delete[] itr->m_Buffer;
+		}
+		m_SoundInfos.erase(removeItr, m_SoundInfos.end());
 	}
 
 	void Impl::CallSe(const std::byte* const _buf, const u64 _bufSize)

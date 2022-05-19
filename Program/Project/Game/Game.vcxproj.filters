@@ -229,6 +229,12 @@
     <Filter Include="Src\Input\Platform\Win\Keyboard">
       <UniqueIdentifier>{ec9de8fe-7270-4995-b128-4230dd02b7c5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Input\Mouse">
+      <UniqueIdentifier>{525b7e56-5190-4b24-8818-a9f27073880b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Input\Platform\Win\Mouse">
+      <UniqueIdentifier>{00e8f583-db79-45f3-b9e5-ec5765159017}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Game\Src\BuildConfig\BuildConfig.h">
@@ -450,6 +456,12 @@
     <ClInclude Include="..\..\Game\Src\Setting.h">
       <Filter>Src</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Input\Mouse\InputMouse.h">
+      <Filter>Src\Input\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Input\Platform\Win\Mouse\InputMouseImpl.h">
+      <Filter>Src\Input\Platform\Win\Mouse</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Game\Src\Debug\Assert\Platform\Win\AssertImpl.cpp">
@@ -658,6 +670,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Game\Src\Setting.cpp">
       <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Input\Mouse\InputMouse.cpp">
+      <Filter>Src\Input\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Input\Platform\Win\Mouse\InputMouseImpl.cpp">
+      <Filter>Src\Input\Platform\Win\Mouse</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -228,7 +228,7 @@ void GameFlow::Startup()
 	m_TextureViews[2].m_Constant.m_Position.m_f32.y = -0.65f;
 	m_TextureViews[3].m_Constant.m_Position.m_f32.y = -0.65f;
 
-	Sound::CallSe("TestBgm.wav", Sound::CALL_SE_FLAG_LOOP);
+	//Sound::CallSe("TestBgm.wav", Sound::CALL_SE_FLAG_LOOP);
 }
 
 void GameFlow::Cleanup()
@@ -299,6 +299,16 @@ void GameFlow::Update()
 	for (auto& textureView : m_TextureViews)
 	{
 		textureView.update();
+	}
+
+	if (Input::IsKeyOn('T'))
+	{
+		Rect rect;
+		f32 width = static_cast<f32>(Graphic::GetScreenWidth());
+		f32 height = static_cast<f32>(Graphic::GetScreenHeight());
+		Vec4 mousePos = Input::GetClientMousePos();
+		rect.setSize(mousePos.m_f32.x / width * 2.0f - 1.0f, mousePos.m_f32.y / height * -2.0f + 1.0f, 0.1f, 0.1f);
+		Model::Primitive::AddRect2D(rect, CANDY_COLOR_RGB32(0xff, 0xff, 0x00));
 	}
 }
 

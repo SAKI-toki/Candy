@@ -145,8 +145,8 @@ namespace Sound
 				XAUDIO2_EFFECT_CHAIN chain;
 				chain.EffectCount = 1;
 				chain.pEffectDescriptors = &descriptor;
-				soundInfo.m_SourceVoice->SetEffectChain(&chain);*/
-				/*XAUDIO2FX_REVERB_PARAMETERS reverbParameters;
+				soundInfo.m_SourceVoice->SetEffectChain(&chain);
+				XAUDIO2FX_REVERB_PARAMETERS reverbParameters;
 				reverbParameters.ReflectionsDelay = XAUDIO2FX_REVERB_DEFAULT_REFLECTIONS_DELAY;
 				reverbParameters.ReverbDelay = XAUDIO2FX_REVERB_DEFAULT_REVERB_DELAY;
 				reverbParameters.RearDelay = XAUDIO2FX_REVERB_DEFAULT_REAR_DELAY;

@@ -6,6 +6,7 @@ CANDY_NAMESPACE_BEGIN
 namespace Path
 {
 	std::string FormatPath(std::string _path);
+	std::string GetExtension(const std::string& _fileName);
 }
 
 CANDY_NAMESPACE_END

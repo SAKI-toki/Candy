@@ -235,6 +235,18 @@
     <Filter Include="Src\Input\Platform\Win\Mouse">
       <UniqueIdentifier>{00e8f583-db79-45f3-b9e5-ec5765159017}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Font">
+      <UniqueIdentifier>{da1476aa-404d-463e-a218-ced9af8df919}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Endian">
+      <UniqueIdentifier>{dd483ce6-52c6-4fec-8557-cff5c498a0c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Draw">
+      <UniqueIdentifier>{f63ce13a-6f9e-48ea-8fa9-22ea6271d43f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Draw\String">
+      <UniqueIdentifier>{90284b24-a021-47f5-8003-6296e8f0873f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Game\Src\BuildConfig\BuildConfig.h">
@@ -462,19 +474,28 @@
     <ClInclude Include="..\..\Game\Src\Input\Platform\Win\Mouse\InputMouseImpl.h">
       <Filter>Src\Input\Platform\Win\Mouse</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Font\Font.h">
+      <Filter>Src\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Utility\Endian\Endian.h">
+      <Filter>Src\Utility\Endian</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Debug\Debug.h">
+      <Filter>Src\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Debug\Draw\String\DebugDrawString.h">
+      <Filter>Src\Debug\Draw\String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Debug\Draw\DebugDraw.h">
+      <Filter>Src\Debug\Draw</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Game\Src\Debug\Assert\Platform\Win\AssertImpl.cpp">
       <Filter>Src\Debug\Assert\Platform\Win</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Game\Src\Debug\Assert\__AssertCpp.cpp">
-      <Filter>Src\Debug\Assert</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\Game\Src\Debug\Log\Platform\Win\LogImpl.cpp">
       <Filter>Src\Debug\Log\Platform\Win</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Game\Src\Debug\Log\__LogCpp.cpp">
-      <Filter>Src\Debug\Log</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Game\Src\Debug\Log\Log.cpp">
       <Filter>Src\Debug\Log</Filter>
@@ -677,6 +698,24 @@
     <ClCompile Include="..\..\Game\Src\Input\Platform\Win\Mouse\InputMouseImpl.cpp">
       <Filter>Src\Input\Platform\Win\Mouse</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Font\Font.cpp">
+      <Filter>Src\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Font\__FontCpp.cpp">
+      <Filter>Src\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Debug\Debug.cpp">
+      <Filter>Src\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Debug\__DebugCpp.cpp">
+      <Filter>Src\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Debug\Draw\String\DebugDrawString.cpp">
+      <Filter>Src\Debug\Draw\String</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Debug\Draw\DebugDraw.cpp">
+      <Filter>Src\Debug\Draw</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\Game\Src\Handle\Handle.inl">
@@ -711,6 +750,9 @@
     </None>
     <None Include="..\..\Game\Src\Vec\Platform\Win\Vec4Impl.inl">
       <Filter>Src\Vec\Platform\Win</Filter>
+    </None>
+    <None Include="..\..\Game\Src\Utility\Endian\Endian.inl">
+      <Filter>Src\Utility\Endian</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

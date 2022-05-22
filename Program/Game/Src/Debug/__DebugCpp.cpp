@@ -1,0 +1,6 @@
+#include "Debug.cpp"
+#include "Assert/Platform/Win/AssertImpl.cpp"
+#include "Log/Log.cpp"
+#include "Log/Platform/Win/LogImpl.cpp"
+#include "Draw/DebugDraw.cpp"
+#include "Draw/String/DebugDrawString.cpp"

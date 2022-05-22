@@ -19,4 +19,11 @@ std::string Path::FormatPath(std::string _path)
 	return _path;
 }
 
+std::string Path::GetExtension(const std::string& _fileName)
+{
+	auto pos = _fileName.find_last_of('.');
+	if (pos == _fileName.npos)return "";
+	return _fileName.substr(pos);
+}
+
 CANDY_NAMESPACE_END

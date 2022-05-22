@@ -9,6 +9,7 @@ CANDY_NAMESPACE_BEGIN
 enum class SHADER_TYPE
 {
 	PRIMITIVE_2D,
+	FONT_FONT,
 	TEST,
 	TEST_MASK,
 
@@ -17,6 +18,7 @@ enum class SHADER_TYPE
 inline constexpr const char* const ShaderFileNames[] =
 {
 	"Primitive/2D",
+	"Font/Font",
 	"Test",
 	"TestMask",
 };

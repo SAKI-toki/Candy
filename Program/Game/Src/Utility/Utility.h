@@ -7,6 +7,7 @@
 #include "Hash/Hash.h"
 #include "Path/Path.h"
 #include "StringSystem/StringSystem.h"
+#include "Endian/Endian.h"
 
 CANDY_NAMESPACE_BEGIN
 

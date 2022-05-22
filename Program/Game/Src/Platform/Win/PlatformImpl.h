@@ -24,6 +24,7 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 }
 
 #define MAKE_FOURCC(x, y, z, w) (((w) << 24) | ((z) << 16) | ((y) << 8) | (x))
+#define MAKE_FOURCC_STR(str) (((str)[3] << 24) | ((str)[2] << 16) | ((str)[1] << 8) | (str)[0])
 
 CANDY_NAMESPACE_END
 

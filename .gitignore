@@ -1,6 +1,6 @@
 .vs
 /.git
-/Program/Project/build
+Build/
 desktop.ini
 *.vcxproj.user
 Data/Win/

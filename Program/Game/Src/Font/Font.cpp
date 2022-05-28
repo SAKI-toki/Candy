@@ -43,7 +43,7 @@ void Font::Cleanup()
 	m_FontDatas.clear();
 }
 
-Graphic::Buffer Font::GetFontTextureBuffer(const FONT_TYPE _fontType)
+Graphic::Buffer& Font::GetFontTextureBuffer(const FONT_TYPE _fontType)
 {
 	return m_FontDatas[(s32)_fontType].m_TextureBuffer;
 }
@@ -85,10 +85,10 @@ void Font::LoadFont(const std::string& _fontName)
 	}
 
 	Graphic::BufferStartupInfo textureBufferStartupInfo;
-	textureBufferStartupInfo.setTextureStartupInfo(Graphic::GRAPHIC_FORMAT::BC3_UNORM, 2048, 2048);
+	textureBufferStartupInfo.setTextureStartupInfo(Graphic::GRAPHIC_FORMAT::BC3_UNORM, 4096, 4096);
 	fontData.m_TextureBuffer.startup(Graphic::GetDevice(), textureBufferStartupInfo);
 	std::byte* ddsBuf = Texture::DDS::ReadAlloc(textureBuf, textureSize);
-	Texture::CreateTexture(fontData.m_TextureBuffer, ddsBuf, 2048 * 2048);
+	Texture::CreateTexture(fontData.m_TextureBuffer, ddsBuf, 4096 * 4096);
 
 	m_FontDatas.push_back(fontData);
 }

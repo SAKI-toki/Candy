@@ -52,7 +52,7 @@ void App(int _argc, char* _argv[])
 	stbtt_fontinfo fontinfo;
 	stbtt_InitFont(&fontinfo, pData, stbtt_GetFontOffsetForIndex(pData, 0));
 
-	float font_scale = stbtt_ScaleForPixelHeight(&fontinfo, 16.0f);
+	float font_scale = stbtt_ScaleForPixelHeight(&fontinfo, 20.0f);
 
 	int ascent_int, descent_int, line_gap_int;
 	stbtt_GetFontVMetrics(&fontinfo, &ascent_int, &descent_int, &line_gap_int);
@@ -60,8 +60,8 @@ void App(int _argc, char* _argv[])
 	float descent = descent_int * font_scale;
 	float height = ascent - descent;
 
-	static constexpr int FONT_BUFFER_WIDTH = 2048;
-	static constexpr int FONT_BUFFER_HEIGHT = 2048;
+	static constexpr int FONT_BUFFER_WIDTH = 4096;
+	static constexpr int FONT_BUFFER_HEIGHT = 4096;
 
 	std::vector<std::uint8_t> pixels(FONT_BUFFER_WIDTH * FONT_BUFFER_HEIGHT, 0);
 	int x_pos = 0, y_pos = 0;
@@ -90,7 +90,7 @@ void App(int _argc, char* _argv[])
 			}
 		}
 
-		int yoff = int(std::roundf(ascent));
+		int yoff = int(std::ceil(ascent));
 
 		stbtt_MakeCodepointBitmap(&fontinfo, p_pixels + ((y_pos + (yoff + y0)) * FONT_BUFFER_WIDTH + (x_pos + x0)),
 			font_width, font_height, FONT_BUFFER_WIDTH, font_scale, font_scale, i);
@@ -119,8 +119,8 @@ void App(int _argc, char* _argv[])
 			colors[index].a = pixels[index];
 		}
 	}
-	stbi_write_png(_argv[2], static_cast<int>(FONT_BUFFER_WIDTH), static_cast<int>(FONT_BUFFER_HEIGHT), static_cast<int>(sizeof(Color)), colors.data(), 0);
-	std::ofstream ofs(_argv[3],std::ios::binary);
+	stbi_write_bmp(_argv[2], static_cast<int>(FONT_BUFFER_WIDTH), static_cast<int>(FONT_BUFFER_HEIGHT), static_cast<int>(sizeof(Color)), colors.data());
+	std::ofstream ofs(_argv[3], std::ios::binary);
 	FontUvInfoHeader header;
 	header.m_NumCodes = (std::uint32_t)uvInfos.size();
 	ofs.write(reinterpret_cast<const char*>(&header), sizeof(header));

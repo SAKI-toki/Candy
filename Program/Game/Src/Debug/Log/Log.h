@@ -1,5 +1,5 @@
-#ifndef CANDY_LOG_H
-#define CANDY_LOG_H
+#ifndef CANDY_DEBUG_LOG_H
+#define CANDY_DEBUG_LOG_H
 
 CANDY_NAMESPACE_BEGIN
 
@@ -21,4 +21,4 @@ namespace Log
 
 CANDY_NAMESPACE_END
 
-#endif // CANDY_LOG_H
+#endif // CANDY_DEBUG_LOG_H

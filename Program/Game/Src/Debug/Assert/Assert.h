@@ -1,5 +1,5 @@
-#ifndef CANDY_ASSERT_H
-#define CANDY_ASSERT_H
+#ifndef CANDY_DEBUG_ASSERT_H
+#define CANDY_DEBUG_ASSERT_H
 
 #if PLATFORM_WIN
 #include "Platform/Win/AssertImpl.h"
@@ -16,4 +16,4 @@ CANDY_NAMESPACE_BEGIN
 
 CANDY_NAMESPACE_END
 
-#endif // CANDY_ASSERT_H
+#endif // CANDY_DEBUG_ASSERT_H

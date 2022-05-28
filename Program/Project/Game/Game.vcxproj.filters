@@ -247,6 +247,21 @@
     <Filter Include="Src\Debug\Draw\String">
       <UniqueIdentifier>{90284b24-a021-47f5-8003-6296e8f0873f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Utility\StringSystem\Convert">
+      <UniqueIdentifier>{1cfde37a-9a14-43fa-bc27-70b3ddcb4c6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Platform">
+      <UniqueIdentifier>{1c04e441-bad2-429d-8e07-ff7683a1aff7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Platform\Win">
+      <UniqueIdentifier>{cfe1c36c-9b36-4478-a318-b3ca89ab34f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Platform\Win\StringSystem">
+      <UniqueIdentifier>{1199d3dd-f176-40fc-afb3-6b9659d7d2d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Platform\Win\StringSystem\Convert">
+      <UniqueIdentifier>{58738ac3-ae6f-47ca-9656-8f6ddca5b9ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Game\Src\BuildConfig\BuildConfig.h">
@@ -489,6 +504,12 @@
     <ClInclude Include="..\..\Game\Src\Debug\Draw\DebugDraw.h">
       <Filter>Src\Debug\Draw</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Utility\StringSystem\Convert\StringSystemConvert.h">
+      <Filter>Src\Utility\StringSystem\Convert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Utility\Platform\Win\StringSystem\Convert\StringSystemConvertImpl.h">
+      <Filter>Src\Utility\Platform\Win\StringSystem\Convert</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Game\Src\Debug\Assert\Platform\Win\AssertImpl.cpp">
@@ -715,6 +736,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Game\Src\Debug\Draw\DebugDraw.cpp">
       <Filter>Src\Debug\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Utility\StringSystem\Convert\StringSystemConvert.cpp">
+      <Filter>Src\Utility\StringSystem\Convert</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Utility\Platform\Win\StringSystem\Convert\StringSystemConvertImpl.cpp">
+      <Filter>Src\Utility\Platform\Win\StringSystem\Convert</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

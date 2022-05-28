@@ -13,6 +13,10 @@ enum class SHADER_TYPE
 	TEST,
 	TEST_MASK,
 
+#if BUILD_DEBUG
+	DEBUG_STRING,
+#endif // BUILD_DEBUG
+
 	SIZE,
 };
 inline constexpr const char* const ShaderFileNames[] =
@@ -21,6 +25,10 @@ inline constexpr const char* const ShaderFileNames[] =
 	"Font/Font",
 	"Test",
 	"TestMask",
+
+#if BUILD_DEBUG
+	"Debug/String",
+#endif // BUILD_DEBUG
 };
 static_assert((s32)SHADER_TYPE::SIZE == GetArraySize(ShaderFileNames));
 

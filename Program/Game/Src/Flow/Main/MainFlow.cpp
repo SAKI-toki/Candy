@@ -7,6 +7,7 @@
 #include <Model/Model.h>
 #include <Sound/Sound.h>
 #include <Font/Font.h>
+#include <Debug/Debug.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -27,12 +28,14 @@ void MainFlow::Startup()
 	Sound::Startup();
 	Model::Startup();
 	Font::Startup();
+	Debug::Startup();
 	GameFlow::Startup();
 }
 
 void MainFlow::Cleanup()
 {
 	GameFlow::Cleanup();
+	Debug::Cleanup();
 	Font::Cleanup();
 	Model::Cleanup();
 	Sound::Cleanup();
@@ -50,10 +53,12 @@ void MainFlow::Update()
 	GameFlow::Update();
 	Graphic::Update();
 	Sound::Update();
+	Debug::Update();
 
 	Graphic::PreDraw();
 	GameFlow::Draw();
 	Model::Primitive::Draw(Graphic::GetCommandList());
+	Debug::Draw();
 	Graphic::PostDraw();
 	Graphic::Flip();
 }

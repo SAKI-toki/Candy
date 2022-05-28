@@ -3,5 +3,6 @@
 
 #include "UpperLower/StringSystemToUpperLower.h"
 #include "Split/StringSystemSplit.h"
+#include "Convert/StringSystemConvert.h"
 
 #endif // CANDY_STRING_SYSTEM_H

@@ -13,6 +13,7 @@
 #include <Texture/DDS/ReadDDS.h>
 #include <Graphic/ResourceManager/GraphicResourceManager.h>
 #include <Sound/Sound.h>
+#include <Debug/Draw/DebugDraw.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -240,6 +241,10 @@ void GameFlow::Cleanup()
 void GameFlow::Update()
 {
 	Input::Update();
+
+	char playerPosString[256]{};
+	sprintf_s(playerPosString, "PlayerPos [x:%.2f, y:%.2f]", m_TextureViews[2].m_Constant.m_Position.m_f32.x, m_TextureViews[2].m_Constant.m_Position.m_f32.y);
+	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, playerPosString);
 
 	constexpr f32 speed = 0.3f;
 	static bool isLanding = true;

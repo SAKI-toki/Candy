@@ -23,7 +23,7 @@ namespace Font
 	void Startup();
 	void Cleanup();
 
-	Graphic::Buffer GetFontTextureBuffer(const FONT_TYPE _fontType);
+	Graphic::Buffer& GetFontTextureBuffer(const FONT_TYPE _fontType);
 	Rect GetFontUv(const FONT_TYPE _fontType, const u32 _c);
 }
 

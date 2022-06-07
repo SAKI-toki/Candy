@@ -1,4 +1,11 @@
-﻿#ifndef CANDY_ARITHMETRIC_TYPE_H
+﻿/*****************************************************************//**
+ * \file   ArithmetricType.h
+ * \brief  算術型定義
+ * \author Yu Ishiyama.
+ * \date   2022/06/08
+ *********************************************************************/
+
+#ifndef CANDY_ARITHMETRIC_TYPE_H
 #define CANDY_ARITHMETRIC_TYPE_H
 
 #include <cstdint>

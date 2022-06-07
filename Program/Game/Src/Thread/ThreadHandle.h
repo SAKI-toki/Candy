@@ -1,4 +1,11 @@
-﻿#ifndef CANDY_THREAD_HANDLE_H
+﻿/*****************************************************************//**
+ * \file   ThreadHandle.h
+ * \brief  スレッドハンドラ
+ * \author Yu Ishiyama.
+ * \date   2022/06/08
+ *********************************************************************/
+
+#ifndef CANDY_THREAD_HANDLE_H
 #define CANDY_THREAD_HANDLE_H
 
 #include "ThreadDef.h"

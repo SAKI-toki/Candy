@@ -1,7 +1,15 @@
-﻿#include "Clamp.h"
+﻿/*****************************************************************//**
+ * \file   Clamp.inl
+ * \brief  クランプ
+ * \author Yu Ishiyama.
+ * \date   2022/06/08
+ *********************************************************************/
+
+#include "Clamp.h"
 
 CANDY_NAMESPACE_BEGIN
 
+// 指定範囲にクランプ
 template<typename T, typename MinT, typename MaxT, typename ResultT>
 ResultT Clamp(const T _v, const MinT _min, const MaxT _max)
 {
@@ -11,6 +19,7 @@ ResultT Clamp(const T _v, const MinT _min, const MaxT _max)
 	return _v;
 }
 
+// [0-1]にクランプ
 template<typename T>
 T Clamp01(const T _v)
 {

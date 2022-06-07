@@ -1,14 +1,21 @@
-﻿#include "Endian.h"
+﻿/*****************************************************************//**
+ * \file   Endian.inl
+ * \brief  インディアン
+ * \author Yu Ishiyama.
+ * \date   2022/06/08
+ *********************************************************************/
+
+#include "Endian.h"
 
 CANDY_NAMESPACE_BEGIN
 
+// インディアン変換
 inline constexpr u16 Endian::Swap(const u16 _value)
 {
 	return
 		((_value & 0x00ff) << 8) |
 		((_value & 0xff00) >> 8);
 }
-
 inline constexpr u32 Endian::Swap(const u32 _value)
 {
 	return
@@ -17,7 +24,6 @@ inline constexpr u32 Endian::Swap(const u32 _value)
 		((_value & 0x00ff0000) >> 8) |
 		((_value & 0xff000000) >> 24);
 }
-
 inline constexpr u64 Endian::Swap(const u64 _value)
 {
 	return

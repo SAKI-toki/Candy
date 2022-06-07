@@ -13,7 +13,8 @@ CANDY_NAMESPACE_BEGIN
 class CriticalSectionImpl
 {
 public:
-	DEFAULT_CONSTRUCTOR_DESTRUCTOR_DELETE_COPY_MOVE(CriticalSectionImpl);
+	CANDY_DEFAULT_CONSTRUCTOR_DESTRUCTOR(CriticalSectionImpl);
+	CANDY_DELETE_COPY_MOVE(CriticalSectionImpl);
 
 	// 初期化
 	void startup();

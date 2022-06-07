@@ -16,10 +16,10 @@ CANDY_NAMESPACE_BEGIN
 class Thread
 {
 public:
-	DEFAULT_CONSTRUCTOR(Thread);
+	CANDY_DEFAULT_CONSTRUCTOR(Thread);
 	explicit Thread(const ThreadHandle);
-	DELETE_COPY(Thread);
-	DEFAULT_MOVE(Thread);
+	CANDY_DELETE_COPY(Thread);
+	CANDY_DEFAULT_MOVE(Thread);
 
 	// 作成
 	void create(std::function<void(void*)> _func, void* _args, const CreateThreadOption _option = CreateThreadOption{});

@@ -1,46 +1,51 @@
-﻿#ifndef CANDY_CLASS_DEFINE_H
+﻿/*****************************************************************//**
+ * \file   ClassDefine.h
+ * \brief  クラス定義
+ * \author Yu Ishiyama.
+ * \date   2022/06/08
+ *********************************************************************/
+
+#ifndef CANDY_CLASS_DEFINE_H
 #define CANDY_CLASS_DEFINE_H
 
 CANDY_NAMESPACE_BEGIN
 
-#define DEFAULT_DELETE_CONSTRUCTOR(type, default_delete) type() = default_delete
-#define DEFAULT_DELETE_DESTRUCTOR(type, default_delete) ~type() = default_delete
-#define DEFAULT_DELETE_COPY_CONSTRUCTOR(type, default_delete) type(const type&) = default_delete
-#define DEFAULT_DELETE_COPY_OPERATOR(type, default_delete) type& operator=(const type&) = default_delete
-#define DEFAULT_DELETE_MOVE_CONSTRUCTOR(type, default_delete) type(type&&) = default_delete
-#define DEFAULT_DELETE_MOVE_OPERATOR(type, default_delete) type& operator=(type&&) = default_delete
+#define CANDY_DEFAULT_DELETE_CONSTRUCTOR(type, default_delete) type() = default_delete
+#define CANDY_DEFAULT_DELETE_DESTRUCTOR(type, default_delete) ~type() = default_delete
+#define CANDY_DEFAULT_DELETE_COPY_CONSTRUCTOR(type, default_delete) type(const type&) = default_delete
+#define CANDY_DEFAULT_DELETE_COPY_OPERATOR(type, default_delete) type& operator=(const type&) = default_delete
+#define CANDY_DEFAULT_DELETE_MOVE_CONSTRUCTOR(type, default_delete) type(type&&)noexcept = default_delete
+#define CANDY_DEFAULT_DELETE_MOVE_OPERATOR(type, default_delete) type& operator=(type&&)noexcept = default_delete
 
 // default
-#define DEFAULT_CONSTRUCTOR(type) DEFAULT_DELETE_CONSTRUCTOR(type, default)
-#define DEFAULT_DESTRUCTOR(type) DEFAULT_DELETE_DESTRUCTOR(type, default)
-#define DEFAULT_COPY_CONSTRUCTOR(type) DEFAULT_DELETE_COPY_CONSTRUCTOR(type, default)
-#define DEFAULT_COPY_OPERATOR(type) DEFAULT_DELETE_COPY_OPERATOR(type, default)
-#define DEFAULT_MOVE_CONSTRUCTOR(type) DEFAULT_DELETE_MOVE_CONSTRUCTOR(type, default)
-#define DEFAULT_MOVE_OPERATOR(type) DEFAULT_DELETE_MOVE_OPERATOR(type, default)
+#define CANDY_DEFAULT_CONSTRUCTOR(type) CANDY_DEFAULT_DELETE_CONSTRUCTOR(type, default)
+#define CANDY_DEFAULT_DESTRUCTOR(type) CANDY_DEFAULT_DELETE_DESTRUCTOR(type, default)
+#define CANDY_DEFAULT_COPY_CONSTRUCTOR(type) CANDY_DEFAULT_DELETE_COPY_CONSTRUCTOR(type, default)
+#define CANDY_DEFAULT_COPY_OPERATOR(type) CANDY_DEFAULT_DELETE_COPY_OPERATOR(type, default)
+#define CANDY_DEFAULT_MOVE_CONSTRUCTOR(type) CANDY_DEFAULT_DELETE_MOVE_CONSTRUCTOR(type, default)
+#define CANDY_DEFAULT_MOVE_OPERATOR(type) CANDY_DEFAULT_DELETE_MOVE_OPERATOR(type, default)
 
-#define DEFAULT_CONSTRUCTOR_DESTRUCTOR(type) DEFAULT_CONSTRUCTOR(type); DEFAULT_DESTRUCTOR(type)
-#define DEFAULT_COPY(type) DEFAULT_COPY_CONSTRUCTOR(type); DEFAULT_COPY_OPERATOR(type)
-#define DEFAULT_MOVE(type) DEFAULT_MOVE_CONSTRUCTOR(type); DEFAULT_MOVE_OPERATOR(type)
+#define CANDY_DEFAULT_CONSTRUCTOR_DESTRUCTOR(type) CANDY_DEFAULT_CONSTRUCTOR(type); CANDY_DEFAULT_DESTRUCTOR(type)
+#define CANDY_DEFAULT_COPY(type) CANDY_DEFAULT_COPY_CONSTRUCTOR(type); CANDY_DEFAULT_COPY_OPERATOR(type)
+#define CANDY_DEFAULT_MOVE(type) CANDY_DEFAULT_MOVE_CONSTRUCTOR(type); CANDY_DEFAULT_MOVE_OPERATOR(type)
 
-#define DEFAULT_COPY_MOVE(type) DEFAULT_COPY(type); DEFAULT_MOVE(type)
-
-#define DEFAULT_COPY_MOVE_CONSTRUCTOR_DESTRUCTOR(type) DEFAULT_CONSTRUCTOR_DESTRUCTOR(type); DEFAULT_COPY_MOVE(type)
+#define CANDY_DEFAULT_COPY_MOVE(type) CANDY_DEFAULT_COPY(type); CANDY_DEFAULT_MOVE(type)
 
 // delete
-#define DELETE_CONSTRUCTOR(type) DEFAULT_DELETE_CONSTRUCTOR(type, delete)
-#define DELETE_DESTRUCTOR(type) DEFAULT_DELETE_DESTRUCTOR(type, delete)
-#define DELETE_COPY_CONSTRUCTOR(type) DEFAULT_DELETE_COPY_CONSTRUCTOR(type, delete)
-#define DELETE_COPY_OPERATOR(type) DEFAULT_DELETE_COPY_OPERATOR(type, delete)
-#define DELETE_MOVE_CONSTRUCTOR(type) DEFAULT_DELETE_MOVE_CONSTRUCTOR(type, delete)
-#define DELETE_MOVE_OPERATOR(type) DEFAULT_DELETE_MOVE_OPERATOR(type, delete)
+#define CANDY_DELETE_CONSTRUCTOR(type) CANDY_DEFAULT_DELETE_CONSTRUCTOR(type, delete)
+#define CANDY_DELETE_DESTRUCTOR(type) CANDY_DEFAULT_DELETE_DESTRUCTOR(type, delete)
+#define CANDY_DELETE_COPY_CONSTRUCTOR(type) CANDY_DEFAULT_DELETE_COPY_CONSTRUCTOR(type, delete)
+#define CANDY_DELETE_COPY_OPERATOR(type) CANDY_DEFAULT_DELETE_COPY_OPERATOR(type, delete)
+#define CANDY_DELETE_MOVE_CONSTRUCTOR(type) CANDY_DEFAULT_DELETE_MOVE_CONSTRUCTOR(type, delete)
+#define CANDY_DELETE_MOVE_OPERATOR(type) CANDY_DEFAULT_DELETE_MOVE_OPERATOR(type, delete)
 
-#define DELETE_COPY(type) DELETE_COPY_CONSTRUCTOR(type); DELETE_COPY_OPERATOR(type)
-#define DELETE_MOVE(type) DELETE_MOVE_CONSTRUCTOR(type); DELETE_MOVE_OPERATOR(type)
+#define CANDY_DELETE_COPY(type) CANDY_DELETE_COPY_CONSTRUCTOR(type); CANDY_DELETE_COPY_OPERATOR(type)
+#define CANDY_DELETE_MOVE(type) CANDY_DELETE_MOVE_CONSTRUCTOR(type); CANDY_DELETE_MOVE_OPERATOR(type)
 
-#define DELETE_COPY_MOVE(type) DELETE_COPY(type); DELETE_MOVE(type)
+#define CANDY_DELETE_COPY_MOVE(type) CANDY_DELETE_COPY(type); CANDY_DELETE_MOVE(type)
 
 // pair
-#define DEFAULT_CONSTRUCTOR_DESTRUCTOR_DELETE_COPY_MOVE(type) DEFAULT_CONSTRUCTOR_DESTRUCTOR(type); DELETE_COPY_MOVE(type)
+#define CANDY_DEFAULT_CONSTRUCTOR_DESTRUCTOR_DELETE_COPY_MOVE(type) CANDY_DEFAULT_CONSTRUCTOR_DESTRUCTOR(type); CANDY_DELETE_COPY_MOVE(type)
 
 CANDY_NAMESPACE_END
 

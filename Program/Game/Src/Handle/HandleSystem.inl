@@ -1,7 +1,15 @@
+/*****************************************************************//**
+ * \file   HandleSystem.inl
+ * \brief  ハンドラシステム
+ * \author Yu Ishiyama.
+ * \date   2022/06/01
+ *********************************************************************/
+
 #include "HandleSystem.h"
 
 CANDY_NAMESPACE_BEGIN
 
+// 初期化
 template<typename T, typename HandleType>
 void HandleSystem<T, HandleType>::startup()
 {
@@ -12,6 +20,7 @@ void HandleSystem<T, HandleType>::startup()
 	m_ReleaseUnitIndices.clear();
 }
 
+// 破棄
 template<typename T, typename HandleType>
 void HandleSystem<T, HandleType>::cleanup()
 {
@@ -21,6 +30,7 @@ void HandleSystem<T, HandleType>::cleanup()
 	m_ReleaseUnitIndices.clear();
 }
 
+// ハンドラの生成
 template<typename T, typename HandleType>
 HandleType HandleSystem<T, HandleType>::createHandle(ValuePtrType _valuePtr)
 {
@@ -54,6 +64,7 @@ HandleType HandleSystem<T, HandleType>::createHandle(ValuePtrType _valuePtr)
 	return handle;
 }
 
+// ハンドラの解放
 template<typename T,typename HandleType>
 void HandleSystem<T, HandleType>::releaseHandle(HandleType handle)
 {
@@ -64,6 +75,7 @@ void HandleSystem<T, HandleType>::releaseHandle(HandleType handle)
 	m_ReleaseUnitIndices.push_back(handle.m_Value.m_Index);
 }
 
+// ハンドラからポインタの取得
 template<typename T, typename HandleType>
 HandleSystem<T, HandleType>::ValuePtrType HandleSystem<T, HandleType>::getPtr(HandleType handle)const
 {

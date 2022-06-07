@@ -1,7 +1,15 @@
+/*****************************************************************//**
+ * \file   LogImpl.cpp
+ * \brief  デバッグログの実装部(Win)
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #include "LogImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 
+// デバッグウィンドウへの出力
 void LogImpl::OutputDebugLog(const char* const _fmt, ...)
 {
 	va_list args;

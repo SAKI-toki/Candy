@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   StaticVector.h
+ * \brief  ŒÅ’è’·”z—ñvector
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #ifndef CANDY_STATIC_VECTOR_H
 #define CANDY_STATIC_VECTOR_H
 

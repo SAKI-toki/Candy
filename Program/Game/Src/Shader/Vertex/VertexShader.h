@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   VertexShader.h
+ * \brief  バーテックスシェーダー
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #ifndef CANDY_VERTEX_SHADER_H
 #define CANDY_VERTEX_SHADER_H
 

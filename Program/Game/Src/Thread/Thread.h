@@ -1,11 +1,15 @@
+/*****************************************************************//**
+ * \file   Thread.h
+ * \brief  スレッド
+ * \author Yu Ishiyama.
+ * \date   2022/06/07
+ *********************************************************************/
+
 #ifndef CANDY_THREAD_H
 #define CANDY_THREAD_H
 
 #include "ThreadDef.h"
-
-#if PLATFORM_WIN
-#include "Platform/Win/ThreadHandle.h"
-#endif
+#include "ThreadHandle.h"
 
 CANDY_NAMESPACE_BEGIN
 
@@ -17,10 +21,15 @@ public:
 	DELETE_COPY(Thread);
 	DEFAULT_MOVE(Thread);
 
+	// 作成
 	void create(std::function<void(void*)> _func, void* _args, const CreateThreadOption _option = CreateThreadOption{});
+	// 作成
 	void create(std::function<void()> _func, const CreateThreadOption _option = CreateThreadOption{});
+	// 停止
 	void suspend();
+	// 再開
 	void resume();
+	// 終了待機
 	void wait();
 
 private:

@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MainFlow.cpp
+ * \brief  メインフロー
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #include "MainFlow.h"
 #include <Flow/Game/GameFlow.h>
 #include <Hardware/Hardware.h>
@@ -16,6 +23,7 @@ namespace MainFlow
 
 }
 
+// 初期化
 void MainFlow::Startup()
 {
 	Log::Startup();
@@ -32,6 +40,7 @@ void MainFlow::Startup()
 	GameFlow::Startup();
 }
 
+// 破棄
 void MainFlow::Cleanup()
 {
 	GameFlow::Cleanup();
@@ -45,6 +54,7 @@ void MainFlow::Cleanup()
 	Log::Cleanup();
 }
 
+// 更新
 void MainFlow::Update()
 {
 	Log::Update();
@@ -63,6 +73,7 @@ void MainFlow::Update()
 	Graphic::Flip();
 }
 
+// 終了判定
 bool MainFlow::IsEnd()
 {
 	return Hardware::IsClose();

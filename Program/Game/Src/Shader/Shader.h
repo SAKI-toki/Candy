@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   Shader.h
+ * \brief  シェーダー
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #ifndef CANDY_SHADER_H
 #define CANDY_SHADER_H
 
@@ -34,10 +41,14 @@ static_assert((s32)SHADER_TYPE::SIZE == GetArraySize(ShaderFileNames));
 
 namespace Shader
 {
+	// 初期化
 	void Startup();
+	// 破棄
 	void Cleanup();
 
+	// バーテックスシェーダーの取得
 	const VertexShader& GetVertexShader(const SHADER_TYPE _shaderType);
+	// ピクセルシェーダーの取得
 	const PixelShader& GetPixelShader(const SHADER_TYPE _shaderType);
 }
 

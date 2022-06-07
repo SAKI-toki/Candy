@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   GameFlow.cpp
+ * \brief  ゲームフロー
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #include "GameFlow.h"
 #include <Flow/Scene/SceneFlow.h>
 #include <Input/Input.h>
@@ -19,7 +26,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace GameFlow
 {
-	std::vector<Graphic::Buffer> m_MaskBuffers;
+	Graphic::Buffer m_MaskBuffer;
 	Graphic::Descriptor m_MaskDescriptor;
 
 	class TextureView
@@ -41,7 +48,7 @@ namespace GameFlow
 		void startup(const std::string& _texturePath, const u32 _width, const u32 _height, const Vec4 _scale, const u32 _startupFlag)
 		{
 			flag = _startupFlag;
-			m_Descriptor.startup(Graphic::GetDevice(), Graphic::DESCRIPTOR_TYPE::CBV_SRV_UAV, Graphic::GetBackBufferCount() * 2 + 1);
+			m_Descriptor.startup(Graphic::GetDevice(), Graphic::DESCRIPTOR_TYPE::CBV_SRV_UAV, Graphic::GetBackBufferCount() + 2);
 
 			Graphic::RootSignatureStartupInfo rootSignatureStartupInfo;
 			rootSignatureStartupInfo.initialize();
@@ -83,10 +90,10 @@ namespace GameFlow
 
 			VertexInfo vertices[] =
 			{
-				{ Vec4{ -0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 0.0f, 0.0f }, CANDY_COLOR_RGBA32(0xff, 0xff, 0xff, 0xff) }, // 左上
-				{ Vec4{ +0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 0.0f, 0.0f }, CANDY_COLOR_RGBA32(0xff, 0xff, 0xff, 0xff) }, // 右上
-				{ Vec4{ -0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 1.0f, 0.0f }, CANDY_COLOR_RGBA32(0xff, 0xff, 0xff, 0xff) }, // 左下
-				{ Vec4{ +0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 1.0f, 0.0f }, CANDY_COLOR_RGBA32(0xff, 0xff, 0xff, 0xff) }, // 右下
+				{ Vec4{ -0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 0.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 左上
+				{ Vec4{ +0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 0.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 右上
+				{ Vec4{ -0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 1.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 左下
+				{ Vec4{ +0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 1.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 右下
 			};
 			Graphic::BufferStartupInfo vertexBufferStartupInfo;
 			vertexBufferStartupInfo.setBufferStartupInfo(sizeof(VertexInfo) * GetArraySize(vertices));
@@ -115,12 +122,8 @@ namespace GameFlow
 			Graphic::BufferStartupInfo textureBufferStartupInfo;
 			textureBufferStartupInfo.setTextureStartupInfo(format, _width, _height);
 			m_TextureBuffer.startup(Graphic::GetDevice(), textureBufferStartupInfo);
-			m_Descriptor.bindingTexture2D(Graphic::GetDevice(), Graphic::GetBackBufferCount() * 2, m_TextureBuffer, format);
-
-			for (s32 i = 0; i < Graphic::GetBackBufferCount(); ++i)
-			{
-				m_Descriptor.bindingTexture2D(Graphic::GetDevice(), Graphic::GetBackBufferCount() + i, m_MaskBuffers[i], Graphic::GRAPHIC_FORMAT::A8_UINT);
-			}
+			m_Descriptor.bindingTexture2D(Graphic::GetDevice(), Graphic::GetBackBufferCount() + 0, m_TextureBuffer, format);
+			m_Descriptor.bindingTexture2D(Graphic::GetDevice(), Graphic::GetBackBufferCount() + 1, m_MaskBuffer, Graphic::GRAPHIC_FORMAT::A8_UINT);
 
 			auto path = std::string{ Setting::GetDataPath() } + _texturePath;
 			u64 size = FileSystem::GetFileSize(path);
@@ -149,8 +152,8 @@ namespace GameFlow
 
 			if(flag & STARTUP_FLAG_WRITE_MASK)
 			{
-				m_MaskBuffers[Graphic::GetBackBufferIndex()].translationBarrier(commandList, Graphic::BARRIER_STATE::RENDER_TARGET);
-				commandList.setRenderTargets(m_MaskDescriptor.getCpuHandle(Graphic::GetBackBufferIndex()), 1);
+				m_MaskBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::RENDER_TARGET);
+				commandList.setRenderTargets(m_MaskDescriptor.getCpuHandle(0), 1);
 			}
 
 			commandList.setRootSignature(m_RootSignature);
@@ -161,10 +164,10 @@ namespace GameFlow
 			commandList.setDescriptor(0, m_Descriptor);
 			commandList.registDescriptors(1, 0);
 			commandList.setDescriptorTable(0, m_Descriptor, Graphic::GetBackBufferIndex());
-			commandList.setDescriptorTable(1, m_Descriptor, Graphic::GetBackBufferCount() * 2);
+			commandList.setDescriptorTable(1, m_Descriptor, Graphic::GetBackBufferCount() + 0);
 			if (!(flag & STARTUP_FLAG_WRITE_MASK))
 			{
-				commandList.setDescriptorTable(2, m_Descriptor, Graphic::GetBackBufferCount() + Graphic::GetBackBufferIndex());
+				commandList.setDescriptorTable(2, m_Descriptor, Graphic::GetBackBufferCount() + 1);
 			}
 
 			Graphic::VertexBufferView vertexBufferView;
@@ -179,7 +182,7 @@ namespace GameFlow
 
 			if (flag & STARTUP_FLAG_WRITE_MASK)
 			{
-				m_MaskBuffers[Graphic::GetBackBufferIndex()].translationBarrier(commandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
+				m_MaskBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 				commandList.setRenderTargets(Graphic::GetBackBufferDescriptor().getCpuHandle(Graphic::GetBackBufferIndex()), 1);
 			}
 
@@ -192,7 +195,7 @@ namespace GameFlow
 		struct Constant
 		{
 			Vec4 m_Position{};
-			Color m_Color{ CANDY_COLOR_RGB32(0xff, 0xff, 0xff) };
+			Color m_Color{ GetColorRGB32(0xff, 0xff, 0xff) };
 			Vec4 pad[14];
 		}m_Constant;
 	private:
@@ -208,19 +211,16 @@ namespace GameFlow
 	TextureView m_TextureViews[4];
 }
 
+// 初期化
 void GameFlow::Startup()
 {
 	Input::Startup();
 
 	Graphic::BufferStartupInfo bufferStartupInfo;
 	bufferStartupInfo.setRenderTargetStartupInfo(Graphic::GRAPHIC_FORMAT::A8_UINT, Graphic::GetScreenWidth(), Graphic::GetScreenHeight());
-	m_MaskDescriptor.startup(Graphic::GetDevice(), Graphic::DESCRIPTOR_TYPE::RENDER_TARGET, Graphic::GetBackBufferCount());
-	m_MaskBuffers.resize(Graphic::GetBackBufferCount());
-	for (s32 i = 0; i < Graphic::GetBackBufferCount(); ++i)
-	{
-		m_MaskBuffers[i].startup(Graphic::GetDevice(), bufferStartupInfo);
-		m_MaskDescriptor.bindingRenderTarget(Graphic::GetDevice(), i, m_MaskBuffers[i], Graphic::GRAPHIC_FORMAT::A8_UINT);
-	}
+	m_MaskDescriptor.startup(Graphic::GetDevice(), Graphic::DESCRIPTOR_TYPE::RENDER_TARGET, 1);
+	m_MaskBuffer.startup(Graphic::GetDevice(), bufferStartupInfo);
+	m_MaskDescriptor.bindingRenderTarget(Graphic::GetDevice(), 0, m_MaskBuffer, Graphic::GRAPHIC_FORMAT::A8_UINT);
 
 	m_TextureViews[0].startup(R"(Texture\forest.dds)", 512, 256, Vec4{ 8.0f * 9 / 16, 4.0f * 9 / 16, 1.0f }, TextureView::STARTUP_FLAG_NONE);
 	m_TextureViews[1].startup(R"(Texture\house.dds)", 256, 256, Vec4{ 2.0f,2.0f,1.0f }, TextureView::STARTUP_FLAG_NONE);
@@ -232,19 +232,34 @@ void GameFlow::Startup()
 	//Sound::CallSe("TestBgm.wav", Sound::CALL_SE_FLAG_LOOP);
 }
 
+// 破棄
 void GameFlow::Cleanup()
 {
 	for (auto& textureView : m_TextureViews)textureView.cleanup();
 	Input::Cleanup();
 }
 
+// 更新
 void GameFlow::Update()
 {
 	Input::Update();
 
-	char playerPosString[256]{};
-	sprintf_s(playerPosString, "PlayerPos [x:%.2f, y:%.2f]", m_TextureViews[2].m_Constant.m_Position.m_f32.x, m_TextureViews[2].m_Constant.m_Position.m_f32.y);
-	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, playerPosString);
+	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, "PlayerPos[x:%.2f y:%.2f]", m_TextureViews[2].m_Constant.m_Position.m_f32.x, m_TextureViews[2].m_Constant.m_Position.m_f32.y);
+	DebugDraw::DrawString(Vec4{ 100, 120, 0 }, "test");
+	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "AABBあいうえお");
+
+	if (Input::IsKeyTrigger('P'))
+	{
+		CANDY_LOG("PPPP");
+	}
+	if (Input::IsKeyTrigger('O'))
+	{
+		CANDY_LOG_ERR("OOOO");
+	}
+	if (Input::IsKeyTrigger('I'))
+	{
+		CANDY_LOG_WARN("IIII");
+	}
 
 	constexpr f32 speed = 0.3f;
 	static bool isLanding = true;
@@ -313,24 +328,24 @@ void GameFlow::Update()
 		f32 height = static_cast<f32>(Graphic::GetScreenHeight());
 		Vec4 mousePos = Input::GetClientMousePos();
 		rect.setSize(mousePos.m_f32.x / width * 2.0f - 1.0f, mousePos.m_f32.y / height * -2.0f + 1.0f, 0.1f, 0.1f);
-		Model::Primitive::AddRect2D(rect, CANDY_COLOR_RGB32(0xff, 0xff, 0x00));
+		Model::Primitive::AddRect2D(rect, GetColorRGB32(0xff, 0xff, 0x00));
 	}
 }
 
+// 描画
 void GameFlow::Draw()
 {
 	auto& commandList = Graphic::GetCommandList();
-	const s32 backBufferindex = Graphic::GetBackBufferIndex();
-	m_MaskBuffers[backBufferindex].translationBarrier(commandList, Graphic::BARRIER_STATE::RENDER_TARGET);
-	commandList.clearRenderTarget(m_MaskDescriptor.getCpuHandle(backBufferindex), CANDY_COLOR_RGBA32(0x00, 0x00, 0x00, 0x00));
-	m_MaskBuffers[backBufferindex].translationBarrier(commandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
+	m_MaskBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::RENDER_TARGET);
+	commandList.clearRenderTarget(m_MaskDescriptor.getCpuHandle(0), GetColorRGBA32(0x00, 0x00, 0x00, 0x00));
+	m_MaskBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 
 	for (auto& textureView : m_TextureViews)
 	{
 		textureView.draw();
 	}
 
-	Graphic::ResourceManager::Regist(m_MaskBuffers[Graphic::GetBackBufferIndex()]);
+	Graphic::ResourceManager::Regist(m_MaskBuffer);
 }
 
 CANDY_NAMESPACE_END

@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   BaseShader.h
+ * \brief  シェーダーのベース
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #ifndef CANDY_BASE_SHADER_H
 #define CANDY_BASE_SHADER_H
 
@@ -12,7 +19,9 @@ namespace Shader
 	class BaseShader : public BaseShaderImpl
 	{
 	public:
+		// 初期化
 		void startup(std::byte* const _buf, const u64 _size);
+		// 破棄
 		void cleanup();
 	};
 }

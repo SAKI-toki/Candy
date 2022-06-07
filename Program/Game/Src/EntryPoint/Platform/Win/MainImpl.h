@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   MainImpl.h
+ * \brief  エントリーポイントの実装部(Win)
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #ifndef CANDY_MAIN_IMPL_H
 #define CANDY_MAIN_IMPL_H
 
@@ -13,11 +20,13 @@ _In_ int _nShowCmd)
 #define ENTRY_POINT_CLEANUP() candy::entryPointCleanup(_hInstance, _hPrevInstance, _lpCmdLine, _nShowCmd)
 #define RETURN_ENTRY_POINT() return 0
 
+// エントリーポイント直後の初期化
 void entryPointStartup(_In_ HINSTANCE _instanceHandle,
 	_In_opt_ HINSTANCE _prevInstanceHandle,
 	_In_ LPSTR _cmdLineStr,
 	_In_ int _cmdShowNum);
 
+// エントリーポイント終了直前の破棄
 void entryPointCleanup(_In_ HINSTANCE _instanceHandle,
 	_In_opt_ HINSTANCE _prevInstanceHandle,
 	_In_ LPSTR _cmdLineStr,

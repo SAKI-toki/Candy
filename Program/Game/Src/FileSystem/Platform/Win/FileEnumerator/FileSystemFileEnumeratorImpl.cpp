@@ -1,6 +1,12 @@
+/*****************************************************************//**
+ * \file   FileSystemFileEnumeratorImpl.cpp
+ * \brief  ファイルシステムのファイル列挙の実装部(Win)
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #include "FileSystemFileEnumeratorImpl.h"
 
-#include <strsafe.h>
 CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem

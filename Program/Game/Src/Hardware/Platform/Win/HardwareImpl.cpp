@@ -1,18 +1,33 @@
+/*****************************************************************//**
+ * \file   HardwareImpl.cpp
+ * \brief  ハードウェアの実装部(Win)
+ * \author Yu Ishiyama.
+ * \date   2022/06/01
+ *********************************************************************/
+
 #include "HardwareImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 
 namespace Hardware::Impl
 {
+	// ウィンドウプロシージャ
 	LRESULT CALLBACK WndProc(HWND _hwnd, UINT _message, WPARAM _wparam, LPARAM _lparam);
 	HWND m_Hwnd;
 	bool m_IsClose = false;
 }
 
-
-
+// 初期化
 void Hardware::Impl::Startup(const StartupInfo& _startupInfo)
 {
+	if (!AttachConsole(ATTACH_PARENT_PROCESS))
+	{
+		AllocConsole();
+	}
+	freopen("CONIN$", "r", stdin);
+	freopen("CONOUT$", "w", stdout);
+	freopen("CONOUT$", "w", stderr);
+
 	WNDCLASSEX wndClass{};
 	wndClass.cbSize = sizeof(WNDCLASSEX);
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -35,11 +50,13 @@ void Hardware::Impl::Startup(const StartupInfo& _startupInfo)
 	::UpdateWindow(m_Hwnd);
 }
 
+// 破棄
 void Hardware::Impl::Cleanup()
 {
-
+	FreeConsole();
 }
 
+// 更新
 void Hardware::Impl::Update()
 {
 	MSG msg{ 0 };
@@ -51,16 +68,19 @@ void Hardware::Impl::Update()
 	if (msg.message == WM_QUIT)m_IsClose = true;
 }
 
+// 閉じたか
 bool Hardware::Impl::IsClose()
 {
 	return m_IsClose;
 }
 
+// ウィンドウハンドラの取得
 HWND Hardware::Impl::GetHwnd()
 {
 	return m_Hwnd;
 }
 
+// ウィンドウプロシージャ
 LRESULT CALLBACK Hardware::Impl::WndProc(HWND _hwnd, UINT _message, WPARAM _wparam, LPARAM _lparam)
 {
 	switch (_message)

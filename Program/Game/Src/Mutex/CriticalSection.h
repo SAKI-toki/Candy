@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   CriticalSection.h
+ * \brief  クリティカルセクション
+ * \author Yu Ishiyama.
+ * \date   2022/06/02
+ *********************************************************************/
+
 #ifndef CANDY_CRITICAL_SECTION_H
 #define CANDY_CRITICAL_SECTION_H
 
@@ -13,9 +20,13 @@ public:
 
 	DEFAULT_CONSTRUCTOR_DESTRUCTOR_DELETE_COPY_MOVE(CriticalSection);
 
+	// 初期化
 	void startup();
+	// 破棄
 	void cleanup();
+	// 開始
 	void enter();
+	// 終了
 	void leave();
 };
 

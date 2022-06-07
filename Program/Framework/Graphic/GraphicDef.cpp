@@ -4,7 +4,7 @@ CANDY_NAMESPACE_BEGIN
 
 s32 Graphic::GetBackBufferCount()
 {
-	return 3;
+	return 2;
 }
 
 s32 Graphic::GetScreenWidth()

@@ -223,9 +223,6 @@
     <Filter Include="Src\Platform\Win">
       <UniqueIdentifier>{d01fb814-542f-4b35-9b27-a091cf87a53a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\FileSystem\Path">
-      <UniqueIdentifier>{52f2c8d0-77f8-43fe-88fc-0ce3dc4d7898}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Input\Platform\Win\Keyboard">
       <UniqueIdentifier>{ec9de8fe-7270-4995-b128-4230dd02b7c5}</UniqueIdentifier>
     </Filter>
@@ -305,9 +302,6 @@
     </ClInclude>
     <ClInclude Include="..\..\Game\Src\FileSystem\FileInfo\FileSystemFileInfo.h">
       <Filter>Src\FileSystem\FileInfo</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Game\Src\FileSystem\Path\FileSystemPath.h">
-      <Filter>Src\FileSystem\Path</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Game\Src\FileSystem\Platform\Win\FileEnumerator\FileSystemFileEnumeratorImpl.h">
       <Filter>Src\FileSystem\Platform\Win\FileEnumerator</Filter>
@@ -408,7 +402,7 @@
     <ClInclude Include="..\..\Game\Src\Texture\Texture.h">
       <Filter>Src\Texture</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Game\Src\Thread\Platform\Win\ThreadHandle.h">
+    <ClInclude Include="..\..\Game\Src\Thread\Platform\Win\ThreadHandleImpl.h">
       <Filter>Src\Thread\Platform\Win</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Game\Src\Thread\Platform\Win\ThreadSystemImpl.h">
@@ -510,6 +504,9 @@
     <ClInclude Include="..\..\Game\Src\Utility\Platform\Win\StringSystem\Convert\StringSystemConvertImpl.h">
       <Filter>Src\Utility\Platform\Win\StringSystem\Convert</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Thread\ThreadHandle.h">
+      <Filter>Src\Thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Game\Src\Debug\Assert\Platform\Win\AssertImpl.cpp">
@@ -550,9 +547,6 @@
     </ClCompile>
     <ClCompile Include="..\..\Game\Src\FileSystem\FileInfo\FileSystemFileInfo.cpp">
       <Filter>Src\FileSystem\FileInfo</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\Game\Src\FileSystem\Path\FileSystemPath.cpp">
-      <Filter>Src\FileSystem\Path</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Game\Src\FileSystem\Platform\Win\FileEnumerator\FileSystemFileEnumeratorImpl.cpp">
       <Filter>Src\FileSystem\Platform\Win\FileEnumerator</Filter>
@@ -665,7 +659,7 @@
     <ClCompile Include="..\..\Game\Src\Texture\Texture.cpp">
       <Filter>Src\Texture</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Game\Src\Thread\Platform\Win\ThreadHandle.cpp">
+    <ClCompile Include="..\..\Game\Src\Thread\Platform\Win\ThreadHandleImpl.cpp">
       <Filter>Src\Thread\Platform\Win</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Game\Src\Thread\Platform\Win\ThreadSystemImpl.cpp">
@@ -742,6 +736,15 @@
     </ClCompile>
     <ClCompile Include="..\..\Game\Src\Utility\Platform\Win\StringSystem\Convert\StringSystemConvertImpl.cpp">
       <Filter>Src\Utility\Platform\Win\StringSystem\Convert</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Color\ConvColor.cpp">
+      <Filter>Src\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Color\__ColorCpp.cpp">
+      <Filter>Src\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Thread\ThreadHandle.cpp">
+      <Filter>Src\Thread</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

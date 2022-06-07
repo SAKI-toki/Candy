@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   Shader.cpp
+ * \brief  シェーダー
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #include "Shader.h"
 #include <FileSystem/FileSystem.h>
 
@@ -10,6 +17,7 @@ namespace Shader
 	std::vector<PixelShader> m_PixelShaders;
 }
 
+// 初期化
 void Shader::Startup()
 {
 	std::string baseShaderPath = Setting::GetDataPath() + std::string{ R"(Shader\)" };
@@ -40,6 +48,7 @@ void Shader::Startup()
 	}
 }
 
+// 破棄
 void Shader::Cleanup()
 {
 	for (auto& vertexShader : m_VertexShaders)vertexShader.cleanup();
@@ -50,11 +59,13 @@ void Shader::Cleanup()
 	m_ShaderBuffers.clear();
 }
 
+// バーテックスシェーダーの取得
 const Shader::VertexShader& Shader::GetVertexShader(const SHADER_TYPE _shaderType)
 {
 	return m_VertexShaders[static_cast<s32>(_shaderType)];
 }
 
+// ピクセルシェーダーの取得
 const Shader::PixelShader& Shader::GetPixelShader(const SHADER_TYPE _shaderType)
 {
 	return m_PixelShaders[static_cast<s32>(_shaderType)];

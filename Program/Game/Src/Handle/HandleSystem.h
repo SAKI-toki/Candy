@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   HandleSystem.h
+ * \brief  ハンドラシステム
+ * \author Yu Ishiyama.
+ * \date   2022/06/01
+ *********************************************************************/
+
 #ifndef CANDY_HANDLE_SYSTEM_H
 #define CANDY_HANDLE_SYSTEM_H
 
@@ -6,17 +13,23 @@
 
 CANDY_NAMESPACE_BEGIN
 
+// ハンドラシステム
 template<typename T, typename HandleType>
 class HandleSystem
 {
 	using ValuePtrType = T*;
 public:
+	// 初期化
 	void startup();
+	// 破棄
 	void cleanup();
 
+	// ハンドラの生成
 	HandleType createHandle(ValuePtrType _valuePtr);
+	// ハンドラの解放
 	void releaseHandle(HandleType handle);
 
+	// ハンドラからポインタの取得
 	ValuePtrType getPtr(HandleType handle)const;
 
 private:

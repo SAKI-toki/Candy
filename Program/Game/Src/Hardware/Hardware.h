@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   Hardware.h
+ * \brief  ハードウェア
+ * \author Yu Ishiyama.
+ * \date   2022/06/01
+ *********************************************************************/
+
 #ifndef CANDY_HARDWARE_H
 #define CANDY_HARDWARE_H
 
@@ -14,11 +21,14 @@ namespace Hardware
 
 	};
 
+	// 初期化
 	void Startup(const StartupInfo& _startupInfo);
+	// 破棄
 	void Cleanup();
-
+	// 更新
 	void Update();
 
+	// 閉じたか
 	bool IsClose();
 }
 

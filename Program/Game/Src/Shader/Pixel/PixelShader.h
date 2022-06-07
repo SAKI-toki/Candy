@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   PixelShader.h
+ * \brief  ピクセルシェーダー
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #ifndef CANDY_PIXEL_SHADER_H
 #define CANDY_PIXEL_SHADER_H
 

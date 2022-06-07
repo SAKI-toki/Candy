@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   PlatformImpl.h
+ * \brief  プラットフォーム定義の実装部(Win)
+ * \author Yu Ishiyama.
+ * \date   2022/06/02
+ *********************************************************************/
+
 #ifndef CANDY_PLATFORM_IMPL_H
 #define CANDY_PLATFORM_IMPL_H
 

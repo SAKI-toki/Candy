@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   Font.cpp
+ * \brief  フォント
+ * \author Yu Ishiyama.
+ * \date   2022/06/01
+ *********************************************************************/
+
 #include "Font.h"
 #include <Graphic/Graphic.h>
 #include <FileSystem/FileSystem.h>
@@ -30,24 +37,29 @@ namespace Font
 	};
 	std::vector<FontData> m_FontDatas;
 
+	// フォントの読み込み
 	void LoadFont(const std::string& _fontName);
 }
 
+// 初期化
 void Font::Startup()
 {
 	for (auto fontName : FontFileNames)LoadFont(fontName);
 }
 
+// 破棄
 void Font::Cleanup()
 {
 	m_FontDatas.clear();
 }
 
+// フォントテクスチャバッファの取得
 Graphic::Buffer& Font::GetFontTextureBuffer(const FONT_TYPE _fontType)
 {
 	return m_FontDatas[(s32)_fontType].m_TextureBuffer;
 }
 
+// フォントのUVの取得
 Rect Font::GetFontUv(const FONT_TYPE _fontType, const u32 _c)
 {
 	if (!m_FontDatas[(s32)_fontType].m_Uvs.contains(_c))
@@ -58,6 +70,7 @@ Rect Font::GetFontUv(const FONT_TYPE _fontType, const u32 _c)
 	return m_FontDatas[(s32)_fontType].m_Uvs[_c].m_Rect;
 }
 
+// フォントの読み込み
 void Font::LoadFont(const std::string& _fontName)
 {
 	const std::string binPath = Setting::GetDataPath() + std::string{ R"(\Font\)"} + _fontName + ".bin";

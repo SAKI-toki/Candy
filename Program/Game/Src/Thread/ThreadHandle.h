@@ -1,20 +1,22 @@
 #ifndef CANDY_THREAD_HANDLE_H
 #define CANDY_THREAD_HANDLE_H
 
+#include "ThreadDef.h"
+
+#if PLATFORM_WIN
+#include "Platform/Win/ThreadHandleImpl.h"
+#endif // PLATFORM_WIN
+
 CANDY_NAMESPACE_BEGIN
 
-class ThreadHandle
+class ThreadHandle : public ThreadHandleImpl
 {
 public:
+	// ï¬Ç∂ÇÈ
 	void Close();
-	void setHandle(const HANDLE _handle);
-	HANDLE getHandle()const;
-
+	// î‰ärä÷êîåQ
 	bool operator==(const ThreadHandle& _other)const;
 	bool operator!=(const ThreadHandle& _other)const;
-
-private:
-	HANDLE m_Handle{};
 };
 
 CANDY_NAMESPACE_END

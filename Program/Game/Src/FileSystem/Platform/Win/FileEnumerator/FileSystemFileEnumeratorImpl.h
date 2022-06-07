@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   FileSystemFileEnumeratorImpl.h
+ * \brief  ファイルシステムのファイル列挙の実装部(Win)
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #ifndef CANDY_FILE_SYSTEM_FILE_ENUMERATOR_IMPL_H
 #define CANDY_FILE_SYSTEM_FILE_ENUMERATOR_IMPL_H
 

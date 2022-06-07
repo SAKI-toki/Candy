@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   Input.cpp
+ * \brief  “ü—Í
+ * \author Yu Ishiyama.
+ * \date   2022/06/01
+ *********************************************************************/
+
 #include "Input.h"
 #include "Keyboard/InputKeyboard.h"
 #include "Mouse/InputMouse.h"

@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   StaticVector.inl
+ * \brief  ŒÅ’è’·”z—ñvector
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #include "StaticVector.h"
 
 CANDY_NAMESPACE_BEGIN

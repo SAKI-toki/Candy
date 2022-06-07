@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   Texture.cpp
+ * \brief  テクスチャ
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #include "Texture.h"
 #include <Graphic/Graphic.h>
 #include <Graphic/CommandList/GraphicCommandList.h>
@@ -19,12 +26,14 @@ namespace Texture
 	Graphic::CommandList m_CommandList;
 }
 
+// 初期化
 void Texture::Startup()
 {
 	m_CommandList.startup(Graphic::GetDevice(), Graphic::COMMAND_LIST_TYPE::RENDERING, Graphic::GetBackBufferCount());
 	m_CommandList.close();
 }
 
+// 破棄
 void Texture::Cleanup()
 {
 	m_UploadBufferInfos.clear();
@@ -32,6 +41,7 @@ void Texture::Cleanup()
 	m_CommandList.cleanup();
 }
 
+// アップロードテクスチャの実行
 void Texture::ExecuteUploadTexture(const Graphic::CommandQueue& _commandQueue)
 {
 	if (m_UploadBufferInfos.empty())return;
@@ -45,6 +55,7 @@ void Texture::ExecuteUploadTexture(const Graphic::CommandQueue& _commandQueue)
 	_commandQueue.executeCommandList(m_CommandList);
 }
 
+// テクスチャの作成
 void Texture::CreateTexture(Graphic::Buffer& _buffer, const std::byte* const _pixels, const u64 _size)
 {
 	Graphic::Buffer uploaderBuffer;

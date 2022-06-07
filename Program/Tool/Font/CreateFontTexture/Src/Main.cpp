@@ -52,7 +52,7 @@ void App(int _argc, char* _argv[])
 	stbtt_fontinfo fontinfo;
 	stbtt_InitFont(&fontinfo, pData, stbtt_GetFontOffsetForIndex(pData, 0));
 
-	float font_scale = stbtt_ScaleForPixelHeight(&fontinfo, 20.0f);
+	float font_scale = stbtt_ScaleForPixelHeight(&fontinfo, 32.0f);
 
 	int ascent_int, descent_int, line_gap_int;
 	stbtt_GetFontVMetrics(&fontinfo, &ascent_int, &descent_int, &line_gap_int);

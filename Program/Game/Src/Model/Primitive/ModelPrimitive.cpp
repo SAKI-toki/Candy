@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   ModelPrimitive.cpp
+ * \brief  ƒvƒŠƒ~ƒeƒBƒuƒ‚ƒfƒ‹
+ * \author Yu Ishiyama.
+ * \date   2022/06/01
+ *********************************************************************/
+
 #include "ModelPrimitive.h"
 #include <Graphic/Graphic.h>
 #include <Graphic/Buffer/GraphicBuffer.h>
@@ -22,6 +29,7 @@ namespace Model
 		std::vector<u16> m_Indices2D;
 	}
 
+	// ‰Šú‰»
 	void Primitive::Startup()
 	{
 		Graphic::RootSignatureStartupInfo rootSignatureStartupInfo2D;
@@ -59,6 +67,7 @@ namespace Model
 		m_Indices2D.reserve(0x10000);
 	}
 
+	// ”jŠü
 	void Primitive::Cleanup()
 	{
 		m_Indices2D.clear();
@@ -71,6 +80,7 @@ namespace Model
 		m_RootSignature2D.cleanup();
 	}
 
+	// •`‰æ
 	void Primitive::Draw(Graphic::CommandList& _commandList)
 	{
 		if (m_VertexInfos2D.empty() || m_Indices2D.empty())return;
@@ -99,6 +109,7 @@ namespace Model
 		m_Indices2D.clear();
 	}
 
+	// 2DŽOŠpŒ`‚Ì•`‰æ“o˜^
 	void Primitive::AddTriangle2D(const Vec4 _pos, const Color _color)
 	{
 		AddTriangle2D(
@@ -122,6 +133,7 @@ namespace Model
 		Add2D(_vertices, 3, indices, 3);
 	}
 
+	// 2D‹éŒ`‚Ì•`‰æ“o˜^
 	void Primitive::AddRect2D(const Vec4 _pos, const Color _color)
 	{
 		AddRect2D(
@@ -162,6 +174,7 @@ namespace Model
 		Add2D(_vertices, 4, indices, 6);
 	}
 
+	// 2D‚Ì•`‰æ“o˜^
 	void Primitive::Add2D(const VertexInfo* const _vertices, const s32 _vertexCount, const u16* const _indices, const s32 _indexCount)
 	{
 		if (m_VertexInfos2D.size() + _vertexCount >= 0x10000)

@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   ReadDDS.cpp
+ * \brief  DDS‚Ì“Ç‚İ‚İ
+ * \author Yu Ishiyama.
+ * \date   2022/06/03
+ *********************************************************************/
+
 #include "ReadDDS.h"
 
 CANDY_NAMESPACE_BEGIN
@@ -36,6 +43,7 @@ namespace Texture
         static_assert(HeaderSize == 128);
 	}
 
+    // ƒƒ‚ƒŠŠm•Û‚µ‚Â‚Â“Ç‚İ‚İ
     std::byte* DDS::ReadAlloc(const std::byte* const _bytes, const u64 _byteSize)
 	{
         if (_byteSize < HeaderSize)

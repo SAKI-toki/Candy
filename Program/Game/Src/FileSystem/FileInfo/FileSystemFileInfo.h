@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   FileSystemFileInfo.h
+ * \brief  ファイルシステムのファイル情報
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #ifndef CANDY_FILE_SYSTEM_FILE_INFO_H
 #define CANDY_FILE_SYSTEM_FILE_INFO_H
 
@@ -12,18 +19,21 @@ namespace FileSystem
 	class FileInfo : public FileInfoImpl
 	{
 	public:
+		// 初期化
 		void startup(const std::string& _path);
+		// 破棄
 		void cleanup();
 
+		// ファイルサイズの取得
 		u64 getSize()const;
+		// ハッシュの取得
 		u64 getHash()const;
 
+		// 比較関数群
 		bool operator==(const FileInfo& _other)const;
 		bool operator!=(const FileInfo& _other)const;
-
 		bool operator==(const u32 _hash)const;
 		bool operator!=(const u32 _hash)const;
-
 		bool operator==(const std::string& _path)const;
 		bool operator!=(const std::string& _path)const;
 

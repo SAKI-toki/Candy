@@ -1,8 +1,8 @@
 /*****************************************************************//**
- * \file   VertexShader.cpp
- * \brief  バーテックスシェーダー
+ * \file   __ColorCpp.cpp
+ * \brief  カラー関連のcppファイル結合
  * \author Yu Ishiyama.
- * \date   2022/06/03
+ * \date   2022/05/31
  *********************************************************************/
 
-#include "VertexShader.h"
+#include "ConvColor.cpp"

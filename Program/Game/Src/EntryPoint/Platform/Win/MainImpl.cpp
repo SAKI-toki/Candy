@@ -1,8 +1,15 @@
+/*****************************************************************//**
+ * \file   MainImpl.cpp
+ * \brief  エントリーポイントの実装部(Win)
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
 #include "MainImpl.h"
 #include <Hardware/Hardware.h>
 
 CANDY_NAMESPACE_BEGIN
 
+// エントリーポイント直後の初期化
 void entryPointStartup(_In_ HINSTANCE _instanceHandle,
 	_In_opt_ HINSTANCE _prevInstanceHandle,
 	_In_ LPSTR _cmdLineStr,
@@ -20,6 +27,7 @@ void entryPointStartup(_In_ HINSTANCE _instanceHandle,
 	Hardware::Startup(hardwareStartupInfo);
 }
 
+// エントリーポイント終了直前の破棄
 void entryPointCleanup(_In_ HINSTANCE _instanceHandle,
 	_In_opt_ HINSTANCE _prevInstanceHandle,
 	_In_ LPSTR _cmdLineStr,

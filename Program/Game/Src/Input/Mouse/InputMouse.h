@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   InputMouse.h
+ * \brief  マウス入力
+ * \author Yu Ishiyama.
+ * \date   2022/06/01
+ *********************************************************************/
+
 #ifndef CANDY_INPUT_MOUSE_H
 #define CANDY_INPUT_MOUSE_H
 
@@ -12,16 +19,23 @@ namespace Input
 	class Mouse : public Impl::MouseImpl
 	{
 	public:
+		// 初期化
 		void startup();
+		// 破棄
 		void cleanup();
-
+		// 更新
 		void update();
 
+		// リセット
 		void reset();
 
+		// PC画面上の位置取得
 		Vec4 getScreenPos()const;
+		// アプリ画面上の位置取得
 		Vec4 getClientPos()const;
+		// PC画面上の1フレ前位置取得
 		Vec4 getPrevScreenPos()const;
+		// アプリ画面上の1フレ前位置取得
 		Vec4 getPrevClientPos()const;
 
 	private:

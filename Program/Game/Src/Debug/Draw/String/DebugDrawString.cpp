@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   DebugDrawString.cpp
+ * \brief  ï∂éöóÒÇÃÉfÉoÉbÉOï`âÊ
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #include "DebugDrawString.h"
 #include <Graphic/Graphic.h>
 #include <Graphic/Buffer/GraphicBuffer.h>
@@ -17,13 +24,15 @@ namespace DebugDraw
 		struct DrawStringInfo
 		{
 			Vec4 m_Pos;
+			Color m_Color;
+			f32 m_Scale;
 			std::wstring m_Wstring;
 		};
 		struct VertexInfo
 		{
 			Vec4 m_Pos;
 			Vec4 m_Uv;
-			Vec4 m_Color;
+			Color m_Color;
 		};
 		std::vector<DrawStringInfo> m_DrawStringInfos;
 		std::vector<Graphic::Buffer> m_VertexBuffers;
@@ -33,10 +42,11 @@ namespace DebugDraw
 		Graphic::RootSignature m_RootSignature;
 		Graphic::Pipeline m_Pipeline;
 
-		constexpr FONT_TYPE DefaultFontType = FONT_TYPE::MINCHO;
+		constexpr FONT_TYPE DefaultFontType = FONT_TYPE::GOTHIC;
 #endif // BUILD_DEBUG
 	}
 
+	// èâä˙âª
 	void String::Startup()
 	{
 #if BUILD_DEBUG
@@ -81,6 +91,7 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
+	// îjä¸
 	void String::Cleanup()
 	{
 #if BUILD_DEBUG
@@ -91,12 +102,14 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
+	// çXêV
 	void String::Update()
 	{
 #if BUILD_DEBUG
 #endif // BUILD_DEBUG
 	}
 
+	// ï`âÊ
 	void String::Draw()
 	{
 #if BUILD_DEBUG
@@ -106,48 +119,57 @@ namespace DebugDraw
 		std::vector<u16> indices;
 		u16 index = 0;
 
+		const f32 screenRate = (f32)Graphic::GetScreenHeight() / (f32)Graphic::GetScreenWidth();
+
 		for (const auto& drawStringInfo : m_DrawStringInfos)
 		{
 			Vec4 pos = drawStringInfo.m_Pos;
-			f32 maxHeight = 0.0f;
+			const f32 heightSize = drawStringInfo.m_Scale / Graphic::GetScreenHeight();
 			for (auto c : drawStringInfo.m_Wstring)
 			{
 				if (c == u'\0')break;
 				if (c == u'\n')
 				{
-					if (maxHeight < FLT_EPSILON && maxHeight > -FLT_EPSILON)maxHeight = -Font::GetFontUv(DefaultFontType, u' ').m_Height;
 					pos.m_f32.x = drawStringInfo.m_Pos.m_f32.x;
-					pos.m_f32.y += maxHeight * 16.0f;
-					maxHeight = 0.0f;
+					pos.m_f32.y += -heightSize * 2.0f;
 					continue;
 				}
 				if (c == u' ')
 				{
-					pos.m_f32.x += Font::GetFontUv(DefaultFontType, '?').m_Width * 9.0f;
+					const Rect rect = Font::GetFontUv(DefaultFontType, '?');
+					pos.m_f32.x += rect.m_Width * (heightSize / rect.m_Height) * screenRate * 2.0f;
 					continue;
 				}
 				if (c == u'Å@')
 				{
-					pos.m_f32.x += Font::GetFontUv(DefaultFontType, u'ÅH').m_Width * 9.0f;
+					const Rect rect = Font::GetFontUv(DefaultFontType, 'ÅH');
+					pos.m_f32.x += rect.m_Width * (heightSize / rect.m_Height) * screenRate * 2.0f;
 					continue;
 				}
-				Rect rect = Font::GetFontUv(DefaultFontType, c);
-				maxHeight = Min(maxHeight, -rect.m_Height);
+				const Rect rect = Font::GetFontUv(DefaultFontType, c);
+
+				const f32 width = rect.m_Width * (heightSize / rect.m_Height) * screenRate * 2.0f;
+				const f32 height = -heightSize * 2.0f;
 
 				VertexInfo vertexInfo1, vertexInfo2, vertexInfo3, vertexInfo4;
 				vertexInfo1.m_Pos = pos;
 				vertexInfo1.m_Uv = Vec4{ rect.m_X, rect.m_Y, 0.0f };
 
-				vertexInfo2.m_Pos = pos + Vec4{ rect.m_Width * 9.0f, 0.0f, 0.0f };
+				vertexInfo2.m_Pos = pos + Vec4{ width, 0.0f, 0.0f };
 				vertexInfo2.m_Uv = Vec4{ rect.m_X + rect.m_Width, rect.m_Y, 0.0f };
 
-				vertexInfo3.m_Pos = pos + Vec4{ 0.0f, -rect.m_Height * 16.0f, 0.0f };
+				vertexInfo3.m_Pos = pos + Vec4{ 0.0f, height, 0.0f };
 				vertexInfo3.m_Uv = Vec4{ rect.m_X, rect.m_Y + rect.m_Height, 0.0f };
 
-				vertexInfo4.m_Pos = pos + Vec4{ rect.m_Width * 9.0f, -rect.m_Height * 16.0f, 0.0f };
+				vertexInfo4.m_Pos = pos + Vec4{ width, height, 0.0f };
 				vertexInfo4.m_Uv = Vec4{ rect.m_X + rect.m_Width, rect.m_Y + rect.m_Height, 0.0f };
 
-				pos.m_f32.x += rect.m_Width * 9.0f;
+				vertexInfo1.m_Color = drawStringInfo.m_Color;
+				vertexInfo2.m_Color = drawStringInfo.m_Color;
+				vertexInfo3.m_Color = drawStringInfo.m_Color;
+				vertexInfo4.m_Color = drawStringInfo.m_Color;
+
+				pos.m_f32.x += width;
 
 				vertexInfos.push_back(vertexInfo1);
 				vertexInfos.push_back(vertexInfo2);
@@ -197,7 +219,31 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
+	// ï`âÊìoò^(à íu)
 	void String::Add(const Vec4 _pos, const std::string& _str)
+	{
+#if BUILD_DEBUG
+		Add(_pos, Color{ 0.0f, 0.0f, 0.0f }, _str);
+#else // BUILD_DEBUG
+		CANDY_UNUSED_VALUE(_pos);
+		CANDY_UNUSED_VALUE(_str);
+#endif // BUILD_DEBUG
+	}
+
+	// ï`âÊìoò^(à íu, êF)
+	void String::Add(const Vec4 _pos, const Color _color, const std::string& _str)
+	{
+#if BUILD_DEBUG
+		Add(_pos, _color, 20.0f, _str);
+#else // BUILD_DEBUG
+		CANDY_UNUSED_VALUE(_pos);
+		CANDY_UNUSED_VALUE(_color);
+		CANDY_UNUSED_VALUE(_str);
+#endif // BUILD_DEBUG
+	}
+
+	// ï`âÊìoò^(à íu, êF, ÉTÉCÉY)
+	void String::Add(const Vec4 _pos, const Color _color, const f32 _scale, const std::string& _str)
 	{
 #if BUILD_DEBUG
 		DrawStringInfo drawStringInfo;
@@ -205,9 +251,14 @@ namespace DebugDraw
 		const auto screenHeight = Graphic::GetScreenHeight();
 		drawStringInfo.m_Pos.m_f32.x = (std::abs(_pos.m_f32.x / screenWidth * 2.0f) - 1.0f) * (_pos.m_f32.x >= 0.0f ? 1.0f : -1.0f);
 		drawStringInfo.m_Pos.m_f32.y = (std::abs(_pos.m_f32.y / screenHeight * 2.0f) - 1.0f) * (_pos.m_f32.y >= 0.0f ? -1.0f : 1.0f);
+		drawStringInfo.m_Color = _color;
+		drawStringInfo.m_Scale = _scale;
 		drawStringInfo.m_Wstring = StringSystem::ConvertMultiByteToWideCharSJIS(_str);
 		m_DrawStringInfos.push_back(drawStringInfo);
 #else // BUILD_DEBUG
+		CANDY_UNUSED_VALUE(_pos);
+		CANDY_UNUSED_VALUE(_color);
+		CANDY_UNUSED_VALUE(_scale);
 		CANDY_UNUSED_VALUE(_str);
 #endif // BUILD_DEBUG
 	}

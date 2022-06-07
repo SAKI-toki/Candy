@@ -1,7 +1,15 @@
+/*****************************************************************//**
+ * \file   AssertImpl.cpp
+ * \brief  アサートの実装部(Win)
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #include "AssertImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 
+// アサートの実装部
 void assertImpl(const char* const _expr, const char* const _fileName, const u32 _lineNo, const char* const _funcName)
 {
 	std::string assertMessage;

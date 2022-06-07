@@ -1,3 +1,10 @@
+/*****************************************************************//**
+ * \file   __InputCpp.cpp
+ * \brief  入力関連のcppファイル結合
+ * \author Yu Ishiyama.
+ * \date   2022/05/31
+ *********************************************************************/
+
 #include "Input.cpp"
 #include "Keyboard/InputKeyboard.cpp"
 #include "Mouse/InputMouse.cpp"

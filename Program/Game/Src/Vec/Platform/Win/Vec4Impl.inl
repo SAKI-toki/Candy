@@ -1,4 +1,4 @@
-#include "Vec4Impl.h"
+﻿#include "Vec4Impl.h"
 
 CANDY_NAMESPACE_BEGIN
 

@@ -1,4 +1,4 @@
-#ifndef CANDY_SOUND_IMPL_H
+﻿#ifndef CANDY_SOUND_IMPL_H
 #define CANDY_SOUND_IMPL_H
 
 #include <Sound/SoundDef.h>

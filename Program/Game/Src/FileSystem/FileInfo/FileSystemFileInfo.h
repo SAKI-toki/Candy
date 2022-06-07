@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystemFileInfo.h
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìƒtƒ@ƒCƒ‹î•ñ
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -19,17 +19,17 @@ namespace FileSystem
 	class FileInfo : public FileInfoImpl
 	{
 	public:
-		// ‰Šú‰»
+		// åˆæœŸåŒ–
 		void startup(const std::string& _path);
-		// ”jŠü
+		// ç ´æ£„
 		void cleanup();
 
-		// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìæ“¾
+		// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®å–å¾—
 		u64 getSize()const;
-		// ƒnƒbƒVƒ…‚Ìæ“¾
+		// ãƒãƒƒã‚·ãƒ¥ã®å–å¾—
 		u64 getHash()const;
 
-		// ”äŠrŠÖ”ŒQ
+		// æ¯”è¼ƒé–¢æ•°ç¾¤
 		bool operator==(const FileInfo& _other)const;
 		bool operator!=(const FileInfo& _other)const;
 		bool operator==(const u32 _hash)const;

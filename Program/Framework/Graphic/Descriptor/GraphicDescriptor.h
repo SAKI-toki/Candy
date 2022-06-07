@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_DESCRIPTOR_H
+﻿#ifndef CANDY_GRAPHIC_DESCRIPTOR_H
 #define CANDY_GRAPHIC_DESCRIPTOR_H
 
 #include <Graphic/GraphicDef.h>

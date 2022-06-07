@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystemFileInfoImpl.cpp
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìƒtƒ@ƒCƒ‹î•ñ(Win)
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±(Win)
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -11,7 +11,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	// ƒ}ƒEƒ“ƒg
+	// ãƒã‚¦ãƒ³ãƒˆ
 	bool FileInfoImpl::mount(const std::string& _path)
 	{
 		m_FileHandle = ::CreateFile(_path.c_str(), GENERIC_READ, FILE_SHARE_READ,
@@ -20,19 +20,19 @@ namespace FileSystem
 		return m_FileHandle != INVALID_HANDLE_VALUE;
 	}
 
-	// ƒtƒ@ƒCƒ‹‚ğ•Â‚¶‚é
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‰ã˜ã‚‹
 	void FileInfoImpl::close()
 	{
 		::CloseHandle(m_FileHandle);
 	}
 
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìæ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®å–å¾—
 	u64 FileInfoImpl::getSize()const
 	{
 		return static_cast<u64>(::GetFileSize(m_FileHandle, nullptr));
 	}
 
-	// ƒtƒ@ƒCƒ‹ƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	HANDLE FileInfoImpl::getHandle()const
 	{
 		return m_FileHandle;

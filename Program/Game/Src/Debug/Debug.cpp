@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Debug.cpp
- * \brief  ƒfƒoƒbƒOŠÖ˜A
+ * \brief  ãƒ‡ãƒãƒƒã‚°é–¢é€£
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -17,7 +17,7 @@ namespace Debug
 #endif // BUILD_DEBUG
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Debug::Startup()
 {
 #if BUILD_DEBUG
@@ -25,7 +25,7 @@ void Debug::Startup()
 #endif // BUILD_DEBUG
 }
 
-// ”jŠü
+// ç ´æ£„
 void Debug::Cleanup()
 {
 #if BUILD_DEBUG
@@ -33,7 +33,7 @@ void Debug::Cleanup()
 #endif // BUILD_DEBUG
 }
 
-// XV
+// æ›´æ–°
 void Debug::Update()
 {
 #if BUILD_DEBUG
@@ -41,7 +41,7 @@ void Debug::Update()
 #endif // BUILD_DEBUG
 }
 
-// •`‰æ
+// æç”»
 void Debug::Draw()
 {
 #if BUILD_DEBUG

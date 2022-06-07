@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   AssertImpl.h
- * \brief  ƒAƒT[ƒg‚ÌÀ‘••”
+ * \brief  ã‚¢ã‚µãƒ¼ãƒˆã®å®Ÿè£…éƒ¨
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -10,7 +10,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ƒAƒT[ƒg‚ÌÀ‘••”
+// ã‚¢ã‚µãƒ¼ãƒˆã®å®Ÿè£…éƒ¨
 void assertImpl(const char* const _expr, const char* const _fileName, const u32 _lineNo, const char* const _funcName);
 
 CANDY_NAMESPACE_END

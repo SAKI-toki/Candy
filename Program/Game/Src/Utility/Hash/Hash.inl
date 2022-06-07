@@ -1,4 +1,4 @@
-#include "Hash.h"
+ï»¿#include "Hash.h"
 
 #include <Utility/StringSystem/StringSystem.h>
 
@@ -41,7 +41,7 @@ inline u32 Fnv::Hash32(const char* const _str, const s32 _length)
 {
 	if (_length <= 0)
 	{
-		CANDY_LOG("ƒTƒCƒY0‚Ì•¶Žš—ñ‚ÌƒnƒbƒVƒ…’l‚ðŽæ“¾‚µ‚æ‚¤‚Æ‚µ‚½");
+		CANDY_LOG("ã‚µã‚¤ã‚º0ã®æ–‡å­—åˆ—ã®ãƒãƒƒã‚·ãƒ¥å€¤ã‚’å–å¾—ã—ã‚ˆã†ã¨ã—ãŸ");
 		return 0;
 	}
 	return Impl::Hash32Impl(_str, _length);
@@ -61,7 +61,7 @@ inline u32 Fnv::Hash32Low(const char* const _str, const s32 _length)
 {
 	if (_length <= 0)
 	{
-		CANDY_LOG("ƒTƒCƒY0‚Ì•¶Žš—ñ‚ÌƒnƒbƒVƒ…’l‚ðŽæ“¾‚µ‚æ‚¤‚Æ‚µ‚½");
+		CANDY_LOG("ã‚µã‚¤ã‚º0ã®æ–‡å­—åˆ—ã®ãƒãƒƒã‚·ãƒ¥å€¤ã‚’å–å¾—ã—ã‚ˆã†ã¨ã—ãŸ");
 		return 0;
 	}
 	return Impl::Hash32LowImpl(_str, _length);

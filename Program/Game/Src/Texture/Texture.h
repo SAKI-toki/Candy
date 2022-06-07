@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Texture.h
- * \brief  ƒeƒNƒXƒ`ƒƒ
+ * \brief  ãƒ†ã‚¯ã‚¹ãƒãƒ£
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -18,14 +18,14 @@ namespace Graphic
 
 namespace Texture
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Startup();
-	// ”jŠü
+	// ç ´æ£„
 	void Cleanup();
 
-	// ƒAƒbƒvƒ[ƒhƒeƒNƒXƒ`ƒƒ‚ÌÀs
+	// ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å®Ÿè¡Œ
 	void ExecuteUploadTexture(const Graphic::CommandQueue& _commandQueue);
-	// ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 	void CreateTexture(Graphic::Buffer& _buffer, const std::byte* const _pixels, const u64 _size);
 }
 

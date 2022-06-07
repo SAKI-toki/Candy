@@ -1,4 +1,4 @@
-#include "Setting.h"
+﻿#include "Setting.h"
 
 CANDY_NAMESPACE_BEGIN
 

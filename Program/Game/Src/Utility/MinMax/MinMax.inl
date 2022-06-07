@@ -1,4 +1,4 @@
-#include "MinMax.h"
+﻿#include "MinMax.h"
 
 CANDY_NAMESPACE_BEGIN
 

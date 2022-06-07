@@ -1,4 +1,4 @@
-#include "StringSystemConvertImpl.h"
+﻿#include "StringSystemConvertImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 

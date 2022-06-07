@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   DebugDrawString.cpp
- * \brief  •¶š—ñ‚ÌƒfƒoƒbƒO•`‰æ
+ * \brief  æ–‡å­—åˆ—ã®ãƒ‡ãƒãƒƒã‚°æç”»
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -46,7 +46,7 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void String::Startup()
 	{
 #if BUILD_DEBUG
@@ -91,7 +91,7 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
-	// ”jŠü
+	// ç ´æ£„
 	void String::Cleanup()
 	{
 #if BUILD_DEBUG
@@ -102,14 +102,14 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
-	// XV
+	// æ›´æ–°
 	void String::Update()
 	{
 #if BUILD_DEBUG
 #endif // BUILD_DEBUG
 	}
 
-	// •`‰æ
+	// æç”»
 	void String::Draw()
 	{
 #if BUILD_DEBUG
@@ -140,9 +140,9 @@ namespace DebugDraw
 					pos.m_f32.x += rect.m_Width * (heightSize / rect.m_Height) * screenRate * 2.0f;
 					continue;
 				}
-				if (c == u'@')
+				if (c == u'ã€€')
 				{
-					const Rect rect = Font::GetFontUv(DefaultFontType, 'H');
+					const Rect rect = Font::GetFontUv(DefaultFontType, 'ï¼Ÿ');
 					pos.m_f32.x += rect.m_Width * (heightSize / rect.m_Height) * screenRate * 2.0f;
 					continue;
 				}
@@ -219,7 +219,7 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
-	// •`‰æ“o˜^(ˆÊ’u)
+	// æç”»ç™»éŒ²(ä½ç½®)
 	void String::Add(const Vec4 _pos, const std::string& _str)
 	{
 #if BUILD_DEBUG
@@ -230,7 +230,7 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
-	// •`‰æ“o˜^(ˆÊ’u, F)
+	// æç”»ç™»éŒ²(ä½ç½®, è‰²)
 	void String::Add(const Vec4 _pos, const Color _color, const std::string& _str)
 	{
 #if BUILD_DEBUG
@@ -242,7 +242,7 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
-	// •`‰æ“o˜^(ˆÊ’u, F, ƒTƒCƒY)
+	// æç”»ç™»éŒ²(ä½ç½®, è‰², ã‚µã‚¤ã‚º)
 	void String::Add(const Vec4 _pos, const Color _color, const f32 _scale, const std::string& _str)
 	{
 #if BUILD_DEBUG

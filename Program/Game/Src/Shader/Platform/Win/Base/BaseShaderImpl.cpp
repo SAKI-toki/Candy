@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   BaseShaderImpl.cpp
- * \brief  ƒVƒF[ƒ_[‚Ìƒx[ƒX‚ÌÀ‘••”(Win)
+ * \brief  ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ™ãƒ¼ã‚¹ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -11,14 +11,14 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Shader
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void BaseShaderImpl::startup(std::byte* const _buf, const u64 _size)
 	{
 		m_Shader.pShaderBytecode = _buf;
 		m_Shader.BytecodeLength = _size;
 	}
 
-	// ”jŠü
+	// ç ´æ£„
 	void BaseShaderImpl::cleanup()
 	{
 		m_Shader.pShaderBytecode = nullptr;

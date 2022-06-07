@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ConvColor.cpp
- * \brief  ƒJƒ‰[•ÏŠ·
+ * \brief  ã‚«ãƒ©ãƒ¼å¤‰æ›
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -9,7 +9,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// F‚Ìæ“¾(RGBA32)
+// è‰²ã®å–å¾—(RGBA32)
 Vec4 GetColorRGBA32(const u32 _r, const u32 _g, const u32 _b, const u32 _a)
 {
 	return Vec4{
@@ -19,7 +19,7 @@ Vec4 GetColorRGBA32(const u32 _r, const u32 _g, const u32 _b, const u32 _a)
 	static_cast<f32>(_a) / 255.0f };
 }
 
-// F‚Ìæ“¾(RGB32)
+// è‰²ã®å–å¾—(RGB32)
 Vec4 GetColorRGB32(const u32 _r, const u32 _g, const u32 _b)
 {
 	return GetColorRGBA32(_r, _g, _b, 255);

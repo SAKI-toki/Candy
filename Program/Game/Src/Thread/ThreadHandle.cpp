@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ThreadHandle.cpp
- * \brief  ƒXƒŒƒbƒhƒnƒ“ƒhƒ‰
+ * \brief  ã‚¹ãƒ¬ãƒƒãƒ‰ãƒãƒ³ãƒ‰ãƒ©
  * \author Yu Ishiyama.
  * \date   2022/06/07
  *********************************************************************/
@@ -9,13 +9,13 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// •Â‚¶‚é
+// é–‰ã˜ã‚‹
 void ThreadHandle::Close()
 {
 	ThreadHandleImpl::Close();
 }
 
-// ”äŠrŠÖ”ŒQ
+// æ¯”è¼ƒé–¢æ•°ç¾¤
 bool ThreadHandle::operator==(const ThreadHandle& _other)const
 {
 	return ThreadHandleImpl::operator==(_other);

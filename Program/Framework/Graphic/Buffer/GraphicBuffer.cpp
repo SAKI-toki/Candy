@@ -1,4 +1,4 @@
-#include "GraphicBuffer.h"
+﻿#include "GraphicBuffer.h"
 #include <Graphic/Device/GraphicDevice.h>
 #include <Graphic/SwapChain/GraphicSwapChain.h>
 #include <Graphic/CommandList/GraphicCommandList.h>

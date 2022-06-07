@@ -1,4 +1,4 @@
-#ifndef CANDY_VEC4_H
+﻿#ifndef CANDY_VEC4_H
 #define CANDY_VEC4_H
 
 #if PLATFORM_WIN

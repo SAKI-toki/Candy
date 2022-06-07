@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   HandleSystem.inl
- * \brief  ƒnƒ“ƒhƒ‰ƒVƒXƒeƒ€
+ * \brief  ãƒãƒ³ãƒ‰ãƒ©ã‚·ã‚¹ãƒ†ãƒ 
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -9,7 +9,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 template<typename T, typename HandleType>
 void HandleSystem<T, HandleType>::startup()
 {
@@ -20,7 +20,7 @@ void HandleSystem<T, HandleType>::startup()
 	m_ReleaseUnitIndices.clear();
 }
 
-// ”jŠü
+// ç ´æ£„
 template<typename T, typename HandleType>
 void HandleSystem<T, HandleType>::cleanup()
 {
@@ -30,7 +30,7 @@ void HandleSystem<T, HandleType>::cleanup()
 	m_ReleaseUnitIndices.clear();
 }
 
-// ƒnƒ“ƒhƒ‰‚Ì¶¬
+// ãƒãƒ³ãƒ‰ãƒ©ã®ç”Ÿæˆ
 template<typename T, typename HandleType>
 HandleType HandleSystem<T, HandleType>::createHandle(ValuePtrType _valuePtr)
 {
@@ -64,7 +64,7 @@ HandleType HandleSystem<T, HandleType>::createHandle(ValuePtrType _valuePtr)
 	return handle;
 }
 
-// ƒnƒ“ƒhƒ‰‚Ì‰ğ•ú
+// ãƒãƒ³ãƒ‰ãƒ©ã®è§£æ”¾
 template<typename T,typename HandleType>
 void HandleSystem<T, HandleType>::releaseHandle(HandleType handle)
 {
@@ -75,7 +75,7 @@ void HandleSystem<T, HandleType>::releaseHandle(HandleType handle)
 	m_ReleaseUnitIndices.push_back(handle.m_Value.m_Index);
 }
 
-// ƒnƒ“ƒhƒ‰‚©‚çƒ|ƒCƒ“ƒ^‚Ìæ“¾
+// ãƒãƒ³ãƒ‰ãƒ©ã‹ã‚‰ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
 template<typename T, typename HandleType>
 HandleSystem<T, HandleType>::ValuePtrType HandleSystem<T, HandleType>::getPtr(HandleType handle)const
 {

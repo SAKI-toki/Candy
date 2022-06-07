@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   BuildConfig.h
- * \brief  ƒrƒ‹ƒh‚Ìİ’è
+ * \brief  ãƒ“ãƒ«ãƒ‰æ™‚ã®è¨­å®š
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -8,7 +8,7 @@
 #ifndef CANDY_BUILD_CONFIG_H
 #define CANDY_BUILD_CONFIG_H
 
-// Debugƒrƒ‹ƒh‚ÍBUILD_DEBUG, Releaseƒrƒ‹ƒh‚ÍBUILD_RELEASE
+// Debugãƒ“ãƒ«ãƒ‰æ™‚ã¯BUILD_DEBUG, Releaseãƒ“ãƒ«ãƒ‰æ™‚ã¯BUILD_RELEASE
 #if _DEBUG
 #define BUILD_DEBUG (1)
 #define BUILD_RELEASE (0)

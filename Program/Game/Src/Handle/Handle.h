@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Handle.h
- * \brief  ƒnƒ“ƒhƒ‰
+ * \brief  ãƒãƒ³ãƒ‰ãƒ©
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -10,7 +10,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ƒnƒ“ƒhƒ‰‚Ì’l
+// ãƒãƒ³ãƒ‰ãƒ©ã®å€¤
 struct HandleValue
 {
 	HandleValue() = default;
@@ -19,7 +19,7 @@ struct HandleValue
 	uint64_t m_Hash{ static_cast<uint64_t>(-1) };
 	uint64_t m_User{ static_cast<uint64_t>(-1) };
 
-	// ”äŠrŠÖ”ŒQ
+	// æ¯”è¼ƒé–¢æ•°ç¾¤
 	bool operator==(const HandleValue& handle)
 	{
 		return m_Index == handle.m_Index &&
@@ -32,16 +32,16 @@ struct HandleValue
 template<typename T, typename HandleType>
 class HandleSystem;
 
-// ƒnƒ“ƒhƒ‰
+// ãƒãƒ³ãƒ‰ãƒ©
 template<typename T, typename DeriveType>
 class Handle
 {
 	friend class HandleSystem<T, DeriveType>;
 public:
-	// ƒnƒ“ƒhƒ‰‚ÌƒNƒŠƒA
+	// ãƒãƒ³ãƒ‰ãƒ©ã®ã‚¯ãƒªã‚¢
 	void clear();
 
-	// ”äŠrŠÖ”ŒQ
+	// æ¯”è¼ƒé–¢æ•°ç¾¤
 	bool operator==(const Handle& handle) { return m_Value == handle.m_Value; }
 	bool operator!=(const Handle& handle) { return !(*this == handle); }
 

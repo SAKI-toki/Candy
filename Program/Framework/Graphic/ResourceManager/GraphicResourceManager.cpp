@@ -1,4 +1,4 @@
-#include "GraphicResourceManager.h"
+﻿#include "GraphicResourceManager.h"
 #include <Graphic/Buffer/GraphicBuffer.h>
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/Pipeline/GraphicPipeline.h>

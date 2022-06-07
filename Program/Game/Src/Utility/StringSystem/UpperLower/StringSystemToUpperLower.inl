@@ -1,4 +1,4 @@
-#include "StringSystemToUpperLower.h"
+﻿#include "StringSystemToUpperLower.h"
 
 CANDY_NAMESPACE_BEGIN
 

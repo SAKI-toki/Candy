@@ -1,4 +1,4 @@
-#include "GraphicImpl.h"
+﻿#include "GraphicImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 

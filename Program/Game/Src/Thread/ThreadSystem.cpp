@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ThreadSystem.cpp
- * \brief  ƒXƒŒƒbƒhƒVƒXƒeƒ€
+ * \brief  ã‚¹ãƒ¬ãƒƒãƒ‰ã‚·ã‚¹ãƒ†ãƒ 
  * \author Yu Ishiyama.
  * \date   2022/06/07
  *********************************************************************/
@@ -13,64 +13,64 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ƒXƒŒƒbƒh‚Ìì¬
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆ
 ThreadHandle ThreadSystem::CreateThread(ThreadFunctionArg* _threadFunctionArgPtr)
 {
 	return Impl::CreateThread(_threadFunctionArgPtr);
 }
-// ƒXƒŒƒbƒh‚Ì’â~
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®åœæ­¢
 void ThreadSystem::SuspendThread(const ThreadHandle _handle)
 {
 	Impl::SuspendThread(_handle);
 }
-// ƒXƒŒƒbƒh‚ÌÄŠJ
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å†é–‹
 void ThreadSystem::ResumeThread(const ThreadHandle _handle)
 {
 	Impl::ResumeThread(_handle);
 }
-// ƒXƒŒƒbƒhI—¹‘Ò‹@
+// ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†å¾…æ©Ÿ
 void ThreadSystem::WaitThread(const ThreadHandle _handle)
 {
 	Impl::WaitThread(_handle);
 }
 
-// Œ»İ‚ÌƒXƒŒƒbƒhID‚Ìæ“¾
+// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰IDã®å–å¾—
 s32 ThreadSystem::GetCurrentThreadId()
 {
 	return Impl::GetCurrentThreadId();
 }
 
-// Œ»İ‚ÌƒXƒŒƒbƒh”Ô†‚Ìæ“¾
+// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã®å–å¾—
 s32 ThreadSystem::GetCurrentThreadNo()
 {
 	return Impl::GetCurrentThreadNo();
 }
 
-// Œ»İ‚ÌƒXƒŒƒbƒh‚Ìæ“¾
+// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ã®å–å¾—
 Thread ThreadSystem::GetCurrentThread()
 {
 	return Thread{ GetCurrentThreadHandle() };
 }
 
-// Œ»İ‚ÌƒXƒŒƒbƒhƒnƒ“ƒhƒ‹‚Ìæ“¾
+// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 ThreadHandle ThreadSystem::GetCurrentThreadHandle()
 {
 	return Impl::GetCurrentThreadHandle();
 }
 
-// ƒXƒŒƒbƒh”Ô†‚ÌƒZƒbƒg
+// ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã®ã‚»ãƒƒãƒˆ
 void ThreadSystem::SetThreadNo(const ThreadHandle _handle, const s32 _no)
 {
 	return Impl::SetThreadNo(_handle, _no);
 }
 
-// ƒXƒŒƒbƒh—Dæ“x‚ÌƒZƒbƒg
+// ã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆåº¦ã®ã‚»ãƒƒãƒˆ
 void ThreadSystem::SetPriority(const ThreadHandle _handle, const THREAD_PRIORITY _priority)
 {
 	return Impl::SetPriority(_handle, _priority);
 }
 
-// ƒXƒŒƒbƒhƒXƒŠ[ƒv
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¹ãƒªãƒ¼ãƒ—
 void ThreadSystem::SleepThread(const s32 _milliSecond)
 {
 	Impl::SleepThread(_milliSecond);

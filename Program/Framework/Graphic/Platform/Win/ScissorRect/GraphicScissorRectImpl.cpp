@@ -1,4 +1,4 @@
-#include "GraphicScissorRectImpl.h"
+﻿#include "GraphicScissorRectImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 

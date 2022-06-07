@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   DebugDraw.cpp
- * \brief  ƒfƒoƒbƒO•`‰æ
+ * \brief  ãƒ‡ãƒãƒƒã‚°æç”»
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -18,7 +18,7 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void DebugDraw::Startup()
 {
 #if BUILD_DEBUG
@@ -27,7 +27,7 @@ void DebugDraw::Startup()
 #endif // BUILD_DEBUG
 }
 
-// ”jŠü
+// ç ´æ£„
 void DebugDraw::Cleanup()
 {
 #if BUILD_DEBUG
@@ -36,7 +36,7 @@ void DebugDraw::Cleanup()
 #endif // BUILD_DEBUG
 }
 
-// XV
+// æ›´æ–°
 void DebugDraw::Update()
 {
 #if BUILD_DEBUG
@@ -45,7 +45,7 @@ void DebugDraw::Update()
 #endif // BUILD_DEBUG
 }
 
-// •`‰æ
+// æç”»
 void DebugDraw::Draw()
 {
 #if BUILD_DEBUG
@@ -54,7 +54,7 @@ void DebugDraw::Draw()
 #endif // BUILD_DEBUG
 }
 
-// •¶š—ñ“o˜^(ˆÊ’u)
+// æ–‡å­—åˆ—ç™»éŒ²(ä½ç½®)
 void DebugDraw::DrawString(const Vec4 _pos, const char* const _format, ...)
 {
 #if BUILD_DEBUG
@@ -71,7 +71,7 @@ void DebugDraw::DrawString(const Vec4 _pos, const char* const _format, ...)
 #endif // BUILD_DEBUG
 }
 
-// •¶š—ñ“o˜^(ˆÊ’u, F)
+// æ–‡å­—åˆ—ç™»éŒ²(ä½ç½®, è‰²)
 void DebugDraw::DrawString(const Vec4 _pos, const Color _color, const char* const _format, ...)
 {
 #if BUILD_DEBUG
@@ -89,7 +89,7 @@ void DebugDraw::DrawString(const Vec4 _pos, const Color _color, const char* cons
 #endif // BUILD_DEBUG
 }
 
-// •¶š—ñ“o˜^(ˆÊ’u, F, ƒTƒCƒY)
+// æ–‡å­—åˆ—ç™»éŒ²(ä½ç½®, è‰², ã‚µã‚¤ã‚º)
 void DebugDraw::DrawString(const Vec4 _pos, const Color _color, const f32 _scale, const char* const _format, ...)
 {
 #if BUILD_DEBUG

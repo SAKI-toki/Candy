@@ -1,4 +1,4 @@
-#include "TickImpl.h"
+﻿#include "TickImpl.h"
 #include "TimeImpl.h"
 
 CANDY_NAMESPACE_BEGIN

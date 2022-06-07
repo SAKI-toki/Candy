@@ -1,4 +1,4 @@
-#include "StringSystemSplit.h"
+﻿#include "StringSystemSplit.h"
 
 CANDY_NAMESPACE_BEGIN
 

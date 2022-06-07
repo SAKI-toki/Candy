@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   CriticalSection.cpp
- * \brief  ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“
+ * \brief  ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³
  * \author Yu Ishiyama.
  * \date   2022/06/02
  *********************************************************************/
@@ -9,22 +9,22 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void CriticalSection::startup()
 {
 	CriticalSectionImpl::startup();
 }
-// ”jŠü
+// ç ´æ£„
 void CriticalSection::cleanup()
 {
 	CriticalSectionImpl::cleanup();
 }
-// ŠJn
+// é–‹å§‹
 void CriticalSection::enter()
 {
 	CriticalSectionImpl::enter();
 }
-// I—¹
+// çµ‚äº†
 void CriticalSection::leave()
 {
 	CriticalSectionImpl::leave();

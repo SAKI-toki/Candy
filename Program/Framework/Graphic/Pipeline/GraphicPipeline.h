@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_PIPELINE_H
+﻿#ifndef CANDY_GRAPHIC_PIPELINE_H
 #define CANDY_GRAPHIC_PIPELINE_H
 
 #include <Graphic/GraphicDef.h>

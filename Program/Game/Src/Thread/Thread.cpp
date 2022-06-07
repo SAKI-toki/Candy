@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Thread.cpp
- * \brief  ƒXƒŒƒbƒh
+ * \brief  ã‚¹ãƒ¬ãƒƒãƒ‰
  * \author Yu Ishiyama.
  * \date   2022/06/07
  *********************************************************************/
@@ -15,7 +15,7 @@ Thread::Thread(const ThreadHandle _handle):m_Handle{ _handle }
 
 }
 
-// ì¬
+// ä½œæˆ
 void Thread::create(std::function<void(void*)> _func, void* _args, const CreateThreadOption _option)
 {
 	m_Handle.Close();
@@ -25,22 +25,22 @@ void Thread::create(std::function<void(void*)> _func, void* _args, const CreateT
 	m_ThreadFunctionArgPtr->m_Option = _option;
 	m_Handle = ThreadSystem::CreateThread(m_ThreadFunctionArgPtr.get());
 }
-// ì¬
+// ä½œæˆ
 void Thread::create(std::function<void()> _func, const CreateThreadOption _option)
 {
 	create([_func](void*) { _func(); }, nullptr, _option);
 }
-// ’â~
+// åœæ­¢
 void Thread::suspend()
 {
 	ThreadSystem::SuspendThread(m_Handle);
 }
-// ÄŠJ
+// å†é–‹
 void Thread::resume()
 {
 	ThreadSystem::ResumeThread(m_Handle);
 }
-// I—¹‘Ò‹@
+// çµ‚äº†å¾…æ©Ÿ
 void Thread::wait()
 {
 	ThreadSystem::WaitThread(m_Handle);

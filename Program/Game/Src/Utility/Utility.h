@@ -1,4 +1,4 @@
-#ifndef CANDY_UTILITY_H
+﻿#ifndef CANDY_UTILITY_H
 #define CANDY_UTILITY_H
 
 #include "Clamp/Clamp.h"

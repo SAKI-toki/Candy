@@ -1,4 +1,4 @@
-#ifndef CANDY_ARITHMETRIC_TYPE_H
+﻿#ifndef CANDY_ARITHMETRIC_TYPE_H
 #define CANDY_ARITHMETRIC_TYPE_H
 
 #include <cstdint>

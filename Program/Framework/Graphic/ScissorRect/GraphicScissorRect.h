@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_SCISSOR_RECT_H
+﻿#ifndef CANDY_GRAPHIC_SCISSOR_RECT_H
 #define CANDY_GRAPHIC_SCISSOR_RECT_H
 
 #include <Graphic/GraphicDef.h>

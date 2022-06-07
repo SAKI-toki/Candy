@@ -1,4 +1,4 @@
-#include "TimeImpl.h"
+﻿#include "TimeImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 

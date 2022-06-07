@@ -1,4 +1,4 @@
-#ifndef CANDY_LOOP_H
+﻿#ifndef CANDY_LOOP_H
 #define CANDY_LOOP_H
 
 CANDY_NAMESPACE_BEGIN

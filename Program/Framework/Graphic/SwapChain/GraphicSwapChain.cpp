@@ -1,4 +1,4 @@
-#include "GraphicSwapChain.h"
+﻿#include "GraphicSwapChain.h"
 
 CANDY_NAMESPACE_BEGIN
 

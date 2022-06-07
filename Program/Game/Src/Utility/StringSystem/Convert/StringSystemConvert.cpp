@@ -1,4 +1,4 @@
-#include "StringSystemConvert.h"
+﻿#include "StringSystemConvert.h"
 
 #if PLATFORM_WIN
 #include <Utility/Platform/Win/StringSystem/Convert/StringSystemConvertImpl.h>

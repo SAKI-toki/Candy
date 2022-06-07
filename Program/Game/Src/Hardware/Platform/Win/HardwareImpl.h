@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   HardwareImpl.h
- * \brief  ƒn[ƒhƒEƒFƒA‚ÌÀ‘••”(Win)
+ * \brief  ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -12,7 +12,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Hardware::Impl
 {
-	// ‰Šú‰»î•ñ
+	// åˆæœŸåŒ–æƒ…å ±
 	struct StartupInfo
 	{
 		virtual ~StartupInfo() = default;
@@ -24,17 +24,17 @@ namespace Hardware::Impl
 		f32 m_Height{};
 	};
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Startup(const StartupInfo& _startupInfo);
-	// ”jŠü
+	// ç ´æ£„
 	void Cleanup();
-	// XV
+	// æ›´æ–°
 	void Update();
 
-	// •Â‚¶‚½‚©
+	// é–‰ã˜ãŸã‹
 	bool IsClose();
 
-	// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‰‚Ìæ“¾
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ©ã®å–å¾—
 	HWND GetHwnd();
 }
 

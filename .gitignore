@@ -1,6 +1,8 @@
 .vs
 /.git
 Build/
+bin/
+obj/
 desktop.ini
 *.vcxproj.user
 Data/Win/

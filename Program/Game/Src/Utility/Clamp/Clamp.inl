@@ -1,4 +1,4 @@
-#include "Clamp.h"
+﻿#include "Clamp.h"
 
 CANDY_NAMESPACE_BEGIN
 

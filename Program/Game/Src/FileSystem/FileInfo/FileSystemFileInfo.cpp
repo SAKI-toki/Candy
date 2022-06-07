@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystemFileInfo.cpp
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìƒtƒ@ƒCƒ‹î•ñ
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ•ã‚¡ã‚¤ãƒ«æƒ…å ±
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -11,7 +11,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void FileInfo::startup(const std::string& _path)
 	{
 		FileInfoImpl::mount(_path);
@@ -20,25 +20,25 @@ namespace FileSystem
 		m_Size = FileInfoImpl::getSize();
 	}
 
-	// ”jŠü
+	// ç ´æ£„
 	void FileInfo::cleanup()
 	{
 		FileInfoImpl::close();
 	}
 
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìæ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®å–å¾—
 	u64 FileInfo::getSize()const
 	{
 		return m_Size;
 	}
 
-	// ƒnƒbƒVƒ…‚Ìæ“¾
+	// ãƒãƒƒã‚·ãƒ¥ã®å–å¾—
 	u64 FileInfo::getHash()const
 	{
 		return m_Hash;
 	}
 
-	// ”äŠrŠÖ”ŒQ
+	// æ¯”è¼ƒé–¢æ•°ç¾¤
 	bool FileInfo::operator==(const FileInfo& _other)const { return m_Hash == _other.m_Hash; }
 	bool FileInfo::operator!=(const FileInfo& _other)const { return !(*this == _other); }
 	bool FileInfo::operator==(const u32 _hash)const { return m_Hash == _hash; }

@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ModelPrimitive.h
- * \brief  ƒvƒŠƒ~ƒeƒBƒuƒ‚ƒfƒ‹
+ * \brief  ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ãƒ¢ãƒ‡ãƒ«
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -22,21 +22,21 @@ namespace Model::Primitive
 		Color m_Color;
 	};
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Startup();
-	// ”jŠü
+	// ç ´æ£„
 	void Cleanup();
-	// •`‰æ
+	// æç”»
 	void Draw(Graphic::CommandList& _commandList);
 
-	// 2DOŠpŒ`‚Ì•`‰æ“o˜^
+	// 2Dä¸‰è§’å½¢ã®æç”»ç™»éŒ²
 	void AddTriangle2D(const Vec4 _pos, const Color _color);
 	void AddTriangle2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Color _color);
 	void AddTriangle2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3,
 		const Color _color1, const Color _color2, const Color _color3);
 	void AddTriangle2D(const VertexInfo(&_vertices)[3]);
 
-	// 2D‹éŒ`‚Ì•`‰æ“o˜^
+	// 2DçŸ©å½¢ã®æç”»ç™»éŒ²
 	void AddRect2D(const Vec4 _pos, const Color _color);
 	void AddRect2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4, const Color _color);
 	void AddRect2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4,
@@ -45,7 +45,7 @@ namespace Model::Primitive
 	void AddRect2D(const Rect _rect, const Color _color1, const Color _color2, const Color _color3, const Color _color4);
 	void AddRect2D(const VertexInfo(&_vertices)[4]);
 
-	// 2D‚Ì•`‰æ“o˜^
+	// 2Dã®æç”»ç™»éŒ²
 	void Add2D(const VertexInfo* const _vertices, const s32 _vertexCount, const u16* const _indices, const s32 _indexCount);
 }
 

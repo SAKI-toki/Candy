@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Texture.cpp
- * \brief  ƒeƒNƒXƒ`ƒƒ
+ * \brief  ãƒ†ã‚¯ã‚¹ãƒãƒ£
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -26,14 +26,14 @@ namespace Texture
 	Graphic::CommandList m_CommandList;
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Texture::Startup()
 {
 	m_CommandList.startup(Graphic::GetDevice(), Graphic::COMMAND_LIST_TYPE::RENDERING, Graphic::GetBackBufferCount());
 	m_CommandList.close();
 }
 
-// ”jŠü
+// ç ´æ£„
 void Texture::Cleanup()
 {
 	m_UploadBufferInfos.clear();
@@ -41,7 +41,7 @@ void Texture::Cleanup()
 	m_CommandList.cleanup();
 }
 
-// ƒAƒbƒvƒ[ƒhƒeƒNƒXƒ`ƒƒ‚ÌÀs
+// ã‚¢ãƒƒãƒ—ãƒ­ãƒ¼ãƒ‰ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®å®Ÿè¡Œ
 void Texture::ExecuteUploadTexture(const Graphic::CommandQueue& _commandQueue)
 {
 	if (m_UploadBufferInfos.empty())return;
@@ -55,7 +55,7 @@ void Texture::ExecuteUploadTexture(const Graphic::CommandQueue& _commandQueue)
 	_commandQueue.executeCommandList(m_CommandList);
 }
 
-// ƒeƒNƒXƒ`ƒƒ‚Ìì¬
+// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ä½œæˆ
 void Texture::CreateTexture(Graphic::Buffer& _buffer, const std::byte* const _pixels, const u64 _size)
 {
 	Graphic::Buffer uploaderBuffer;

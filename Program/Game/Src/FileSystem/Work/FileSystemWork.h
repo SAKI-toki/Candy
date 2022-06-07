@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystemWork.h
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìƒ[ƒN
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -17,19 +17,19 @@ namespace FileSystem
 	class Work
 	{
 	public:
-		// ‰Šú‰»
+		// åˆæœŸåŒ–
 		void startup(const u32 _hash, std::byte* const _buf);
-		// ”jŠü
+		// ç ´æ£„
 		void cleanup();
 
-		// ƒ[ƒNƒnƒ“ƒhƒ‹‚Ìæ“¾
+		// ãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 		WorkHandle getHandle()const;
-		// ƒnƒbƒVƒ…‚Ìæ“¾
+		// ãƒãƒƒã‚·ãƒ¥ã®å–å¾—
 		u32 getHash()const;
-		// ƒoƒbƒtƒ@‚Ìæ“¾
+		// ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 		std::byte* getBuffer()const;
 
-		// ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒg
+		// ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆ
 		void setHandle(const WorkHandle _handle);
 
 	private:

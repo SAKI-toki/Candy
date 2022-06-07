@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Global.cpp
- * \brief  ƒOƒ[ƒoƒ‹‚Èƒpƒ‰ƒ[ƒ^ŒQ
+ * \brief  ã‚°ãƒ­ãƒ¼ãƒãƒ«ãªãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ç¾¤
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -17,19 +17,19 @@ namespace Global
 	f32 m_AppTimeAll = 0.0f;
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Global::Startup()
 {
 	Time::Startup();
 }
 
-// ”jŠü
+// ç ´æ£„
 void Global::Cleanup()
 {
 	Time::Cleanup();
 }
 
-// XV
+// æ›´æ–°
 void Global::Update()
 {
 	const auto tick = Time::GetTick();
@@ -38,13 +38,13 @@ void Global::Update()
 	m_AppTimeAll += m_AppTime;
 }
 
-// ‘OƒtƒŒ[ƒ€‚ÌŒo‰ßŠÔ‚Ìæ“¾
+// å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®çµŒéæ™‚é–“ã®å–å¾—
 f32 Global::GetAppTime()
 {
 	return m_AppTime;
 }
 
-// ƒg[ƒ^ƒ‹‚ÌƒtƒŒ[ƒ€‚ÌŒo‰ßŠÔ‚Ìæ“¾
+// ãƒˆãƒ¼ã‚¿ãƒ«ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®çµŒéæ™‚é–“ã®å–å¾—
 f32 Global::GetAppTimeAll()
 {
 	return m_AppTimeAll;

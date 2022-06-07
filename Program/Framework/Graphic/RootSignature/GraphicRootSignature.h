@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_ROOT_SIGNATURE_H
+﻿#ifndef CANDY_GRAPHIC_ROOT_SIGNATURE_H
 #define CANDY_GRAPHIC_ROOT_SIGNATURE_H
 
 #include <Graphic/GraphicDef.h>

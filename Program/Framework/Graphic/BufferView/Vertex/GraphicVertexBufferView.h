@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_VERTEX_BUFFER_VIEW_H
+﻿#ifndef CANDY_GRAPHIC_VERTEX_BUFFER_VIEW_H
 #define CANDY_GRAPHIC_VERTEX_BUFFER_VIEW_H
 
 #include <Graphic/Platform/Win/GraphicDefWin.h>

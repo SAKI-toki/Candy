@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Font.cpp
- * \brief  ƒtƒHƒ“ƒg
+ * \brief  ãƒ•ã‚©ãƒ³ãƒˆ
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -37,40 +37,40 @@ namespace Font
 	};
 	std::vector<FontData> m_FontDatas;
 
-	// ƒtƒHƒ“ƒg‚Ì“Ç‚İ‚İ
+	// ãƒ•ã‚©ãƒ³ãƒˆã®èª­ã¿è¾¼ã¿
 	void LoadFont(const std::string& _fontName);
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Font::Startup()
 {
 	for (auto fontName : FontFileNames)LoadFont(fontName);
 }
 
-// ”jŠü
+// ç ´æ£„
 void Font::Cleanup()
 {
 	m_FontDatas.clear();
 }
 
-// ƒtƒHƒ“ƒgƒeƒNƒXƒ`ƒƒƒoƒbƒtƒ@‚Ìæ“¾
+// ãƒ•ã‚©ãƒ³ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 Graphic::Buffer& Font::GetFontTextureBuffer(const FONT_TYPE _fontType)
 {
 	return m_FontDatas[(s32)_fontType].m_TextureBuffer;
 }
 
-// ƒtƒHƒ“ƒg‚ÌUV‚Ìæ“¾
+// ãƒ•ã‚©ãƒ³ãƒˆã®UVã®å–å¾—
 Rect Font::GetFontUv(const FONT_TYPE _fontType, const u32 _c)
 {
 	if (!m_FontDatas[(s32)_fontType].m_Uvs.contains(_c))
 	{
-		CANDY_LOG("UV‚ª‚ ‚è‚Ü‚¹‚ñ[%u]", _c);
+		CANDY_LOG("UVãŒã‚ã‚Šã¾ã›ã‚“[%u]", _c);
 		return m_FontDatas[(s32)_fontType].m_Uvs['?'].m_Rect;
 	}
 	return m_FontDatas[(s32)_fontType].m_Uvs[_c].m_Rect;
 }
 
-// ƒtƒHƒ“ƒg‚Ì“Ç‚İ‚İ
+// ãƒ•ã‚©ãƒ³ãƒˆã®èª­ã¿è¾¼ã¿
 void Font::LoadFont(const std::string& _fontName)
 {
 	const std::string binPath = Setting::GetDataPath() + std::string{ R"(\Font\)"} + _fontName + ".bin";

@@ -1,4 +1,4 @@
-#include "GraphicDef.h"
+﻿#include "GraphicDef.h"
 
 CANDY_NAMESPACE_BEGIN
 

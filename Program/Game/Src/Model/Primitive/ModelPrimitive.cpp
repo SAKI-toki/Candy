@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ModelPrimitive.cpp
- * \brief  ƒvƒŠƒ~ƒeƒBƒuƒ‚ƒfƒ‹
+ * \brief  ãƒ—ãƒªãƒŸãƒ†ã‚£ãƒ–ãƒ¢ãƒ‡ãƒ«
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -29,7 +29,7 @@ namespace Model
 		std::vector<u16> m_Indices2D;
 	}
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Primitive::Startup()
 	{
 		Graphic::RootSignatureStartupInfo rootSignatureStartupInfo2D;
@@ -67,7 +67,7 @@ namespace Model
 		m_Indices2D.reserve(0x10000);
 	}
 
-	// ”jŠü
+	// ç ´æ£„
 	void Primitive::Cleanup()
 	{
 		m_Indices2D.clear();
@@ -80,7 +80,7 @@ namespace Model
 		m_RootSignature2D.cleanup();
 	}
 
-	// •`‰æ
+	// æç”»
 	void Primitive::Draw(Graphic::CommandList& _commandList)
 	{
 		if (m_VertexInfos2D.empty() || m_Indices2D.empty())return;
@@ -109,7 +109,7 @@ namespace Model
 		m_Indices2D.clear();
 	}
 
-	// 2DOŠpŒ`‚Ì•`‰æ“o˜^
+	// 2Dä¸‰è§’å½¢ã®æç”»ç™»éŒ²
 	void Primitive::AddTriangle2D(const Vec4 _pos, const Color _color)
 	{
 		AddTriangle2D(
@@ -133,7 +133,7 @@ namespace Model
 		Add2D(_vertices, 3, indices, 3);
 	}
 
-	// 2D‹éŒ`‚Ì•`‰æ“o˜^
+	// 2DçŸ©å½¢ã®æç”»ç™»éŒ²
 	void Primitive::AddRect2D(const Vec4 _pos, const Color _color)
 	{
 		AddRect2D(
@@ -174,17 +174,17 @@ namespace Model
 		Add2D(_vertices, 4, indices, 6);
 	}
 
-	// 2D‚Ì•`‰æ“o˜^
+	// 2Dã®æç”»ç™»éŒ²
 	void Primitive::Add2D(const VertexInfo* const _vertices, const s32 _vertexCount, const u16* const _indices, const s32 _indexCount)
 	{
 		if (m_VertexInfos2D.size() + _vertexCount >= 0x10000)
 		{
-			CANDY_LOG("’¸“_‚ÌãŒÀ‚ğ’´‚¦‚Ä‚¢‚Ü‚·");
+			CANDY_LOG("é ‚ç‚¹ã®ä¸Šé™ã‚’è¶…ãˆã¦ã„ã¾ã™");
 			return;
 		}
 		if (m_Indices2D.size() + _indexCount >= 0x10000)
 		{
-			CANDY_LOG("ƒCƒ“ƒfƒbƒNƒX‚ÌãŒÀ‚ğ’´‚¦‚Ä‚¢‚Ü‚·");
+			CANDY_LOG("ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®ä¸Šé™ã‚’è¶…ãˆã¦ã„ã¾ã™");
 			return;
 		}
 

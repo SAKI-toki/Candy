@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ThreadSystemImpl.h
- * \brief  ƒXƒŒƒbƒhƒVƒXƒeƒ€‚ÌÀ‘••”(Win)
+ * \brief  ã‚¹ãƒ¬ãƒƒãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/07
  *********************************************************************/
@@ -15,25 +15,25 @@ CANDY_NAMESPACE_BEGIN
 
 namespace ThreadSystem::Impl
 {
-	// ƒXƒŒƒbƒh‚Ìì¬
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆ
 	ThreadHandle CreateThread(ThreadFunctionArg* _pThreadFunctionArg);
-	// ƒXƒŒƒbƒh‚Ì’â~
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®åœæ­¢
 	void SuspendThread(const ThreadHandle _handle);
-	// ƒXƒŒƒbƒh‚ÌÄŠJ
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å†é–‹
 	void ResumeThread(const ThreadHandle _handle);
-	// ƒXƒŒƒbƒhI—¹‘Ò‹@
+	// ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†å¾…æ©Ÿ
 	void WaitThread(const ThreadHandle _handle);
-	// Œ»İ‚ÌƒXƒŒƒbƒhID‚Ìæ“¾
+	// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰IDã®å–å¾—
 	s32 GetCurrentThreadId();
-	// Œ»İ‚ÌƒXƒŒƒbƒh”Ô†‚Ìæ“¾
+	// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã®å–å¾—
 	s32 GetCurrentThreadNo();
-	// Œ»İ‚ÌƒXƒŒƒbƒhƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	ThreadHandle GetCurrentThreadHandle();
-	// ƒXƒŒƒbƒh”Ô†‚ÌƒZƒbƒg
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã®ã‚»ãƒƒãƒˆ
 	void SetThreadNo(const ThreadHandle _handle, const s32 _no);
-	// ƒXƒŒƒbƒh—Dæ“x‚ÌƒZƒbƒg
+	// ã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆåº¦ã®ã‚»ãƒƒãƒˆ
 	void SetPriority(const ThreadHandle _handle, const THREAD_PRIORITY _priority);
-	// ƒXƒŒƒbƒhƒXƒŠ[ƒv
+	// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¹ãƒªãƒ¼ãƒ—
 	void SleepThread(const s32 _milliSecond);
 }
 

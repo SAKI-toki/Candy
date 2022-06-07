@@ -1,4 +1,4 @@
-#include "Endian.h"
+﻿#include "Endian.h"
 
 CANDY_NAMESPACE_BEGIN
 

@@ -1,6 +1,6 @@
-/*****************************************************************//**
+﻿/*****************************************************************//**
  * \file   FileSystem.cpp
- * \brief  �t�@�C���V�X�e��
+ * \brief  ファイルシステム
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -27,17 +27,17 @@ namespace FileSystem
 	CriticalSection m_Cs;
 	bool m_EndFileReadThread;
 
-	// �t�@�C���ǂݍ��݂̃X���b�h���s�֐�
+	// ファイル読み込みのスレッド実行関数
 	void FileReadThreadFunc();
-	// �t�@�C���ǂݍ���
+	// ファイル読み込み
 	bool FileRead(Work* const _work);
-	// �t�@�C����񃊃X�g�̍쐬
+	// ファイル情報リストの作成
 	void CreateFileInfo(const std::string& _basePath);
-	// �ǂݍ��݃��N�G�X�g�̃��[�N�쐬
+	// 読み込みリクエストのワーク作成
 	Work* CreateRequestReadWork(const std::string& _path, std::byte* const _buf, u64 _bufSize);
 }
 
-// ������
+// 初期化
 void FileSystem::Startup()
 {
 	m_Cs.startup();
@@ -50,7 +50,7 @@ void FileSystem::Startup()
 	m_WorkHandleSystem.startup();
 }
 
-// �X�V
+// 更新
 void FileSystem::Cleanup()
 {
 	m_EndFileReadThread = true;
@@ -62,20 +62,20 @@ void FileSystem::Cleanup()
 	m_Cs.cleanup();
 }
 
-// �t�@�C���T�C�Y�̎擾
+// ファイルサイズの取得
 u64 FileSystem::GetFileSize(const std::string& _path)
 {
 	const u32 hash = Fnv::Hash32Low(Path::FormatPath(_path));
 	auto itr = std::find(m_FileInfos.begin(), m_FileInfos.end(), hash);
 	if (itr == m_FileInfos.end())
 	{
-		CANDY_LOG("�t�@�C����������܂���ł���");
+		CANDY_LOG("ファイルが見つかりませんでした");
 		return 0;
 	}
 	return itr->getSize();
 }
 
-// �ǂݍ��݃��N�G�X�g
+// 読み込みリクエスト
 FileSystem::WorkHandle FileSystem::RequestRead(const std::string& _path, std::byte* const _buf, u64 _bufSize)
 {
 	Work* work = CreateRequestReadWork(_path, _buf, _bufSize);
@@ -90,7 +90,7 @@ FileSystem::WorkHandle FileSystem::RequestRead(const std::string& _path, std::by
 	return work->getHandle();
 }
 
-// �ǂݍ��݃��N�G�X�g(����)
+// 読み込みリクエスト(即時)
 bool FileSystem::RequestReadNoWait(const std::string& _path, std::byte* const _buf, u64 _bufSize)
 {
 	Work* work = CreateRequestReadWork(_path, _buf, _bufSize);
@@ -100,21 +100,21 @@ bool FileSystem::RequestReadNoWait(const std::string& _path, std::byte* const _b
 	return FileRead(work);
 }
 
-// �t�@�C���ǂݍ��ݏI������
+// ファイル読み込み終了判定
 bool FileSystem::IsEndReadWork(const WorkHandle _handle)
 {
 	return !m_WorkHandleSystem.getPtr(_handle);
 }
 
-// �t�@�C���ǂݍ��݂̃X���b�h���s�֐�
+// ファイル読み込みのスレッド実行関数
 void FileSystem::FileReadThreadFunc()
 {
 	while (true)
 	{
-		// �I��
+		// 終了
 		if (m_EndFileReadThread)break;
 
-		// ��Ȃ�X���b�h�X���[�v
+		// 空ならスレッドスリープ
 		if (m_Works.empty())
 		{
 			ThreadSystem::SleepThread(1);
@@ -132,13 +132,13 @@ void FileSystem::FileReadThreadFunc()
 	}
 }
 
-// �t�@�C���ǂݍ���
+// ファイル読み込み
 bool FileSystem::FileRead(Work* const _work)
 {
 	auto itr = std::find(m_FileInfos.begin(), m_FileInfos.end(), _work->getHash());
 	if (itr == m_FileInfos.end())
 	{
-		CANDY_LOG("�t�@�C����������܂���");
+		CANDY_LOG("ファイルが見つかりません");
 		return false;
 	}
 
@@ -147,7 +147,7 @@ bool FileSystem::FileRead(Work* const _work)
 	return true;
 }
 
-// �t�@�C����񃊃X�g�̍쐬
+// ファイル情報リストの作成
 void FileSystem::CreateFileInfo(const std::string& _basePath)
 {
 	FileEnumerator fileEnumrator;
@@ -158,7 +158,7 @@ void FileSystem::CreateFileInfo(const std::string& _basePath)
 		const auto path = _basePath + R"(\)" + fileEnumrator.getPath();
 		if (fileEnumrator.isDirectory())
 		{
-			// �J�����g�f�B���N�g���͖���
+			// カレントディレクトリは無視
 			if (*path.rbegin() != '.')
 			{
 				CreateFileInfo(path);
@@ -174,19 +174,19 @@ void FileSystem::CreateFileInfo(const std::string& _basePath)
 	}
 }
 
-// �ǂݍ��݃��N�G�X�g�̃��[�N�쐬
+// 読み込みリクエストのワーク作成
 FileSystem::Work* FileSystem::CreateRequestReadWork(const std::string& _path, std::byte* const _buf, u64 _bufSize)
 {
 	const u32 hash = Fnv::Hash32Low(Path::FormatPath(_path));
 	auto itr = std::find(m_FileInfos.begin(), m_FileInfos.end(), hash);
 	if (itr == m_FileInfos.end())
 	{
-		CANDY_LOG("�t�@�C����������܂���ł���");
+		CANDY_LOG("ファイルが見つかりませんでした");
 		return nullptr;
 	}
 	if (itr->getSize() > _bufSize)
 	{
-		CANDY_LOG("�o�b�t�@�̃T�C�Y������܂���");
+		CANDY_LOG("バッファのサイズが足りません");
 		return nullptr;
 	}
 

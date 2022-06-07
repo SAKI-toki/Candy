@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   InputMouse.cpp
- * \brief  ƒ}ƒEƒX“ü—Í
+ * \brief  ãƒã‚¦ã‚¹å…¥åŠ›
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -11,19 +11,19 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Input
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Mouse::startup()
 	{
 		reset();
 	}
 
-	// ”jŠü
+	// ç ´æ£„
 	void Mouse::cleanup()
 	{
 
 	}
 
-	// XV
+	// æ›´æ–°
 	void Mouse::update()
 	{
 		m_PrevScreenPos = m_ScreenPos;
@@ -33,7 +33,7 @@ namespace Input
 		m_ClientPos = MouseImpl::toClientPos(m_ScreenPos);
 	}
 
-	// ƒŠƒZƒbƒg
+	// ãƒªã‚»ãƒƒãƒˆ
 	void Mouse::reset()
 	{
 		m_ScreenPos = ZeroVector;
@@ -42,13 +42,13 @@ namespace Input
 		m_PrevClientPos = ZeroVector;
 	}
 
-	// PC‰æ–Êã‚ÌˆÊ’uæ“¾
+	// PCç”»é¢ä¸Šã®ä½ç½®å–å¾—
 	Vec4 Mouse::getScreenPos()const		{ return m_ScreenPos; }
-	// ƒAƒvƒŠ‰æ–Êã‚ÌˆÊ’uæ“¾
+	// ã‚¢ãƒ—ãƒªç”»é¢ä¸Šã®ä½ç½®å–å¾—
 	Vec4 Mouse::getClientPos()const		{ return m_ClientPos; }
-	// PC‰æ–Êã‚Ì1ƒtƒŒ‘OˆÊ’uæ“¾
+	// PCç”»é¢ä¸Šã®1ãƒ•ãƒ¬å‰ä½ç½®å–å¾—
 	Vec4 Mouse::getPrevScreenPos()const { return m_PrevScreenPos; }
-	// ƒAƒvƒŠ‰æ–Êã‚Ì1ƒtƒŒ‘OˆÊ’uæ“¾
+	// ã‚¢ãƒ—ãƒªç”»é¢ä¸Šã®1ãƒ•ãƒ¬å‰ä½ç½®å–å¾—
 	Vec4 Mouse::getPrevClientPos()const { return m_PrevClientPos; }
 }
 

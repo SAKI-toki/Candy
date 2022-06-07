@@ -1,4 +1,4 @@
-#ifndef CANDY_HASH_H
+﻿#ifndef CANDY_HASH_H
 #define CANDY_HASH_H
 
 CANDY_NAMESPACE_BEGIN

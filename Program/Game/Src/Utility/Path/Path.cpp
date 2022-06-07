@@ -1,4 +1,4 @@
-#include "Path.h"
+﻿#include "Path.h"
 
 CANDY_NAMESPACE_BEGIN
 

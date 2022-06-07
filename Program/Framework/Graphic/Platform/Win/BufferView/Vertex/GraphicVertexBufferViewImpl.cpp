@@ -1,4 +1,4 @@
-#include "GraphicVertexBufferViewImpl.h"
+﻿#include "GraphicVertexBufferViewImpl.h"
 #include <Graphic/Platform/Win/Buffer/GraphicBufferImpl.h>
 
 CANDY_NAMESPACE_BEGIN

@@ -1,4 +1,4 @@
-#include "Time.h"
+﻿#include "Time.h"
 
 #if PLATFORM_WIN
 #include "Platform/Win/TimeImpl.h"

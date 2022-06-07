@@ -1,4 +1,4 @@
-#ifndef CANDY_THREAD_HANDLE_H
+ï»¿#ifndef CANDY_THREAD_HANDLE_H
 #define CANDY_THREAD_HANDLE_H
 
 #include "ThreadDef.h"
@@ -12,9 +12,9 @@ CANDY_NAMESPACE_BEGIN
 class ThreadHandle : public ThreadHandleImpl
 {
 public:
-	// •Â‚¶‚é
+	// é–‰ã˜ã‚‹
 	void Close();
-	// ”äŠrŠÖ”ŒQ
+	// æ¯”è¼ƒé–¢æ•°ç¾¤
 	bool operator==(const ThreadHandle& _other)const;
 	bool operator!=(const ThreadHandle& _other)const;
 };

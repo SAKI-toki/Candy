@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ThreadHandleImpl.h
- * \brief  ƒXƒŒƒbƒhƒnƒ“ƒhƒ‰‚ÌÀ‘••”(Win)
+ * \brief  ã‚¹ãƒ¬ãƒƒãƒ‰ãƒãƒ³ãƒ‰ãƒ©ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/07
  *********************************************************************/
@@ -13,17 +13,17 @@ CANDY_NAMESPACE_BEGIN
 class ThreadHandleImpl
 {
 protected:
-	// •Â‚¶‚é
+	// é–‰ã˜ã‚‹
 	void Close();
 
-	// ”äŠrŠÖ”ŒQ
+	// æ¯”è¼ƒé–¢æ•°ç¾¤
 	bool operator==(const ThreadHandleImpl& _other)const;
 	bool operator!=(const ThreadHandleImpl& _other)const;
 
 public:
-	// ƒnƒ“ƒhƒ‰‚ÌƒZƒbƒg
+	// ãƒãƒ³ãƒ‰ãƒ©ã®ã‚»ãƒƒãƒˆ
 	void setHandle(const HANDLE _handle);
-	// ƒnƒ“ƒhƒ‰‚Ìæ“¾
+	// ãƒãƒ³ãƒ‰ãƒ©ã®å–å¾—
 	HANDLE getHandle()const;
 
 private:

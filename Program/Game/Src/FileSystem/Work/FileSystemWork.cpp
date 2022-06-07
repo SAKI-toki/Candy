@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystemWork.cpp
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìƒ[ƒN
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -11,38 +11,38 @@ CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Work::startup(const u32 _hash, std::byte* _buf)
 	{
 		m_Hash = _hash;
 		m_Buffer = _buf;
 	}
 
-	// ”jŠü
+	// ç ´æ£„
 	void Work::cleanup()
 	{
 
 	}
 
-	// ƒ[ƒNƒnƒ“ƒhƒ‹‚Ìæ“¾
+	// ãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 	WorkHandle Work::getHandle()const
 	{
 		return m_Handle;
 	}
 
-	// ƒnƒbƒVƒ…‚Ìæ“¾
+	// ãƒãƒƒã‚·ãƒ¥ã®å–å¾—
 	u32 Work::getHash()const
 	{
 		return m_Hash;
 	}
 
-	// ƒoƒbƒtƒ@‚Ìæ“¾
+	// ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 	std::byte* Work::getBuffer()const
 	{
 		return m_Buffer;
 	}
 
-	// ƒnƒ“ƒhƒ‹‚ÌƒZƒbƒg
+	// ãƒãƒ³ãƒ‰ãƒ«ã®ã‚»ãƒƒãƒˆ
 	void Work::setHandle(const WorkHandle _handle)
 	{
 		m_Handle = _handle;

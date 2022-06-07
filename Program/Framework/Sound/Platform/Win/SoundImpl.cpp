@@ -1,4 +1,4 @@
-#include "SoundImpl.h"
+ï»¿#include "SoundImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 
@@ -97,7 +97,7 @@ namespace Sound
 				case MAKE_FOURCC('W', 'A', 'V', 'E'):	break;
 				default:
 				{
-					CANDY_LOG("–¢‘Î‰‚Ìƒtƒ@ƒCƒ‹ƒtƒH[ƒ}ƒbƒg‚Å‚·");
+					CANDY_LOG("æœªå¯¾å¿œã®ãƒ•ã‚¡ã‚¤ãƒ«ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã™");
 					return;
 				}
 				break;
@@ -118,7 +118,7 @@ namespace Sound
 				waveFormatEx.wBitsPerSample = waveFormatEx.nBlockAlign * 8 / waveFormatEx.nChannels;
 				if (waveFormatEx.wFormatTag != 1)
 				{
-					CANDY_LOG("–¢‘Î‰‚Ì‰¹ºƒtƒH[ƒ}ƒbƒg‚Å‚·");
+					CANDY_LOG("æœªå¯¾å¿œã®éŸ³å£°ãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã™");
 					return;
 				}
 
@@ -183,7 +183,7 @@ namespace Sound
 			break;
 			default:
 			{
-				CANDY_LOG("–¢‘Î‰‚Ìƒ`ƒƒƒ“ƒN‚Å‚·");
+				CANDY_LOG("æœªå¯¾å¿œã®ãƒãƒ£ãƒ³ã‚¯ã§ã™");
 				return;
 			}
 			break;

@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystem.h
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ 
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -14,18 +14,18 @@ CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Startup();
-	// XV
+	// æ›´æ–°
 	void Cleanup();
 
-	// ƒtƒ@ƒCƒ‹ƒTƒCƒY‚Ìæ“¾
+	// ãƒ•ã‚¡ã‚¤ãƒ«ã‚µã‚¤ã‚ºã®å–å¾—
 	u64 GetFileSize(const std::string& _path);
-	// “Ç‚İ‚İƒŠƒNƒGƒXƒg
+	// èª­ã¿è¾¼ã¿ãƒªã‚¯ã‚¨ã‚¹ãƒˆ
 	WorkHandle RequestRead(const std::string& _path, std::byte* const _buf, u64 _bufSize);
-	// “Ç‚İ‚İƒŠƒNƒGƒXƒg(‘¦)
+	// èª­ã¿è¾¼ã¿ãƒªã‚¯ã‚¨ã‚¹ãƒˆ(å³æ™‚)
 	bool RequestReadNoWait(const std::string& _path, std::byte* const _buf, u64 _bufSize);
-	// ƒtƒ@ƒCƒ‹“Ç‚İ‚İI—¹”»’è
+	// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿çµ‚äº†åˆ¤å®š
 	bool IsEndReadWork(const WorkHandle _handle);
 }
 

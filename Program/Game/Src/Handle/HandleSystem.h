@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   HandleSystem.h
- * \brief  ƒnƒ“ƒhƒ‰ƒVƒXƒeƒ€
+ * \brief  ãƒãƒ³ãƒ‰ãƒ©ã‚·ã‚¹ãƒ†ãƒ 
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -13,23 +13,23 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ƒnƒ“ƒhƒ‰ƒVƒXƒeƒ€
+// ãƒãƒ³ãƒ‰ãƒ©ã‚·ã‚¹ãƒ†ãƒ 
 template<typename T, typename HandleType>
 class HandleSystem
 {
 	using ValuePtrType = T*;
 public:
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void startup();
-	// ”jŠü
+	// ç ´æ£„
 	void cleanup();
 
-	// ƒnƒ“ƒhƒ‰‚Ì¶¬
+	// ãƒãƒ³ãƒ‰ãƒ©ã®ç”Ÿæˆ
 	HandleType createHandle(ValuePtrType _valuePtr);
-	// ƒnƒ“ƒhƒ‰‚Ì‰ğ•ú
+	// ãƒãƒ³ãƒ‰ãƒ©ã®è§£æ”¾
 	void releaseHandle(HandleType handle);
 
-	// ƒnƒ“ƒhƒ‰‚©‚çƒ|ƒCƒ“ƒ^‚Ìæ“¾
+	// ãƒãƒ³ãƒ‰ãƒ©ã‹ã‚‰ãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
 	ValuePtrType getPtr(HandleType handle)const;
 
 private:

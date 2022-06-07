@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Rect.inl
- * \brief  ‹éŒ`
+ * \brief  çŸ©å½¢
  * \author Yu Ishiyama.
  * \date   2022/06/02
  *********************************************************************/
@@ -9,7 +9,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 inline Rect::Rect()
 {
 	setSize(0.0f, 0.0f, 0.0f, 0.0f);
@@ -19,7 +19,7 @@ inline Rect::Rect(const f32 _x, const f32 _y, const f32 _width, const f32 _heigh
 	setSize(_x, _y, _width, _height);
 }
 
-// ƒTƒCƒYŠî€‚ÌƒZƒbƒg
+// ã‚µã‚¤ã‚ºåŸºæº–ã®ã‚»ãƒƒãƒˆ
 inline Rect& Rect::setSize(const f32 _x, const f32 _y, const f32 _width, const f32 _height)
 {
 	m_X = _x;
@@ -29,18 +29,18 @@ inline Rect& Rect::setSize(const f32 _x, const f32 _y, const f32 _width, const f
 
 	return *this;
 }
-// À•WŠî€‚ÌƒZƒbƒg
+// åº§æ¨™åŸºæº–ã®ã‚»ãƒƒãƒˆ
 inline Rect& Rect::setPos(const f32 _left, const f32 _top, const f32 _right, const f32 _bottom)
 {
 	return setSize(_left, _top, _right - _left, _bottom - _top);
 }
 
-// ‰EÀ•W‚Ìæ“¾
+// å³åº§æ¨™ã®å–å¾—
 inline f32 Rect::getRight()const
 {
 	return m_X + m_Width;
 }
-// ‰ºÀ•W‚Ìæ“¾
+// ä¸‹åº§æ¨™ã®å–å¾—
 inline f32 Rect::getBottom()const
 {
 	return m_Y + m_Height;

@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   HardwareImpl.cpp
- * \brief  ƒn[ƒhƒEƒFƒA‚ÌÀ‘••”(Win)
+ * \brief  ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -11,13 +11,13 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Hardware::Impl
 {
-	// ƒEƒBƒ“ƒhƒEƒvƒƒV[ƒWƒƒ
+	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 	LRESULT CALLBACK WndProc(HWND _hwnd, UINT _message, WPARAM _wparam, LPARAM _lparam);
 	HWND m_Hwnd;
 	bool m_IsClose = false;
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Hardware::Impl::Startup(const StartupInfo& _startupInfo)
 {
 	if (!AttachConsole(ATTACH_PARENT_PROCESS))
@@ -50,13 +50,13 @@ void Hardware::Impl::Startup(const StartupInfo& _startupInfo)
 	::UpdateWindow(m_Hwnd);
 }
 
-// ”jŠü
+// ç ´æ£„
 void Hardware::Impl::Cleanup()
 {
 	FreeConsole();
 }
 
-// XV
+// æ›´æ–°
 void Hardware::Impl::Update()
 {
 	MSG msg{ 0 };
@@ -68,19 +68,19 @@ void Hardware::Impl::Update()
 	if (msg.message == WM_QUIT)m_IsClose = true;
 }
 
-// •Â‚¶‚½‚©
+// é–‰ã˜ãŸã‹
 bool Hardware::Impl::IsClose()
 {
 	return m_IsClose;
 }
 
-// ƒEƒBƒ“ƒhƒEƒnƒ“ƒhƒ‰‚Ìæ“¾
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒãƒ³ãƒ‰ãƒ©ã®å–å¾—
 HWND Hardware::Impl::GetHwnd()
 {
 	return m_Hwnd;
 }
 
-// ƒEƒBƒ“ƒhƒEƒvƒƒV[ƒWƒƒ
+// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£
 LRESULT CALLBACK Hardware::Impl::WndProc(HWND _hwnd, UINT _message, WPARAM _wparam, LPARAM _lparam)
 {
 	switch (_message)

@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_COMMAND_QUEUE_H
+﻿#ifndef CANDY_GRAPHIC_COMMAND_QUEUE_H
 #define CANDY_GRAPHIC_COMMAND_QUEUE_H
 
 #include <Graphic/GraphicDef.h>

@@ -1,4 +1,4 @@
-#include "Sound.h"
+﻿#include "Sound.h"
 #include <FileSystem/FileSystem.h>
 
 #if PLATFORM_WIN

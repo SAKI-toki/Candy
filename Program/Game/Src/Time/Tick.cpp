@@ -1,4 +1,4 @@
-#include "Tick.h"
+﻿#include "Tick.h"
 
 CANDY_NAMESPACE_BEGIN
 

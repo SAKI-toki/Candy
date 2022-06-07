@@ -1,4 +1,4 @@
-#include "GraphicCommandQueueImpl.h"
+﻿#include "GraphicCommandQueueImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 

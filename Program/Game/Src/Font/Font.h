@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Font.h
- * \brief  ƒtƒHƒ“ƒg
+ * \brief  ãƒ•ã‚©ãƒ³ãƒˆ
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -27,14 +27,14 @@ static_assert((s32)FONT_TYPE::SIZE == GetArraySize(FontFileNames));
 
 namespace Font
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Startup();
-	// ”jŠü
+	// ç ´æ£„
 	void Cleanup();
 
-	// ƒtƒHƒ“ƒgƒeƒNƒXƒ`ƒƒƒoƒbƒtƒ@‚Ìæ“¾
+	// ãƒ•ã‚©ãƒ³ãƒˆãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 	Graphic::Buffer& GetFontTextureBuffer(const FONT_TYPE _fontType);
-	// ƒtƒHƒ“ƒg‚ÌUV‚Ìæ“¾
+	// ãƒ•ã‚©ãƒ³ãƒˆã®UVã®å–å¾—
 	Rect GetFontUv(const FONT_TYPE _fontType, const u32 _c);
 }
 

@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Thread.h
- * \brief  ƒXƒŒƒbƒh
+ * \brief  ã‚¹ãƒ¬ãƒƒãƒ‰
  * \author Yu Ishiyama.
  * \date   2022/06/07
  *********************************************************************/
@@ -21,15 +21,15 @@ public:
 	DELETE_COPY(Thread);
 	DEFAULT_MOVE(Thread);
 
-	// ì¬
+	// ä½œæˆ
 	void create(std::function<void(void*)> _func, void* _args, const CreateThreadOption _option = CreateThreadOption{});
-	// ì¬
+	// ä½œæˆ
 	void create(std::function<void()> _func, const CreateThreadOption _option = CreateThreadOption{});
-	// ’â~
+	// åœæ­¢
 	void suspend();
-	// ÄŠJ
+	// å†é–‹
 	void resume();
-	// I—¹‘Ò‹@
+	// çµ‚äº†å¾…æ©Ÿ
 	void wait();
 
 private:

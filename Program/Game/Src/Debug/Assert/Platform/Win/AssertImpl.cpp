@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   AssertImpl.cpp
- * \brief  ƒAƒT[ƒg‚ÌÀ‘••”(Win)
+ * \brief  ã‚¢ã‚µãƒ¼ãƒˆã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -9,14 +9,14 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ƒAƒT[ƒg‚ÌÀ‘••”
+// ã‚¢ã‚µãƒ¼ãƒˆã®å®Ÿè£…éƒ¨
 void assertImpl(const char* const _expr, const char* const _fileName, const u32 _lineNo, const char* const _funcName)
 {
 	std::string assertMessage;
-	assertMessage = assertMessage + "êŠ:" + _fileName + "(" + std::to_string(_lineNo) + "):" + _funcName + "\n";
-	assertMessage = assertMessage + "•s³:" + _expr;
+	assertMessage = assertMessage + "å ´æ‰€:" + _fileName + "(" + std::to_string(_lineNo) + "):" + _funcName + "\n";
+	assertMessage = assertMessage + "ä¸æ­£:" + _expr;
 
-	::MessageBox(NULL, assertMessage.c_str(), "ƒGƒ‰[", MB_OK);
+	::MessageBox(NULL, assertMessage.c_str(), "ã‚¨ãƒ©ãƒ¼", MB_OK);
 
 	std::abort();
 }

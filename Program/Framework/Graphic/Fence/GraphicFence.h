@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_FENCE_H
+﻿#ifndef CANDY_GRAPHIC_FENCE_H
 #define CANDY_GRAPHIC_FENCE_H
 
 #include <Graphic/GraphicDef.h>

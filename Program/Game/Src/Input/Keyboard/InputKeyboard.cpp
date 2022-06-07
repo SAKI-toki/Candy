@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   InputKeyboard.cpp
- * \brief  ƒL[ƒ{[ƒh“ü—Í
+ * \brief  ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -11,19 +11,19 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Input
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Keyboard::startup()
 	{
 		reset();
 	}
 
-	// ”jŠü
+	// ç ´æ£„
 	void Keyboard::cleanup()
 	{
 
 	}
 
-	// XV
+	// æ›´æ–°
 	void Keyboard::update()
 	{
 		bool isOnKey[256];
@@ -46,7 +46,7 @@ namespace Input
 		}
 	}
 
-	// ƒŠƒZƒbƒg
+	// ãƒªã‚»ãƒƒãƒˆ
 	void Keyboard::reset()
 	{
 		for (auto& trig : m_Trigger)trig = 0;
@@ -55,7 +55,7 @@ namespace Input
 		for (auto& repeat : m_Repeat)repeat = 0;
 	}
 
-	// ƒL[î•ñ‚ÌƒZƒbƒg
+	// ã‚­ãƒ¼æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 	void Keyboard::setKey(u32(&_keyStates)[8], const u32 _key, const bool _isOn)
 	{
 		if (_isOn)
@@ -68,19 +68,19 @@ namespace Input
 		}
 	}
 
-	// ƒL[”»’è
+	// ã‚­ãƒ¼åˆ¤å®š
 	bool Keyboard::isKey(const u32(&_keyStates)[8], const u32 _key)const
 	{
 		return _keyStates[_key / 32] & (1 << _key % 32);
 	}
 
-	// “ü—ÍŠJn”»’è
+	// å…¥åŠ›é–‹å§‹åˆ¤å®š
 	bool Keyboard::isTrigger(const u32 _key)const { return isKey(m_Trigger, _key); }
-	// “ü—Í”»’è
+	// å…¥åŠ›åˆ¤å®š
 	bool Keyboard::isOn(const u32 _key)const { return isKey(m_On, _key); }
-	// “ü—ÍI—¹”»’è
+	// å…¥åŠ›çµ‚äº†åˆ¤å®š
 	bool Keyboard::isRelease(const u32 _key)const { return isKey(m_Release, _key); }
-	// “ü—Í”»’è(ˆê’èŠÔŠu)
+	// å…¥åŠ›åˆ¤å®š(ä¸€å®šé–“éš”)
 	bool Keyboard::isRepeat(const u32 _key)const { return isKey(m_Repeat, _key); }
 }
 

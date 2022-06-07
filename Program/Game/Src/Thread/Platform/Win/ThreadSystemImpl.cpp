@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ThreadSystemImpl.cpp
- * \brief  ƒXƒŒƒbƒhƒVƒXƒeƒ€‚ÌÀ‘••”(Win)
+ * \brief  ã‚¹ãƒ¬ãƒƒãƒ‰ã‚·ã‚¹ãƒ†ãƒ ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/07
  *********************************************************************/
@@ -11,11 +11,11 @@ CANDY_NAMESPACE_BEGIN
 
 namespace ThreadSystem::Impl
 {
-	// ƒXƒŒƒbƒh‹N“®ŠÖ”
+	// ã‚¹ãƒ¬ãƒƒãƒ‰èµ·å‹•é–¢æ•°
 	DWORD WINAPI ThreadFunction(void* _arg);
 }
 
-// ƒXƒŒƒbƒh‚Ìì¬
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®ä½œæˆ
 ThreadHandle ThreadSystem::Impl::CreateThread(ThreadFunctionArg* _pThreadFunctionArg)
 {
 	ThreadHandle handle;
@@ -26,37 +26,37 @@ ThreadHandle ThreadSystem::Impl::CreateThread(ThreadFunctionArg* _pThreadFunctio
 	return handle;
 }
 
-// ƒXƒŒƒbƒh‚Ì’â~
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®åœæ­¢
 void ThreadSystem::Impl::SuspendThread(const ThreadHandle _handle)
 {
 	::SuspendThread(_handle.getHandle());
 }
 
-// ƒXƒŒƒbƒh‚ÌÄŠJ
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã®å†é–‹
 void ThreadSystem::Impl::ResumeThread(const ThreadHandle _handle)
 {
 	::ResumeThread(_handle.getHandle());
 }
 
-// ƒXƒŒƒbƒhI—¹‘Ò‹@
+// ã‚¹ãƒ¬ãƒƒãƒ‰çµ‚äº†å¾…æ©Ÿ
 void ThreadSystem::Impl::WaitThread(const ThreadHandle _handle)
 {
 	::WaitForSingleObjectEx(_handle.getHandle(), INFINITE, false);
 }
 
-// Œ»İ‚ÌƒXƒŒƒbƒhID‚Ìæ“¾
+// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰IDã®å–å¾—
 s32 ThreadSystem::Impl::GetCurrentThreadId()
 {
 	return ::GetCurrentThreadId();
 }
 
-// Œ»İ‚ÌƒXƒŒƒbƒh”Ô†‚Ìæ“¾
+// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã®å–å¾—
 s32 ThreadSystem::Impl::GetCurrentThreadNo()
 {
 	return ::GetCurrentProcessorNumber();
 }
 
-// Œ»İ‚ÌƒXƒŒƒbƒhƒnƒ“ƒhƒ‹‚Ìæ“¾
+// ç¾åœ¨ã®ã‚¹ãƒ¬ãƒƒãƒ‰ãƒãƒ³ãƒ‰ãƒ«ã®å–å¾—
 ThreadHandle ThreadSystem::Impl::GetCurrentThreadHandle()
 {
 	ThreadHandle handle;
@@ -64,13 +64,13 @@ ThreadHandle ThreadSystem::Impl::GetCurrentThreadHandle()
 	return handle;
 }
 
-// ƒXƒŒƒbƒh”Ô†‚ÌƒZƒbƒg
+// ã‚¹ãƒ¬ãƒƒãƒ‰ç•ªå·ã®ã‚»ãƒƒãƒˆ
 void ThreadSystem::Impl::SetThreadNo(const ThreadHandle _handle, const s32 _no)
 {
 	::SetThreadAffinityMask(_handle.getHandle(), static_cast<u64>(1) << _no);
 }
 
-// ƒXƒŒƒbƒh—Dæ“x‚ÌƒZƒbƒg
+// ã‚¹ãƒ¬ãƒƒãƒ‰å„ªå…ˆåº¦ã®ã‚»ãƒƒãƒˆ
 void ThreadSystem::Impl::SetPriority(const ThreadHandle _handle, const THREAD_PRIORITY _priority)
 {
 	s32 threadPriority = 0;
@@ -84,13 +84,13 @@ void ThreadSystem::Impl::SetPriority(const ThreadHandle _handle, const THREAD_PR
 	::SetThreadPriority(_handle.getHandle(), threadPriority);
 }
 
-// ƒXƒŒƒbƒhƒXƒŠ[ƒv
+// ã‚¹ãƒ¬ãƒƒãƒ‰ã‚¹ãƒªãƒ¼ãƒ—
 void ThreadSystem::Impl::SleepThread(const s32 _milliSecond)
 {
 	::Sleep(static_cast<DWORD>(_milliSecond));
 }
 
-// ƒXƒŒƒbƒh‹N“®ŠÖ”
+// ã‚¹ãƒ¬ãƒƒãƒ‰èµ·å‹•é–¢æ•°
 DWORD WINAPI ThreadSystem::Impl::ThreadFunction(void* _arg)
 {
 	ThreadFunctionArg* arg = static_cast<ThreadFunctionArg*>(_arg);

@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Hardware.cpp
- * \brief  ƒn[ƒhƒEƒFƒA
+ * \brief  ãƒãƒ¼ãƒ‰ã‚¦ã‚§ã‚¢
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -9,25 +9,25 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Hardware::Startup(const StartupInfo& _startupInfo)
 {
 	Impl::Startup(_startupInfo);
 }
 
-// ”jŠü
+// ç ´æ£„
 void Hardware::Cleanup()
 {
 	Impl::Cleanup();
 }
 
-// XV
+// æ›´æ–°
 void Hardware::Update()
 {
 	Impl::Update();
 }
 
-// •Â‚¶‚½‚©
+// é–‰ã˜ãŸã‹
 bool Hardware::IsClose()
 {
 	return Impl::IsClose();

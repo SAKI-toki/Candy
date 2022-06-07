@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_H
+﻿#ifndef CANDY_GRAPHIC_H
 #define CANDY_GRAPHIC_H
 
 #include "GraphicDef.h"

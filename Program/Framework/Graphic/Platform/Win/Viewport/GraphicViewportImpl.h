@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_VIEWPORT_IMPL_H
+﻿#ifndef CANDY_GRAPHIC_VIEWPORT_IMPL_H
 #define CANDY_GRAPHIC_VIEWPORT_IMPL_H
 
 #include <Graphic/Platform/Win/GraphicDefWin.h>

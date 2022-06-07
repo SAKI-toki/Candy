@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   InputKeyboard.h
- * \brief  ƒL[ƒ{[ƒh“ü—Í
+ * \brief  ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰å…¥åŠ›
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -19,23 +19,23 @@ namespace Input
 	class Keyboard : public Impl::KeyboardImpl
 	{
 	public:
-		// ‰Šú‰»
+		// åˆæœŸåŒ–
 		void startup();
-		// ”jŠü
+		// ç ´æ£„
 		void cleanup();
-		// XV
+		// æ›´æ–°
 		void update();
 
-		// ƒŠƒZƒbƒg
+		// ãƒªã‚»ãƒƒãƒˆ
 		void reset();
 
-		// “ü—ÍŠJn”»’è
+		// å…¥åŠ›é–‹å§‹åˆ¤å®š
 		bool isTrigger(const u32 _key)const;
-		// “ü—Í”»’è
+		// å…¥åŠ›åˆ¤å®š
 		bool isOn(const u32 _key)const;
-		// “ü—ÍI—¹”»’è
+		// å…¥åŠ›çµ‚äº†åˆ¤å®š
 		bool isRelease(const u32 _key)const;
-		// “ü—Í”»’è(ˆê’èŠÔŠu)
+		// å…¥åŠ›åˆ¤å®š(ä¸€å®šé–“éš”)
 		bool isRepeat(const u32 _key)const;
 
 	private:
@@ -44,9 +44,9 @@ namespace Input
 		u32 m_Release[8]{};
 		u32 m_Repeat[8]{};
 
-		// ƒL[î•ñ‚ÌƒZƒbƒg
+		// ã‚­ãƒ¼æƒ…å ±ã®ã‚»ãƒƒãƒˆ
 		void setKey(u32(&_keyStates)[8], const u32 _key, const bool _isOn);
-		// ƒL[”»’è
+		// ã‚­ãƒ¼åˆ¤å®š
 		bool isKey(const u32(&_keyStates)[8], const u32 _key)const;
 	};
 }

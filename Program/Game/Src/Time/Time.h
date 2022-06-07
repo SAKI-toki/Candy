@@ -1,4 +1,4 @@
-#ifndef CANDY_TIME_H
+﻿#ifndef CANDY_TIME_H
 #define CANDY_TIME_H
 
 #include "Tick.h"

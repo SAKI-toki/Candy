@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Rect.h
- * \brief  ‹éŒ`
+ * \brief  çŸ©å½¢
  * \author Yu Ishiyama.
  * \date   2022/06/02
  *********************************************************************/
@@ -12,18 +12,18 @@ CANDY_NAMESPACE_BEGIN
 
 struct alignas(16) Rect
 {
-	// ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	// ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	Rect();
 	Rect(const f32 _x, const f32 _y, const f32 _width, const f32 _height);
 
-	// ƒTƒCƒYŠî€‚ÌƒZƒbƒg
+	// ã‚µã‚¤ã‚ºåŸºæº–ã®ã‚»ãƒƒãƒˆ
 	Rect& setSize(const f32 _x, const f32 _y, const f32 _width, const f32 _height);
-	// À•WŠî€‚ÌƒZƒbƒg
+	// åº§æ¨™åŸºæº–ã®ã‚»ãƒƒãƒˆ
 	Rect& setPos(const f32 _left, const f32 _top, const f32 _right, const f32 _bottom);
 
-	// ‰EÀ•W‚Ìæ“¾
+	// å³åº§æ¨™ã®å–å¾—
 	f32 getRight()const;
-	// ‰ºÀ•W‚Ìæ“¾
+	// ä¸‹åº§æ¨™ã®å–å¾—
 	f32 getBottom()const;
 
 	f32 m_X;

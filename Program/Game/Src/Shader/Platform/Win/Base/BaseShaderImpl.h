@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   BaseShaderImpl.h
- * \brief  ƒVƒF[ƒ_[‚Ìƒx[ƒX‚ÌÀ‘••”(Win)
+ * \brief  ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ™ãƒ¼ã‚¹ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -15,13 +15,13 @@ namespace Shader
 	class BaseShaderImpl
 	{
 	protected:
-		// ‰Šú‰»
+		// åˆæœŸåŒ–
 		void startup(std::byte* const _buf, const u64 _size);
-		// ”jŠü
+		// ç ´æ£„
 		void cleanup();
 
 	public:
-		// ƒVƒF[ƒ_[æ“¾
+		// ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼å–å¾—
 		D3D12_SHADER_BYTECODE getShader()const { return m_Shader; }
 
 	private:

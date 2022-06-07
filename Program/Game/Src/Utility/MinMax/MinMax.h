@@ -1,4 +1,4 @@
-#ifndef CANDY_MIN_MAX_H
+﻿#ifndef CANDY_MIN_MAX_H
 #define CANDY_MIN_MAX_H
 
 CANDY_NAMESPACE_BEGIN

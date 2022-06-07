@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystemImpl.cpp
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚ÌÀ‘••”(Win)
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -9,7 +9,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ƒtƒ@ƒCƒ‹“Ç‚İ‚İ
+// ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã¿
 void FileSystem::Impl::FileRead(const HANDLE _handle, std::byte* _buf, const u64 _readSize)
 {
 	::SetFilePointer(_handle, 0, nullptr, FILE_BEGIN);

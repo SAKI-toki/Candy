@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Shader.h
- * \brief  ƒVƒF[ƒ_[
+ * \brief  ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -41,14 +41,14 @@ static_assert((s32)SHADER_TYPE::SIZE == GetArraySize(ShaderFileNames));
 
 namespace Shader
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Startup();
-	// ”jŠü
+	// ç ´æ£„
 	void Cleanup();
 
-	// ƒo[ƒeƒbƒNƒXƒVƒF[ƒ_[‚Ìæ“¾
+	// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å–å¾—
 	const VertexShader& GetVertexShader(const SHADER_TYPE _shaderType);
-	// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìæ“¾
+	// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å–å¾—
 	const PixelShader& GetPixelShader(const SHADER_TYPE _shaderType);
 }
 

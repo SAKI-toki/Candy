@@ -1,6 +1,6 @@
-/*****************************************************************//**
+Ôªø/*****************************************************************//**
  * \file   GameFlow.cpp
- * \brief  ÉQÅ[ÉÄÉtÉçÅ[
+ * \brief  „Ç≤„Éº„É†„Éï„É≠„Éº
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -90,10 +90,10 @@ namespace GameFlow
 
 			VertexInfo vertices[] =
 			{
-				{ Vec4{ -0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 0.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // ç∂è„
-				{ Vec4{ +0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 0.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // âEè„
-				{ Vec4{ -0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 1.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // ç∂â∫
-				{ Vec4{ +0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 1.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // âEâ∫
+				{ Vec4{ -0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 0.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // Â∑¶‰∏ä
+				{ Vec4{ +0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 0.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // Âè≥‰∏ä
+				{ Vec4{ -0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 1.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // Â∑¶‰∏ã
+				{ Vec4{ +0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 1.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // Âè≥‰∏ã
 			};
 			Graphic::BufferStartupInfo vertexBufferStartupInfo;
 			vertexBufferStartupInfo.setBufferStartupInfo(sizeof(VertexInfo) * GetArraySize(vertices));
@@ -211,7 +211,7 @@ namespace GameFlow
 	TextureView m_TextureViews[4];
 }
 
-// èâä˙âª
+// ÂàùÊúüÂåñ
 void GameFlow::Startup()
 {
 	Input::Startup();
@@ -232,21 +232,21 @@ void GameFlow::Startup()
 	//Sound::CallSe("TestBgm.wav", Sound::CALL_SE_FLAG_LOOP);
 }
 
-// îjä¸
+// Á†¥Ê£Ñ
 void GameFlow::Cleanup()
 {
 	for (auto& textureView : m_TextureViews)textureView.cleanup();
 	Input::Cleanup();
 }
 
-// çXêV
+// Êõ¥Êñ∞
 void GameFlow::Update()
 {
 	Input::Update();
 
 	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, "PlayerPos[x:%.2f y:%.2f]", m_TextureViews[2].m_Constant.m_Position.m_f32.x, m_TextureViews[2].m_Constant.m_Position.m_f32.y);
 	DebugDraw::DrawString(Vec4{ 100, 120, 0 }, "test");
-	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "AABBÇ†Ç¢Ç§Ç¶Ç®");
+	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "AABB„ÅÇ„ÅÑ„ÅÜ„Åà„Åä");
 
 	if (Input::IsKeyTrigger('P'))
 	{
@@ -332,7 +332,7 @@ void GameFlow::Update()
 	}
 }
 
-// ï`âÊ
+// ÊèèÁîª
 void GameFlow::Draw()
 {
 	auto& commandList = Graphic::GetCommandList();

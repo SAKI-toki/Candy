@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   CriticalSectionImpl.cpp
- * \brief  ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌÀ‘••”(Win)
+ * \brief  ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/02
  *********************************************************************/
@@ -9,22 +9,22 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void CriticalSectionImpl::startup()
 {
 	::InitializeCriticalSection(&m_CriticalSection);
 }
-// ”jŠü
+// ç ´æ£„
 void CriticalSectionImpl::cleanup()
 {
 	::DeleteCriticalSection(&m_CriticalSection);
 }
-// ŠJn
+// é–‹å§‹
 void CriticalSectionImpl::enter()
 {
 	::EnterCriticalSection(&m_CriticalSection);
 }
-// I—¹
+// çµ‚äº†
 void CriticalSectionImpl::leave()
 {
 	::LeaveCriticalSection(&m_CriticalSection);

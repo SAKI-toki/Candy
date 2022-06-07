@@ -1,4 +1,4 @@
-#include "GraphicDeviceImpl.h"
+ï»¿#include "GraphicDeviceImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 
@@ -9,7 +9,7 @@ namespace Graphic::Impl
 		u32 factoryFlag = 0;
 
 #if BUILD_DEBUG
-		//ƒfƒoƒbƒOƒŒƒCƒ„‚Ì—LŒø
+		//ãƒ‡ãƒãƒƒã‚°ãƒ¬ã‚¤ãƒ¤ã®æœ‰åŠ¹
 		ComPtr<ID3D12Debug> debug;
 		if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(debug.GetAddressOf()))))
 		{

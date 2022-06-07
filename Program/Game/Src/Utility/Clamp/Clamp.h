@@ -1,4 +1,4 @@
-#ifndef CANDY_CLAMP_H
+﻿#ifndef CANDY_CLAMP_H
 #define CANDY_CLAMP_H
 
 CANDY_NAMESPACE_BEGIN

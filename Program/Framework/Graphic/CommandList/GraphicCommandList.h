@@ -1,4 +1,4 @@
-#ifndef CANDY_GRAPHIC_COMMAND_LIST_H
+﻿#ifndef CANDY_GRAPHIC_COMMAND_LIST_H
 #define CANDY_GRAPHIC_COMMAND_LIST_H
 
 #include <Graphic/GraphicDef.h>

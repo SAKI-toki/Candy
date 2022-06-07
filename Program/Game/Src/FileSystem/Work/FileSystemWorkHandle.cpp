@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystemWorkHandle.cpp
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìƒ[ƒNƒnƒ“ƒhƒ‹
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ¯ãƒ¼ã‚¯ãƒãƒ³ãƒ‰ãƒ«
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -12,7 +12,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	// I—¹”»’è
+	// çµ‚äº†åˆ¤å®š
 	bool WorkHandle::isEnd()const
 	{
 		return FileSystem::IsEndReadWork(*this);

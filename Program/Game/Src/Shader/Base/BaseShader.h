@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   BaseShader.h
- * \brief  ƒVƒF[ƒ_[‚Ìƒx[ƒX
+ * \brief  ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ™ãƒ¼ã‚¹
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -19,9 +19,9 @@ namespace Shader
 	class BaseShader : public BaseShaderImpl
 	{
 	public:
-		// ‰Šú‰»
+		// åˆæœŸåŒ–
 		void startup(std::byte* const _buf, const u64 _size);
-		// ”jŠü
+		// ç ´æ£„
 		void cleanup();
 	};
 }

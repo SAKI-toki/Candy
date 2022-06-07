@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Log.cpp
- * \brief  ƒfƒoƒbƒOƒƒO
+ * \brief  ãƒ‡ãƒãƒƒã‚°ãƒ­ã‚°
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -33,7 +33,7 @@ namespace Log
 #endif // BUILD_DEBUG
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Log::Startup()
 {
 #if BUILD_DEBUG
@@ -41,7 +41,7 @@ void Log::Startup()
 #endif // BUILD_DEBUG
 }
 
-// ”jŠü
+// ç ´æ£„
 void Log::Cleanup()
 {
 #if BUILD_DEBUG
@@ -49,7 +49,7 @@ void Log::Cleanup()
 #endif // BUILD_DEBUG
 }
 
-// XV
+// æ›´æ–°
 void Log::Update()
 {
 #if BUILD_DEBUG
@@ -69,7 +69,7 @@ void Log::Update()
 #endif // BUILD_DEBUG
 }
 
-// ƒƒO‚Ì’Ç‰Á
+// ãƒ­ã‚°ã®è¿½åŠ 
 void Log::AddLog(const Color _color, const char* const _fileName, const s32 _lineNo, const char* const _funcName, const char* const _messageFmt, ...)
 {
 #if BUILD_DEBUG

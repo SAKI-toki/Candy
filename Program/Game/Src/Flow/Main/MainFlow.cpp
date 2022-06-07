@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   MainFlow.cpp
- * \brief  ƒƒCƒ“ƒtƒ[
+ * \brief  ãƒ¡ã‚¤ãƒ³ãƒ•ãƒ­ãƒ¼
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -23,7 +23,7 @@ namespace MainFlow
 
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void MainFlow::Startup()
 {
 	Log::Startup();
@@ -40,7 +40,7 @@ void MainFlow::Startup()
 	GameFlow::Startup();
 }
 
-// ”jŠü
+// ç ´æ£„
 void MainFlow::Cleanup()
 {
 	GameFlow::Cleanup();
@@ -54,7 +54,7 @@ void MainFlow::Cleanup()
 	Log::Cleanup();
 }
 
-// XV
+// æ›´æ–°
 void MainFlow::Update()
 {
 	Log::Update();
@@ -73,7 +73,7 @@ void MainFlow::Update()
 	Graphic::Flip();
 }
 
-// I—¹”»’è
+// çµ‚äº†åˆ¤å®š
 bool MainFlow::IsEnd()
 {
 	return Hardware::IsClose();

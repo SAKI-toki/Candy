@@ -1,4 +1,4 @@
-#include "GraphicBufferImpl.h"
+﻿#include "GraphicBufferImpl.h"
 #include "StartupInfo/GraphicBufferStartupInfoImpl.h"
 
 CANDY_NAMESPACE_BEGIN

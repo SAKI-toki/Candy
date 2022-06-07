@@ -1,4 +1,4 @@
-#include "GraphicFenceImpl.h"
+﻿#include "GraphicFenceImpl.h"
 
 CANDY_NAMESPACE_BEGIN
 

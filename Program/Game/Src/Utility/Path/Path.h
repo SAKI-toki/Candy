@@ -1,4 +1,4 @@
-#ifndef CANDY_PATH_H
+﻿#ifndef CANDY_PATH_H
 #define CANDY_PATH_H
 
 CANDY_NAMESPACE_BEGIN

@@ -1,4 +1,4 @@
-#include "Loop.h"
+﻿#include "Loop.h"
 
 CANDY_NAMESPACE_BEGIN
 

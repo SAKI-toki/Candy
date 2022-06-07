@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Shader.cpp
- * \brief  ƒVƒF[ƒ_[
+ * \brief  ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -17,7 +17,7 @@ namespace Shader
 	std::vector<PixelShader> m_PixelShaders;
 }
 
-// ‰Šú‰»
+// åˆæœŸåŒ–
 void Shader::Startup()
 {
 	std::string baseShaderPath = Setting::GetDataPath() + std::string{ R"(Shader\)" };
@@ -48,7 +48,7 @@ void Shader::Startup()
 	}
 }
 
-// ”jŠü
+// ç ´æ£„
 void Shader::Cleanup()
 {
 	for (auto& vertexShader : m_VertexShaders)vertexShader.cleanup();
@@ -59,13 +59,13 @@ void Shader::Cleanup()
 	m_ShaderBuffers.clear();
 }
 
-// ƒo[ƒeƒbƒNƒXƒVƒF[ƒ_[‚Ìæ“¾
+// ãƒãƒ¼ãƒ†ãƒƒã‚¯ã‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å–å¾—
 const Shader::VertexShader& Shader::GetVertexShader(const SHADER_TYPE _shaderType)
 {
 	return m_VertexShaders[static_cast<s32>(_shaderType)];
 }
 
-// ƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚Ìæ“¾
+// ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å–å¾—
 const Shader::PixelShader& Shader::GetPixelShader(const SHADER_TYPE _shaderType)
 {
 	return m_PixelShaders[static_cast<s32>(_shaderType)];

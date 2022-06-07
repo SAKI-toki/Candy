@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   Log.h
- * \brief  ƒfƒoƒbƒOƒƒO
+ * \brief  ãƒ‡ãƒãƒƒã‚°ãƒ­ã‚°
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -15,14 +15,14 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Log
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Startup();
-	// ”jŠü
+	// ç ´æ£„
 	void Cleanup();
-	// XV
+	// æ›´æ–°
 	void Update();
 
-	// ƒƒO‚Ì’Ç‰Á
+	// ãƒ­ã‚°ã®è¿½åŠ 
 	void AddLog(const Color _color, const char* const _fileName, const s32 _lineNo, const char* const _funcName, const char* const _messageFmt, ...);
 }
 

@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   DebugDrawString.h
- * \brief  •¶š—ñ‚ÌƒfƒoƒbƒO•`‰æ
+ * \brief  æ–‡å­—åˆ—ã®ãƒ‡ãƒãƒƒã‚°æç”»
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -12,20 +12,20 @@ CANDY_NAMESPACE_BEGIN
 
 namespace DebugDraw::String
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void Startup();
-	// ”jŠü
+	// ç ´æ£„
 	void Cleanup();
-	// XV
+	// æ›´æ–°
 	void Update();
-	// •`‰æ
+	// æç”»
 	void Draw();
 	
-	// •`‰æ“o˜^(ˆÊ’u)
+	// æç”»ç™»éŒ²(ä½ç½®)
 	void Add(const Vec4 _pos, const std::string& _str);
-	// •`‰æ“o˜^(ˆÊ’u, F)
+	// æç”»ç™»éŒ²(ä½ç½®, è‰²)
 	void Add(const Vec4 _pos, const Color _color, const std::string& _str);
-	// •`‰æ“o˜^(ˆÊ’u, F, ƒTƒCƒY)
+	// æç”»ç™»éŒ²(ä½ç½®, è‰², ã‚µã‚¤ã‚º)
 	void Add(const Vec4 _pos, const Color _color, const f32 _scale, const std::string& _str);
 }
 

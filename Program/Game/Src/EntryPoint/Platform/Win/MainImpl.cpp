@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   MainImpl.cpp
- * \brief  ƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg‚ÌÀ‘••”(Win)
+ * \brief  ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -9,7 +9,7 @@
 
 CANDY_NAMESPACE_BEGIN
 
-// ƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg’¼Œã‚Ì‰Šú‰»
+// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆç›´å¾Œã®åˆæœŸåŒ–
 void entryPointStartup(_In_ HINSTANCE _instanceHandle,
 	_In_opt_ HINSTANCE _prevInstanceHandle,
 	_In_ LPSTR _cmdLineStr,
@@ -27,7 +27,7 @@ void entryPointStartup(_In_ HINSTANCE _instanceHandle,
 	Hardware::Startup(hardwareStartupInfo);
 }
 
-// ƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒgI—¹’¼‘O‚Ì”jŠü
+// ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆçµ‚äº†ç›´å‰ã®ç ´æ£„
 void entryPointCleanup(_In_ HINSTANCE _instanceHandle,
 	_In_opt_ HINSTANCE _prevInstanceHandle,
 	_In_ LPSTR _cmdLineStr,

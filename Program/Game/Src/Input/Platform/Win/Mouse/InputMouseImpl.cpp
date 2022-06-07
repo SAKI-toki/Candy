@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   InputMouseImpl.cpp
- * \brief  ƒ}ƒEƒX“ü—Í‚ÌÀ‘••”(Win)
+ * \brief  ãƒã‚¦ã‚¹å…¥åŠ›ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/01
  *********************************************************************/
@@ -12,7 +12,7 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Input::Impl
 {
-	// PC‰æ–Êã‚ÌˆÊ’uæ“¾
+	// PCç”»é¢ä¸Šã®ä½ç½®å–å¾—
 	Vec4 MouseImpl::getScreenPos()const
 	{
 		POINT point;
@@ -20,7 +20,7 @@ namespace Input::Impl
 		return Vec4{ static_cast<f32>(point.x), static_cast<f32>(point.y), 0.0f };
 	}
 
-	// PC‰æ–Êã‚ÌˆÊ’u‚©‚çƒAƒvƒŠ‰æ–Êã‚ÌˆÊ’u‚É•ÏŠ·
+	// PCç”»é¢ä¸Šã®ä½ç½®ã‹ã‚‰ã‚¢ãƒ—ãƒªç”»é¢ä¸Šã®ä½ç½®ã«å¤‰æ›
 	Vec4 MouseImpl::toClientPos(const Vec4 _screenPos)const
 	{
 		POINT point{ static_cast<s32>(_screenPos.m_f32.x), static_cast<s32>(_screenPos.m_f32.y) };

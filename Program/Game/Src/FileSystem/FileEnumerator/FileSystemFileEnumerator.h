@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   FileSystemFileEnumerator.h
- * \brief  ƒtƒ@ƒCƒ‹ƒVƒXƒeƒ€‚Ìƒtƒ@ƒCƒ‹—ñ‹“
+ * \brief  ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã®ãƒ•ã‚¡ã‚¤ãƒ«åˆ—æŒ™
  * \author Yu Ishiyama.
  * \date   2022/05/31
  *********************************************************************/
@@ -16,19 +16,19 @@ CANDY_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	// ƒtƒ@ƒCƒ‹—ñ‹“
+	// ãƒ•ã‚¡ã‚¤ãƒ«åˆ—æŒ™
 	class FileEnumerator : public FileEnumeratorImpl
 	{
 	public:
-		// ‰Šú‰»
+		// åˆæœŸåŒ–
 		void startup(const std::string& _basePath);
 
-		// Ÿ‚Ìƒtƒ@ƒCƒ‹‚Ö
+		// æ¬¡ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¸
 		bool next();
-		// ƒfƒBƒŒƒNƒgƒŠ[‚©
+		// ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ¼ã‹
 		bool isDirectory()const;
 
-		// ƒpƒXæ“¾
+		// ãƒ‘ã‚¹å–å¾—
 		std::string getPath()const;
 	};
 }

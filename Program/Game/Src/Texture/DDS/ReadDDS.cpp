@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   ReadDDS.cpp
- * \brief  DDS‚Ì“Ç‚İ‚İ
+ * \brief  DDSã®èª­ã¿è¾¼ã¿
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -43,12 +43,12 @@ namespace Texture
         static_assert(HeaderSize == 128);
 	}
 
-    // ƒƒ‚ƒŠŠm•Û‚µ‚Â‚Â“Ç‚İ‚İ
+    // ãƒ¡ãƒ¢ãƒªç¢ºä¿ã—ã¤ã¤èª­ã¿è¾¼ã¿
     std::byte* DDS::ReadAlloc(const std::byte* const _bytes, const u64 _byteSize)
 	{
         if (_byteSize < HeaderSize)
         {
-            CANDY_LOG("ƒoƒCƒgƒTƒCƒY‚ª‘«‚è‚Ü‚¹‚ñ");
+            CANDY_LOG("ãƒã‚¤ãƒˆã‚µã‚¤ã‚ºãŒè¶³ã‚Šã¾ã›ã‚“");
             return nullptr;
         }
 
@@ -56,12 +56,12 @@ namespace Texture
 
         if (header.m_Magic != MAKE_FOURCC('D', 'D', 'S', ' '))
         {
-            CANDY_LOG("DDSƒtƒ@ƒCƒ‹‚Å‚Í‚ ‚è‚Ü‚¹‚ñ");
+            CANDY_LOG("DDSãƒ•ã‚¡ã‚¤ãƒ«ã§ã¯ã‚ã‚Šã¾ã›ã‚“");
             return nullptr;
         }
         if (header.m_Size != 124)
         {
-            CANDY_LOG("ƒTƒCƒY‚ª124‚Å‚Í‚ ‚è‚Ü‚¹‚ñ");
+            CANDY_LOG("ã‚µã‚¤ã‚ºãŒ124ã§ã¯ã‚ã‚Šã¾ã›ã‚“");
             return nullptr;
         }
 
@@ -89,12 +89,12 @@ namespace Texture
         break;
         case MAKE_FOURCC('D', 'X', '1', '0'):
         {
-            CANDY_LOG("dx10Šg’£‚Í–¢‘Î‰‚Å‚·");
+            CANDY_LOG("dx10æ‹¡å¼µã¯æœªå¯¾å¿œã§ã™");
         }
         break;
         default:
         {
-            CANDY_LOG("–¢‘Î‰‚ÌDDSƒtƒH[ƒ}ƒbƒg‚Å‚·");
+            CANDY_LOG("æœªå¯¾å¿œã®DDSãƒ•ã‚©ãƒ¼ãƒãƒƒãƒˆã§ã™");
         }
         break;
         }

@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   BaseShader.cpp
- * \brief  ƒVƒF[ƒ_[‚Ìƒx[ƒX
+ * \brief  ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒ™ãƒ¼ã‚¹
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -12,13 +12,13 @@ CANDY_NAMESPACE_BEGIN
 
 namespace Shader
 {
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void BaseShader::startup(std::byte* const _buf, const u64 _size)
 	{
 		BaseShaderImpl::startup(_buf, _size);
 	}
 
-	// ”jŠü
+	// ç ´æ£„
 	void BaseShader::cleanup()
 	{
 		BaseShaderImpl::cleanup();

@@ -1,4 +1,4 @@
-#include "GraphicDevice.h"
+﻿#include "GraphicDevice.h"
 
 CANDY_NAMESPACE_BEGIN
 

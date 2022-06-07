@@ -1,6 +1,6 @@
-/*****************************************************************//**
+ï»¿/*****************************************************************//**
  * \file   CriticalSectionImpl.h
- * \brief  ƒNƒŠƒeƒBƒJƒ‹ƒZƒNƒVƒ‡ƒ“‚ÌÀ‘••”(Win)
+ * \brief  ã‚¯ãƒªãƒ†ã‚£ã‚«ãƒ«ã‚»ã‚¯ã‚·ãƒ§ãƒ³ã®å®Ÿè£…éƒ¨(Win)
  * \author Yu Ishiyama.
  * \date   2022/06/02
  *********************************************************************/
@@ -15,13 +15,13 @@ class CriticalSectionImpl
 public:
 	DEFAULT_CONSTRUCTOR_DESTRUCTOR_DELETE_COPY_MOVE(CriticalSectionImpl);
 
-	// ‰Šú‰»
+	// åˆæœŸåŒ–
 	void startup();
-	// ”jŠü
+	// ç ´æ£„
 	void cleanup();
-	// ŠJn
+	// é–‹å§‹
 	void enter();
-	// I—¹
+	// çµ‚äº†
 	void leave();
 private:
 	CRITICAL_SECTION m_CriticalSection{};

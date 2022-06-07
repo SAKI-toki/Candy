@@ -1,4 +1,4 @@
-#include "GraphicIndexBufferViewImpl.h"
+﻿#include "GraphicIndexBufferViewImpl.h"
 #include <Graphic/Platform/Win/Buffer/GraphicBufferImpl.h>
 
 CANDY_NAMESPACE_BEGIN

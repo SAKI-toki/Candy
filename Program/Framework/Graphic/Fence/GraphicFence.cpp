@@ -1,4 +1,4 @@
-#include "GraphicFence.h"
+﻿#include "GraphicFence.h"
 #include <Graphic/Device/GraphicDevice.h>
 #include <Graphic/CommandQueue/GraphicCommandQueue.h>
 

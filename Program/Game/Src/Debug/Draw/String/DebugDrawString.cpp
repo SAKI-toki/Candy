@@ -13,6 +13,7 @@
 #include <Graphic/ResourceManager/GraphicResourceManager.h>
 #include <Font/Font.h>
 #include <Shader/Shader.h>
+#include <Mutex/CriticalSection.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -34,13 +35,15 @@ namespace DebugDraw
 			Vec4 m_Uv;
 			Color m_Color;
 		};
-		std::vector<DrawStringInfo> m_DrawStringInfos;
+		std::vector<DrawStringInfo> m_DrawStringInfoLists[2];
 		std::vector<Graphic::Buffer> m_VertexBuffers;
 		std::vector<Graphic::Buffer> m_IndexBuffers;
 		
 		Graphic::Descriptor m_Descriptor;
 		Graphic::RootSignature m_RootSignature;
 		Graphic::Pipeline m_Pipeline;
+
+		CriticalSection m_CriticalSection;
 
 		constexpr FONT_TYPE DefaultFontType = FONT_TYPE::GOTHIC;
 #endif // BUILD_DEBUG
@@ -88,6 +91,8 @@ namespace DebugDraw
 		pipelineStartupInfo.setEnableBlend(0, true);
 		pipelineStartupInfo.setRootSignature(m_RootSignature);
 		m_Pipeline.startup(Graphic::GetDevice(), pipelineStartupInfo);
+
+		m_CriticalSection.startup();
 #endif // BUILD_DEBUG
 	}
 
@@ -95,6 +100,8 @@ namespace DebugDraw
 	void String::Cleanup()
 	{
 #if BUILD_DEBUG
+		m_CriticalSection.cleanup();
+
 		for (auto& vertexBuffer : m_VertexBuffers)vertexBuffer.cleanup();
 		for (auto& indexBuffer : m_IndexBuffers)indexBuffer.cleanup();
 		m_VertexBuffers.clear();
@@ -113,7 +120,8 @@ namespace DebugDraw
 	void String::Draw()
 	{
 #if BUILD_DEBUG
-		if (m_DrawStringInfos.empty())return;
+		auto& drawStringInfoList = m_DrawStringInfoLists[Global::GetDrawIndex()];
+		if (drawStringInfoList.empty())return;
 
 		std::vector<VertexInfo> vertexInfos;
 		std::vector<u16> indices;
@@ -121,7 +129,7 @@ namespace DebugDraw
 
 		const f32 screenRate = (f32)Graphic::GetScreenHeight() / (f32)Graphic::GetScreenWidth();
 
-		for (const auto& drawStringInfo : m_DrawStringInfos)
+		for (const auto& drawStringInfo : drawStringInfoList)
 		{
 			Vec4 pos = drawStringInfo.m_Pos;
 			const f32 heightSize = drawStringInfo.m_Scale / Graphic::GetScreenHeight();
@@ -185,7 +193,8 @@ namespace DebugDraw
 				index += 4;
 			}
 		}
-		m_DrawStringInfos.clear();
+
+		drawStringInfoList.clear();
 
 		m_VertexBuffers[Graphic::GetBackBufferIndex()].store(reinterpret_cast<std::byte*>(vertexInfos.data()), Min(vertexInfos.size(), 0xffff) * sizeof(VertexInfo), 0);
 		m_IndexBuffers[Graphic::GetBackBufferIndex()].store(reinterpret_cast<std::byte*>(indices.data()), Min(indices.size(), 0xffff) * sizeof(u16), 0);
@@ -254,7 +263,8 @@ namespace DebugDraw
 		drawStringInfo.m_Color = _color;
 		drawStringInfo.m_Scale = _scale;
 		drawStringInfo.m_Wstring = StringSystem::ConvertMultiByteToWideCharSJIS(_str);
-		m_DrawStringInfos.push_back(drawStringInfo);
+		CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
+		m_DrawStringInfoLists[Global::GetUpdateIndex()].push_back(drawStringInfo);
 #else // BUILD_DEBUG
 		CANDY_UNUSED_VALUE(_pos);
 		CANDY_UNUSED_VALUE(_color);

@@ -507,6 +507,12 @@
     <ClInclude Include="..\..\Game\Src\Thread\ThreadHandle.h">
       <Filter>Src\Thread</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Mutex\ThreadEvent.h">
+      <Filter>Src\Mutex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Game\Src\Mutex\Platform\Win\ThreadEventImpl.h">
+      <Filter>Src\Mutex\Platform\Win</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Game\Src\Debug\Assert\Platform\Win\AssertImpl.cpp">
@@ -745,6 +751,12 @@
     </ClCompile>
     <ClCompile Include="..\..\Game\Src\Thread\ThreadHandle.cpp">
       <Filter>Src\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Mutex\ThreadEvent.cpp">
+      <Filter>Src\Mutex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Game\Src\Mutex\Platform\Win\ThreadEventImpl.cpp">
+      <Filter>Src\Mutex\Platform\Win</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

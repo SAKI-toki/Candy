@@ -29,7 +29,7 @@ namespace Graphic::Impl
 	void FenceImpl::waitCpu(const u64 _value)
 	{
 		CANDY_ASSERT_HRESULT(m_Fence->SetEventOnCompletion(_value, m_FenceEvent));
-		WaitForSingleObjectEx(m_FenceEvent, INFINITE, false);
+		::WaitForSingleObjectEx(m_FenceEvent, INFINITE, false);
 	}
 
 	void FenceImpl::waitGpu(ID3D12CommandQueue* const _commandQueue, const u64 _value)

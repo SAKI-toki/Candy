@@ -25,6 +25,8 @@ public:
 	void create(std::function<void(void*)> _func, void* _args, const CreateThreadOption _option = CreateThreadOption{});
 	// 作成
 	void create(std::function<void()> _func, const CreateThreadOption _option = CreateThreadOption{});
+	// 閉じる
+	void close();
 	// 停止
 	void suspend();
 	// 再開

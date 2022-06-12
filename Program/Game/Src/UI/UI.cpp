@@ -7,8 +7,8 @@ CANDY_NAMESPACE_BEGIN
 
 namespace UI
 {
-	std::vector<Graphic::Buffer> m_RenderTargetBuffers;
-	std::vector<Graphic::Buffer> m_MaskStencilBuffers;
+	Graphic::Buffer m_RenderTargetBuffer;
+	Graphic::Buffer m_MaskStencilBuffer;
 }
 
 void UI::Startup()
@@ -18,13 +18,11 @@ void UI::Startup()
 	Graphic::BufferStartupInfo bufferStartupInfo;
 	bufferStartupInfo.setRenderTargetStartupInfo(Graphic::GRAPHIC_FORMAT::R8G8B8A8_UNORM,
 		Graphic::GetScreenWidth(), Graphic::GetScreenHeight());
-	m_RenderTargetBuffers.resize(Graphic::GetBackBufferCount());
-	for (auto& renderTargetBuffer : m_RenderTargetBuffers)renderTargetBuffer.startup(device, bufferStartupInfo);
+	m_RenderTargetBuffer.startup(device, bufferStartupInfo);
 
 	bufferStartupInfo.setDepthStencilStartupInfo(Graphic::GRAPHIC_FORMAT::D24_UNORM_S8_UINT,
 		Graphic::GetScreenWidth(), Graphic::GetScreenHeight());
-	m_MaskStencilBuffers.resize(Graphic::GetBackBufferCount());
-	for (auto& maskStencilBuffer : m_MaskStencilBuffers)maskStencilBuffer.startup(device, bufferStartupInfo);
+	m_MaskStencilBuffer.startup(device, bufferStartupInfo);
 }
 
 void UI::Cleanup()

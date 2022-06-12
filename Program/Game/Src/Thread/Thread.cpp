@@ -30,6 +30,11 @@ void Thread::create(std::function<void()> _func, const CreateThreadOption _optio
 {
 	create([_func](void*) { _func(); }, nullptr, _option);
 }
+// 閉じる
+void Thread::close()
+{
+	m_Handle.Close();
+}
 // 停止
 void Thread::suspend()
 {

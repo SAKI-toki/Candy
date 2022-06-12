@@ -15,12 +15,15 @@
 #include <Sound/Sound.h>
 #include <Font/Font.h>
 #include <Debug/Debug.h>
+#include <JobSystem/JobSystem.h>
 
 CANDY_NAMESPACE_BEGIN
 
 namespace MainFlow
 {
-
+	void UpdateJob();
+	void DrawJob();
+	JobSystem m_JobSystem;
 }
 
 // 初期化
@@ -36,6 +39,9 @@ void MainFlow::Startup()
 	Sound::Startup();
 	Model::Startup();
 	Font::Startup();
+	m_JobSystem.startup(2, 0, 1);
+	m_JobSystem.setFunction(UpdateJob);
+	m_JobSystem.setFunction(DrawJob);
 	Debug::Startup();
 	GameFlow::Startup();
 }
@@ -45,6 +51,7 @@ void MainFlow::Cleanup()
 {
 	GameFlow::Cleanup();
 	Debug::Cleanup();
+	m_JobSystem.cleanup();
 	Font::Cleanup();
 	Model::Cleanup();
 	Sound::Cleanup();
@@ -57,26 +64,40 @@ void MainFlow::Cleanup()
 // 更新
 void MainFlow::Update()
 {
-	Log::Update();
 	Global::Update();
 	Hardware::Update();
-	GameFlow::Update();
-	Graphic::Update();
-	Sound::Update();
-	Debug::Update();
 
-	Graphic::PreDraw();
-	GameFlow::Draw();
-	Model::Primitive::Draw(Graphic::GetCommandList());
-	Debug::Draw();
-	Graphic::PostDraw();
+	m_JobSystem.execute();
+	m_JobSystem.wait();
+
 	Graphic::Flip();
+	Global::Flip();
 }
 
 // 終了判定
 bool MainFlow::IsEnd()
 {
 	return Hardware::IsClose();
+}
+
+// 更新ジョブ
+void MainFlow::UpdateJob()
+{
+	Log::Update();
+	GameFlow::Update();
+	Graphic::Update();
+	Sound::Update();
+	Debug::Update();
+}
+
+// 描画ジョブ
+void MainFlow::DrawJob()
+{
+	Graphic::PreDraw();
+	GameFlow::Draw();
+	Model::Primitive::Draw(Graphic::GetCommandList());
+	Debug::Draw();
+	Graphic::PostDraw();
 }
 
 CANDY_NAMESPACE_END

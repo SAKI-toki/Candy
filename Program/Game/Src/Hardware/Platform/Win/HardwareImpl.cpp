@@ -20,14 +20,6 @@ namespace Hardware::Impl
 // 初期化
 void Hardware::Impl::Startup(const StartupInfo& _startupInfo)
 {
-	if (!AttachConsole(ATTACH_PARENT_PROCESS))
-	{
-		AllocConsole();
-	}
-	freopen("CONIN$", "r", stdin);
-	freopen("CONOUT$", "w", stdout);
-	freopen("CONOUT$", "w", stderr);
-
 	WNDCLASSEX wndClass{};
 	wndClass.cbSize = sizeof(WNDCLASSEX);
 	wndClass.style = CS_HREDRAW | CS_VREDRAW;
@@ -53,7 +45,7 @@ void Hardware::Impl::Startup(const StartupInfo& _startupInfo)
 // 破棄
 void Hardware::Impl::Cleanup()
 {
-	FreeConsole();
+
 }
 
 // 更新

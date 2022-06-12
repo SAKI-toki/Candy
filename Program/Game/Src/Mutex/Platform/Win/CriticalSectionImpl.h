@@ -12,7 +12,7 @@ CANDY_NAMESPACE_BEGIN
 
 class CriticalSectionImpl
 {
-public:
+protected:
 	CANDY_DEFAULT_CONSTRUCTOR_DESTRUCTOR(CriticalSectionImpl);
 	CANDY_DELETE_COPY_MOVE(CriticalSectionImpl);
 

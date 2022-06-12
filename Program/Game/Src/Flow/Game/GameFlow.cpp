@@ -22,6 +22,9 @@
 #include <Sound/Sound.h>
 #include <Debug/Draw/DebugDraw.h>
 
+#include <JobSystem/JobSystem.h>
+
+
 CANDY_NAMESPACE_BEGIN
 
 namespace GameFlow
@@ -54,7 +57,7 @@ namespace GameFlow
 			rootSignatureStartupInfo.initialize();
 			rootSignatureStartupInfo.setDescriptorRange(0, { 0, 0, Graphic::SHADER_VISIBILITY_TYPE::ALL }, Graphic::GetBackBufferCount(), Graphic::DESCRIPTOR_RANGE_TYPE::CONSTANT_BUFFER);
 			rootSignatureStartupInfo.setDescriptorRange(1, { 0, 0, Graphic::SHADER_VISIBILITY_TYPE::PIXEL }, 1, Graphic::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
-			rootSignatureStartupInfo.setDescriptorRange(2, { 1, 0, Graphic::SHADER_VISIBILITY_TYPE::PIXEL }, Graphic::GetBackBufferCount(), Graphic::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
+			rootSignatureStartupInfo.setDescriptorRange(2, { 1, 0, Graphic::SHADER_VISIBILITY_TYPE::PIXEL }, 1, Graphic::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
 			rootSignatureStartupInfo.setStaticSampler(0, { 0, 0, Graphic::SHADER_VISIBILITY_TYPE::PIXEL },
 				Graphic::FILTER_TYPE::ANISOTROPIC, Graphic::TEXTURE_ADDRESS_MODE::CLAMP);
 			rootSignatureStartupInfo.setRootParameterCount(3);

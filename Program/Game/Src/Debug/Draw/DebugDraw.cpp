@@ -7,15 +7,12 @@
 
 #include "DebugDraw.h"
 #include "String/DebugDrawString.h"
-#include <Mutex/CriticalSection.h>
 
 CANDY_NAMESPACE_BEGIN
 
 namespace DebugDraw
 {
-#if BUILD_DEBUG
-	CriticalSection m_CriticalSection;
-#endif // BUILD_DEBUG
+
 }
 
 // 初期化
@@ -23,7 +20,6 @@ void DebugDraw::Startup()
 {
 #if BUILD_DEBUG
 	DebugDraw::String::Startup();
-	m_CriticalSection.startup();
 #endif // BUILD_DEBUG
 }
 
@@ -31,7 +27,6 @@ void DebugDraw::Startup()
 void DebugDraw::Cleanup()
 {
 #if BUILD_DEBUG
-	m_CriticalSection.cleanup();
 	DebugDraw::String::Cleanup();
 #endif // BUILD_DEBUG
 }
@@ -40,7 +35,6 @@ void DebugDraw::Cleanup()
 void DebugDraw::Update()
 {
 #if BUILD_DEBUG
-	CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 	DebugDraw::String::Update();
 #endif // BUILD_DEBUG
 }
@@ -49,7 +43,6 @@ void DebugDraw::Update()
 void DebugDraw::Draw()
 {
 #if BUILD_DEBUG
-	CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 	DebugDraw::String::Draw();
 #endif // BUILD_DEBUG
 }
@@ -58,7 +51,6 @@ void DebugDraw::Draw()
 void DebugDraw::DrawString(const Vec4 _pos, const char* const _format, ...)
 {
 #if BUILD_DEBUG
-	CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 	char str[2048];
 	va_list vaList;
 	va_start(vaList, _format);
@@ -75,7 +67,6 @@ void DebugDraw::DrawString(const Vec4 _pos, const char* const _format, ...)
 void DebugDraw::DrawString(const Vec4 _pos, const Color _color, const char* const _format, ...)
 {
 #if BUILD_DEBUG
-	CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 	char str[2048];
 	va_list vaList;
 	va_start(vaList, _format);
@@ -93,7 +84,6 @@ void DebugDraw::DrawString(const Vec4 _pos, const Color _color, const char* cons
 void DebugDraw::DrawString(const Vec4 _pos, const Color _color, const f32 _scale, const char* const _format, ...)
 {
 #if BUILD_DEBUG
-	CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 	char str[2048];
 	va_list vaList;
 	va_start(vaList, _format);

@@ -6,7 +6,9 @@
  *********************************************************************/
 
 #include "CriticalSection.cpp"
+#include "ThreadEvent.cpp"
 
 #if PLATFORM_WIN
 #include "Platform/Win/CriticalSectionImpl.cpp"
+#include "Platform/Win/ThreadEventImpl.cpp"
 #endif

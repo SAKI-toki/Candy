@@ -76,10 +76,12 @@ void ThreadSystem::Impl::SetPriority(const ThreadHandle _handle, const THREAD_PR
 	s32 threadPriority = 0;
 	switch (_priority)
 	{
-	case THREAD_PRIORITY::CRITICAL:	threadPriority = THREAD_PRIORITY_TIME_CRITICAL;	break;
-	case THREAD_PRIORITY::HIGHEST:	threadPriority = THREAD_PRIORITY_HIGHEST;		break;
-	case THREAD_PRIORITY::NORMAL:	threadPriority = THREAD_PRIORITY_NORMAL;		break;
-	case THREAD_PRIORITY::LOWEST:	threadPriority = THREAD_PRIORITY_LOWEST;		break;
+	case THREAD_PRIORITY::CRITICAL:		threadPriority = THREAD_PRIORITY_TIME_CRITICAL;	break;
+	case THREAD_PRIORITY::HIGHEST:		threadPriority = THREAD_PRIORITY_HIGHEST;		break;
+	case THREAD_PRIORITY::ABOVE_NORMAL:	threadPriority = THREAD_PRIORITY_ABOVE_NORMAL;	break;
+	case THREAD_PRIORITY::NORMAL:		threadPriority = THREAD_PRIORITY_NORMAL;		break;
+	case THREAD_PRIORITY::BELOW_NORMAL:	threadPriority = THREAD_PRIORITY_BELOW_NORMAL;	break;
+	case THREAD_PRIORITY::LOWEST:		threadPriority = THREAD_PRIORITY_LOWEST;		break;
 	}
 	::SetThreadPriority(_handle.getHandle(), threadPriority);
 }

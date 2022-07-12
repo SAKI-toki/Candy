@@ -5,13 +5,10 @@
  * \date   2022/06/07
  *********************************************************************/
 
-#ifndef CANDY_JOB_SYSTEM_H
-#define CANDY_JOB_SYSTEM_H
+#ifndef JOB_SYSTEM_H
+#define JOB_SYSTEM_H
 
-#include <Thread/ThreadSystem.h>
-#include <Mutex/ThreadEvent.h>
-
-CANDY_NAMESPACE_BEGIN
+#include <GameInclude.h>
 
 class JobSystem
 {
@@ -30,17 +27,15 @@ public:
 private:
 	struct ThreadInfo
 	{
-		Thread m_Thread;
+		core::Thread m_Thread;
 		std::function<void()> m_Function;
-		ThreadEvent m_ExecThreadEvent;
-		ThreadEvent m_EndThreadEvent;
+		core::ThreadEvent m_ExecThreadEvent;
+		core::ThreadEvent m_EndThreadEvent;
 	};
 	std::vector<ThreadInfo> m_ThreadInfos;
-	s32 m_ExecuteCount;
+	s32 m_ExecuteCount{};
 
 	static void ThreadFunc(void* _threadInfo);
 };
 
-CANDY_NAMESPACE_END
-
-#endif // CANDY_JOB_SYSTEM_H
+#endif // JOB_SYSTEM_H

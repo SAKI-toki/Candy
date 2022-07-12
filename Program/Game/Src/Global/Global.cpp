@@ -6,13 +6,11 @@
  *********************************************************************/
 
 #include "Global.h"
-#include "Time/Time.h"
-
-CANDY_NAMESPACE_BEGIN
+#include <Core/Time/Time.h>
 
 namespace Global
 {
-	Tick m_PrevFrameTick;
+	core::Tick m_PrevFrameTick;
 	f32 m_AppTime = 0.0f;
 	f32 m_AppTimeAll = 0.0f;
 	s32 m_UpdateIndex = 0;
@@ -22,20 +20,20 @@ namespace Global
 // 初期化
 void Global::Startup()
 {
-	Time::Startup();
+	core::Time::Startup();
 }
 
 // 破棄
 void Global::Cleanup()
 {
-	Time::Cleanup();
+	core::Time::Cleanup();
 }
 
 // 更新
 void Global::Update()
 {
-	const auto tick = Time::GetTick();
-	m_AppTime = Min((tick - m_PrevFrameTick).toSec(), Setting::GetMaxAppTime());
+	const auto tick = core::Time::GetTick();
+	m_AppTime = core::Min((tick - m_PrevFrameTick).toSec(), core::Config::GetMaxAppTime());
 	m_PrevFrameTick = tick;
 	m_AppTimeAll += m_AppTime;
 }
@@ -69,5 +67,3 @@ s32 Global::GetDrawIndex()
 {
 	return m_DrawIndex;
 }
-
-CANDY_NAMESPACE_END

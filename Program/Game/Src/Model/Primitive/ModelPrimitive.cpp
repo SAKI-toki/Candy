@@ -13,7 +13,7 @@
 #include <Graphic/Pipeline/GraphicPipeline.h>
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/ResourceManager/GraphicResourceManager.h>
-#include <Shader/Shader.h>
+#include <Graphic/Shader/GraphicShaderManager.h>
 
 CANDY_NAMESPACE_BEGIN
 
@@ -21,10 +21,10 @@ namespace Model
 {
 	namespace Primitive
 	{
-		Graphic::RootSignature m_RootSignature2D;
-		Graphic::Pipeline m_Pipeline2D;
-		std::vector<Graphic::Buffer> m_VertexBufferList2D;
-		std::vector<Graphic::Buffer> m_IndexBufferList2D;
+		graphic::RootSignature m_RootSignature2D;
+		graphic::Pipeline m_Pipeline2D;
+		std::vector<graphic::Buffer> m_VertexBufferList2D;
+		std::vector<graphic::Buffer> m_IndexBufferList2D;
 		std::vector<VertexInfo> m_VertexInfos2D;
 		std::vector<u16> m_Indices2D;
 	}
@@ -32,36 +32,36 @@ namespace Model
 	// 初期化
 	void Primitive::Startup()
 	{
-		Graphic::RootSignatureStartupInfo rootSignatureStartupInfo2D;
+		graphic::RootSignatureStartupInfo rootSignatureStartupInfo2D;
 		rootSignatureStartupInfo2D.initialize();
 		rootSignatureStartupInfo2D.setRootParameterCount(0);
 		rootSignatureStartupInfo2D.setStaticSamplerCount(0);
-		rootSignatureStartupInfo2D.onRootSignatureFlag(Graphic::ROOT_SIGNATURE_FLAG::ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
-		m_RootSignature2D.startup(Graphic::GetDevice(), rootSignatureStartupInfo2D);
+		rootSignatureStartupInfo2D.onRootSignatureFlag(graphic::types::ROOT_SIGNATURE_FLAG::ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+		m_RootSignature2D.startup(graphic::GraphicManager::GetDevice(), rootSignatureStartupInfo2D);
 
-		Graphic::PipelineStartupInfo pipelineStartupInfo2D;
+		graphic::PipelineStartupInfo pipelineStartupInfo2D;
 		pipelineStartupInfo2D.initialize();
 		pipelineStartupInfo2D.setEnableDepth(false);
 		pipelineStartupInfo2D.setEnableBlend(0, true);
-		pipelineStartupInfo2D.setVertexShader(Shader::GetVertexShader(SHADER_TYPE::PRIMITIVE_2D));
-		pipelineStartupInfo2D.setPixelShader(Shader::GetPixelShader(SHADER_TYPE::PRIMITIVE_2D));
-		pipelineStartupInfo2D.setInputLayoutElement(0, Graphic::SHADER_SEMANTIC_TYPE::POSITION, 0, Graphic::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
-		pipelineStartupInfo2D.setInputLayoutElement(1, Graphic::SHADER_SEMANTIC_TYPE::COLOR, 0, Graphic::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+		pipelineStartupInfo2D.setVertexShader(graphic::ShaderManager::GetVertexShader(graphic::SHADER_TYPE::PRIMITIVE_2D));
+		pipelineStartupInfo2D.setPixelShader(graphic::ShaderManager::GetPixelShader(graphic::SHADER_TYPE::PRIMITIVE_2D));
+		pipelineStartupInfo2D.setInputLayoutElement(0, graphic::types::SHADER_SEMANTIC_TYPE::POSITION, 0, graphic::types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+		pipelineStartupInfo2D.setInputLayoutElement(1, graphic::types::SHADER_SEMANTIC_TYPE::COLOR, 0, graphic::types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
 		pipelineStartupInfo2D.setInputLayoutCount(2);
-		pipelineStartupInfo2D.setRenderTaretFormat(0, Graphic::GRAPHIC_FORMAT::R8G8B8A8_UNORM);
+		pipelineStartupInfo2D.setRenderTaretFormat(0, graphic::types::GRAPHIC_FORMAT::R8G8B8A8_UNORM);
 		pipelineStartupInfo2D.setRenderTaretCount(1);
 		pipelineStartupInfo2D.setRootSignature(m_RootSignature2D);
-		m_Pipeline2D.startup(Graphic::GetDevice(), pipelineStartupInfo2D);
+		m_Pipeline2D.startup(graphic::GraphicManager::GetDevice(), pipelineStartupInfo2D);
 
-		m_VertexBufferList2D.resize(Graphic::GetBackBufferCount());
-		Graphic::BufferStartupInfo vertexBufferStartupInfo2D;
+		m_VertexBufferList2D.resize(graphic::Config::GetBackBufferCount());
+		graphic::BufferStartupInfo vertexBufferStartupInfo2D;
 		vertexBufferStartupInfo2D.setBufferStartupInfo(sizeof(VertexInfo) * 0x10000);
-		for (auto& vertexBuffer2D : m_VertexBufferList2D)vertexBuffer2D.startup(Graphic::GetDevice(), vertexBufferStartupInfo2D);
+		for (auto& vertexBuffer2D : m_VertexBufferList2D)vertexBuffer2D.startup(graphic::GraphicManager::GetDevice(), vertexBufferStartupInfo2D);
 
-		m_IndexBufferList2D.resize(Graphic::GetBackBufferCount());
-		Graphic::BufferStartupInfo indexBufferStartupInfo2D;
+		m_IndexBufferList2D.resize(graphic::Config::GetBackBufferCount());
+		graphic::BufferStartupInfo indexBufferStartupInfo2D;
 		indexBufferStartupInfo2D.setBufferStartupInfo(sizeof(u16) * 0x10000);
-		for (auto& indexBuffer2D : m_IndexBufferList2D)indexBuffer2D.startup(Graphic::GetDevice(), indexBufferStartupInfo2D);
+		for (auto& indexBuffer2D : m_IndexBufferList2D)indexBuffer2D.startup(graphic::GraphicManager::GetDevice(), indexBufferStartupInfo2D);
 
 		m_VertexInfos2D.reserve(0x10000);
 		m_Indices2D.reserve(0x10000);
@@ -81,30 +81,30 @@ namespace Model
 	}
 
 	// 描画
-	void Primitive::Draw(Graphic::CommandList& _commandList)
+	void Primitive::Draw(graphic::CommandList& _commandList)
 	{
 		if (m_VertexInfos2D.empty() || m_Indices2D.empty())return;
 
-		auto& vertexBuffer2D = m_VertexBufferList2D[Graphic::GetBackBufferIndex()];
-		auto& indexBuffer2D = m_IndexBufferList2D[Graphic::GetBackBufferIndex()];
+		auto& vertexBuffer2D = m_VertexBufferList2D[graphic::GraphicManager::GetBackBufferIndex()];
+		auto& indexBuffer2D = m_IndexBufferList2D[graphic::GraphicManager::GetBackBufferIndex()];
 
 		vertexBuffer2D.store(reinterpret_cast<std::byte*>(m_VertexInfos2D.data()), m_VertexInfos2D.size() * sizeof(VertexInfo), 0);
 		indexBuffer2D.store(reinterpret_cast<std::byte*>(m_Indices2D.data()), m_Indices2D.size() * sizeof(u16), 0);
 
-		Graphic::VertexBufferView vertexBufferView2D;
+		graphic::VertexBufferView vertexBufferView2D;
 		vertexBufferView2D.startup(vertexBuffer2D, 0, static_cast<u32>(m_VertexInfos2D.size()), sizeof(VertexInfo));
-		Graphic::IndexBufferView indexBufferView2D;
-		indexBufferView2D.startup(indexBuffer2D, 0, static_cast<u32>(m_Indices2D.size()), sizeof(u16), Graphic::GRAPHIC_FORMAT::R16_UINT);
+		graphic::IndexBufferView indexBufferView2D;
+		indexBufferView2D.startup(indexBuffer2D, 0, static_cast<u32>(m_Indices2D.size()), sizeof(u16), graphic::types::GRAPHIC_FORMAT::R16_UINT);
 
 		_commandList.setRootSignature(m_RootSignature2D);
 		_commandList.setPipeline(m_Pipeline2D);
 		_commandList.setVertexBuffer(0, vertexBufferView2D);
 		_commandList.registVertexBuffers(1);
 		_commandList.setIndexBuffer(indexBufferView2D);
-		_commandList.setPrimitiveTopology(Graphic::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
+		_commandList.setPrimitiveTopology(graphic::types::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
 		_commandList.drawIndexedInstanced(static_cast<u32>(m_Indices2D.size()), 1, 0, 0, 0);
-		Graphic::ResourceManager::Regist(vertexBuffer2D);
-		Graphic::ResourceManager::Regist(indexBuffer2D);
+		graphic::ResourceManager::Regist(vertexBuffer2D);
+		graphic::ResourceManager::Regist(indexBuffer2D);
 		m_VertexInfos2D.clear();
 		m_Indices2D.clear();
 	}

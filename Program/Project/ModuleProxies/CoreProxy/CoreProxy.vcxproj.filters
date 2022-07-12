@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Src\EntryPoint">
+      <UniqueIdentifier>{c20997ff-74b0-4433-9dcf-a4a1758c7068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug">
+      <UniqueIdentifier>{285fdf1a-f400-4f11-9b64-5ec91f2dc06c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform">
+      <UniqueIdentifier>{4a75596d-a95c-43c7-920e-06699778aec9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win">
+      <UniqueIdentifier>{9dc41d5c-60f8-439e-b767-67fc72bd6df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Debug">
+      <UniqueIdentifier>{7ec6373e-7d9f-4afd-ba51-3aebe5502e06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Debug\Assert">
+      <UniqueIdentifier>{2c5b53a3-564e-448a-ba47-6c946f433565}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Debug\Log">
+      <UniqueIdentifier>{dce1fd2b-84ca-4ac8-9243-2632dbefc06f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Log">
+      <UniqueIdentifier>{1e5d3e51-4748-4f50-a212-21315a8ab9d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Assert">
+      <UniqueIdentifier>{a8aca4fc-756e-44ea-8ffc-9271bb7f1c5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Config">
+      <UniqueIdentifier>{9a48d545-9a19-4910-94f8-2f3154c79db1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\__CoreProxyCpp.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\EntryPoint\CoreProxyEntryPoint.cpp">
+      <Filter>Src\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\Platform\Win\Debug\Log\CoreProxyLogImpl.cpp">
+      <Filter>Src\Platform\Win\Debug\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\Platform\Win\Debug\Assert\CoreProxyAssertImpl.cpp">
+      <Filter>Src\Platform\Win\Debug\Assert</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\Debug\Assert\CoreProxyAssert.cpp">
+      <Filter>Src\Debug\Assert</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\Debug\Log\CoreProxyLog.cpp">
+      <Filter>Src\Debug\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\Config\CoreProxyConfig.cpp">
+      <Filter>Src\Config</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\CoreProxyInclude.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\EntryPoint\CoreProxyEntryPoint.h">
+      <Filter>Src\EntryPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\Platform\Win\Debug\Log\CoreProxyLogImpl.h">
+      <Filter>Src\Platform\Win\Debug\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\Platform\Win\Debug\Assert\CoreProxyAssertImpl.h">
+      <Filter>Src\Platform\Win\Debug\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\Debug\Assert\CoreProxyAssert.h">
+      <Filter>Src\Debug\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\Debug\Log\CoreProxyLog.h">
+      <Filter>Src\Debug\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\Config\CoreProxyConfig.h">
+      <Filter>Src\Config</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -8,7 +8,7 @@
 #ifndef CANDY_SCENE_FLOW_H
 #define CANDY_SCENE_FLOW_H
 
-CANDY_NAMESPACE_BEGIN
+#include <GameInclude.h>
 
 namespace SceneFlow
 {
@@ -19,7 +19,5 @@ namespace SceneFlow
 	// 更新
 	void Update();
 }
-
-CANDY_NAMESPACE_END
 
 #endif // CANDY_SCENE_FLOW_H

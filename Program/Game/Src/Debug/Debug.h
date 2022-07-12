@@ -8,7 +8,7 @@
 #ifndef CANDY_DEBUG_H
 #define CANDY_DEBUG_H
 
-CANDY_NAMESPACE_BEGIN
+#include <GameInclude.h>
 
 namespace Debug
 {
@@ -21,7 +21,5 @@ namespace Debug
 	// 描画
 	void Draw();
 }
-
-CANDY_NAMESPACE_END
 
 #endif // CANDY_DEBUG_H

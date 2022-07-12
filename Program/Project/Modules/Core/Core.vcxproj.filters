@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Src\BuildConfig">
+      <UniqueIdentifier>{8cd03c9d-b7f4-4396-9c94-f3ae268fd062}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Color">
+      <UniqueIdentifier>{901df72b-1665-4e45-9b00-fe8ad0870c50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\EntryPoint">
+      <UniqueIdentifier>{c2fb719c-23b1-4d2e-bdf6-2973c88f0b9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Hardware">
+      <UniqueIdentifier>{dd5da9ce-082a-460a-a547-f83dc459f6c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Mutex">
+      <UniqueIdentifier>{f1a28b20-c6ee-4ca9-a010-7bb7e985a621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform">
+      <UniqueIdentifier>{542ea211-3a40-4f88-80a4-d0cb2a50bbce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Rect">
+      <UniqueIdentifier>{e1534ab9-eabd-401b-9c11-8a4e92e8a73a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Thread">
+      <UniqueIdentifier>{b7a432e8-2fda-41c8-aeab-ef52a134547e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Time">
+      <UniqueIdentifier>{1e72b411-7de8-4de7-a37f-ce6c36408d2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility">
+      <UniqueIdentifier>{91ca8ee9-841e-458a-b6c7-6716b44634bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Vec">
+      <UniqueIdentifier>{18add0f5-917c-4517-8849-0a72be69ba5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Clamp">
+      <UniqueIdentifier>{5ebe24d5-e157-4c55-9746-084e47682e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Endian">
+      <UniqueIdentifier>{3c38d9a3-fb77-4b25-91bb-7e5cd86f36d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Hash">
+      <UniqueIdentifier>{f8743897-a29e-490f-abef-2a103d2d5c57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Loop">
+      <UniqueIdentifier>{f6d68cac-ceb5-4fe5-bd4e-33e44a099c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\MinMax">
+      <UniqueIdentifier>{b1873d3f-d798-4eb0-a11f-eeac8df82bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Path">
+      <UniqueIdentifier>{5d38a418-e4ef-4415-88e5-800c422c7d3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\StringSystem">
+      <UniqueIdentifier>{8cf3ca5c-5e0a-469e-8977-989bced74fd1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\StringSystem\Convert">
+      <UniqueIdentifier>{1d461650-60c1-4302-b23b-afb389b78088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\StringSystem\Split">
+      <UniqueIdentifier>{21c4a3da-27f6-4192-91a2-3abaa543a40a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\StringSystem\UpperLower">
+      <UniqueIdentifier>{4312f1da-00e0-4ccc-bb98-a7129bf2c555}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win">
+      <UniqueIdentifier>{9e189e05-b6be-4a0c-b0c4-ee0340e75536}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\EntryPoint">
+      <UniqueIdentifier>{18267c65-0855-4274-ad86-f72649074abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Hardware">
+      <UniqueIdentifier>{fe55e7e7-139b-4516-aff0-00cf7124fbf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Mutex">
+      <UniqueIdentifier>{7cff3d18-f937-40a5-946a-a62c7564cfdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Thread">
+      <UniqueIdentifier>{824c4bab-f0d1-407c-8ed0-d5ec97f4c09a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Time">
+      <UniqueIdentifier>{a770a483-e552-42c9-b7dd-48f91757dc07}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Utility">
+      <UniqueIdentifier>{5cc4d9e3-3815-4be0-a7a1-af432a99657f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Vec">
+      <UniqueIdentifier>{c825d9f7-052b-4bb3-ba3d-7a36d153309d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Utility\StringSystem">
+      <UniqueIdentifier>{4dda3cc8-ce7d-435e-869b-6c0946bd6c09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Utility\StringSystem\Convert">
+      <UniqueIdentifier>{17e82f46-74ae-40b5-8359-6f9fa9ed87d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\ArraySize">
+      <UniqueIdentifier>{0f67015f-316a-4983-987a-68fb0688c9c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Std">
+      <UniqueIdentifier>{359acd91-a9e5-4130-9181-de54db581933}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FileSystem">
+      <UniqueIdentifier>{640c6f57-3981-4784-8754-b718ad97d4a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\StaticVector">
+      <UniqueIdentifier>{0951d9ad-c53d-4bf6-88ee-83ddd99c42a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Handle">
+      <UniqueIdentifier>{b513b6d8-bffd-476f-8387-5ebe56d4aef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FileSystem\FileEnumerator">
+      <UniqueIdentifier>{29edaecd-63b3-457b-b879-1b4f09c493ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FileSystem\FileInfo">
+      <UniqueIdentifier>{e85fe899-b86c-4d88-afcd-712800a1d3de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\FileSystem\Work">
+      <UniqueIdentifier>{f640a0c5-276a-41fb-99c3-88501638b6ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Input">
+      <UniqueIdentifier>{13ca893b-8dad-47ca-be80-0fa321433134}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Input">
+      <UniqueIdentifier>{244c08da-4359-4237-b387-97e7200f4335}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Input\Keyboard">
+      <UniqueIdentifier>{0ba9e7b8-a106-4b8a-acdc-110a8a47f26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Input\Mouse">
+      <UniqueIdentifier>{87a24d2a-ed9f-414f-ab9d-cd61efbc1cc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Input\Keyboard">
+      <UniqueIdentifier>{156136e0-8128-4fd0-8fc5-c50f99c1e342}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Input\Mouse">
+      <UniqueIdentifier>{051ba04c-df1a-4d30-a8bf-cbd5ed74de1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug">
+      <UniqueIdentifier>{5459cb91-e6f6-4532-af1e-ba0f0aa82c17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Assert">
+      <UniqueIdentifier>{2d4e5755-b5c6-4c29-a355-d7ff0ed6ba2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Log">
+      <UniqueIdentifier>{529911fe-2e5c-4b39-aefd-d50704c6203a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\FileSystem">
+      <UniqueIdentifier>{f39bcc13-1d7b-4287-ac76-bd3c7ba537d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\FileSystem\FileInfo">
+      <UniqueIdentifier>{ab4b0c19-02f2-470a-a8aa-bff77d0e6f01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\FileSystem\FileEnumerator">
+      <UniqueIdentifier>{475007e7-ed3b-4fb7-88e5-c226f81e18b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Config">
+      <UniqueIdentifier>{2032e08c-5976-4c91-9df6-2ecfaec63ac5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Types">
+      <UniqueIdentifier>{ae76d261-f260-4b21-907f-03b149c8685f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Types">
+      <UniqueIdentifier>{7f411212-eb7b-4fe8-8d04-415b4b68373d}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Modules\Core\BuildConfig\BuildConfig.h">
+      <Filter>Src\BuildConfig</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Color\Color.h">
+      <Filter>Src\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Color\ConvColor.h">
+      <Filter>Src\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Hardware\Hardware.h">
+      <Filter>Src\Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Mutex\CriticalSection.h">
+      <Filter>Src\Mutex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Mutex\ThreadEvent.h">
+      <Filter>Src\Mutex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Rect\Rect.h">
+      <Filter>Src\Rect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Thread\Thread.h">
+      <Filter>Src\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Thread\ThreadDef.h">
+      <Filter>Src\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Thread\ThreadHandle.h">
+      <Filter>Src\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Thread\ThreadSystem.h">
+      <Filter>Src\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Time\Tick.h">
+      <Filter>Src\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Time\Time.h">
+      <Filter>Src\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\Clamp\Clamp.h">
+      <Filter>Src\Utility\Clamp</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\Endian\Endian.h">
+      <Filter>Src\Utility\Endian</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\Hash\Hash.h">
+      <Filter>Src\Utility\Hash</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\Loop\Loop.h">
+      <Filter>Src\Utility\Loop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\MinMax\MinMax.h">
+      <Filter>Src\Utility\MinMax</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\Path\Path.h">
+      <Filter>Src\Utility\Path</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\StringSystem\Convert\StringSystemConvert.h">
+      <Filter>Src\Utility\StringSystem\Convert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\StringSystem\Split\StringSystemSplit.h">
+      <Filter>Src\Utility\StringSystem\Split</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\StringSystem\UpperLower\StringSystemToUpperLower.h">
+      <Filter>Src\Utility\StringSystem\UpperLower</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Platform.h">
+      <Filter>Src\Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\PlatformImpl.h">
+      <Filter>Src\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\EntryPoint\MainImpl.h">
+      <Filter>Src\Platform\Win\EntryPoint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Hardware\HardwareImpl.h">
+      <Filter>Src\Platform\Win\Hardware</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Mutex\CriticalSectionImpl.h">
+      <Filter>Src\Platform\Win\Mutex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Mutex\ThreadEventImpl.h">
+      <Filter>Src\Platform\Win\Mutex</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Thread\ThreadHandleImpl.h">
+      <Filter>Src\Platform\Win\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Thread\ThreadSystemImpl.h">
+      <Filter>Src\Platform\Win\Thread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Time\TickImpl.h">
+      <Filter>Src\Platform\Win\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Time\TimeImpl.h">
+      <Filter>Src\Platform\Win\Time</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Utility\StringSystem\Convert\StringSystemConvertImpl.h">
+      <Filter>Src\Platform\Win\Utility\StringSystem\Convert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4Impl.h">
+      <Filter>Src\Platform\Win\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Vec\Vec4.h">
+      <Filter>Src\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Core.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\ArraySize\ArraySize.h">
+      <Filter>Src\Utility\ArraySize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Std\StdInclude.h">
+      <Filter>Src\Std</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\CoreInclude.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\StaticVector\StaticVector.h">
+      <Filter>Src\Utility\StaticVector</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\FileSystem\FileSystem.h">
+      <Filter>Src\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWork.h">
+      <Filter>Src\FileSystem\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWorkHandle.h">
+      <Filter>Src\FileSystem\Work</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\FileSystem\FileInfo\FileSystemFileInfo.h">
+      <Filter>Src\FileSystem\FileInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\FileSystem\FileEnumerator\FileSystemFileEnumerator.h">
+      <Filter>Src\FileSystem\FileEnumerator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Handle\Handle.h">
+      <Filter>Src\Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Handle\HandleSystem.h">
+      <Filter>Src\Handle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Input\Input.h">
+      <Filter>Src\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Input\Mouse\InputMouse.h">
+      <Filter>Src\Input\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Input\Keyboard\InputKeyboard.h">
+      <Filter>Src\Input\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Input\Keyboard\InputKeyboardImpl.h">
+      <Filter>Src\Platform\Win\Input\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Input\Mouse\InputMouseImpl.h">
+      <Filter>Src\Platform\Win\Input\Mouse</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Debug\Assert\Assert.h">
+      <Filter>Src\Debug\Assert</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Debug\Log\Log.h">
+      <Filter>Src\Debug\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileSystemImpl.h">
+      <Filter>Src\Platform\Win\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileInfo\FileSystemFileInfoImpl.h">
+      <Filter>Src\Platform\Win\FileSystem\FileInfo</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileEnumerator\FileSystemFileEnumeratorImpl.h">
+      <Filter>Src\Platform\Win\FileSystem\FileEnumerator</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Config\CoreConfig.h">
+      <Filter>Src\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Types\CoreTypesImpl.h">
+      <Filter>Src\Platform\Win\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Types\CoreTypes.h">
+      <Filter>Src\Types</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Types\ClassDefine.h">
+      <Filter>Src\Types</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Modules\Core\Color\ConvColor.cpp">
+      <Filter>Src\Color</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\EntryPoint\Main.cpp">
+      <Filter>Src\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Hardware\Hardware.cpp">
+      <Filter>Src\Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Mutex\CriticalSection.cpp">
+      <Filter>Src\Mutex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Mutex\ThreadEvent.cpp">
+      <Filter>Src\Mutex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Thread\Thread.cpp">
+      <Filter>Src\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Thread\ThreadHandle.cpp">
+      <Filter>Src\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Thread\ThreadSystem.cpp">
+      <Filter>Src\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Time\Tick.cpp">
+      <Filter>Src\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Time\Time.cpp">
+      <Filter>Src\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Utility\Path\Path.cpp">
+      <Filter>Src\Utility\Path</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Utility\StringSystem\Convert\StringSystemConvert.cpp">
+      <Filter>Src\Utility\StringSystem\Convert</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\EntryPoint\MainImpl.cpp">
+      <Filter>Src\Platform\Win\EntryPoint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Hardware\HardwareImpl.cpp">
+      <Filter>Src\Platform\Win\Hardware</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Mutex\CriticalSectionImpl.cpp">
+      <Filter>Src\Platform\Win\Mutex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Mutex\ThreadEventImpl.cpp">
+      <Filter>Src\Platform\Win\Mutex</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Thread\ThreadHandleImpl.cpp">
+      <Filter>Src\Platform\Win\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Thread\ThreadSystemImpl.cpp">
+      <Filter>Src\Platform\Win\Thread</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Time\TickImpl.cpp">
+      <Filter>Src\Platform\Win\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Time\TimeImpl.cpp">
+      <Filter>Src\Platform\Win\Time</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Utility\StringSystem\Convert\StringSystemConvertImpl.cpp">
+      <Filter>Src\Platform\Win\Utility\StringSystem\Convert</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\__CoreCpp.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\FileSystem\FileSystem.cpp">
+      <Filter>Src\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWork.cpp">
+      <Filter>Src\FileSystem\Work</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWorkHandle.cpp">
+      <Filter>Src\FileSystem\Work</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\FileSystem\FileInfo\FileSystemFileInfo.cpp">
+      <Filter>Src\FileSystem\FileInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\FileSystem\FileEnumerator\FileSystemFileEnumerator.cpp">
+      <Filter>Src\FileSystem\FileEnumerator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Input\Input.cpp">
+      <Filter>Src\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Input\Mouse\InputMouse.cpp">
+      <Filter>Src\Input\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Input\Keyboard\InputKeyboard.cpp">
+      <Filter>Src\Input\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Input\Keyboard\InputKeyboardImpl.cpp">
+      <Filter>Src\Platform\Win\Input\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Input\Mouse\InputMouseImpl.cpp">
+      <Filter>Src\Platform\Win\Input\Mouse</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Debug\Log\Log.cpp">
+      <Filter>Src\Debug\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Debug\Assert\Assert.cpp">
+      <Filter>Src\Debug\Assert</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileSystemImpl.cpp">
+      <Filter>Src\Platform\Win\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileInfo\FileSystemFileInfoImpl.cpp">
+      <Filter>Src\Platform\Win\FileSystem\FileInfo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileEnumerator\FileSystemFileEnumeratorImpl.cpp">
+      <Filter>Src\Platform\Win\FileSystem\FileEnumerator</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Config\CoreConfig.cpp">
+      <Filter>Src\Config</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Modules\Core\Rect\Rect.inl">
+      <Filter>Src\Rect</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\Clamp\Clamp.inl">
+      <Filter>Src\Utility\Clamp</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\Endian\Endian.inl">
+      <Filter>Src\Utility\Endian</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\Hash\Hash.inl">
+      <Filter>Src\Utility\Hash</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\Loop\Loop.inl">
+      <Filter>Src\Utility\Loop</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\MinMax\MinMax.inl">
+      <Filter>Src\Utility\MinMax</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\StringSystem\Split\StringSystemSplit.inl">
+      <Filter>Src\Utility\StringSystem\Split</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\StringSystem\UpperLower\StringSystemToUpperLower.inl">
+      <Filter>Src\Utility\StringSystem\UpperLower</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4Impl.inl">
+      <Filter>Src\Platform\Win\Vec</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\ArraySize\ArraySize.inl">
+      <Filter>Src\Utility\ArraySize</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\StaticVector\StaticVector.inl">
+      <Filter>Src\Utility\StaticVector</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Handle\Handle.inl">
+      <Filter>Src\Handle</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Handle\HandleSystem.inl">
+      <Filter>Src\Handle</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Natvis Include="..\..\..\Modules\Core\Utility\StaticVector\StaticVector.natvis">
+      <Filter>Src\Utility\StaticVector</Filter>
+    </Natvis>
+  </ItemGroup>
+</Project>

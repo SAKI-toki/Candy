@@ -7,17 +7,15 @@
 
 #include "JobSystem.h"
 
-CANDY_NAMESPACE_BEGIN
-
 // 初期化
 void JobSystem::startup(const s32 _threadCount, const s32 _minCoreNo, const s32 _maxCoreNo)
 {
 	m_ThreadInfos.resize(_threadCount);
 	for (s32 i = 0; i < _threadCount; ++i)
 	{
-		CreateThreadOption createThreadOption;
-		createThreadOption.m_CoreNo = LoopStrict(i + _minCoreNo, _minCoreNo, _maxCoreNo);
-		createThreadOption.m_Priority = THREAD_PRIORITY::HIGHEST;
+		core::CreateThreadOption createThreadOption;
+		createThreadOption.m_CoreNo = core::LoopStrict(i + _minCoreNo, _minCoreNo, _maxCoreNo);
+		createThreadOption.m_Priority = core::THREAD_PRIORITY::HIGHEST;
 		m_ThreadInfos[i].m_ExecThreadEvent.startup();
 		m_ThreadInfos[i].m_EndThreadEvent.startup();
 		m_ThreadInfos[i].m_Thread.create(ThreadFunc, (void*)&m_ThreadInfos[i], createThreadOption);
@@ -48,7 +46,7 @@ void JobSystem::setFunction(std::function<void()>&& _func, const s32 _execThread
 	{
 		m_ThreadInfos[m_ExecuteCount + i].m_Function = _func;
 	}
-	m_ExecuteCount = Clamp(m_ExecuteCount + _execThreadCount, 1, getThreadCount());
+	m_ExecuteCount = core::Clamp(m_ExecuteCount + _execThreadCount, 1, getThreadCount());
 }
 
 // 関数セット
@@ -106,5 +104,3 @@ void JobSystem::ThreadFunc(void* _threadInfo)
 		threadInfo.m_EndThreadEvent.signal();
 	}
 }
-
-CANDY_NAMESPACE_END

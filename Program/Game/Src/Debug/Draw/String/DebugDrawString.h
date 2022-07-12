@@ -8,7 +8,7 @@
 #ifndef CANDY_DEBUG_DRAW_STRING_H
 #define CANDY_DEBUG_DRAW_STRING_H
 
-CANDY_NAMESPACE_BEGIN
+#include <GameInclude.h>
 
 namespace DebugDraw::String
 {
@@ -28,7 +28,5 @@ namespace DebugDraw::String
 	// 描画登録(位置, 色, サイズ)
 	void Add(const Vec4 _pos, const Color _color, const f32 _scale, const std::string& _str);
 }
-
-CANDY_NAMESPACE_END
 
 #endif // CANDY_DEBUG_DRAW_STRING_H

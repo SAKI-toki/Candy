@@ -8,7 +8,7 @@
 #ifndef CANDY_MAIN_FLOW_H
 #define CANDY_MAIN_FLOW_H
 
-CANDY_NAMESPACE_BEGIN
+#include <GameInclude.h>
 
 namespace MainFlow
 {
@@ -22,7 +22,5 @@ namespace MainFlow
 	// 終了判定
 	bool IsEnd();
 }
-
-CANDY_NAMESPACE_END
 
 #endif // CANDY_MAIN_FLOW_H

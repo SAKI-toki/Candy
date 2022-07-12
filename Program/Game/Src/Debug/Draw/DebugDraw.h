@@ -5,10 +5,10 @@
  * \date   2022/05/31
  *********************************************************************/
 
-#ifndef CANDY_DEBUG_DRAW_H
-#define CANDY_DEBUG_DRAW_H
+#ifndef DEBUG_DRAW_H
+#define DEBUG_DRAW_H
 
-CANDY_NAMESPACE_BEGIN
+#include <GameInclude.h>
 
 namespace DebugDraw
 {
@@ -29,6 +29,4 @@ namespace DebugDraw
 	void DrawString(const Vec4 _pos, const Color _color, const f32 _scale, const char* const _format, ...);
 }
 
-CANDY_NAMESPACE_END
-
-#endif // CANDY_DEBUG_DRAW_H
+#endif // DEBUG_DRAW_H

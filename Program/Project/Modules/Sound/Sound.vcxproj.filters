@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Src\Platform">
+      <UniqueIdentifier>{85678d53-d788-4f33-a1d7-d2ce7e9312a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win">
+      <UniqueIdentifier>{ec055e51-72c3-4c0f-8b8b-86fc2d394f59}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Modules\Sound\__SoundCpp.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Sound\Sound.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Sound\Platform\Win\SoundImpl.cpp">
+      <Filter>Src\Platform\Win</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Sound\SoundDef.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Modules\Sound\Sound.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Sound\Platform\Win\SoundImpl.h">
+      <Filter>Src\Platform\Win</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Sound\SoundDef.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Sound\SoundInclude.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

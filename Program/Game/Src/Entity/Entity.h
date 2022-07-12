@@ -1,10 +1,9 @@
 ﻿#ifndef CANDY_ENTITY_H
 #define CANDY_ENTITY_H
 
-#include <string>
-#include "EntityHandle.h"
+#include <GameInclude.h>
 
-CANDY_NAMESPACE_BEGIN
+#include "EntityHandle.h"
 
 class Entity
 {
@@ -26,7 +25,5 @@ private:
 	EntityHandle m_Handle{};
 	std::string m_Name{};
 };
-
-CANDY_NAMESPACE_END
 
 #endif // CANDY_ENTITY_H

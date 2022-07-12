@@ -7,17 +7,13 @@
 
 #include "MainFlow.h"
 #include <Flow/Game/GameFlow.h>
-#include <Hardware/Hardware.h>
-#include <Graphic/Graphic.h>
-#include <FileSystem/FileSystem.h>
-#include <Thread/ThreadSystem.h>
+#include <Core/Hardware/Hardware.h>
+#include <Core/FileSystem/FileSystem.h>
+#include <Core/Thread/ThreadSystem.h>
 #include <Model/Model.h>
-#include <Sound/Sound.h>
 #include <Font/Font.h>
 #include <Debug/Debug.h>
 #include <JobSystem/JobSystem.h>
-
-CANDY_NAMESPACE_BEGIN
 
 namespace MainFlow
 {
@@ -29,13 +25,13 @@ namespace MainFlow
 // 初期化
 void MainFlow::Startup()
 {
-	Log::Startup();
-	auto threadHandle = ThreadSystem::GetCurrentThreadHandle();
-	ThreadSystem::SetThreadNo(threadHandle, 0);
-	ThreadSystem::SetPriority(threadHandle, THREAD_PRIORITY::NORMAL);
+	core::Debug::Log::Startup();
+	auto threadHandle = core::ThreadSystem::GetCurrentThreadHandle();
+	core::ThreadSystem::SetThreadNo(threadHandle, 0);
+	core::ThreadSystem::SetPriority(threadHandle, core::THREAD_PRIORITY::NORMAL);
 	Global::Startup();
-	FileSystem::Startup();
-	Graphic::Startup();
+	core::FileSystem::Startup();
+	graphic::GraphicManager::Startup();
 	Sound::Startup();
 	Model::Startup();
 	Font::Startup();
@@ -55,37 +51,37 @@ void MainFlow::Cleanup()
 	Font::Cleanup();
 	Model::Cleanup();
 	Sound::Cleanup();
-	Graphic::Cleanup();
-	FileSystem::Cleanup();
+	graphic::GraphicManager::Cleanup();
+	core::FileSystem::Cleanup();
 	Global::Cleanup();
-	Log::Cleanup();
+	core::Debug::Log::Cleanup();
 }
 
 // 更新
 void MainFlow::Update()
 {
 	Global::Update();
-	Hardware::Update();
+	core::Hardware::Update();
 
 	m_JobSystem.execute();
 	m_JobSystem.wait();
 
-	Graphic::Flip();
+	graphic::GraphicManager::Flip();
 	Global::Flip();
 }
 
 // 終了判定
 bool MainFlow::IsEnd()
 {
-	return Hardware::IsClose();
+	return core::Hardware::IsClose();
 }
 
 // 更新ジョブ
 void MainFlow::UpdateJob()
 {
-	Log::Update();
+	core::Debug::Log::Update();
 	GameFlow::Update();
-	Graphic::Update();
+	graphic::GraphicManager::Update();
 	Sound::Update();
 	Debug::Update();
 }
@@ -93,12 +89,9 @@ void MainFlow::UpdateJob()
 // 描画ジョブ
 void MainFlow::DrawJob()
 {
-	Graphic::PreDraw();
+	graphic::GraphicManager::PreDraw();
 	GameFlow::Draw();
-	Model::Primitive::Draw(Graphic::GetCommandList());
+	Model::Primitive::Draw(graphic::GraphicManager::GetCommandList());
 	Debug::Draw();
-	Graphic::PostDraw();
+	graphic::GraphicManager::PostDraw();
 }
-
-CANDY_NAMESPACE_END
-

@@ -5,14 +5,14 @@
  * \date   2022/06/01
  *********************************************************************/
 
-#ifndef CANDY_FONT_H
-#define CANDY_FONT_H
+#ifndef FONT_H
+#define FONT_H
+
+#include <GameInclude.h>
 
 #include <Graphic/Buffer/GraphicBuffer.h>
 
-CANDY_NAMESPACE_BEGIN
-
-enum FONT_TYPE
+enum class FONT_TYPE
 {
 	GOTHIC,
 	MINCHO,
@@ -23,7 +23,7 @@ inline constexpr const char* const FontFileNames[] =
 	"msgothic",
 	"msmincho",
 };
-static_assert((s32)FONT_TYPE::SIZE == GetArraySize(FontFileNames));
+static_assert((s32)FONT_TYPE::SIZE == core::GetArraySize(FontFileNames));
 
 namespace Font
 {
@@ -33,11 +33,9 @@ namespace Font
 	void Cleanup();
 
 	// フォントテクスチャバッファの取得
-	Graphic::Buffer& GetFontTextureBuffer(const FONT_TYPE _fontType);
+	graphic::Buffer& GetFontTextureBuffer(const FONT_TYPE _fontType);
 	// フォントのUVの取得
 	Rect GetFontUv(const FONT_TYPE _fontType, const u32 _c);
 }
 
-CANDY_NAMESPACE_END
-
-#endif // CANDY_FONT_H
+#endif // FONT_H

@@ -8,6 +8,8 @@
 #ifndef CANDY_MODEL_PRIMITIVE_H
 #define CANDY_MODEL_PRIMITIVE_H
 
+#include <GameInclude.h>
+
 #include <Graphic/CommandList/GraphicCommandList.h>
 
 CANDY_NAMESPACE_BEGIN
@@ -27,7 +29,7 @@ namespace Model::Primitive
 	// 破棄
 	void Cleanup();
 	// 描画
-	void Draw(Graphic::CommandList& _commandList);
+	void Draw(graphic::CommandList& _commandList);
 
 	// 2D三角形の描画登録
 	void AddTriangle2D(const Vec4 _pos, const Color _color);

@@ -7,11 +7,8 @@
 
 #include "Font.h"
 #include <Graphic/Graphic.h>
-#include <FileSystem/FileSystem.h>
-#include <Texture/Texture.h>
-#include <Texture/DDS/ReadDDS.h>
-
-CANDY_NAMESPACE_BEGIN
+#include <Graphic/Texture/GraphicTexture.h>
+#include <Graphic/Texture/DDS/GraphicReadDDS.h>
 
 namespace Font
 {
@@ -33,7 +30,7 @@ namespace Font
 	struct FontData
 	{
 		std::map<u32, UvInfo> m_Uvs;
-		Graphic::Buffer m_TextureBuffer;
+		graphic::Buffer m_TextureBuffer;
 	};
 	std::vector<FontData> m_FontDatas;
 
@@ -54,7 +51,7 @@ void Font::Cleanup()
 }
 
 // フォントテクスチャバッファの取得
-Graphic::Buffer& Font::GetFontTextureBuffer(const FONT_TYPE _fontType)
+graphic::Buffer& Font::GetFontTextureBuffer(const FONT_TYPE _fontType)
 {
 	return m_FontDatas[(s32)_fontType].m_TextureBuffer;
 }
@@ -73,16 +70,16 @@ Rect Font::GetFontUv(const FONT_TYPE _fontType, const u32 _c)
 // フォントの読み込み
 void Font::LoadFont(const std::string& _fontName)
 {
-	const std::string binPath = Setting::GetDataPath() + std::string{ R"(\Font\)"} + _fontName + ".bin";
-	const std::string texturePath = Setting::GetDataPath() + std::string{ R"(\Font\)" } + _fontName + ".dds";
-	const u64 binSize = FileSystem::GetFileSize(binPath);
-	const u64 textureSize = FileSystem::GetFileSize(texturePath);
+	const std::string binPath = core::Config::GetDataPath() + std::string{ R"(\Font\)"} + _fontName + ".bin";
+	const std::string texturePath = core::Config::GetDataPath() + std::string{ R"(\Font\)" } + _fontName + ".dds";
+	const u64 binSize = core::FileSystem::GetFileSize(binPath);
+	const u64 textureSize = core::FileSystem::GetFileSize(texturePath);
 
 	std::byte* binBuf = new std::byte[binSize];
 	std::byte* textureBuf = new std::byte[textureSize];
 
-	FileSystem::RequestReadNoWait(binPath, binBuf, binSize);
-	FileSystem::RequestReadNoWait(texturePath, textureBuf, textureSize);
+	core::FileSystem::RequestReadNoWait(binPath, binBuf, binSize);
+	core::FileSystem::RequestReadNoWait(texturePath, textureBuf, textureSize);
 
 	FontData fontData;
 
@@ -97,13 +94,11 @@ void Font::LoadFont(const std::string& _fontName)
 		fontData.m_Uvs[uvInfo.m_Code].m_Rect.setPos(uvInfo.x0, uvInfo.y0, uvInfo.x1, uvInfo.y1);
 	}
 
-	Graphic::BufferStartupInfo textureBufferStartupInfo;
-	textureBufferStartupInfo.setTextureStartupInfo(Graphic::GRAPHIC_FORMAT::BC3_UNORM, 4096, 4096);
-	fontData.m_TextureBuffer.startup(Graphic::GetDevice(), textureBufferStartupInfo);
-	std::byte* ddsBuf = Texture::DDS::ReadAlloc(textureBuf, textureSize);
-	Texture::CreateTexture(fontData.m_TextureBuffer, ddsBuf, 4096 * 4096);
+	graphic::BufferStartupInfo textureBufferStartupInfo;
+	textureBufferStartupInfo.setTextureStartupInfo(graphic::types::GRAPHIC_FORMAT::BC3_UNORM, 4096, 4096);
+	fontData.m_TextureBuffer.startup(graphic::GraphicManager::GetDevice(), textureBufferStartupInfo);
+	std::byte* ddsBuf = graphic::Texture::DDS::ReadAlloc(textureBuf, textureSize);
+	graphic::TextureManager::CreateTexture(fontData.m_TextureBuffer, ddsBuf, 4096 * 4096);
 
 	m_FontDatas.push_back(fontData);
 }
-
-CANDY_NAMESPACE_END

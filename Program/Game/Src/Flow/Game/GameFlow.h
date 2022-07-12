@@ -8,7 +8,7 @@
 #ifndef CANDY_GAME_FLOW_H
 #define CANDY_GAME_FLOW_H
 
-CANDY_NAMESPACE_BEGIN
+#include <GameInclude.h>
 
 namespace GameFlow
 {
@@ -21,7 +21,5 @@ namespace GameFlow
 	// 描画
 	void Draw();
 }
-
-CANDY_NAMESPACE_END
 
 #endif // CANDY_GAME_FLOW_H

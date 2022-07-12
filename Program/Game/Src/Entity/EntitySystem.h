@@ -1,12 +1,10 @@
 ﻿#ifndef CANDY_ENTITY_SYSTEM_H
 #define CANDY_ENTITY_SYSTEM_H
 
-#include <list>
-#include <string>
+#include <GameInclude.h>
+
 #include "Entity.h"
 #include "EntityHandleSystem.h"
-
-CANDY_NAMESPACE_BEGIN
 
 class Entity;
 
@@ -25,7 +23,5 @@ public:
 };
 
 extern EntitySystem g_EntitySystem;
-
-CANDY_NAMESPACE_END
 
 #endif // CANDY_ENTITY_SYSTEM_H

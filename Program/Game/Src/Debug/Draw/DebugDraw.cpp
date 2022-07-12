@@ -8,8 +8,6 @@
 #include "DebugDraw.h"
 #include "String/DebugDrawString.h"
 
-CANDY_NAMESPACE_BEGIN
-
 namespace DebugDraw
 {
 
@@ -97,5 +95,3 @@ void DebugDraw::DrawString(const Vec4 _pos, const Color _color, const f32 _scale
 	CANDY_UNUSED_VALUE(_format);
 #endif // BUILD_DEBUG
 }
-
-CANDY_NAMESPACE_END

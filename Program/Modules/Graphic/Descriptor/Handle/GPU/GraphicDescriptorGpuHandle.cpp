@@ -1,0 +1,5 @@
+﻿#include "GraphicDescriptorGpuHandle.h"
+
+CANDY_GRAPHIC_NAMESPACE_BEGIN
+
+CANDY_GRAPHIC_NAMESPACE_END

@@ -8,6 +8,8 @@
 #ifndef CANDY_MODEL_H
 #define CANDY_MODEL_H
 
+#include <GameInclude.h>
+
 #include "Primitive/ModelPrimitive.h"
 
 CANDY_NAMESPACE_BEGIN

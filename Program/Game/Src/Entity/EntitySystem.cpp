@@ -1,7 +1,5 @@
 ﻿#include "EntitySystem.h"
 
-CANDY_NAMESPACE_BEGIN
-
 void EntitySystem::startup()
 {
 	m_EntityHandleSystem.startup();
@@ -44,5 +42,3 @@ Entity* EntitySystem::getEntityPtr(EntityHandle handle)const
 }
 
 EntitySystem g_EntitySystem;
-
-CANDY_NAMESPACE_END

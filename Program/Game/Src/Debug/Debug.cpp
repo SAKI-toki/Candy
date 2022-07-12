@@ -7,8 +7,6 @@
 #include "Debug.h"
 #include "Draw/DebugDraw.h"
 
-CANDY_NAMESPACE_BEGIN
-
 namespace Debug
 {
 #if BUILD_DEBUG
@@ -48,5 +46,3 @@ void Debug::Draw()
 	DebugDraw::Draw();
 #endif // BUILD_DEBUG
 }
-
-CANDY_NAMESPACE_END

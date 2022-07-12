@@ -1,9 +1,9 @@
-﻿#ifndef CANDY_UI_H
-#define CANDY_UI_H
+﻿#ifndef UI_H
+#define UI_H
+
+#include <GameInclude.h>
 
 #include <Graphic/CommandList/GraphicCommandList.h>
-
-CANDY_NAMESPACE_BEGIN
 
 namespace UI
 {
@@ -15,6 +15,4 @@ namespace UI
 	void Draw();
 }
 
-CANDY_NAMESPACE_END
-
-#endif // CANDY_UI_H
+#endif // UI_H

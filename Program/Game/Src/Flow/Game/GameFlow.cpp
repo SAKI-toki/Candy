@@ -7,7 +7,6 @@
 
 #include "GameFlow.h"
 #include <Flow/Scene/SceneFlow.h>
-#include <Input/Input.h>
 
 #include <Graphic/Buffer/GraphicBuffer.h>
 #include <Graphic/BufferView/Vertex/GraphicVertexBufferView.h>
@@ -15,22 +14,19 @@
 #include <Graphic/Descriptor/GraphicDescriptor.h>
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/Pipeline/GraphicPipeline.h>
-#include <Shader/Shader.h>
-#include <Texture/Texture.h>
-#include <Texture/DDS/ReadDDS.h>
+#include <Graphic/Shader/GraphicShaderManager.h>
+#include <Graphic/Texture/GraphicTexture.h>
+#include <Graphic/Texture/DDS/GraphicReadDDS.h>
 #include <Graphic/ResourceManager/GraphicResourceManager.h>
 #include <Sound/Sound.h>
 #include <Debug/Draw/DebugDraw.h>
 
 #include <JobSystem/JobSystem.h>
 
-
-CANDY_NAMESPACE_BEGIN
-
 namespace GameFlow
 {
-	Graphic::Buffer m_MaskBuffer;
-	Graphic::Descriptor m_MaskDescriptor;
+	graphic::Buffer m_MaskBuffer;
+	graphic::Descriptor m_MaskDescriptor;
 
 	class TextureView
 	{
@@ -51,89 +47,89 @@ namespace GameFlow
 		void startup(const std::string& _texturePath, const u32 _width, const u32 _height, const Vec4 _scale, const u32 _startupFlag)
 		{
 			flag = _startupFlag;
-			m_Descriptor.startup(Graphic::GetDevice(), Graphic::DESCRIPTOR_TYPE::CBV_SRV_UAV, Graphic::GetBackBufferCount() + 2);
+			m_Descriptor.startup(graphic::GraphicManager::GetDevice(), graphic::types::DESCRIPTOR_TYPE::CBV_SRV_UAV, graphic::Config::GetBackBufferCount() + 2);
 
-			Graphic::RootSignatureStartupInfo rootSignatureStartupInfo;
+			graphic::RootSignatureStartupInfo rootSignatureStartupInfo;
 			rootSignatureStartupInfo.initialize();
-			rootSignatureStartupInfo.setDescriptorRange(0, { 0, 0, Graphic::SHADER_VISIBILITY_TYPE::ALL }, Graphic::GetBackBufferCount(), Graphic::DESCRIPTOR_RANGE_TYPE::CONSTANT_BUFFER);
-			rootSignatureStartupInfo.setDescriptorRange(1, { 0, 0, Graphic::SHADER_VISIBILITY_TYPE::PIXEL }, 1, Graphic::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
-			rootSignatureStartupInfo.setDescriptorRange(2, { 1, 0, Graphic::SHADER_VISIBILITY_TYPE::PIXEL }, 1, Graphic::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
-			rootSignatureStartupInfo.setStaticSampler(0, { 0, 0, Graphic::SHADER_VISIBILITY_TYPE::PIXEL },
-				Graphic::FILTER_TYPE::ANISOTROPIC, Graphic::TEXTURE_ADDRESS_MODE::CLAMP);
+			rootSignatureStartupInfo.setDescriptorRange(0, { 0, 0, graphic::types::SHADER_VISIBILITY_TYPE::ALL }, graphic::Config::GetBackBufferCount(), graphic::types::DESCRIPTOR_RANGE_TYPE::CONSTANT_BUFFER);
+			rootSignatureStartupInfo.setDescriptorRange(1, { 0, 0, graphic::types::SHADER_VISIBILITY_TYPE::PIXEL }, 1, graphic::types::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
+			rootSignatureStartupInfo.setDescriptorRange(2, { 1, 0, graphic::types::SHADER_VISIBILITY_TYPE::PIXEL }, 1, graphic::types::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
+			rootSignatureStartupInfo.setStaticSampler(0, { 0, 0, graphic::types::SHADER_VISIBILITY_TYPE::PIXEL },
+				graphic::types::FILTER_TYPE::ANISOTROPIC, graphic::types::TEXTURE_ADDRESS_MODE::CLAMP);
 			rootSignatureStartupInfo.setRootParameterCount(3);
 			if (_startupFlag & STARTUP_FLAG_WRITE_MASK)
 			{
 				rootSignatureStartupInfo.setRootParameterCount(2);
 			}
 			rootSignatureStartupInfo.setStaticSamplerCount(1);
-			rootSignatureStartupInfo.onRootSignatureFlag(Graphic::ROOT_SIGNATURE_FLAG::ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
-			m_RootSignature.startup(Graphic::GetDevice(), rootSignatureStartupInfo);
+			rootSignatureStartupInfo.onRootSignatureFlag(graphic::types::ROOT_SIGNATURE_FLAG::ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
+			m_RootSignature.startup(graphic::GraphicManager::GetDevice(), rootSignatureStartupInfo);
 
-			Graphic::PipelineStartupInfo pipelineStartupInfo;
+			graphic::PipelineStartupInfo pipelineStartupInfo;
 			pipelineStartupInfo.initialize();
-			pipelineStartupInfo.setVertexShader(Shader::GetVertexShader(SHADER_TYPE::TEST));
-			pipelineStartupInfo.setPixelShader(Shader::GetPixelShader(SHADER_TYPE::TEST));
-			pipelineStartupInfo.setInputLayoutElement(0, Graphic::SHADER_SEMANTIC_TYPE::POSITION, 0, Graphic::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
-			pipelineStartupInfo.setInputLayoutElement(1, Graphic::SHADER_SEMANTIC_TYPE::TEXCOORD, 0, Graphic::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
-			pipelineStartupInfo.setInputLayoutElement(2, Graphic::SHADER_SEMANTIC_TYPE::COLOR, 0, Graphic::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+			pipelineStartupInfo.setVertexShader(graphic::ShaderManager::GetVertexShader(graphic::SHADER_TYPE::TEST));
+			pipelineStartupInfo.setPixelShader(graphic::ShaderManager::GetPixelShader(graphic::SHADER_TYPE::TEST));
+			pipelineStartupInfo.setInputLayoutElement(0, graphic::types::SHADER_SEMANTIC_TYPE::POSITION, 0, graphic::types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+			pipelineStartupInfo.setInputLayoutElement(1, graphic::types::SHADER_SEMANTIC_TYPE::TEXCOORD, 0, graphic::types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
+			pipelineStartupInfo.setInputLayoutElement(2, graphic::types::SHADER_SEMANTIC_TYPE::COLOR, 0, graphic::types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
 			pipelineStartupInfo.setInputLayoutCount(3);
-			pipelineStartupInfo.setDepthStencilFormat(Graphic::GRAPHIC_FORMAT::D24_UNORM_S8_UINT);
-			pipelineStartupInfo.setRenderTaretFormat(0, Graphic::GRAPHIC_FORMAT::R8G8B8A8_UNORM);
+			pipelineStartupInfo.setDepthStencilFormat(graphic::types::GRAPHIC_FORMAT::D24_UNORM_S8_UINT);
+			pipelineStartupInfo.setRenderTaretFormat(0, graphic::types::GRAPHIC_FORMAT::R8G8B8A8_UNORM);
 			if (_startupFlag & STARTUP_FLAG_WRITE_MASK)
 			{
-				pipelineStartupInfo.setRenderTaretFormat(0, Graphic::GRAPHIC_FORMAT::A8_UINT);
-				pipelineStartupInfo.setVertexShader(Shader::GetVertexShader(SHADER_TYPE::TEST_MASK));
-				pipelineStartupInfo.setPixelShader(Shader::GetPixelShader(SHADER_TYPE::TEST_MASK));
+				pipelineStartupInfo.setRenderTaretFormat(0, graphic::types::GRAPHIC_FORMAT::A8_UINT);
+				pipelineStartupInfo.setVertexShader(graphic::ShaderManager::GetVertexShader(graphic::SHADER_TYPE::TEST_MASK));
+				pipelineStartupInfo.setPixelShader(graphic::ShaderManager::GetPixelShader(graphic::SHADER_TYPE::TEST_MASK));
 			}
 			pipelineStartupInfo.setRenderTaretCount(1);
 			pipelineStartupInfo.setEnableDepth(false);
 			pipelineStartupInfo.setEnableBlend(0, true);
 			pipelineStartupInfo.setRootSignature(m_RootSignature);
-			m_Pipeline.startup(Graphic::GetDevice(), pipelineStartupInfo);
+			m_Pipeline.startup(graphic::GraphicManager::GetDevice(), pipelineStartupInfo);
 
 			VertexInfo vertices[] =
 			{
-				{ Vec4{ -0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 0.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 左上
-				{ Vec4{ +0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 0.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 右上
-				{ Vec4{ -0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 1.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 左下
-				{ Vec4{ +0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 1.0f, 0.0f }, GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 右下
+				{ Vec4{ -0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 0.0f, 0.0f }, core::GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 左上
+				{ Vec4{ +0.25f, +0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 0.0f, 0.0f }, core::GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 右上
+				{ Vec4{ -0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 0.0f, 1.0f, 0.0f }, core::GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 左下
+				{ Vec4{ +0.25f, -0.25f * 16 / 9, 0.0f } *_scale,{ 1.0f, 1.0f, 0.0f }, core::GetColorRGBA32(0xff, 0xff, 0xff, 0xff) }, // 右下
 			};
-			Graphic::BufferStartupInfo vertexBufferStartupInfo;
-			vertexBufferStartupInfo.setBufferStartupInfo(sizeof(VertexInfo) * GetArraySize(vertices));
-			m_VertexBuffer.startup(Graphic::GetDevice(), vertexBufferStartupInfo);
-			m_VertexBuffer.store(reinterpret_cast<std::byte*>(vertices), sizeof(VertexInfo) * GetArraySize(vertices), 0);
+			graphic::BufferStartupInfo vertexBufferStartupInfo;
+			vertexBufferStartupInfo.setBufferStartupInfo(sizeof(VertexInfo) * core::GetArraySize(vertices));
+			m_VertexBuffer.startup(graphic::GraphicManager::GetDevice(), vertexBufferStartupInfo);
+			m_VertexBuffer.store(reinterpret_cast<std::byte*>(vertices), sizeof(VertexInfo) * core::GetArraySize(vertices), 0);
 
 			u32 indices[] =
 			{
 				0, 1, 2,
 				1, 3, 2,
 			};
-			Graphic::BufferStartupInfo indexBufferStartupInfo;
-			indexBufferStartupInfo.setBufferStartupInfo(sizeof(u32) * GetArraySize(indices));
-			m_IndexBuffer.startup(Graphic::GetDevice(), indexBufferStartupInfo);
-			m_IndexBuffer.store(reinterpret_cast<std::byte*>(indices), sizeof(u32) * GetArraySize(indices), 0);
+			graphic::BufferStartupInfo indexBufferStartupInfo;
+			indexBufferStartupInfo.setBufferStartupInfo(sizeof(u32) * core::GetArraySize(indices));
+			m_IndexBuffer.startup(graphic::GraphicManager::GetDevice(), indexBufferStartupInfo);
+			m_IndexBuffer.store(reinterpret_cast<std::byte*>(indices), sizeof(u32) * core::GetArraySize(indices), 0);
 
-			Graphic::BufferStartupInfo constantBufferStartupInfo;
-			constantBufferStartupInfo.setBufferStartupInfo(0x100 * Graphic::GetBackBufferCount());
-			m_ConstantBuffer.startup(Graphic::GetDevice(), constantBufferStartupInfo);
-			for (s32 i = 0; i < Graphic::GetBackBufferCount(); ++i)
+			graphic::BufferStartupInfo constantBufferStartupInfo;
+			constantBufferStartupInfo.setBufferStartupInfo(0x100 * graphic::Config::GetBackBufferCount());
+			m_ConstantBuffer.startup(graphic::GraphicManager::GetDevice(), constantBufferStartupInfo);
+			for (s32 i = 0; i < graphic::Config::GetBackBufferCount(); ++i)
 			{
-				m_Descriptor.bindingConstantBuffer(Graphic::GetDevice(), i, m_ConstantBuffer, 0x100 * i, 0x100);
+				m_Descriptor.bindingConstantBuffer(graphic::GraphicManager::GetDevice(), i, m_ConstantBuffer, 0x100 * i, 0x100);
 			}
 
-			Graphic::GRAPHIC_FORMAT format = (_startupFlag & STARTUP_FLAG_USE_ALPHA) ? Graphic::GRAPHIC_FORMAT::BC3_UNORM : Graphic::GRAPHIC_FORMAT::BC1_UNORM;
-			Graphic::BufferStartupInfo textureBufferStartupInfo;
+			graphic::types::GRAPHIC_FORMAT format = (_startupFlag & STARTUP_FLAG_USE_ALPHA) ? graphic::types::GRAPHIC_FORMAT::BC3_UNORM : graphic::types::GRAPHIC_FORMAT::BC1_UNORM;
+			graphic::BufferStartupInfo textureBufferStartupInfo;
 			textureBufferStartupInfo.setTextureStartupInfo(format, _width, _height);
-			m_TextureBuffer.startup(Graphic::GetDevice(), textureBufferStartupInfo);
-			m_Descriptor.bindingTexture2D(Graphic::GetDevice(), Graphic::GetBackBufferCount() + 0, m_TextureBuffer, format);
-			m_Descriptor.bindingTexture2D(Graphic::GetDevice(), Graphic::GetBackBufferCount() + 1, m_MaskBuffer, Graphic::GRAPHIC_FORMAT::A8_UINT);
+			m_TextureBuffer.startup(graphic::GraphicManager::GetDevice(), textureBufferStartupInfo);
+			m_Descriptor.bindingTexture2D(graphic::GraphicManager::GetDevice(), graphic::Config::GetBackBufferCount() + 0, m_TextureBuffer, format);
+			m_Descriptor.bindingTexture2D(graphic::GraphicManager::GetDevice(), graphic::Config::GetBackBufferCount() + 1, m_MaskBuffer, graphic::types::GRAPHIC_FORMAT::A8_UINT);
 
-			auto path = std::string{ Setting::GetDataPath() } + _texturePath;
-			u64 size = FileSystem::GetFileSize(path);
+			auto path = std::string{ core::Config::GetDataPath() } + _texturePath;
+			u64 size = core::FileSystem::GetFileSize(path);
 			std::byte* buf = new std::byte[size];
-			FileSystem::RequestReadNoWait(path, buf, size);
-			auto result = Texture::DDS::ReadAlloc(buf, size);
-			Texture::CreateTexture(m_TextureBuffer, result, _width * _height / ((_startupFlag & STARTUP_FLAG_USE_ALPHA) ? 1 : 2));
+			core::FileSystem::RequestReadNoWait(path, buf, size);
+			auto result = graphic::Texture::DDS::ReadAlloc(buf, size);
+			graphic::TextureManager::CreateTexture(m_TextureBuffer, result, _width * _height / ((_startupFlag & STARTUP_FLAG_USE_ALPHA) ? 1 : 2));
 		}
 		void cleanup()
 		{
@@ -147,68 +143,68 @@ namespace GameFlow
 		}
 		void update()
 		{
-			m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&m_Constant), sizeof(m_Constant), 0x100 * Graphic::GetBackBufferIndex());
+			m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&m_Constant), sizeof(m_Constant), 0x100 * graphic::GraphicManager::GetBackBufferIndex());
 		}
 		void draw()
 		{
-			auto& commandList = Graphic::GetCommandList();
+			auto& commandList = graphic::GraphicManager::GetCommandList();
 
 			if(flag & STARTUP_FLAG_WRITE_MASK)
 			{
-				m_MaskBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::RENDER_TARGET);
+				m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::RENDER_TARGET);
 				commandList.setRenderTargets(m_MaskDescriptor.getCpuHandle(0), 1);
 			}
 
 			commandList.setRootSignature(m_RootSignature);
 			commandList.setPipeline(m_Pipeline);
 
-			m_TextureBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
+			m_TextureBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 
 			commandList.setDescriptor(0, m_Descriptor);
 			commandList.registDescriptors(1, 0);
-			commandList.setDescriptorTable(0, m_Descriptor, Graphic::GetBackBufferIndex());
-			commandList.setDescriptorTable(1, m_Descriptor, Graphic::GetBackBufferCount() + 0);
+			commandList.setDescriptorTable(0, m_Descriptor, graphic::GraphicManager::GetBackBufferIndex());
+			commandList.setDescriptorTable(1, m_Descriptor, graphic::Config::GetBackBufferCount() + 0);
 			if (!(flag & STARTUP_FLAG_WRITE_MASK))
 			{
-				commandList.setDescriptorTable(2, m_Descriptor, Graphic::GetBackBufferCount() + 1);
+				commandList.setDescriptorTable(2, m_Descriptor, graphic::Config::GetBackBufferCount() + 1);
 			}
 
-			Graphic::VertexBufferView vertexBufferView;
+			graphic::VertexBufferView vertexBufferView;
 			vertexBufferView.startup(m_VertexBuffer, 0, 4, sizeof(VertexInfo));
-			Graphic::IndexBufferView indexBufferView;
-			indexBufferView.startup(m_IndexBuffer, 0, 6, sizeof(u32), Graphic::GRAPHIC_FORMAT::R32_UINT);
+			graphic::IndexBufferView indexBufferView;
+			indexBufferView.startup(m_IndexBuffer, 0, 6, sizeof(u32), graphic::types::GRAPHIC_FORMAT::R32_UINT);
 			commandList.setVertexBuffer(0, vertexBufferView);
 			commandList.registVertexBuffers(1);
 			commandList.setIndexBuffer(indexBufferView);
-			commandList.setPrimitiveTopology(Graphic::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
+			commandList.setPrimitiveTopology(graphic::types::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
 			commandList.drawIndexedInstanced(indexBufferView.getIndexCount(), 1, 0, 0, 0);
 
 			if (flag & STARTUP_FLAG_WRITE_MASK)
 			{
-				m_MaskBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
-				commandList.setRenderTargets(Graphic::GetBackBufferDescriptor().getCpuHandle(Graphic::GetBackBufferIndex()), 1);
+				m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
+				commandList.setRenderTargets(graphic::GraphicManager::GetBackBufferDescriptor().getCpuHandle(graphic::GraphicManager::GetBackBufferIndex()), 1);
 			}
 
-			Graphic::ResourceManager::Regist(m_VertexBuffer);
-			Graphic::ResourceManager::Regist(m_IndexBuffer);
-			Graphic::ResourceManager::Regist(m_ConstantBuffer);
-			Graphic::ResourceManager::Regist(m_TextureBuffer);
+			graphic::ResourceManager::Regist(m_VertexBuffer);
+			graphic::ResourceManager::Regist(m_IndexBuffer);
+			graphic::ResourceManager::Regist(m_ConstantBuffer);
+			graphic::ResourceManager::Regist(m_TextureBuffer);
 		}
 
 		struct Constant
 		{
 			Vec4 m_Position{};
-			Color m_Color{ GetColorRGB32(0xff, 0xff, 0xff) };
+			Color m_Color{ core::GetColorRGB32(0xff, 0xff, 0xff) };
 			Vec4 pad[14];
 		}m_Constant;
 	private:
-		Graphic::Descriptor m_Descriptor;
-		Graphic::RootSignature m_RootSignature;
-		Graphic::Pipeline m_Pipeline;
-		Graphic::Buffer m_VertexBuffer;
-		Graphic::Buffer m_IndexBuffer;
-		Graphic::Buffer m_ConstantBuffer;
-		Graphic::Buffer m_TextureBuffer;
+		graphic::Descriptor m_Descriptor;
+		graphic::RootSignature m_RootSignature;
+		graphic::Pipeline m_Pipeline;
+		graphic::Buffer m_VertexBuffer;
+		graphic::Buffer m_IndexBuffer;
+		graphic::Buffer m_ConstantBuffer;
+		graphic::Buffer m_TextureBuffer;
 	};
 
 	TextureView m_TextureViews[4];
@@ -217,13 +213,13 @@ namespace GameFlow
 // 初期化
 void GameFlow::Startup()
 {
-	Input::Startup();
+	core::Input::Startup();
 
-	Graphic::BufferStartupInfo bufferStartupInfo;
-	bufferStartupInfo.setRenderTargetStartupInfo(Graphic::GRAPHIC_FORMAT::A8_UINT, Graphic::GetScreenWidth(), Graphic::GetScreenHeight());
-	m_MaskDescriptor.startup(Graphic::GetDevice(), Graphic::DESCRIPTOR_TYPE::RENDER_TARGET, 1);
-	m_MaskBuffer.startup(Graphic::GetDevice(), bufferStartupInfo);
-	m_MaskDescriptor.bindingRenderTarget(Graphic::GetDevice(), 0, m_MaskBuffer, Graphic::GRAPHIC_FORMAT::A8_UINT);
+	graphic::BufferStartupInfo bufferStartupInfo;
+	bufferStartupInfo.setRenderTargetStartupInfo(graphic::types::GRAPHIC_FORMAT::A8_UINT, graphic::Config::GetScreenWidth(), graphic::Config::GetScreenHeight());
+	m_MaskDescriptor.startup(graphic::GraphicManager::GetDevice(), graphic::types::DESCRIPTOR_TYPE::RENDER_TARGET, 1);
+	m_MaskBuffer.startup(graphic::GraphicManager::GetDevice(), bufferStartupInfo);
+	m_MaskDescriptor.bindingRenderTarget(graphic::GraphicManager::GetDevice(), 0, m_MaskBuffer, graphic::types::GRAPHIC_FORMAT::A8_UINT);
 
 	m_TextureViews[0].startup(R"(Texture\forest.dds)", 512, 256, Vec4{ 8.0f * 9 / 16, 4.0f * 9 / 16, 1.0f }, TextureView::STARTUP_FLAG_NONE);
 	m_TextureViews[1].startup(R"(Texture\house.dds)", 256, 256, Vec4{ 2.0f,2.0f,1.0f }, TextureView::STARTUP_FLAG_NONE);
@@ -239,27 +235,27 @@ void GameFlow::Startup()
 void GameFlow::Cleanup()
 {
 	for (auto& textureView : m_TextureViews)textureView.cleanup();
-	Input::Cleanup();
+	core::Input::Cleanup();
 }
 
 // 更新
 void GameFlow::Update()
 {
-	Input::Update();
+	core::Input::Update();
 
 	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, "PlayerPos[x:%.2f y:%.2f]", m_TextureViews[2].m_Constant.m_Position.m_f32.x, m_TextureViews[2].m_Constant.m_Position.m_f32.y);
 	DebugDraw::DrawString(Vec4{ 100, 120, 0 }, "test");
 	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "AABBあいうえお");
 
-	if (Input::IsKeyTrigger('P'))
+	if (core::Input::IsKeyTrigger('P'))
 	{
 		CANDY_LOG("PPPP");
 	}
-	if (Input::IsKeyTrigger('O'))
+	if (core::Input::IsKeyTrigger('O'))
 	{
 		CANDY_LOG_ERR("OOOO");
 	}
-	if (Input::IsKeyTrigger('I'))
+	if (core::Input::IsKeyTrigger('I'))
 	{
 		CANDY_LOG_WARN("IIII");
 	}
@@ -269,17 +265,17 @@ void GameFlow::Update()
 	static bool isSideVelocity = false;
 	static f32 velocity = 0.0f;
 	static f32 sideVelocity = 0.0f;
-	if (Input::IsKeyTrigger('A'))
+	if (core::Input::IsKeyTrigger('A'))
 	{
 		sideVelocity -= 4.0f;
 		isSideVelocity = true;
 	}
-	if (Input::IsKeyTrigger('D'))
+	if (core::Input::IsKeyTrigger('D'))
 	{
 		sideVelocity += 4.0f;
 		isSideVelocity = true;
 	}
-	if (Input::IsKeyTrigger('W'))
+	if (core::Input::IsKeyTrigger('W'))
 	{
 		if (isLanding)velocity = 4.0f;
 		isLanding = false;
@@ -311,45 +307,42 @@ void GameFlow::Update()
 	if (m_TextureViews[2].m_Constant.m_Position.m_f32.x > 0.7f ||
 		m_TextureViews[2].m_Constant.m_Position.m_f32.x < -0.8f)
 	{
-		m_TextureViews[2].m_Constant.m_Position.m_f32.x = Clamp(m_TextureViews[2].m_Constant.m_Position.m_f32.x, -0.8f, 0.7f);
+		m_TextureViews[2].m_Constant.m_Position.m_f32.x = core::Clamp(m_TextureViews[2].m_Constant.m_Position.m_f32.x, -0.8f, 0.7f);
 		sideVelocity = 0.0f;
 		isSideVelocity = true;
 	}
 
-	if (Input::IsKeyOn('J'))m_TextureViews[3].m_Constant.m_Position.m_f32.x -= speed * Global::GetAppTime();
-	if (Input::IsKeyOn('L'))m_TextureViews[3].m_Constant.m_Position.m_f32.x += speed * Global::GetAppTime();
+	if (core::Input::IsKeyOn('J'))m_TextureViews[3].m_Constant.m_Position.m_f32.x -= speed * Global::GetAppTime();
+	if (core::Input::IsKeyOn('L'))m_TextureViews[3].m_Constant.m_Position.m_f32.x += speed * Global::GetAppTime();
 
 	for (auto& textureView : m_TextureViews)
 	{
 		textureView.update();
 	}
 
-	if (Input::IsKeyOn('T'))
+	if (core::Input::IsKeyOn('T'))
 	{
 		Rect rect;
-		f32 width = static_cast<f32>(Graphic::GetScreenWidth());
-		f32 height = static_cast<f32>(Graphic::GetScreenHeight());
-		Vec4 mousePos = Input::GetClientMousePos();
+		f32 width = static_cast<f32>(graphic::Config::GetScreenWidth());
+		f32 height = static_cast<f32>(graphic::Config::GetScreenHeight());
+		Vec4 mousePos = core::Input::GetClientMousePos();
 		rect.setSize(mousePos.m_f32.x / width * 2.0f - 1.0f, mousePos.m_f32.y / height * -2.0f + 1.0f, 0.1f, 0.1f);
-		Model::Primitive::AddRect2D(rect, GetColorRGB32(0xff, 0xff, 0x00));
+		Model::Primitive::AddRect2D(rect, core::GetColorRGB32(0xff, 0xff, 0x00));
 	}
 }
 
 // 描画
 void GameFlow::Draw()
 {
-	auto& commandList = Graphic::GetCommandList();
-	m_MaskBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::RENDER_TARGET);
-	commandList.clearRenderTarget(m_MaskDescriptor.getCpuHandle(0), GetColorRGBA32(0x00, 0x00, 0x00, 0x00));
-	m_MaskBuffer.translationBarrier(commandList, Graphic::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
+	auto& commandList = graphic::GraphicManager::GetCommandList();
+	m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::RENDER_TARGET);
+	commandList.clearRenderTarget(m_MaskDescriptor.getCpuHandle(0), core::GetColorRGBA32(0x00, 0x00, 0x00, 0x00));
+	m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 
 	for (auto& textureView : m_TextureViews)
 	{
 		textureView.draw();
 	}
 
-	Graphic::ResourceManager::Regist(m_MaskBuffer);
+	graphic::ResourceManager::Regist(m_MaskBuffer);
 }
-
-CANDY_NAMESPACE_END
-

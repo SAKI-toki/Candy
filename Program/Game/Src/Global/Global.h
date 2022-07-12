@@ -8,7 +8,7 @@
 #ifndef CANDY_GLOBAL_H
 #define CANDY_GLOBAL_H
 
-CANDY_NAMESPACE_BEGIN
+#include <GameInclude.h>
 
 namespace Global
 {
@@ -31,7 +31,5 @@ namespace Global
 	// 描画インデックス
 	s32 GetDrawIndex();
 }
-
-CANDY_NAMESPACE_END
 
 #endif // CANDY_GLOBAL_H

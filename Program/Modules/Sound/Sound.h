@@ -1,22 +1,19 @@
-﻿#ifndef CANDY_SOUND_H
+﻿/*****************************************************************//**
+ * \file   Sound.h
+ * \brief  Soundファイルのインクルード
+ * \author Yu Ishiyama.
+ * \date   2022/07/03
+ *********************************************************************/
+
+#ifndef CANDY_SOUND_H
 #define CANDY_SOUND_H
 
-#include <Sound/SoundInclude.h>
+#include "SoundInclude.h"
 
-#include <Sound/SoundDef.h>
+#include "Module/SoundModule.h"
 
-CANDY_NAMESPACE_BEGIN
+#include "System/SoundSystem.h"
 
-namespace Sound
-{
-	void Startup();
-	void Cleanup();
-
-	void Update();
-
-	void CallSe(const std::string& _soundName, const u32 _callSeFlag = 0);
-}
-
-CANDY_NAMESPACE_END
+#include "Type/SoudType.h"
 
 #endif // CANDY_SOUND_H

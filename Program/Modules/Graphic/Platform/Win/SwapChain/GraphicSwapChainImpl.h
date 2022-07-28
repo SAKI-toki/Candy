@@ -21,7 +21,7 @@ namespace impl
 		IDXGISwapChain3* getSwapChain()const { return m_SwapChain.Get(); }
 
 	private:
-		core::ComPtr<IDXGISwapChain3> m_SwapChain;
+		ComPtr<IDXGISwapChain3> m_SwapChain;
 	};
 }
 

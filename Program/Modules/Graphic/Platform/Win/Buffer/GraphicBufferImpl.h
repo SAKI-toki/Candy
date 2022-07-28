@@ -26,7 +26,7 @@ namespace impl
 		D3D12_GPU_VIRTUAL_ADDRESS getGpuVirtualAddress()const { return m_Buffer->GetGPUVirtualAddress(); }
 
 	private:
-		core::ComPtr<ID3D12Resource> m_Buffer;
+		ComPtr<ID3D12Resource> m_Buffer;
 		D3D12_RESOURCE_STATES m_ResourceState = D3D12_RESOURCE_STATE_COMMON;
 	};
 }

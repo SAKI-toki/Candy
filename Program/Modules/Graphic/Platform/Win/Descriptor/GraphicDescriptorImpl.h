@@ -33,7 +33,7 @@ namespace impl
 		s32 getDescriptorCount()const { return m_DescriptorCount; }
 
 	private:
-		core::ComPtr<ID3D12DescriptorHeap> m_DescriptorHeap;
+		ComPtr<ID3D12DescriptorHeap> m_DescriptorHeap;
 		types::DESCRIPTOR_TYPE m_DescriptorType;
 		D3D12_DESCRIPTOR_HEAP_TYPE m_RealDescriptorType;
 		s32 m_DescriptorCount;

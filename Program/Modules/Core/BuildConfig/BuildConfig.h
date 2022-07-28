@@ -19,4 +19,8 @@
 #define BUILD_RELEASE (1)
 #endif // _DEBUG
 
+#ifdef _MSC_VER
+#pragma warning(disable : 4201) // 無名構造体
+#endif // _MSC_VER
+
 #endif // CANDY_BUILD_CONFIG_H

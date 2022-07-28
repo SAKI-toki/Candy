@@ -5,9 +5,10 @@
  * \date   2022/05/31
  *********************************************************************/
 
-#include "Sound.cpp"
-#include "SoundDef.cpp"
+#include "Module/SoundModule.cpp"
+
+#include "System/SoundSystem.cpp"
 
 #if PLATFORM_WIN
-#include "Platform/Win/SoundImpl.cpp"
+#include "Platform/Win/System/SoundSystemImpl.cpp"
 #endif // PLATFORM_WIN

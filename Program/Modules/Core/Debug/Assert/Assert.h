@@ -10,6 +10,10 @@
 
 #include <Core/CoreInclude.h>
 
+#if PLATFORM_WIN
+#include <Core/Platform/Win/Debug/Assert/AssertImpl.h>
+#endif // PLATFORM_WIN
+
 CANDY_CORE_NAMESPACE_BEGIN
 
 namespace Debug

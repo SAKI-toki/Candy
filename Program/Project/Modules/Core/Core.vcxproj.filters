@@ -167,6 +167,24 @@
     <Filter Include="Src\Types">
       <UniqueIdentifier>{7f411212-eb7b-4fe8-8d04-415b4b68373d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Module">
+      <UniqueIdentifier>{581153de-97cf-4b07-9b4c-5d730c8f68eb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Library">
+      <UniqueIdentifier>{cb7fe6ee-e5f1-449f-8d44-005352a77c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Library\nameof">
+      <UniqueIdentifier>{daaa5645-c15b-4e26-9c5e-58a20aee9622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\JobSystem">
+      <UniqueIdentifier>{cf44bac0-868e-4199-b828-5d885c06bb82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Debug">
+      <UniqueIdentifier>{744b708d-bf23-4224-9b16-1c28436f2cc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Debug\Assert">
+      <UniqueIdentifier>{42852f6e-114d-4eb8-affb-012a8661e19b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Modules\Core\BuildConfig\BuildConfig.h">
@@ -352,6 +370,24 @@
     <ClInclude Include="..\..\..\Modules\Core\Types\ClassDefine.h">
       <Filter>Src\Types</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Module\CoreModuleBase.h">
+      <Filter>Src\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Module\CoreModuleManager.h">
+      <Filter>Src\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Library\nameof\nameof.hpp">
+      <Filter>Src\Library\nameof</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Module\CoreModule.h">
+      <Filter>Src\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\JobSystem\CoreJobSystem.h">
+      <Filter>Src\JobSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Debug\Assert\AssertImpl.h">
+      <Filter>Src\Platform\Win\Debug\Assert</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Core\Color\ConvColor.cpp">
@@ -467,6 +503,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Config\CoreConfig.cpp">
       <Filter>Src\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Module\CoreModuleBase.cpp">
+      <Filter>Src\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Module\CoreModuleManager.cpp">
+      <Filter>Src\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Module\CoreModule.cpp">
+      <Filter>Src\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\JobSystem\CoreJobSystem.cpp">
+      <Filter>Src\JobSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

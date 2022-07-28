@@ -167,12 +167,15 @@
     <Filter Include="Src\Platform\Win\Types">
       <UniqueIdentifier>{e37c24c9-4cfe-4a47-9d99-04791e5f7719}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Module">
+      <UniqueIdentifier>{958ff675-3b4a-4cc2-bf7c-e03bf7f69f37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\System">
+      <UniqueIdentifier>{d252fae4-610c-444a-9173-5bbc07a5f05c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Graphic\__GraphicCpp.cpp">
-      <Filter>Src</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Graphic\Graphic.cpp">
       <Filter>Src</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Graphic\Buffer\StartupInfo\GraphicBufferStartupInfo.cpp">
@@ -316,11 +319,14 @@
     <ClCompile Include="..\..\..\Modules\Graphic\Platform\Win\Types\GraphicTypeConvert.cpp">
       <Filter>Src\Platform\Win\Types</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Graphic\Module\GraphicModule.cpp">
+      <Filter>Src\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Graphic\System\GraphicSystem.cpp">
+      <Filter>Src\System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\Modules\Graphic\Graphic.h">
-      <Filter>Src</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Modules\Graphic\Buffer\StartupInfo\GraphicBufferStartupInfo.h">
       <Filter>Src\Buffer\StartupInfo</Filter>
     </ClInclude>
@@ -467,6 +473,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Graphic\Types\GraphicTypes.h">
       <Filter>Src\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Graphic\Module\GraphicModule.h">
+      <Filter>Src\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Graphic\Graphic.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Graphic\System\GraphicSystem.h">
+      <Filter>Src\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

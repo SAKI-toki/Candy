@@ -33,6 +33,8 @@ namespace Hardware::Impl
 	// 更新
 	void Update();
 
+	// 閉じる
+	void Close();
 	// 閉じたか
 	bool IsClose();
 

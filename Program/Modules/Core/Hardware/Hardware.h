@@ -30,9 +30,12 @@ namespace Hardware
 	// 更新
 	void Update();
 
+	// 閉じる
+	void Close();
 	// 閉じたか
 	bool IsClose();
 
+	// ハンドラの取得
 	WindowHandle GetHwnd();
 }
 

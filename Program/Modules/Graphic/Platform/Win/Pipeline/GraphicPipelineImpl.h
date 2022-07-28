@@ -19,7 +19,7 @@ namespace impl
 		ID3D12PipelineState* getPipeline()const { return m_Pipeline.Get(); }
 
 	private:
-		core::ComPtr<ID3D12PipelineState> m_Pipeline;
+		ComPtr<ID3D12PipelineState> m_Pipeline;
 	};
 }
 

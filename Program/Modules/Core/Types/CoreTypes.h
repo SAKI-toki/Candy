@@ -10,8 +10,9 @@
 
 #include <Core/CoreInclude.h>
 
-#include <cstdint>
-#include <cfloat>
+#if PLATFORM_WIN
+#include <Core/Platform/Win/Types/CoreTypesImpl.h>
+#endif // PLATFORM_WIN
 
 CANDY_NAMESPACE_BEGIN
 

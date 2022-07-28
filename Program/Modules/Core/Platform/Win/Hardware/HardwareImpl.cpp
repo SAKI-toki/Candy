@@ -60,6 +60,12 @@ void Hardware::Impl::Update()
 	if (msg.message == WM_QUIT)m_IsClose = true;
 }
 
+// 閉じた
+void Hardware::Impl::Close()
+{
+	::DestroyWindow(m_Hwnd);
+}
+
 // 閉じたか
 bool Hardware::Impl::IsClose()
 {

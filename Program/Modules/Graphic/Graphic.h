@@ -1,32 +1,61 @@
-﻿#ifndef CANDY_GRAPHIC_H
+﻿/*****************************************************************//**
+ * \file   Graphic.h
+ * \brief  Graphicファイルのインクルード
+ * \author Yu Ishiyama.
+ * \date   2022/07/03
+ *********************************************************************/
+
+#ifndef CANDY_GRAPHIC_H
 #define CANDY_GRAPHIC_H
 
-#include <Graphic/GraphicInclude.h>
+#include "GraphicInclude.h"
+
+#include "Buffer/GraphicBuffer.h"
+#include "Buffer/StartupInfo/GraphicBufferStartupInfo.h"
+
+#include "BufferView/Index/GraphicIndexBufferView.h"
+#include "BufferView/Vertex/GraphicVertexBufferView.h"
+
+#include "CommandList/GraphicCommandList.h"
+
+#include "CommandQueue/GraphicCommandQueue.h"
+
+#include "Config/GraphicConfig.h"
+
+#include "Descriptor/GraphicDescriptor.h"
+#include "Descriptor/Handle/CPU/GraphicDescriptorCpuHandle.h"
+#include "Descriptor/Handle/GPU/GraphicDescriptorGpuHandle.h"
 
 #include "Device/GraphicDevice.h"
-#include "Buffer/GraphicBuffer.h"
-#include "RootSignature/GraphicRootSignature.h"
+
+#include "Fence/GraphicFence.h"
+
+#include "Module/GraphicModule.h"
+
 #include "Pipeline/GraphicPipeline.h"
-#include "CommandList/GraphicCommandList.h"
-#include "Descriptor/GraphicDescriptor.h"
+#include "Pipeline/StartupInfo/GraphicPipelineStartupInfo.h"
 
-CANDY_GRAPHIC_NAMESPACE_BEGIN
+#include "ResourceManager/GraphicResourceManager.h"
 
-namespace GraphicManager
-{
-	void Startup();
-	void Cleanup();
-	void Update();
-	void PreDraw();
-	void PostDraw();
-	void Flip();
+#include "RootSignature/GraphicRootSignature.h"
+#include "RootSignature/StartupInfo/GraphicRootSignatureStartupInfo.h"
 
-	Device& GetDevice();
-	CommandList& GetCommandList();
-	Descriptor& GetBackBufferDescriptor();
-	s32 GetBackBufferIndex();
-}
+#include "ScissorRect/GraphicScissorRect.h"
 
-CANDY_GRAPHIC_NAMESPACE_END
+#include "Shader/GraphicShaderManager.h"
+#include "Shader/Base/GraphicBaseShader.h"
+#include "Shader/Pixel/GraphicPixelShader.h"
+#include "Shader/Vertex/GraphicVertexShader.h"
+
+#include "SwapChain/GraphicSwapChain.h"
+
+#include "System/GraphicSystem.h"
+
+#include "Texture/GraphicTexture.h"
+#include "Texture/DDS/GraphicReadDDS.h"
+
+#include "Types/GraphicTypes.h"
+
+#include "Viewport/GraphicViewport.h"
 
 #endif // CANDY_GRAPHIC_H

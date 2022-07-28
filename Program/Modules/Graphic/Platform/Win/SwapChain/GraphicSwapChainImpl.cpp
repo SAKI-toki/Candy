@@ -17,7 +17,7 @@ namespace impl
 		desc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;
 		desc.SampleDesc.Count = 1;
 
-		core::ComPtr<IDXGISwapChain1> swapChainForHwnd;
+		ComPtr<IDXGISwapChain1> swapChainForHwnd;
 		const HWND hwnd = core::Hardware::GetHwnd();
 		
 		CANDY_ASSERT_HRESULT(_factory->CreateSwapChainForHwnd(_commandQueue, hwnd, &desc, nullptr, nullptr, &swapChainForHwnd));

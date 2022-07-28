@@ -10,7 +10,7 @@ namespace impl
 
 #if BUILD_DEBUG
 		//デバッグレイヤの有効
-		core::ComPtr<ID3D12Debug> debug;
+		ComPtr<ID3D12Debug> debug;
 		if (SUCCEEDED(D3D12GetDebugInterface(IID_PPV_ARGS(debug.GetAddressOf()))))
 		{
 			debug->EnableDebugLayer();
@@ -20,7 +20,7 @@ namespace impl
 
 		CANDY_ASSERT_HRESULT(CreateDXGIFactory2(factoryFlag, IID_PPV_ARGS(m_Factory.GetAddressOf())));
 
-		core::ComPtr<IDXGIAdapter1> adapter;
+		ComPtr<IDXGIAdapter1> adapter;
 		for (u32 i = 0; ; ++i)
 		{
 			if (FAILED(m_Factory->EnumAdapterByGpuPreference(i, DXGI_GPU_PREFERENCE_HIGH_PERFORMANCE, IID_PPV_ARGS(adapter.GetAddressOf()))))break;	

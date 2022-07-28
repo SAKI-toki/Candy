@@ -20,7 +20,7 @@ namespace impl
 		u64 getCompletedValue();
 
 	private:
-		core::ComPtr<ID3D12Fence> m_Fence;
+		ComPtr<ID3D12Fence> m_Fence;
 		HANDLE m_FenceEvent{};
 	};
 }

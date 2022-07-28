@@ -40,9 +40,9 @@ namespace FileSystem
 		bool operator!=(const std::string& _path)const;
 
 	private:
-		std::string m_Path;
-		u32 m_Hash;
-		u64 m_Size;
+		std::string m_Path{};
+		u32 m_Hash{};
+		u64 m_Size{};
 	};
 }
 

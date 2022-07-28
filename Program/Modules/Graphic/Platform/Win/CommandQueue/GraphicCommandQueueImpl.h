@@ -19,7 +19,7 @@ namespace impl
 		ID3D12CommandQueue* getCommandQueue()const { return m_CommandQueue.Get(); }
 
 	private:
-		core::ComPtr<ID3D12CommandQueue> m_CommandQueue;
+		ComPtr<ID3D12CommandQueue> m_CommandQueue;
 	};
 }
 

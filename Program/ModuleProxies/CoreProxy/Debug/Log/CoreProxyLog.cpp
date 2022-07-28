@@ -71,8 +71,8 @@ namespace Debug
 	}
 
 	// ログのプロキシ
-	void Log::AddLogProxy(const Color _color, const char* const _fileName, const s32 _lineNo,
-		const char* const _funcName, const char* const _message)
+	void Log::AddLogProxy(const Color _color, const std::string& _fileName, const s32 _lineNo,
+		const std::string& _funcName, const std::string& _message)
 	{
 		LogInfo logInfo;
 		logInfo.m_Color = _color;
@@ -82,8 +82,8 @@ namespace Debug
 		logInfo.m_Message = _message;
 
 		CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
-		LogImpl::OutputDebugLog("%s(%d) : %s", _fileName, _lineNo, logInfo.m_Message.c_str());
-		std::printf("%s(%d) : %s\n", _fileName, _lineNo, logInfo.m_Message.c_str());
+		LogImpl::OutputDebugLog("%s(%d) : %s", _fileName.c_str(), _lineNo, logInfo.m_Message.c_str());
+		std::printf("%s(%d) : %s\n", _fileName.c_str(), _lineNo, logInfo.m_Message.c_str());
 		m_LogInfos.push_back(logInfo);
 
 		m_Timer = 3.0f;

@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Src\Debug">
+      <UniqueIdentifier>{a7b5b42a-ef68-499f-8342-2b9b6f805714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Entity">
+      <UniqueIdentifier>{d9bc76eb-91b9-4340-bd14-22067ae7465b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Flow">
+      <UniqueIdentifier>{33fddb97-3311-4f3c-b15f-18cb2db93353}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Font">
+      <UniqueIdentifier>{d0f2827e-f463-4aff-ac84-b3cd8be90527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Global">
+      <UniqueIdentifier>{1138c50e-be49-451b-ad92-e8c739c9d63d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Model">
+      <UniqueIdentifier>{c3f069e6-38e9-4a8a-bd85-a2b93e7ee3b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Module">
+      <UniqueIdentifier>{a0db87be-9c98-4ce9-bbcb-b7fcb42a3f74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\UI">
+      <UniqueIdentifier>{2e1508c2-aadf-4f09-b935-8a9a98d9d34b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Draw">
+      <UniqueIdentifier>{7409b458-5a33-477d-9428-33624226cf40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Draw\String">
+      <UniqueIdentifier>{643ebc51-c90d-4ebf-b5a2-230f61fc2633}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Flow\Game">
+      <UniqueIdentifier>{836bd510-04c2-446c-ae9e-44e9d4eeb3d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Flow\Scene">
+      <UniqueIdentifier>{3bbd7299-07f3-452a-8113-684d272d8f96}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Model\Primitive">
+      <UniqueIdentifier>{eefea170-bf20-4221-999a-d154650683b4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Application\App\__RootCpp.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Debug\__DebugCpp.cpp">
+      <Filter>Src\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Debug\Debug.cpp">
+      <Filter>Src\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Debug\Draw\DebugDraw.cpp">
+      <Filter>Src\Debug\Draw</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Debug\Draw\String\DebugDrawString.cpp">
+      <Filter>Src\Debug\Draw\String</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Entity\__EntityCpp.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Entity\Entity.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Entity\EntityHandle.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Entity\EntityHandleSystem.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Entity\EntitySystem.cpp">
+      <Filter>Src\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Flow\__Flow.cpp">
+      <Filter>Src\Flow</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Flow\Game\GameFlow.cpp">
+      <Filter>Src\Flow\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Flow\Scene\SceneFlow.cpp">
+      <Filter>Src\Flow\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Font\__FontCpp.cpp">
+      <Filter>Src\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Font\Font.cpp">
+      <Filter>Src\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Global\__GlobalCpp.cpp">
+      <Filter>Src\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Global\Global.cpp">
+      <Filter>Src\Global</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Model\__ModelCpp.cpp">
+      <Filter>Src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Model\Model.cpp">
+      <Filter>Src\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Model\Primitive\ModelPrimitive.cpp">
+      <Filter>Src\Model\Primitive</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Module\AppModule.cpp">
+      <Filter>Src\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\UI\__UICpp.cpp">
+      <Filter>Src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\UI\UI.cpp">
+      <Filter>Src\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Module\__ModuleCpp.cpp">
+      <Filter>Src\Module</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Application\App\AppInclude.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Debug\Debug.h">
+      <Filter>Src\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Debug\Draw\DebugDraw.h">
+      <Filter>Src\Debug\Draw</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Debug\Draw\String\DebugDrawString.h">
+      <Filter>Src\Debug\Draw\String</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Entity\Entity.h">
+      <Filter>Src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Entity\EntityHandle.h">
+      <Filter>Src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Entity\EntityHandleSystem.h">
+      <Filter>Src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Entity\EntitySystem.h">
+      <Filter>Src\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Flow\Game\GameFlow.h">
+      <Filter>Src\Flow\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Flow\Scene\SceneFlow.h">
+      <Filter>Src\Flow\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Font\Font.h">
+      <Filter>Src\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Global\Global.h">
+      <Filter>Src\Global</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Model\Model.h">
+      <Filter>Src\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Model\Primitive\ModelPrimitive.h">
+      <Filter>Src\Model\Primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Module\AppModule.h">
+      <Filter>Src\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\UI\UI.h">
+      <Filter>Src\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

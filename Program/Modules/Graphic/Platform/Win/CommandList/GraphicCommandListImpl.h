@@ -47,8 +47,8 @@ namespace impl
 		ID3D12GraphicsCommandList* getCommandList()const { return m_CommandList.Get(); }
 
 	private:
-		std::vector<core::ComPtr<ID3D12CommandAllocator>> m_CommandAllocators;
-		core::ComPtr<ID3D12GraphicsCommandList> m_CommandList;
+		std::vector<ComPtr<ID3D12CommandAllocator>> m_CommandAllocators;
+		ComPtr<ID3D12GraphicsCommandList> m_CommandList;
 
 		D3D12_VERTEX_BUFFER_VIEW m_VertexBufferViews[32]{};
 		ID3D12DescriptorHeap* m_DescriptorHeaps[32]{};

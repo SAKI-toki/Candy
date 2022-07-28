@@ -19,7 +19,7 @@ namespace impl
 		ID3D12RootSignature* getRootSignature()const { return m_RootSignature.Get(); }
 
 	private:
-		core::ComPtr<ID3D12RootSignature> m_RootSignature;
+		ComPtr<ID3D12RootSignature> m_RootSignature;
 	};
 }
 

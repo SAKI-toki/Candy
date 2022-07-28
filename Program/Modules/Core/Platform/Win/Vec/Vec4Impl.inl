@@ -35,25 +35,25 @@ inline Vec4Impl& Vec4Impl::setZero()
 inline Vec4Impl Vec4Impl::operator+(const Vec4Impl& _other)const
 {
 	Vec4Impl v = _mm_add_ps(m_m128, _other.m_m128);
-	v.m_f32.w = 1.0f;
+	v.w = 1.0f;
 	return v;
 }
 inline Vec4Impl Vec4Impl::operator-(const Vec4Impl& _other)const
 {
 	Vec4Impl v = _mm_sub_ps(m_m128, _other.m_m128);
-	v.m_f32.w = 1.0f;
+	v.w = 1.0f;
 	return v;
 }
 inline Vec4Impl Vec4Impl::operator*(const Vec4Impl& _other)const
 {
 	Vec4Impl v = _mm_mul_ps(m_m128, _other.m_m128);
-	v.m_f32.w = 1.0f;
+	v.w = 1.0f;
 	return v;
 }
 inline Vec4Impl Vec4Impl::operator/(const Vec4Impl& _other)const
 {
 	Vec4Impl v = _mm_div_ps(m_m128, _other.m_m128);
-	v.m_f32.w = 1.0f;
+	v.w = 1.0f;
 	return v;
 }
 inline Vec4Impl Vec4Impl::operator*(const f32& _other)const

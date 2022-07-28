@@ -17,14 +17,8 @@
 #include <xaudio2fx.h>
 #include <wrl/client.h>
 #include <xmmintrin.h>
-#include <Core/Debug/Assert/Assert.h>
 
 CANDY_CORE_NAMESPACE_BEGIN
-
-template<typename T>
-using ComPtr = Microsoft::WRL::ComPtr<T>;
-
-#define CANDY_ASSERT_HRESULT(EXPR) CANDY_ASSERT(SUCCEEDED(EXPR))
 
 #define MAKE_FOURCC(x, y, z, w) (((w) << 24) | ((z) << 16) | ((y) << 8) | (x))
 #define MAKE_FOURCC_STR(str) (((str)[3] << 24) | ((str)[2] << 16) | ((str)[1] << 8) | (str)[0])

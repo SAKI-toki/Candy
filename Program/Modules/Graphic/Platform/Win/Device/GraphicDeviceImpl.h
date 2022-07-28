@@ -18,8 +18,8 @@ namespace impl
 		IDXGIFactory6* getFactory()const { return m_Factory.Get(); }
 
 	private:
-		core::ComPtr<IDXGIFactory6> m_Factory;
-		core::ComPtr<ID3D12Device> m_Device;
+		ComPtr<IDXGIFactory6> m_Factory;
+		ComPtr<ID3D12Device> m_Device;
 	};
 }
 

@@ -5,8 +5,6 @@
  * \date   2022/05/31
  *********************************************************************/
 
-#include "Graphic.cpp"
-
 #include "Buffer/GraphicBuffer.cpp"
 #include "Buffer/StartupInfo/GraphicBufferStartupInfo.cpp"
 
@@ -27,6 +25,8 @@
 
 #include "Fence/GraphicFence.cpp"
 
+#include "Module/GraphicModule.cpp"
+
 #include "Pipeline/GraphicPipeline.cpp"
 #include "Pipeline/StartupInfo/GraphicPipelineStartupInfo.cpp"
 
@@ -41,6 +41,8 @@
 #include "Shader/Base/GraphicBaseShader.cpp"
 #include "Shader/Pixel/GraphicPixelShader.cpp"
 #include "Shader/Vertex/GraphicVertexShader.cpp"
+
+#include "System/GraphicSystem.cpp"
 
 #include "SwapChain/GraphicSwapChain.cpp"
 

@@ -27,6 +27,12 @@ void Hardware::Update()
 	Impl::Update();
 }
 
+// 閉じる
+void Hardware::Close()
+{
+	Impl::Close();
+}
+
 // 閉じたか
 bool Hardware::IsClose()
 {

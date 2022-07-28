@@ -3,7 +3,7 @@
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/Pipeline/GraphicPipeline.h>
 #include <Graphic/Descriptor/GraphicDescriptor.h>
-#include <Graphic/Graphic.h>
+#include <Graphic/System/GraphicSystem.h>
 
 CANDY_GRAPHIC_NAMESPACE_BEGIN
 
@@ -45,19 +45,19 @@ void ResourceManager::Flip(const s32 _prevBackBufferIndex, const s32 _nextBackBu
 
 void ResourceManager::Regist(const Buffer& _buffer)
 {
-	m_RegistBufferLists[GraphicManager::GetBackBufferIndex()].push_back(_buffer);
+	m_RegistBufferLists[System::GetBackBufferIndex()].push_back(_buffer);
 }
 void ResourceManager::Regist(const RootSignature& _rootSignature)
 {
-	m_RegistRootSignatureLists[GraphicManager::GetBackBufferIndex()].push_back(_rootSignature);
+	m_RegistRootSignatureLists[System::GetBackBufferIndex()].push_back(_rootSignature);
 }
 void ResourceManager::Regist(const Pipeline& _pipeline)
 {
-	m_RegistPipelineLists[GraphicManager::GetBackBufferIndex()].push_back(_pipeline);
+	m_RegistPipelineLists[System::GetBackBufferIndex()].push_back(_pipeline);
 }
 void ResourceManager::Regist(const Descriptor& _descriptor)
 {
-	m_RegistDescriptorLists[GraphicManager::GetBackBufferIndex()].push_back(_descriptor);
+	m_RegistDescriptorLists[System::GetBackBufferIndex()].push_back(_descriptor);
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

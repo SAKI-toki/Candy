@@ -26,15 +26,16 @@
 inline void DummyFunc(...) {}
 
 #include "Std/StdInclude.h"
-#include "Types/CoreTypes.h"
-#include "Types/ClassDefine.h"
 #include "BuildConfig/BuildConfig.h"
+#include "Types/ClassDefine.h"
 #include "Platform/Platform.h"
+#include "Types/CoreTypes.h"
 #include "Config/CoreConfig.h"
 
-#if PLATFORM_WIN
-#include "Platform/Win/Types/CoreTypesImpl.h"
-#endif // PLATFORM_WIN
+#include "Debug/Assert/Assert.h"
+#include "Debug/Log/Log.h"
+
+#include "Library/nameof/nameof.hpp"
 
 #include "Utility/ArraySize/ArraySize.h"
 #include "Utility/Clamp/Clamp.h"
@@ -50,7 +51,5 @@ inline void DummyFunc(...) {}
 #include "Vec/Vec4.h"
 #include "Color/Color.h"
 #include "Color/ConvColor.h"
-#include "Debug/Assert/Assert.h"
-#include "Debug/Log/Log.h"
 
 #endif // CANDY_CORE_INCLUDE_H

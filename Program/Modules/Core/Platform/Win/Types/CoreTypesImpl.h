@@ -14,6 +14,9 @@ CANDY_NAMESPACE_BEGIN
 
 using WindowHandle = HWND;
 
+template<typename T>
+using ComPtr = Microsoft::WRL::ComPtr<T>;
+
 CANDY_NAMESPACE_END
 
 #endif // CANDY_CORE_TYPES_IMPL_H

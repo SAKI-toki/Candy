@@ -28,6 +28,12 @@
 #include "Input/Keyboard/InputKeyboard.cpp"
 #include "Input/Mouse/InputMouse.cpp"
 
+#include "JobSystem/CoreJobSystem.cpp"
+
+#include "Module/CoreModule.cpp"
+#include "Module/CoreModuleBase.cpp"
+#include "Module/CoreModuleManager.cpp"
+
 #include "Mutex/CriticalSection.cpp"
 #include "Mutex/ThreadEvent.cpp"
 

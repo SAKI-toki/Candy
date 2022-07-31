@@ -15,7 +15,8 @@ CANDY_CORE_NAMESPACE_BEGIN
 namespace Path
 {
 	std::string FormatPath(std::string _path);
-	std::string GetExtension(const std::string& _fileName);
+	std::string FormatPath(const std::string_view _path);
+	std::string GetExtension(const std::string_view _fileName);
 }
 
 CANDY_CORE_NAMESPACE_END

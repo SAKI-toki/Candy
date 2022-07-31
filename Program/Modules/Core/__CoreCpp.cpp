@@ -45,6 +45,7 @@
 #include "Time/Time.cpp"
 
 #include "Utility/StringSystem/Convert/StringSystemConvert.cpp"
+#include "Utility/StringSystem/Split/StringSystemSplit.cpp"
 #include "Utility/Path/Path.cpp"
 
 #if PLATFORM_WIN

@@ -69,9 +69,9 @@ namespace System
 		m_SoundInfos.erase(removeItr, m_SoundInfos.end());
 	}
 
-	void Impl::CallSe(const std::string& _soundName, const u32 _callSeFlag)
+	void Impl::CallSe(const std::string_view _soundName, const u32 _callSeFlag)
 	{
-		std::string path = core::Config::GetDataPath() + std::string{ R"(\Sound\)" } + _soundName;
+		std::string path = std::format(R"({0}\Sound\{1})", core::Config::GetDataPath(), _soundName);
 		const u64 bufSize = core::FileSystem::GetFileSize(path);
 		std::byte* buf = new std::byte[bufSize];
 		core::FileSystem::RequestReadNoWait(path, buf, bufSize);

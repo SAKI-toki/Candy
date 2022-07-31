@@ -13,32 +13,32 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
-std::wstring StringSystem::ConvertMultiByteToWideCharSJIS(const std::string& _str)
+std::wstring StringSystem::ConvertMultiByteToWideCharSJIS(const std::string_view _str)
 {
 	return Impl::ConvertMultiByteToWideCharSJISImpl(_str);
 }
 
-std::string StringSystem::ConvertWideCharToMultiByteSJIS(const std::wstring& _wstr)
+std::string StringSystem::ConvertWideCharToMultiByteSJIS(const std::wstring_view _wstr)
 {
 	return Impl::ConvertWideCharToMultiByteSJISImpl(_wstr);
 }
 
-std::wstring StringSystem::ConvertMultiByteToWideCharUTF8(const std::string& _str)
+std::wstring StringSystem::ConvertMultiByteToWideCharUTF8(const std::string_view _str)
 {
 	return Impl::ConvertMultiByteToWideCharUTF8Impl(_str);
 }
 
-std::string StringSystem::ConvertWideCharToMultiByteUTF8(const std::wstring& _wstr)
+std::string StringSystem::ConvertWideCharToMultiByteUTF8(const std::wstring_view _wstr)
 {
 	return Impl::ConvertWideCharToMultiByteUTF8Impl(_wstr);
 }
 
-std::string StringSystem::ConvertSJISToUTF8(const std::string& _str)
+std::string StringSystem::ConvertSJISToUTF8(const std::string_view _str)
 {
 	return Impl::ConvertSJISToUTF8Impl(_str);
 }
 
-std::string StringSystem::ConvertUTF8ToSJIS(const std::string& _str)
+std::string StringSystem::ConvertUTF8ToSJIS(const std::string_view _str)
 {
 	return Impl::ConvertUTF8ToSJISImpl(_str);
 }

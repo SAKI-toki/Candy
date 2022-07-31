@@ -17,7 +17,7 @@ namespace Debug
 	namespace AssertImpl
 	{
 		// アサート呼び出しのプロキシの実装部
-		void CallAssertProxyImpl(const char* const _expr, const char* const _fileName, const u32 _lineNo, const char* const _funcName);
+		void CallAssertProxyImpl(const std::string_view _expr, const std::string_view _fileName, const u32 _lineNo, const std::string_view _funcName);
 	}
 }
 

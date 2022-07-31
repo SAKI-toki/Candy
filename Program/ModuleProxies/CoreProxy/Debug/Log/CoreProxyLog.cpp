@@ -7,6 +7,8 @@
 
 #include "CoreProxyLog.h"
 
+#include <App/Debug/Draw/DebugDraw.h>
+
 #if PLATFORM_WIN
 #include <CoreProxy/Platform/Win/Debug/Log/CoreProxyLogImpl.h>
 #endif // PLATFORM_WIN
@@ -56,24 +58,28 @@ namespace Debug
 #if BUILD_DEBUG
 		CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 
-		/*if (m_Timer >= 0.0f)
+		if (m_Timer >= 0.0f)
 		{
 			for (size_t i = 0; i < core::Min(m_LogInfos.size(), 30); ++i)
 			{
 				const size_t logIndex = m_LogInfos.size() - i - 1;
 				const auto& logInfo = m_LogInfos[logIndex];
-				DebugDraw::DrawString(core::Vec4{ 50.0f, 0.0f + i * 30.0f, 0.0f }, logInfo.m_Color, 30.0f, logInfo.m_Message.c_str());
+				app::DebugDraw::DrawString(Vec4{ 50.0f, 0.0f + i * 30.0f, 0.0f }, logInfo.m_Color, 30.0f, logInfo.m_Message.c_str());
 			}
-			m_Timer -= Global::GetAppTime();
-		}*/
-
+			m_Timer -= app::Global::GetAppTime();
+		}
 #endif // BUILD_DEBUG
 	}
 
 	// ログのプロキシ
-	void Log::AddLogProxy(const Color _color, const std::string& _fileName, const s32 _lineNo,
-		const std::string& _funcName, const std::string& _message)
+	void Log::AddLogProxy(
+		CANDY_UNUSED_VALUE_ATTR const Color _color,
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _fileName, 
+		CANDY_UNUSED_VALUE_ATTR const s32 _lineNo,
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _funcName, 
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _message)
 	{
+#if BUILD_DEBUG
 		LogInfo logInfo;
 		logInfo.m_Color = _color;
 		logInfo.m_FileName = _fileName;
@@ -82,11 +88,13 @@ namespace Debug
 		logInfo.m_Message = _message;
 
 		CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
-		LogImpl::OutputDebugLog("%s(%d) : %s", _fileName.c_str(), _lineNo, logInfo.m_Message.c_str());
-		std::printf("%s(%d) : %s\n", _fileName.c_str(), _lineNo, logInfo.m_Message.c_str());
+		std::string log = std::format("{0}({1}) : {2}", _fileName, _lineNo, _message);
+		LogImpl::OutputDebugLog(log);
+		std::printf("%s\n", log.c_str());
 		m_LogInfos.push_back(logInfo);
 
 		m_Timer = 3.0f;
+#endif // BUILD_DEBUG
 	}
 }
 

@@ -38,38 +38,16 @@ namespace Debug
 #endif // BUILD_DEBUG
 	}
 
-	// ログの追加
-	void Log::AddLog(const Color _color, const char* const _fileName, const s32 _lineNo, 
-		const char* const _funcName, const char* const _messageFmt, ...)
-	{
-#if BUILD_DEBUG
-		char message[4096];
-		va_list vaList;
-		va_start(vaList, _messageFmt);
-		vsprintf(message, _messageFmt, vaList);
-		va_end(vaList);
-		AddLogDirect(_color, _fileName, _lineNo, _funcName, message);
-#else
-		CANDY_UNUSED_VALUE(_color);
-		CANDY_UNUSED_VALUE(_fileName);
-		CANDY_UNUSED_VALUE(_lineNo);
-		CANDY_UNUSED_VALUE(_funcName);
-		CANDY_UNUSED_VALUE(_messageFmt);
-#endif // BUILD_DEBUG
-	}
-
 	// ログの追加(直接)
-	void Log::AddLogDirect(const Color _color, const std::string& _fileName, const s32 _lineNo,
-		const std::string& _funcName, const std::string& _message)
+	void Log::AddLogDirect(
+		CANDY_UNUSED_VALUE_ATTR const Color _color,
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _fileName,
+		CANDY_UNUSED_VALUE_ATTR const s32 _lineNo,
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _funcName, 
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _message)
 	{
 #if BUILD_DEBUG
 		coreProxy::Debug::Log::AddLogProxy(_color, _fileName, _lineNo, _funcName, _message);
-#else
-		CANDY_UNUSED_VALUE(_color);
-		CANDY_UNUSED_VALUE(_fileName);
-		CANDY_UNUSED_VALUE(_lineNo);
-		CANDY_UNUSED_VALUE(_funcName);
-		CANDY_UNUSED_VALUE(_message);
 #endif // BUILD_DEBUG
 	}
 }

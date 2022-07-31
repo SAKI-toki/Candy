@@ -23,6 +23,8 @@
 
 #define CANDY_UNUSED_VALUE(VALUE) static_cast<void>(VALUE)
 
+#define CANDY_UNUSED_VALUE_ATTR [[maybe_unused]]
+
 inline void DummyFunc(...) {}
 
 #include "Std/StdInclude.h"

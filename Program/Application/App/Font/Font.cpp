@@ -60,7 +60,7 @@ Rect Font::GetFontUv(const FONT_TYPE _fontType, const u32 _c)
 {
 	if (!m_FontDatas[(s32)_fontType].m_Uvs.contains(_c))
 	{
-		CANDY_LOG("UVがありません[%u]", _c);
+		CANDY_LOG("UVがありません[{0}]", _c);
 		return m_FontDatas[(s32)_fontType].m_Uvs['?'].m_Rect;
 	}
 	return m_FontDatas[(s32)_fontType].m_Uvs[_c].m_Rect;

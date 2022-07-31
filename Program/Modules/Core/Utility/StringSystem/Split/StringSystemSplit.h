@@ -14,11 +14,9 @@ CANDY_CORE_NAMESPACE_BEGIN
 
 namespace StringSystem
 {
-	std::vector<std::string> Split(const std::string& _str, const std::string& _separates);
+	std::vector<std::string> Split(const std::string_view _str, const std::string_view _separates);
 }
 
 CANDY_CORE_NAMESPACE_END
-
-#include "StringSystemSplit.inl"
 
 #endif // CANDY_CORE_STRING_SYSTEM_SPLIT_H

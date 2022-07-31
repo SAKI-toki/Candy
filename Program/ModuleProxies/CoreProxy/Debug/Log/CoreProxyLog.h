@@ -26,8 +26,8 @@ namespace Debug
 		void UpdateProxy();
 
 		// ログのプロキシ
-		void AddLogProxy(const Color _color, const std::string& _fileName, const s32 _lineNo,
-			const std::string& _funcName, const std::string& _message);
+		void AddLogProxy(const Color _color, const std::string_view _fileName, const s32 _lineNo,
+			const std::string_view _funcName, const std::string_view _message);
 	}
 }
 

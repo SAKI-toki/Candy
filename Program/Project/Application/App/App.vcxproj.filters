@@ -169,4 +169,9 @@
       <Filter>Src\UI</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\Application\App\Debug\Draw\DebugDraw.inl">
+      <Filter>Src\Debug\Draw</Filter>
+    </None>
+  </ItemGroup>
 </Project>

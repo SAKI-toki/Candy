@@ -12,9 +12,9 @@ CANDY_CORE_NAMESPACE_BEGIN
 namespace FileSystem
 {
 	// マウント
-	bool FileInfoImpl::mount(const std::string& _path)
+	bool FileInfoImpl::mount(const std::string_view _path)
 	{
-		m_FileHandle = ::CreateFile(_path.c_str(), GENERIC_READ, FILE_SHARE_READ,
+		m_FileHandle = ::CreateFile(_path.data(), GENERIC_READ, FILE_SHARE_READ,
 			nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
 
 		return m_FileHandle != INVALID_HANDLE_VALUE;

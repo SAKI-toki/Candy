@@ -17,7 +17,7 @@ namespace FileSystem
 	class FileEnumeratorImpl
 	{
 	protected:
-		void startup(const std::string& _basePath);
+		void startup(const std::string_view _basePath);
 		
 		bool next();
 		bool isDirectory()const;

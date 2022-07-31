@@ -22,7 +22,7 @@ namespace FileSystem
 	{
 	public:
 		// 初期化
-		void startup(const std::string& _path);
+		void startup(const std::string_view _path);
 		// 破棄
 		void cleanup();
 
@@ -36,8 +36,8 @@ namespace FileSystem
 		bool operator!=(const FileInfo& _other)const;
 		bool operator==(const u32 _hash)const;
 		bool operator!=(const u32 _hash)const;
-		bool operator==(const std::string& _path)const;
-		bool operator!=(const std::string& _path)const;
+		bool operator==(const std::string_view _path)const;
+		bool operator!=(const std::string_view _path)const;
 
 	private:
 		std::string m_Path{};

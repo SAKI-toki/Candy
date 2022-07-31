@@ -221,48 +221,22 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
-	// 描画登録(位置)
-	void String::Add(const Vec4 _pos, const std::string& _str)
-	{
-#if BUILD_DEBUG
-		Add(_pos, Color{ 0.0f, 0.0f, 0.0f }, _str);
-#else // BUILD_DEBUG
-		CANDY_UNUSED_VALUE(_pos);
-		CANDY_UNUSED_VALUE(_str);
-#endif // BUILD_DEBUG
-	}
-
-	// 描画登録(位置, 色)
-	void String::Add(const Vec4 _pos, const Color _color, const std::string& _str)
-	{
-#if BUILD_DEBUG
-		Add(_pos, _color, 20.0f, _str);
-#else // BUILD_DEBUG
-		CANDY_UNUSED_VALUE(_pos);
-		CANDY_UNUSED_VALUE(_color);
-		CANDY_UNUSED_VALUE(_str);
-#endif // BUILD_DEBUG
-	}
-
 	// 描画登録(位置, 色, サイズ)
-	void String::Add(const Vec4 _pos, const Color _color, const f32 _scale, const std::string& _str)
+	void String::Add(
+		CANDY_UNUSED_VALUE_ATTR const AddInfo& _addInfo, 
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _format)
 	{
 #if BUILD_DEBUG
 		DrawStringInfo drawStringInfo;
 		const auto screenWidth = graphic::Config::GetScreenWidth();
 		const auto screenHeight = graphic::Config::GetScreenHeight();
-		drawStringInfo.m_Pos.x = (std::abs(_pos.x / screenWidth * 2.0f) - 1.0f) * (_pos.x >= 0.0f ? 1.0f : -1.0f);
-		drawStringInfo.m_Pos.y = (std::abs(_pos.y / screenHeight * 2.0f) - 1.0f) * (_pos.y >= 0.0f ? -1.0f : 1.0f);
-		drawStringInfo.m_Color = _color;
-		drawStringInfo.m_Scale = _scale;
-		drawStringInfo.m_Wstring = core::StringSystem::ConvertMultiByteToWideCharSJIS(_str);
+		drawStringInfo.m_Pos.x = (std::abs(_addInfo.m_Pos.x / screenWidth * 2.0f) - 1.0f) * (_addInfo.m_Pos.x >= 0.0f ? 1.0f : -1.0f);
+		drawStringInfo.m_Pos.y = (std::abs(_addInfo.m_Pos.y / screenHeight * 2.0f) - 1.0f) * (_addInfo.m_Pos.y >= 0.0f ? -1.0f : 1.0f);
+		drawStringInfo.m_Color = _addInfo.m_Color;
+		drawStringInfo.m_Scale = _addInfo.m_Scale;
+		drawStringInfo.m_Wstring = core::StringSystem::ConvertMultiByteToWideCharSJIS(_format);
 		CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 		m_DrawStringInfoLists[Global::GetUpdateIndex()].push_back(drawStringInfo);
-#else // BUILD_DEBUG
-		CANDY_UNUSED_VALUE(_pos);
-		CANDY_UNUSED_VALUE(_color);
-		CANDY_UNUSED_VALUE(_scale);
-		CANDY_UNUSED_VALUE(_str);
 #endif // BUILD_DEBUG
 	}
 }

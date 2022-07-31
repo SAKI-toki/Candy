@@ -14,14 +14,14 @@ CANDY_CORE_NAMESPACE_BEGIN
 
 namespace StringSystem::Impl
 {
-	std::wstring ConvertMultiByteToWideCharSJISImpl(const std::string& _str);
-	std::string ConvertWideCharToMultiByteSJISImpl(const std::wstring& _wstr);
+	std::wstring ConvertMultiByteToWideCharSJISImpl(const std::string_view _str);
+	std::string ConvertWideCharToMultiByteSJISImpl(const std::wstring_view _wstr);
 
-	std::wstring ConvertMultiByteToWideCharUTF8Impl(const std::string& _str);
-	std::string ConvertWideCharToMultiByteUTF8Impl(const std::wstring& _wstr);
+	std::wstring ConvertMultiByteToWideCharUTF8Impl(const std::string_view _str);
+	std::string ConvertWideCharToMultiByteUTF8Impl(const std::wstring_view _wstr);
 
-	std::string ConvertSJISToUTF8Impl(const std::string& _str);
-	std::string ConvertUTF8ToSJISImpl(const std::string& _str);
+	std::string ConvertSJISToUTF8Impl(const std::string_view _str);
+	std::string ConvertUTF8ToSJISImpl(const std::string_view _str);
 }
 
 CANDY_CORE_NAMESPACE_END

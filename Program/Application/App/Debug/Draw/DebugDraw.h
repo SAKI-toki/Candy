@@ -10,6 +10,8 @@
 
 #include <App/AppInclude.h>
 
+#include "String/DebugDrawString.h"
+
 CANDY_APP_NAMESPACE_BEGIN
 
 namespace DebugDraw
@@ -23,14 +25,22 @@ namespace DebugDraw
 	// 描画
 	void Draw();
 
+	// 文字列登録
+	template<typename ...Types>
+	void DrawString(const String::AddInfo& _addInfo, const std::string_view _format, Types&& ..._args);
 	// 文字列登録(位置)
-	void DrawString(const Vec4 _pos, const char* const _format, ...);
+	template<typename ...Types>
+	void DrawString(const Vec4 _pos, const std::string_view _format, Types&& ..._args);
 	// 文字列登録(位置, 色)
-	void DrawString(const Vec4 _pos, const Color _color, const char* const _format, ...);
+	template<typename ...Types>
+	void DrawString(const Vec4 _pos, const Color _color, const std::string_view _format, Types&& ..._args);
 	// 文字列登録(位置, 色, サイズ)
-	void DrawString(const Vec4 _pos, const Color _color, const f32 _scale, const char* const _format, ...);
+	template<typename ...Types>
+	void DrawString(const Vec4 _pos, const Color _color, const f32 _scale, const std::string_view _format, Types&& ..._args);
 }
 
 CANDY_APP_NAMESPACE_END
+
+#include "DebugDraw.inl"
 
 #endif // DEBUG_DRAW_H

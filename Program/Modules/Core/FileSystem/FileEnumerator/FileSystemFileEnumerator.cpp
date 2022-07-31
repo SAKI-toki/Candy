@@ -12,7 +12,7 @@ CANDY_CORE_NAMESPACE_BEGIN
 namespace FileSystem
 {
 	// 初期化
-	void FileEnumerator::startup(const std::string& _basePath)
+	void FileEnumerator::startup(const std::string_view _basePath)
 	{
 		FileEnumeratorImpl::startup(_basePath);
 	}

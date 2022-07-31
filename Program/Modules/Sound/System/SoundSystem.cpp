@@ -27,7 +27,7 @@ void System::Update()
 	Impl::Update();
 }
 
-void System::CallSe(const std::string& _soundName, const u32 _callSeFlag)
+void System::CallSe(const std::string_view _soundName, const u32 _callSeFlag)
 {
 	Impl::CallSe(_soundName, _callSeFlag);
 }

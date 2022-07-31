@@ -11,9 +11,10 @@ CANDY_CORE_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	void FileEnumeratorImpl::startup(const std::string& _basePath)
+	void FileEnumeratorImpl::startup(const std::string_view _basePath)
 	{
-		m_CurrentFileHandle = ::FindFirstFile((_basePath + R"(\*)").c_str(), &m_FindData);
+		auto path = std::format(R"({0}\*)", _basePath);
+		m_CurrentFileHandle = ::FindFirstFile(path.c_str(), &m_FindData);
 	}
 
 	bool FileEnumeratorImpl::next()

@@ -16,7 +16,7 @@ CANDY_CORE_PROXY_NAMESPACE_BEGIN
 namespace Debug
 {
 	// アサート呼び出しのプロキシ
-	void Assert::CallAssertProxy(const char* const _expr, const char* const _fileName, const u32 _lineNo, const char* const _funcName)
+	void Assert::CallAssertProxy(const std::string_view _expr, const std::string_view _fileName, const u32 _lineNo, const std::string_view _funcName)
 	{
 		AssertImpl::CallAssertProxyImpl(_expr, _fileName, _lineNo, _funcName);
 	}

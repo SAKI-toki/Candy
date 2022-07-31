@@ -18,7 +18,7 @@ namespace FileSystem
 	{
 	protected:
 		// マウント
-		bool mount(const std::string& _path);
+		bool mount(const std::string_view _path);
 
 		// ファイルを閉じる
 		void close();

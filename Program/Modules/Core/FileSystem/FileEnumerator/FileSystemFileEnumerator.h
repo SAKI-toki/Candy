@@ -23,7 +23,7 @@ namespace FileSystem
 	{
 	public:
 		// 初期化
-		void startup(const std::string& _basePath);
+		void startup(const std::string_view _basePath);
 
 		// 次のファイルへ
 		bool next();

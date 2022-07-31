@@ -17,10 +17,13 @@ namespace Debug
 	namespace LogImpl
 	{
 		// デバッグウィンドウへの出力
-		void OutputDebugLog(const char* const _fmt, ...);
+		template<typename ...Types>
+		void OutputDebugLog(const std::string_view _format, Types&& ..._args);
 	}
 }
 
 CANDY_CORE_PROXY_NAMESPACE_END
+
+#include "CoreProxyLogImpl.inl"
 
 #endif // CANDY_CORE_PROXY_LOG_IMPL_H

@@ -82,4 +82,9 @@
       <Filter>Src\Config</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\ModuleProxies\CoreProxy\Platform\Win\Debug\Log\CoreProxyLogImpl.inl">
+      <Filter>Src\Platform\Win\Debug\Log</Filter>
+    </None>
+  </ItemGroup>
 </Project>

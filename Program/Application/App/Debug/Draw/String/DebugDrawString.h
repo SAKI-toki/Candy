@@ -23,12 +23,15 @@ namespace DebugDraw::String
 	// 描画
 	void Draw();
 	
-	// 描画登録(位置)
-	void Add(const Vec4 _pos, const std::string& _str);
-	// 描画登録(位置, 色)
-	void Add(const Vec4 _pos, const Color _color, const std::string& _str);
-	// 描画登録(位置, 色, サイズ)
-	void Add(const Vec4 _pos, const Color _color, const f32 _scale, const std::string& _str);
+	struct AddInfo
+	{
+		Vec4 m_Pos{};
+		Color m_Color{ 0.0f, 0.0f, 0.0f };
+		f32 m_Scale{ 20.0f };
+	};
+
+	// 描画登録
+	void Add(const AddInfo& _addInfo, const std::string_view _format);
 }
 
 CANDY_APP_NAMESPACE_END

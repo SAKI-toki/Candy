@@ -17,12 +17,12 @@ namespace Fnv
 	// ハッシュ計算
 	u32 Hash32(const char* const _str, const s32 _length);
 	u32 Hash32(const char* const _str);
-	u32 Hash32(const std::string& _str);
+	u32 Hash32(const std::string_view _str);
 
 	// ハッシュ計算(小文字)
 	u32 Hash32Low(const char* const _str, const s32 _length);
 	u32 Hash32Low(const char* const _str);
-	u32 Hash32Low(const std::string& _str);
+	u32 Hash32Low(const std::string_view _str);
 
 	namespace Impl
 	{

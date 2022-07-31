@@ -12,7 +12,7 @@ CANDY_CORE_NAMESPACE_BEGIN
 namespace FileSystem
 {
 	// 初期化
-	void FileInfo::startup(const std::string& _path)
+	void FileInfo::startup(const std::string_view _path)
 	{
 		FileInfoImpl::mount(_path);
 		m_Path = Path::FormatPath(_path);
@@ -43,8 +43,8 @@ namespace FileSystem
 	bool FileInfo::operator!=(const FileInfo& _other)const { return !(*this == _other); }
 	bool FileInfo::operator==(const u32 _hash)const { return m_Hash == _hash; }
 	bool FileInfo::operator!=(const u32 _hash)const { return !(*this == _hash); }
-	bool FileInfo::operator==(const std::string& _path)const { return m_Hash == Fnv::Hash32Low(Path::FormatPath(_path)); }
-	bool FileInfo::operator!=(const std::string& _path)const { return !(*this == _path); }
+	bool FileInfo::operator==(const std::string_view _path)const { return m_Hash == Fnv::Hash32Low(Path::FormatPath(_path)); }
+	bool FileInfo::operator!=(const std::string_view _path)const { return !(*this == _path); }
 }
 
 CANDY_CORE_NAMESPACE_END

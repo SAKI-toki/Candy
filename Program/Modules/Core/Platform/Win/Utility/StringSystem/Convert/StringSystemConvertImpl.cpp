@@ -9,7 +9,7 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
-std::wstring StringSystem::Impl::ConvertMultiByteToWideCharSJISImpl(const std::string& _str)
+std::wstring StringSystem::Impl::ConvertMultiByteToWideCharSJISImpl(const std::string_view _str)
 {
 	const size_t len = MultiByteToWideChar(CP_ACP, 0, _str.data(), static_cast<int>(_str.size()), nullptr, 0);
 	std::wstring wstr;
@@ -18,7 +18,7 @@ std::wstring StringSystem::Impl::ConvertMultiByteToWideCharSJISImpl(const std::s
 	return wstr;
 }
 
-std::string StringSystem::Impl::ConvertWideCharToMultiByteSJISImpl(const std::wstring& _wstr)
+std::string StringSystem::Impl::ConvertWideCharToMultiByteSJISImpl(const std::wstring_view _wstr)
 {
 	const size_t len = WideCharToMultiByte(CP_ACP, 0, _wstr.data(), static_cast<int>(_wstr.size()), nullptr, 0, nullptr, nullptr);
 	std::string str;
@@ -27,7 +27,7 @@ std::string StringSystem::Impl::ConvertWideCharToMultiByteSJISImpl(const std::ws
 	return str;
 }
 
-std::wstring StringSystem::Impl::ConvertMultiByteToWideCharUTF8Impl(const std::string& _str)
+std::wstring StringSystem::Impl::ConvertMultiByteToWideCharUTF8Impl(const std::string_view _str)
 {
 	const size_t len = MultiByteToWideChar(CP_UTF8, 0, _str.data(), static_cast<int>(_str.size()), nullptr, 0);
 	std::wstring wstr;
@@ -36,7 +36,7 @@ std::wstring StringSystem::Impl::ConvertMultiByteToWideCharUTF8Impl(const std::s
 	return wstr;
 }
 
-std::string StringSystem::Impl::ConvertWideCharToMultiByteUTF8Impl(const std::wstring& _wstr)
+std::string StringSystem::Impl::ConvertWideCharToMultiByteUTF8Impl(const std::wstring_view _wstr)
 {
 	const size_t len = WideCharToMultiByte(CP_UTF8, 0, _wstr.data(), static_cast<int>(_wstr.size()), nullptr, 0, nullptr, nullptr);
 	std::string str;
@@ -45,12 +45,12 @@ std::string StringSystem::Impl::ConvertWideCharToMultiByteUTF8Impl(const std::ws
 	return str;
 }
 
-std::string StringSystem::Impl::ConvertSJISToUTF8Impl(const std::string& _str)
+std::string StringSystem::Impl::ConvertSJISToUTF8Impl(const std::string_view _str)
 {
 	return ConvertWideCharToMultiByteUTF8Impl(ConvertMultiByteToWideCharSJISImpl(_str));
 }
 
-std::string StringSystem::Impl::ConvertUTF8ToSJISImpl(const std::string& _str)
+std::string StringSystem::Impl::ConvertUTF8ToSJISImpl(const std::string_view _str)
 {
 	return ConvertWideCharToMultiByteSJISImpl(ConvertMultiByteToWideCharUTF8Impl(_str));
 }

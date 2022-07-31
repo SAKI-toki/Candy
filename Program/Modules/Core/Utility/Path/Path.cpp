@@ -26,11 +26,16 @@ std::string Path::FormatPath(std::string _path)
 	return _path;
 }
 
-std::string Path::GetExtension(const std::string& _fileName)
+std::string Path::FormatPath(const std::string_view _path)
+{
+	return FormatPath(std::string{ _path });
+}
+
+std::string Path::GetExtension(const std::string_view _fileName)
 {
 	auto pos = _fileName.find_last_of('.');
 	if (pos == _fileName.npos)return "";
-	return _fileName.substr(pos);
+	return std::string{ _fileName.substr(pos) };
 }
 
 CANDY_CORE_NAMESPACE_END

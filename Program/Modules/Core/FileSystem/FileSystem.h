@@ -22,11 +22,11 @@ namespace FileSystem
 	void Cleanup();
 
 	// ファイルサイズの取得
-	u64 GetFileSize(const std::string& _path);
+	u64 GetFileSize(const std::string_view _path);
 	// 読み込みリクエスト
-	WorkHandle RequestRead(const std::string& _path, std::byte* const _buf, u64 _bufSize);
+	WorkHandle RequestRead(const std::string_view _path, std::byte* const _buf, u64 _bufSize);
 	// 読み込みリクエスト(即時)
-	bool RequestReadNoWait(const std::string& _path, std::byte* const _buf, u64 _bufSize);
+	bool RequestReadNoWait(const std::string_view _path, std::byte* const _buf, u64 _bufSize);
 	// ファイル読み込み終了判定
 	bool IsEndReadWork(const WorkHandle _handle);
 }

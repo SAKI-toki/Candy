@@ -516,6 +516,9 @@
     <ClCompile Include="..\..\..\Modules\Core\JobSystem\CoreJobSystem.cpp">
       <Filter>Src\JobSystem</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Utility\StringSystem\Split\StringSystemSplit.cpp">
+      <Filter>Src\Utility\StringSystem\Split</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Modules\Core\Rect\Rect.inl">
@@ -536,9 +539,6 @@
     <None Include="..\..\..\Modules\Core\Utility\MinMax\MinMax.inl">
       <Filter>Src\Utility\MinMax</Filter>
     </None>
-    <None Include="..\..\..\Modules\Core\Utility\StringSystem\Split\StringSystemSplit.inl">
-      <Filter>Src\Utility\StringSystem\Split</Filter>
-    </None>
     <None Include="..\..\..\Modules\Core\Utility\StringSystem\UpperLower\StringSystemToUpperLower.inl">
       <Filter>Src\Utility\StringSystem\UpperLower</Filter>
     </None>
@@ -556,6 +556,9 @@
     </None>
     <None Include="..\..\..\Modules\Core\Handle\HandleSystem.inl">
       <Filter>Src\Handle</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Debug\Log\Log.inl">
+      <Filter>Src\Debug\Log</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

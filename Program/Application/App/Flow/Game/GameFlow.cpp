@@ -182,7 +182,7 @@ namespace GameFlow
 
 		struct Constant
 		{
-			Vec4 m_Position{};
+			Vec4 m_Pos{};
 			Color m_Color{ core::GetColorRGB32(0xff, 0xff, 0xff) };
 			Vec4 pad[14];
 		}m_Constant;
@@ -214,8 +214,8 @@ void GameFlow::Startup()
 	m_TextureViews[1].startup(R"(Texture\house.dds)", 256, 256, Vec4{ 2.0f,2.0f,1.0f }, TextureView::STARTUP_FLAG_NONE);
 	m_TextureViews[2].startup(R"(Texture\player1.dds)", 256, 256, Vec4{ 0.5f,0.5f,1.0f }, TextureView::STARTUP_FLAG_USE_ALPHA);
 	m_TextureViews[3].startup(R"(Texture\player2.dds)", 256, 256, Vec4{ 0.5f,0.5f,1.0f }, TextureView::STARTUP_FLAG_NONE);
-	m_TextureViews[2].m_Constant.m_Position.y = -0.65f;
-	m_TextureViews[3].m_Constant.m_Position.y = -0.65f;
+	m_TextureViews[2].m_Constant.m_Pos.y = -0.65f;
+	m_TextureViews[3].m_Constant.m_Pos.y = -0.65f;
 
 	//Sound::CallSe("TestBgm.wav", Sound::CALL_SE_FLAG_LOOP);
 }
@@ -232,9 +232,7 @@ void GameFlow::Update()
 {
 	core::Input::Update();
 
-	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, "PlayerPos[x:%.2f y:%.2f]", m_TextureViews[2].m_Constant.m_Position.x, m_TextureViews[2].m_Constant.m_Position.y);
-	DebugDraw::DrawString(Vec4{ 100, 120, 0 }, "test");
-	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "AABBあいうえお");
+	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, "PlayerPos[x:{0:.2f} y:{1:.2f}]", m_TextureViews[2].m_Constant.m_Pos.x, m_TextureViews[2].m_Constant.m_Pos.y);
 
 	if (core::Input::IsKeyTrigger('P'))
 	{
@@ -271,13 +269,13 @@ void GameFlow::Update()
 	}
 	if (!isLanding)
 	{
-		m_TextureViews[2].m_Constant.m_Position.y += velocity * Global::GetAppTime();
+		m_TextureViews[2].m_Constant.m_Pos.y += velocity * Global::GetAppTime();
 		velocity -= 9.8f * Global::GetAppTime();
 	}
 
 	if (isSideVelocity)
 	{
-		m_TextureViews[2].m_Constant.m_Position.x += sideVelocity * Global::GetAppTime();
+		m_TextureViews[2].m_Constant.m_Pos.x += sideVelocity * Global::GetAppTime();
 		auto prevSideVelocity = sideVelocity;
 		sideVelocity -= 9.8f * Global::GetAppTime() * (sideVelocity > 0.0f ? 1.0f : -1.0f);
 		if (prevSideVelocity > 0.0f && sideVelocity <= 0.0f ||
@@ -287,22 +285,22 @@ void GameFlow::Update()
 			isSideVelocity = false;
 		}
 	}
-	if (m_TextureViews[2].m_Constant.m_Position.y <= -0.65f)
+	if (m_TextureViews[2].m_Constant.m_Pos.y <= -0.65f)
 	{
-		m_TextureViews[2].m_Constant.m_Position.y = -0.65f;
+		m_TextureViews[2].m_Constant.m_Pos.y = -0.65f;
 		velocity = 0.0f;
 		isLanding = true;
 	}
-	if (m_TextureViews[2].m_Constant.m_Position.x > 0.7f ||
-		m_TextureViews[2].m_Constant.m_Position.x < -0.8f)
+	if (m_TextureViews[2].m_Constant.m_Pos.x > 0.7f ||
+		m_TextureViews[2].m_Constant.m_Pos.x < -0.8f)
 	{
-		m_TextureViews[2].m_Constant.m_Position.x = core::Clamp(m_TextureViews[2].m_Constant.m_Position.x, -0.8f, 0.7f);
+		m_TextureViews[2].m_Constant.m_Pos.x = core::Clamp(m_TextureViews[2].m_Constant.m_Pos.x, -0.8f, 0.7f);
 		sideVelocity = 0.0f;
 		isSideVelocity = true;
 	}
 
-	if (core::Input::IsKeyOn('J'))m_TextureViews[3].m_Constant.m_Position.x -= speed * Global::GetAppTime();
-	if (core::Input::IsKeyOn('L'))m_TextureViews[3].m_Constant.m_Position.x += speed * Global::GetAppTime();
+	if (core::Input::IsKeyOn('J'))m_TextureViews[3].m_Constant.m_Pos.x -= speed * Global::GetAppTime();
+	if (core::Input::IsKeyOn('L'))m_TextureViews[3].m_Constant.m_Pos.x += speed * Global::GetAppTime();
 
 	for (auto& textureView : m_TextureViews)
 	{

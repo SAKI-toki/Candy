@@ -12,7 +12,7 @@ namespace System::Impl
 
 	void Update();
 
-	void CallSe(const std::string& _soundName, const u32 _callSeFlag);
+	void CallSe(const std::string_view _soundName, const u32 _callSeFlag);
 }
 
 CANDY_SOUND_NAMESPACE_END

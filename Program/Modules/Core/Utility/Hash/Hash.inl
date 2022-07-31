@@ -59,9 +59,9 @@ inline u32 Fnv::Hash32(const char* const _str)
 {
 	return Hash32(_str, static_cast<s32>(strlen(_str)));
 }
-inline u32 Fnv::Hash32(const std::string& _str)
+inline u32 Fnv::Hash32(const std::string_view _str)
 {
-	return Hash32(_str.c_str(), static_cast<s32>(_str.size()));
+	return Hash32(_str.data(), static_cast<s32>(_str.size()));
 }
 
 // ハッシュ計算(小文字)
@@ -77,9 +77,9 @@ inline u32 Fnv::Hash32Low(const char* const _str)
 {
 	return Hash32Low(_str, static_cast<s32>(strlen(_str)));
 }
-inline u32 Fnv::Hash32Low(const std::string& _str)
+inline u32 Fnv::Hash32Low(const std::string_view _str)
 {
-	return Hash32Low(_str.c_str(), static_cast<s32>(_str.size()));
+	return Hash32Low(_str.data(), static_cast<s32>(_str.size()));
 }
 
 // ハッシュ計算(コンパイル時)

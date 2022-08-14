@@ -5,6 +5,9 @@
  * \date   2022/06/01
  *********************************************************************/
 
+#ifndef CANDY_CORE_HANDLE_SYSTEM_INL
+#define CANDY_CORE_HANDLE_SYSTEM_INL
+
 #include "HandleSystem.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -86,3 +89,5 @@ HandleSystem<T, HandleType>::ValuePtrType HandleSystem<T, HandleType>::getPtr(Ha
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_HANDLE_SYSTEM_INL

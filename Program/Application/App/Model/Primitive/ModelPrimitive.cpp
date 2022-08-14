@@ -6,6 +6,7 @@
  *********************************************************************/
 
 #include "ModelPrimitive.h"
+#include <App/Utility/UtilityConvertPosition.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -17,8 +18,9 @@ namespace Model
 		graphic::Pipeline m_Pipeline2D;
 		std::vector<graphic::Buffer> m_VertexBufferList2D;
 		std::vector<graphic::Buffer> m_IndexBufferList2D;
-		std::vector<VertexInfo> m_VertexInfos2D;
-		std::vector<u16> m_Indices2D;
+		std::vector<VertexInfo> m_VertexInfo2DLists[2];
+		std::vector<u16> m_Indices2DLists[2];
+		core::CriticalSection m_CriticalSection;
 	}
 
 	// 初期化
@@ -55,15 +57,19 @@ namespace Model
 		indexBufferStartupInfo2D.setBufferStartupInfo(sizeof(u16) * 0x10000);
 		for (auto& indexBuffer2D : m_IndexBufferList2D)indexBuffer2D.startup(graphic::System::GetDevice(), indexBufferStartupInfo2D);
 
-		m_VertexInfos2D.reserve(0x10000);
-		m_Indices2D.reserve(0x10000);
+		for (auto& vertices : m_VertexInfo2DLists)vertices.reserve(0x10000);
+		for (auto& indices : m_Indices2DLists)indices.reserve(0x10000);
+
+		m_CriticalSection.startup();
 	}
 
 	// 破棄
 	void Primitive::Cleanup()
 	{
-		m_Indices2D.clear();
-		m_VertexInfos2D.clear();
+		m_CriticalSection.cleanup();
+
+		for (auto& vertices : m_VertexInfo2DLists)vertices.clear();
+		for (auto& indices : m_Indices2DLists)indices.clear();
 		for (auto& indexBuffer2D : m_IndexBufferList2D)indexBuffer2D.cleanup();
 		m_IndexBufferList2D.clear();
 		for (auto& vertexBuffer2D : m_VertexBufferList2D)vertexBuffer2D.cleanup();
@@ -75,18 +81,20 @@ namespace Model
 	// 描画
 	void Primitive::Draw(graphic::CommandList& _commandList)
 	{
-		if (m_VertexInfos2D.empty() || m_Indices2D.empty())return;
+		auto& vertexInfos2D = m_VertexInfo2DLists[Global::GetDrawIndex()];
+		auto& indices2D = m_Indices2DLists[Global::GetDrawIndex()];
+		if (vertexInfos2D.empty() || indices2D.empty())return;
 
 		auto& vertexBuffer2D = m_VertexBufferList2D[graphic::System::GetBackBufferIndex()];
 		auto& indexBuffer2D = m_IndexBufferList2D[graphic::System::GetBackBufferIndex()];
 
-		vertexBuffer2D.store(reinterpret_cast<std::byte*>(m_VertexInfos2D.data()), m_VertexInfos2D.size() * sizeof(VertexInfo), 0);
-		indexBuffer2D.store(reinterpret_cast<std::byte*>(m_Indices2D.data()), m_Indices2D.size() * sizeof(u16), 0);
+		vertexBuffer2D.store(reinterpret_cast<std::byte*>(vertexInfos2D.data()), vertexInfos2D.size() * sizeof(VertexInfo), 0);
+		indexBuffer2D.store(reinterpret_cast<std::byte*>(indices2D.data()), indices2D.size() * sizeof(u16), 0);
 
 		graphic::VertexBufferView vertexBufferView2D;
-		vertexBufferView2D.startup(vertexBuffer2D, 0, static_cast<u32>(m_VertexInfos2D.size()), sizeof(VertexInfo));
+		vertexBufferView2D.startup(vertexBuffer2D, 0, static_cast<u32>(vertexInfos2D.size()), sizeof(VertexInfo));
 		graphic::IndexBufferView indexBufferView2D;
-		indexBufferView2D.startup(indexBuffer2D, 0, static_cast<u32>(m_Indices2D.size()), sizeof(u16), graphic::types::GRAPHIC_FORMAT::R16_UINT);
+		indexBufferView2D.startup(indexBuffer2D, 0, static_cast<u32>(indices2D.size()), sizeof(u16), graphic::types::GRAPHIC_FORMAT::R16_UINT);
 
 		_commandList.setRootSignature(m_RootSignature2D);
 		_commandList.setPipeline(m_Pipeline2D);
@@ -94,22 +102,14 @@ namespace Model
 		_commandList.registVertexBuffers(1);
 		_commandList.setIndexBuffer(indexBufferView2D);
 		_commandList.setPrimitiveTopology(graphic::types::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
-		_commandList.drawIndexedInstanced(static_cast<u32>(m_Indices2D.size()), 1, 0, 0, 0);
+		_commandList.drawIndexedInstanced(static_cast<u32>(indices2D.size()), 1, 0, 0, 0);
 		graphic::ResourceManager::Regist(vertexBuffer2D);
 		graphic::ResourceManager::Regist(indexBuffer2D);
-		m_VertexInfos2D.clear();
-		m_Indices2D.clear();
+		vertexInfos2D.clear();
+		indices2D.clear();
 	}
 
 	// 2D三角形の描画登録
-	void Primitive::AddTriangle2D(const Vec4 _pos, const Color _color)
-	{
-		AddTriangle2D(
-			Vec4{  0.0f,  2.0f / 3.0f, 0.0f } + _pos,
-			Vec4{  0.5f, -1.0f / 3.0f, 0.0f } + _pos,
-			Vec4{ -0.5f, -1.0f / 3.0f, 0.0f } + _pos,
-			_color);
-	}
 	void Primitive::AddTriangle2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Color _color)
 	{
 		AddTriangle2D(_point1, _point2, _point3, _color, _color, _color);
@@ -125,25 +125,23 @@ namespace Model
 		Add2D(_vertices, 3, indices, 3);
 	}
 
-	// 2D矩形の描画登録
-	void Primitive::AddRect2D(const Vec4 _pos, const Color _color)
+	// 2Dクアッドの描画登録
+	void Primitive::AddQuad2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4, const Color _color)
 	{
-		AddRect2D(
-			Vec4{ -0.5f,  0.5f, 0.0f } + _pos,
-			Vec4{  0.5f,  0.5f, 0.0f } + _pos,
-			Vec4{ -0.5f, -0.5f, 0.0f } + _pos,
-			Vec4{  0.5f, -0.5f, 0.0f } + _pos,
-			_color);
+		AddQuad2D(_point1, _point2, _point3, _point4, _color, _color, _color, _color);
 	}
-	void Primitive::AddRect2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4, const Color _color)
-	{
-		AddRect2D(_point1, _point2, _point3, _point4, _color, _color, _color, _color);
-	}
-	void Primitive::AddRect2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4,
+	void Primitive::AddQuad2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4,
 		const Color _color1, const Color _color2, const Color _color3, const Color _color4)
 	{
-		AddRect2D({ VertexInfo{ _point1, _color1 }, VertexInfo{ _point2, _color2 }, VertexInfo{ _point3, _color3 }, VertexInfo{ _point4, _color4 } });
+		AddQuad2D({ VertexInfo{ _point1, _color1 }, VertexInfo{ _point2, _color2 }, VertexInfo{ _point3, _color3 }, VertexInfo{ _point4, _color4 } });
 	}
+	void Primitive::AddQuad2D(const VertexInfo(&_vertices)[4])
+	{
+		const u16 indices[] = { 0, 1, 3, 1, 2, 3 };
+		Add2D(_vertices, 4, indices, 6);
+	}
+
+	// 2D矩形の描画登録
 	void Primitive::AddRect2D(const Rect _rect, const Color _color)
 	{
 		AddRect2D(_rect, _color, _color, _color, _color);
@@ -152,15 +150,34 @@ namespace Model
 	{
 		const f32 left = _rect.m_X;
 		const f32 right = _rect.m_X + _rect.m_Width;
-		const f32 down = _rect.m_Y;
-		const f32 up = _rect.m_Y + _rect.m_Height;
+		const f32 up = _rect.m_Y;
+		const f32 down = _rect.m_Y + _rect.m_Height;
 		const Vec4 leftUp		= Vec4{ left,	up,		0.0f };
 		const Vec4 rightUp		= Vec4{ right,	up,		0.0f };
 		const Vec4 leftDown		= Vec4{ left,	down,	0.0f };
 		const Vec4 rightDown	= Vec4{ right,	down,	0.0f };
-		AddRect2D({ VertexInfo{ leftUp, _color1 }, VertexInfo{ rightUp, _color2 }, VertexInfo{ leftDown, _color3 }, VertexInfo{ rightDown, _color4 } });
+		AddRect2D({ VertexInfo{ leftUp, _color1 }, VertexInfo{ rightUp, _color2 }, 
+			VertexInfo{ rightDown, _color3 }, VertexInfo{ leftDown, _color4 } });
 	}
 	void Primitive::AddRect2D(const VertexInfo(&_vertices)[4])
+	{
+		const u16 indices[] = { 0, 1, 3, 1, 2, 3 };
+		Add2D(_vertices, 4, indices, 6);
+	}
+
+	// 2D線分の描画登録
+	void Primitive::AddLine2D(const Vec4 _begin, const Vec4 _end, const f32 _width, const Color _color)
+	{
+		const Vec4 dir = (_end - _begin);
+		const Vec4 side = VecNormalize(VecCross(dir, FrontVector)) * _width;
+		const Vec4 beginRight	= _begin + side;
+		const Vec4 beginLeft	= _begin - side;
+		const Vec4 endRight		= _end + side;
+		const Vec4 endLeft		= _end - side;
+		AddLine2D({ VertexInfo{ beginRight, _color }, VertexInfo{ beginLeft, _color },
+			VertexInfo{ endRight, _color }, VertexInfo{ endLeft, _color } });
+	}
+	void Primitive::AddLine2D(const VertexInfo(&_vertices)[4])
 	{
 		const u16 indices[] = { 0, 1, 2, 1, 3, 2 };
 		Add2D(_vertices, 4, indices, 6);
@@ -169,19 +186,33 @@ namespace Model
 	// 2Dの描画登録
 	void Primitive::Add2D(const VertexInfo* const _vertices, const s32 _vertexCount, const u16* const _indices, const s32 _indexCount)
 	{
-		if (m_VertexInfos2D.size() + _vertexCount >= 0x10000)
+		auto& vertexInfos2D = m_VertexInfo2DLists[Global::GetUpdateIndex()];
+		auto& indices2D = m_Indices2DLists[Global::GetUpdateIndex()];
+		
+		CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
+		
+		if (vertexInfos2D.size() + _vertexCount >= 0x10000)
 		{
 			CANDY_LOG("頂点の上限を超えています");
 			return;
 		}
-		if (m_Indices2D.size() + _indexCount >= 0x10000)
+		if (indices2D.size() + _indexCount >= 0x10000)
 		{
 			CANDY_LOG("インデックスの上限を超えています");
 			return;
 		}
 
-		for (s32 i = 0; i < _indexCount; ++i)m_Indices2D.push_back(_indices[i] + static_cast<u16>(m_VertexInfos2D.size()));
-		for (s32 i = 0; i < _vertexCount; ++i)m_VertexInfos2D.push_back(_vertices[i]);
+		for (s32 i = 0; i < _indexCount; ++i)
+		{
+			const u16 index = _indices[i] + static_cast<u16>(vertexInfos2D.size());
+			indices2D.push_back(index);
+		}
+		for (s32 i = 0; i < _vertexCount; ++i)
+		{
+			VertexInfo v = _vertices[i];
+			v.m_Pos = Utility::ToScreenPosFrom2DPos(v.m_Pos);
+			vertexInfos2D.push_back(v);
+		}
 	}
 }
 

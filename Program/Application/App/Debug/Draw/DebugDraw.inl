@@ -5,6 +5,9 @@
  * \date   2022/05/31
  *********************************************************************/
 
+#ifndef CANDY_PHYSICS_SHAPE_LINE_INL
+#define CANDY_PHYSICS_SHAPE_LINE_INL
+
 #include "DebugDraw.h"
 
 CANDY_APP_NAMESPACE_BEGIN
@@ -69,3 +72,5 @@ inline void DebugDraw::DrawString(
 }
 
 CANDY_APP_NAMESPACE_END
+
+#endif // CANDY_PHYSICS_SHAPE_LINE_INL

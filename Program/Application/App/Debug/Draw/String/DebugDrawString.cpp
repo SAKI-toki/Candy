@@ -7,6 +7,7 @@
 
 #include "DebugDrawString.h"
 #include <App/Font/Font.h>
+#include <App/Utility/UtilityConvertPosition.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -228,10 +229,7 @@ namespace DebugDraw
 	{
 #if BUILD_DEBUG
 		DrawStringInfo drawStringInfo;
-		const auto screenWidth = graphic::Config::GetScreenWidth();
-		const auto screenHeight = graphic::Config::GetScreenHeight();
-		drawStringInfo.m_Pos.x = (std::abs(_addInfo.m_Pos.x / screenWidth * 2.0f) - 1.0f) * (_addInfo.m_Pos.x >= 0.0f ? 1.0f : -1.0f);
-		drawStringInfo.m_Pos.y = (std::abs(_addInfo.m_Pos.y / screenHeight * 2.0f) - 1.0f) * (_addInfo.m_Pos.y >= 0.0f ? -1.0f : 1.0f);
+		drawStringInfo.m_Pos = Utility::ToScreenPosFrom2DPos(_addInfo.m_Pos);
 		drawStringInfo.m_Color = _addInfo.m_Color;
 		drawStringInfo.m_Scale = _addInfo.m_Scale;
 		drawStringInfo.m_Wstring = core::StringSystem::ConvertMultiByteToWideCharSJIS(_format);

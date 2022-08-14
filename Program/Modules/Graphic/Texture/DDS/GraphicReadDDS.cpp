@@ -54,7 +54,7 @@ namespace Texture
 
         const auto& header = *reinterpret_cast<const Header*>(_bytes);
 
-        if (header.m_Magic != MAKE_FOURCC('D', 'D', 'S', ' '))
+        if (header.m_Magic != CANDY_MAKE_FOURCC('D', 'D', 'S', ' '))
         {
             CANDY_LOG("DDSファイルではありません");
             return nullptr;
@@ -69,7 +69,7 @@ namespace Texture
 
         switch (header.m_FourCC)
         {
-        case MAKE_FOURCC('D', 'X', 'T', '1'):
+        case CANDY_MAKE_FOURCC('D', 'X', 'T', '1'):
         {
             const u64 pixelSize = _byteSize - HeaderSize;
             const u64 resultSize = header.m_Width * header.m_Height * 8 / 16;
@@ -78,7 +78,7 @@ namespace Texture
             return result;
         }
         break;
-        case MAKE_FOURCC('D', 'X', 'T', '5'):
+        case CANDY_MAKE_FOURCC('D', 'X', 'T', '5'):
         {
             const u64 pixelSize = _byteSize - HeaderSize;
             const u64 resultSize = header.m_Width * header.m_Height * 16 / 16;
@@ -87,7 +87,7 @@ namespace Texture
             return result;
         }
         break;
-        case MAKE_FOURCC('D', 'X', '1', '0'):
+        case CANDY_MAKE_FOURCC('D', 'X', '1', '0'):
         {
             CANDY_LOG("dx10拡張は未対応です");
         }

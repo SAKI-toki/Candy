@@ -5,6 +5,9 @@
  * \date   2022/06/02
  *********************************************************************/
 
+#ifndef CANDY_CORE_RECT_INL
+#define CANDY_CORE_RECT_INL
+
 #include "Rect.h"
 
 CANDY_NAMESPACE_BEGIN
@@ -46,5 +49,6 @@ inline f32 Rect::getBottom()const
 	return m_Y + m_Height;
 }
 
-
 CANDY_NAMESPACE_END
+
+#endif // CANDY_CORE_RECT_INL

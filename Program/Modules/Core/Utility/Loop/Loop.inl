@@ -5,6 +5,9 @@
  * \date   2022/06/09
  *********************************************************************/
 
+#ifndef CANDY_CORE_LOOP_INL
+#define CANDY_CORE_LOOP_INL
+
 #include "Loop.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -44,3 +47,5 @@ ResultT LoopSizeStrict(const T _v, const MinT _min, const MaxT _max)
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_LOOP_INL

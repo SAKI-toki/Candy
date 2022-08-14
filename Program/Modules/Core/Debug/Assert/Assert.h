@@ -28,7 +28,7 @@ namespace Debug
 #if BUILD_DEBUG
 #define CANDY_ASSERT(EXPR) if(!(EXPR)) candy::core::Debug::Assert::CallAssert(#EXPR, __FILE__, __LINE__, __func__)
 #else
-#define CANDY_ASSERT(EXPR) dummyFunc(EXPR)
+#define CANDY_ASSERT(EXPR) DummyFunc(EXPR)
 #endif // BUILD_DEBUG
 
 CANDY_CORE_NAMESPACE_END

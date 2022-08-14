@@ -5,6 +5,9 @@
  * \date   2022/07/09
  *********************************************************************/
 
+#ifndef CANDY_CORE_STRING_SYSTEM_TO_UPPER_LOWER_INL
+#define CANDY_CORE_STRING_SYSTEM_TO_UPPER_LOWER_INL
+
 #include "StringSystemToUpperLower.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -28,3 +31,5 @@ inline constexpr char StringSystem::ToLower(const char _c)
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_STRING_SYSTEM_TO_UPPER_LOWER_INL

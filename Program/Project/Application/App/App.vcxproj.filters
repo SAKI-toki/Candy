@@ -44,6 +44,9 @@
     <Filter Include="Src\Model\Primitive">
       <UniqueIdentifier>{eefea170-bf20-4221-999a-d154650683b4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Utility">
+      <UniqueIdentifier>{62c0268a-bdba-41ba-af54-e821d36e94c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Application\App\__RootCpp.cpp">
@@ -118,6 +121,12 @@
     <ClCompile Include="..\..\..\Application\App\Module\__ModuleCpp.cpp">
       <Filter>Src\Module</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Utility\UtilityConvertPosition.cpp">
+      <Filter>Src\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Utility\__UtilityCpp.cpp">
+      <Filter>Src\Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Application\App\AppInclude.h">
@@ -167,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\UI\UI.h">
       <Filter>Src\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Utility\UtilityConvertPosition.h">
+      <Filter>Src\Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -4,6 +4,7 @@
 #include <Core/Core.h>
 #include <Graphic/Graphic.h>
 #include <Sound/Sound.h>
+#include <Physics/Physics.h>
 
 #define CANDY_APP_NAMESPACE_NAME app
 

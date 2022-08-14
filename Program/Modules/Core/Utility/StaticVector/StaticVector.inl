@@ -5,6 +5,9 @@
  * \date   2022/06/03
  *********************************************************************/
 
+#ifndef CANDY_CORE_STATIC_VECTOR_INL
+#define CANDY_CORE_STATIC_VECTOR_INL
+
 #include "StaticVector.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -177,3 +180,5 @@ void StaticVector<T, Size>::clear()
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_STATIC_VECTOR_INL

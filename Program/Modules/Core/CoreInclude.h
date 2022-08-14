@@ -46,11 +46,13 @@ inline void DummyFunc(...) {}
 #include "Utility/Loop/Loop.h"
 #include "Utility/MinMax/MinMax.h"
 #include "Utility/Path/Path.h"
+#include "Utility/Sign/CoreSign.h"
 #include "Utility/StaticVector/StaticVector.h"
 #include "Utility/StringSystem/Convert/StringSystemConvert.h"
 #include "Utility/StringSystem/Split/StringSystemSplit.h"
 #include "Utility/StringSystem/UpperLower/StringSystemToUpperLower.h"
 #include "Vec/Vec4.h"
+#include "Vec/Vec4Function.h"
 #include "Color/Color.h"
 #include "Color/ConvColor.h"
 

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Src\Module">
+      <UniqueIdentifier>{a3b07db7-f311-47d2-b70e-1c27b3df11fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Collision2D">
+      <UniqueIdentifier>{c52c4ce0-79d4-45bf-97dc-9ec82d175e3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Shape2D">
+      <UniqueIdentifier>{7cbe8a7f-9da6-4668-8f05-0c5acc98e715}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Shape2D\Quad">
+      <UniqueIdentifier>{591d5ad7-c7ca-4021-bf25-b3c3265dc77b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Shape2D\Circle">
+      <UniqueIdentifier>{e8d16c16-8a63-4260-a8ce-a2e3d9f16d6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Shape2D\Line">
+      <UniqueIdentifier>{f5d9b571-aa4b-4dc0-b762-a20db48fc51e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Shape2D\Triangle">
+      <UniqueIdentifier>{154d678f-bf4f-4948-a75f-0864996118fe}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\Modules\Physics\__PhysicsCpp.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Module\PhysicsModule.cpp">
+      <Filter>Src\Module</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Shapde2D\Line\PhysicsShape2DLine.cpp">
+      <Filter>Src\Shape2D\Line</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_LineLine.cpp">
+      <Filter>Src\Collision2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Shapde2D\Quad\PhysicsShape2DQuad.cpp">
+      <Filter>Src\Shape2D\Quad</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_QuadQuad.cpp">
+      <Filter>Src\Collision2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Shapde2D\Triangle\PhysicsShape2DTriangle.cpp">
+      <Filter>Src\Shape2D\Triangle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_TriangleTriangle.cpp">
+      <Filter>Src\Collision2D</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\Modules\Physics\Module\PhysicsModule.h">
+      <Filter>Src\Module</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\PhysicsInclude.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Physics.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Shapde2D\Line\PhysicsShape2DLine.h">
+      <Filter>Src\Shape2D\Line</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_LineLine.h">
+      <Filter>Src\Collision2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Shapde2D\Quad\PhysicsShape2DQuad.h">
+      <Filter>Src\Shape2D\Quad</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_QuadQuad.h">
+      <Filter>Src\Collision2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Shapde2D\Triangle\PhysicsShape2DTriangle.h">
+      <Filter>Src\Shape2D\Triangle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_TriangleTriangle.h">
+      <Filter>Src\Collision2D</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

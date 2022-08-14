@@ -5,6 +5,9 @@
  * \date   2022/05/31
  *********************************************************************/
 
+#ifndef CANDY_CORE_DEBUG_LOG_INL
+#define CANDY_CORE_DEBUG_LOG_INL
+
 #include "Log.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -28,3 +31,5 @@ namespace Debug
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_DEBUG_LOG_INL

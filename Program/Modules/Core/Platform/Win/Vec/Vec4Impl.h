@@ -21,6 +21,8 @@ struct alignas(16) Vec4Impl
 	Vec4Impl& set(const f32 _x, const f32 _y, const f32 _z, const f32 _w = 1.0f);
 	Vec4Impl& setZero();
 
+	Vec4Impl getXY()const;
+
 	Vec4Impl operator+(const Vec4Impl&)const;
 	Vec4Impl operator-(const Vec4Impl&)const;
 	Vec4Impl operator*(const Vec4Impl&)const;
@@ -45,12 +47,10 @@ struct alignas(16) Vec4Impl
 		
 		f32 m_f32Array[4];
 
-		__m128 m_m128;
+		__m128 m128;
 	};
 };
 
 CANDY_CORE_NAMESPACE_END
-
-#include "Vec4Impl.inl"
 
 #endif // CANDY_CORE_VEC4_IMPL_H

@@ -5,6 +5,9 @@
  * \date   2022/06/01
  *********************************************************************/
 
+#ifndef CANDY_CORE_HANDLE_INL
+#define CANDY_CORE_HANDLE_INL
+
 #include "Handle.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -17,3 +20,5 @@ void Handle<T, DeriveType>::clear()
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_HANDLE_INL

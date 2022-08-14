@@ -5,6 +5,9 @@
  * \date   2022/06/08
  *********************************************************************/
 
+#ifndef CANDY_CORE_ENDIAN_INL
+#define CANDY_CORE_ENDIAN_INL
+
 #include "Endian.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -38,3 +41,5 @@ inline constexpr u64 Endian::Swap(const u64 _value)
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_ENDIAN_INL

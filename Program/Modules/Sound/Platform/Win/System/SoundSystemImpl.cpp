@@ -86,7 +86,7 @@ namespace System
 
 			switch (chunk.m_Id)
 			{
-			case MAKE_FOURCC('R','I','F', 'F'):
+			case CANDY_MAKE_FOURCC('R','I','F', 'F'):
 			{
 				if (offset + sizeof(RiffChunk) > bufSize)break;
 
@@ -94,7 +94,7 @@ namespace System
 				offset += sizeof(RiffChunk);
 				switch (riffChunk.m_FileFormat)
 				{
-				case MAKE_FOURCC('W', 'A', 'V', 'E'):	break;
+				case CANDY_MAKE_FOURCC('W', 'A', 'V', 'E'):	break;
 				default:
 				{
 					CANDY_LOG("未対応のファイルフォーマットです");
@@ -104,7 +104,7 @@ namespace System
 				}
 			}
 			break;
-			case MAKE_FOURCC('f', 'm', 't', ' '):
+			case CANDY_MAKE_FOURCC('f', 'm', 't', ' '):
 			{
 				if (offset + sizeof(FmtChunk) > bufSize)break;
 
@@ -124,7 +124,7 @@ namespace System
 
 			}
 			break;
-			case MAKE_FOURCC('d', 'a', 't', 'a'):
+			case CANDY_MAKE_FOURCC('d', 'a', 't', 'a'):
 			{
 				if (offset + chunk.m_Size > bufSize)break;
 				SoundInfo soundInfo;
@@ -176,7 +176,7 @@ namespace System
 				return;
 			}
 			break;
-			case MAKE_FOURCC('J', 'U', 'N', 'K'):
+			case CANDY_MAKE_FOURCC('J', 'U', 'N', 'K'):
 			{
 				offset += chunk.m_Size;
 			}

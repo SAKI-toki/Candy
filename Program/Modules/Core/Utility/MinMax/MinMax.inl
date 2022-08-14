@@ -5,6 +5,9 @@
  * \date   2022/07/09
  *********************************************************************/
 
+#ifndef CANDY_CORE_MIN_MAX_INL
+#define CANDY_CORE_MIN_MAX_INL
+
 #include "MinMax.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -34,3 +37,5 @@ ResultT Max(const T1 _v1, const T2 _v2, const Types... _tails)
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_MIN_MAX_INL

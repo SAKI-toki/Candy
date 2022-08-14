@@ -185,6 +185,9 @@
     <Filter Include="Src\Platform\Win\Debug\Assert">
       <UniqueIdentifier>{42852f6e-114d-4eb8-affb-012a8661e19b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Utility\Sign">
+      <UniqueIdentifier>{8c26df86-03c6-4c3f-b747-2a4ebdda9595}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Modules\Core\BuildConfig\BuildConfig.h">
@@ -388,6 +391,15 @@
     <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Debug\Assert\AssertImpl.h">
       <Filter>Src\Platform\Win\Debug\Assert</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4FunctionImpl.h">
+      <Filter>Src\Platform\Win\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Vec\Vec4Function.h">
+      <Filter>Src\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\Sign\CoreSign.h">
+      <Filter>Src\Utility\Sign</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Core\Color\ConvColor.cpp">
@@ -519,6 +531,15 @@
     <ClCompile Include="..\..\..\Modules\Core\Utility\StringSystem\Split\StringSystemSplit.cpp">
       <Filter>Src\Utility\StringSystem\Split</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Vec\Vec4Function.cpp">
+      <Filter>Src\Vec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4FunctionImpl.cpp">
+      <Filter>Src\Platform\Win\Vec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4Impl.cpp">
+      <Filter>Src\Platform\Win\Vec</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Modules\Core\Rect\Rect.inl">
@@ -542,9 +563,6 @@
     <None Include="..\..\..\Modules\Core\Utility\StringSystem\UpperLower\StringSystemToUpperLower.inl">
       <Filter>Src\Utility\StringSystem\UpperLower</Filter>
     </None>
-    <None Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4Impl.inl">
-      <Filter>Src\Platform\Win\Vec</Filter>
-    </None>
     <None Include="..\..\..\Modules\Core\Utility\ArraySize\ArraySize.inl">
       <Filter>Src\Utility\ArraySize</Filter>
     </None>
@@ -559,6 +577,9 @@
     </None>
     <None Include="..\..\..\Modules\Core\Debug\Log\Log.inl">
       <Filter>Src\Debug\Log</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\Sign\CoreSign.inl">
+      <Filter>Src\Utility\Sign</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -5,6 +5,9 @@
  * \date   2022/06/08
  *********************************************************************/
 
+#ifndef CANDY_CORE_CLAMP_INL
+#define CANDY_CORE_CLAMP_INL
+
 #include "Clamp.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -27,3 +30,5 @@ T Clamp01(const T _v)
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_CLAMP_INL

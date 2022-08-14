@@ -48,6 +48,8 @@
 #include "Utility/StringSystem/Split/StringSystemSplit.cpp"
 #include "Utility/Path/Path.cpp"
 
+#include "Vec/Vec4Function.cpp"
+
 #if PLATFORM_WIN
 
 #include "Platform/Win/EntryPoint/MainImpl.cpp"
@@ -71,5 +73,8 @@
 
 #include "Platform/Win/Thread/ThreadHandleImpl.cpp"
 #include "Platform/Win/Thread/ThreadSystemImpl.cpp"
+
+#include "Platform/Win/Vec/Vec4Impl.cpp"
+#include "Platform/Win/Vec/Vec4FunctionImpl.cpp"
 
 #endif // PLATFORM_WIN

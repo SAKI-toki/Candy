@@ -5,6 +5,9 @@
  * \date   2022/06/08
  *********************************************************************/
 
+#ifndef CANDY_CORE_HASH_INL
+#define CANDY_CORE_HASH_INL
+
 #include "Hash.h"
 #include <Core/Utility/StringSystem/UpperLower/StringSystemToUpperLower.h>
 
@@ -95,3 +98,5 @@ constexpr u32 Fnv::Impl::StaticHash32Low(const char(&_str)[N])
 }
 
 CANDY_CORE_NAMESPACE_END
+
+#endif // CANDY_CORE_HASH_INL

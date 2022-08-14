@@ -5,6 +5,9 @@
  * \date   2022/05/31
  *********************************************************************/
 
+#ifndef CANDY_CORE_PROXY_LOG_IMPL_INL
+#define CANDY_CORE_PROXY_LOG_IMPL_INL
+
 #include "CoreProxyLogImpl.h"
 
 CANDY_CORE_PROXY_NAMESPACE_BEGIN
@@ -25,3 +28,5 @@ namespace Debug
 }
 
 CANDY_CORE_PROXY_NAMESPACE_END
+
+#endif // CANDY_CORE_PROXY_LOG_IMPL_INL

@@ -233,18 +233,56 @@ void GameFlow::Update()
 	core::Input::Update();
 
 	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, "PlayerPos[x:{0:.2f} y:{1:.2f}]", m_TextureViews[2].m_Constant.m_Pos.x, m_TextureViews[2].m_Constant.m_Pos.y);
+	auto norm = VecNormalize(m_TextureViews[2].m_Constant.m_Pos);
+	DebugDraw::DrawString(Vec4{ 100, 120, 0 }, "{0:.2f}, {1:.2f}, {2:.2f}", m_TextureViews[2].m_Constant.m_Pos.x, m_TextureViews[2].m_Constant.m_Pos.y, m_TextureViews[2].m_Constant.m_Pos.z);
 
-	if (core::Input::IsKeyTrigger('P'))
+
+	static Vec4 pos1{};
+	Model::Primitive::AddQuad2D(
+		Vec4{ 100.0f, 100.0f, 0.0f } + pos1,
+		Vec4{ 180.0f, 200.0f, 0.0f } + pos1,
+		Vec4{ 200.0f, 250.0f, 0.0f } + pos1,
+		Vec4{ 100.0f, 130.0f, 0.0f } + pos1,
+		core::GetColorRGB32(0xff, 0x00, 0x00));
+	Model::Primitive::AddQuad2D(
+		Vec4{ 200.0f, 300.0f, 0.0f },
+		Vec4{ 150.0f, 400.0f, 0.0f },
+		Vec4{ 130.0f, 250.0f, 0.0f },
+		Vec4{ 150.0f, 250.0f, 0.0f },
+		core::GetColorRGB32(0x00, 0xff, 0x00));
+
+	physics::Shape2D::Quad triangle1
 	{
-		CANDY_LOG("PPPP");
+		Vec4{ 100.0f, 100.0f, 0.0f } + pos1,
+		Vec4{ 180.0f, 200.0f, 0.0f } + pos1,
+		Vec4{ 200.0f, 250.0f, 0.0f } + pos1,
+		Vec4{ 100.0f, 130.0f, 0.0f } + pos1,
+	};
+	physics::Shape2D::Quad triangle2
+	{
+		Vec4{ 200.0f, 300.0f, 0.0f },
+		Vec4{ 150.0f, 400.0f, 0.0f },
+		Vec4{ 130.0f, 250.0f, 0.0f },
+		Vec4{ 150.0f, 250.0f, 0.0f },
+	};
+	
+	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "{0}", physics::Collision2D::QuadQuad::Intersect(triangle1, triangle2) ? "HIT" : "NO");
+
+	if (core::Input::IsKeyOn('P'))
+	{
+		pos1.x += 1.0f;
 	}
-	if (core::Input::IsKeyTrigger('O'))
+	if (core::Input::IsKeyOn('O'))
 	{
-		CANDY_LOG_ERR("OOOO");
+		pos1.x -= 1.0f;
 	}
-	if (core::Input::IsKeyTrigger('I'))
+	if (core::Input::IsKeyOn('0'))
 	{
-		CANDY_LOG_WARN("IIII");
+		pos1.y -= 1.0f;
+	}
+	if (core::Input::IsKeyOn('L'))
+	{
+		pos1.y += 1.0f;
 	}
 
 	constexpr f32 speed = 0.3f;

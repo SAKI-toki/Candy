@@ -21,6 +21,7 @@
 
 #ifdef _MSC_VER
 #pragma warning(disable : 4201) // 無名構造体
+#pragma warning(disable : 4324) // 構造体のパッド
 #endif // _MSC_VER
 
 #endif // CANDY_BUILD_CONFIG_H

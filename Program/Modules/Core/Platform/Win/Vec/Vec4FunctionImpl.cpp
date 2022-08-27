@@ -30,34 +30,43 @@ namespace Impl
 	{
 		return *(reinterpret_cast<const f32*>(&_v) + 3);
 	}
+}
 
-	__m128 VecDot128(const __m128 _v1, const __m128 _v2)
-	{
-		__m128 v, temp;
-		v = _mm_mul_ps(_v1, _v2);
-		temp = _mm_shuffle_ps(v, v, CANDY_MM_SHUFFLE(1, 2, 1, 2));
-		v = _mm_add_ss(v, temp);
-		temp = _mm_shuffle_ps(v, v, CANDY_MM_SHUFFLE(2, 2, 2, 2));
-		v = _mm_add_ss(v, temp);
-		return v;
-	}
+Vec4 VecSetImpl(const f32 _x, const f32 _y, const f32 _z, const f32 _w)
+{
+	return Vec4{ _mm_setr_ps(_x, _y, _z, _w) };
+}
+Vec4 VecSetZeroImpl()
+{
+	return Vec4{ Impl::Zero128 };
+}
 
-	__m128 VecDist128(const __m128 _v1, const __m128 _v2)
-	{
-		__m128 v = _mm_sub_ps(_v1, _v2);
-		return VecDot128(v, v);
-	}
+Vec4 VecAddImpl(const Vec4& _v1, const Vec4& _v2)
+{
+	return Vec4{ _mm_add_ps(_v1.m128, _v2.m128) };
+}
+Vec4 VecSubImpl(const Vec4& _v1, const Vec4& _v2)
+{
+	return Vec4{ _mm_sub_ps(_v1.m128, _v2.m128) };
+}
+Vec4 VecMulImpl(const Vec4& _v1, const Vec4& _v2)
+{
+	return Vec4{ _mm_mul_ps(_v1.m128, _v2.m128) };
+}
+Vec4 VecDivImpl(const Vec4& _v1, const Vec4& _v2)
+{
+	return Vec4{ _mm_div_ps(_v1.m128, _v2.m128) };
 }
 
 // 内積の実装部
-f32 VecDotImpl(const Vec4Impl _v1, const Vec4Impl _v2)
+f32 VecDotImpl(const Vec4& _v1, const Vec4& _v2)
 {
-	__m128 result = Impl::VecDot128(_v1.m128, _v2.m128);
-	return Impl::VecGet0(result);
+	// SIMD計算の方が遅い
+	return _v1.x * _v2.x + _v1.y * _v2.y + _v1.z * _v2.z;
 }
 
 // 外積の実装部
-Vec4Impl VecCrossImpl(const Vec4Impl _v1, const Vec4Impl _v2)
+Vec4 VecCrossImpl(const Vec4& _v1, const Vec4& _v2)
 {
 	__m128 result1, result2, temp1, temp2;
 	temp1 = _mm_shuffle_ps(_v1.m128, _v1.m128, CANDY_MM_SHUFFLE(1, 2, 0, 3));
@@ -66,40 +75,37 @@ Vec4Impl VecCrossImpl(const Vec4Impl _v1, const Vec4Impl _v2)
 	temp1 = _mm_shuffle_ps(_v1.m128, _v1.m128, CANDY_MM_SHUFFLE(2, 0, 1, 3));
 	temp2 = _mm_shuffle_ps(_v2.m128, _v2.m128, CANDY_MM_SHUFFLE(1, 2, 0, 3));
 	result2 = _mm_mul_ps(temp1, temp2);
-	return Vec4Impl{ _mm_sub_ps(result1, result2) };
+	return Vec4{ _mm_sub_ps(result1, result2) };
 }
 
-f32 VecMagImpl(const Vec4Impl _v)
+f32 VecMagImpl(const Vec4& _v)
 {
-	__m128 result = Impl::VecDot128(_v.m128, _v.m128);
-	result = _mm_sqrt_ss(result);
-	return Impl::VecGet0(result);
+	return std::sqrtf(VecMagSqrImpl(_v));
 }
 
-f32 VecMagSqrImpl(const Vec4Impl _v)
+f32 VecMagSqrImpl(const Vec4& _v)
 {
 	return VecDotImpl(_v, _v);
 }
 
-f32 VecDistImpl(const Vec4Impl _v1, const Vec4Impl _v2)
+f32 VecDistImpl(const Vec4& _v1, const Vec4& _v2)
 {
-	__m128 result = Impl::VecDist128(_v1.m128, _v2.m128);
-	result = _mm_sqrt_ss(result);
-	return Impl::VecGet0(result);
+	return std::sqrtf(VecDistSqrImpl(_v1, _v2));
 }
 
-f32 VecDistSqrImpl(const Vec4Impl _v1, const Vec4Impl _v2)
+f32 VecDistSqrImpl(const Vec4& _v1, const Vec4& _v2)
 {
-	return VecDotImpl(_v1, _v2);
+	const auto v = _v2 - _v1;
+	return VecDotImpl(v, v);
 }
 
-Vec4Impl VecNormalizeImpl(const Vec4Impl _v)
+Vec4 VecNormalizeImpl(const Vec4& _v)
 {
-	f32 mag = VecMagImpl(_v);
+	const f32 mag = VecMagImpl(_v);
 	if (mag <= 0.0f)return UpVector;
-	f32 rcp = 1.0f / mag;
-	__m128 v = _mm_set_ps(1.0f, rcp, rcp, rcp);
-	return Vec4Impl{ _mm_mul_ps(_v.m128, v) };
+	const f32 rcp = 1.0f / mag;
+	const __m128 v = _mm_set_ps(1.0f, rcp, rcp, rcp);
+	return Vec4{ _mm_mul_ps(_v.m128, v) };
 }
 
 CANDY_CORE_NAMESPACE_END

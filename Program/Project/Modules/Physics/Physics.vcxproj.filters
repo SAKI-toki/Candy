@@ -26,6 +26,12 @@
     <Filter Include="Src\Shape2D\Triangle">
       <UniqueIdentifier>{154d678f-bf4f-4948-a75f-0864996118fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Type">
+      <UniqueIdentifier>{03402c12-9089-4c18-acdb-3b7f53789316}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Shape2D\Ray">
+      <UniqueIdentifier>{07b74d53-dcb3-4328-92c3-127187e9be27}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Physics\__PhysicsCpp.cpp">
@@ -51,6 +57,12 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_TriangleTriangle.cpp">
       <Filter>Src\Collision2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_RayCast.cpp">
+      <Filter>Src\Collision2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Physics\Shapde2D\Ray\PhysicsShape2DRay.cpp">
+      <Filter>Src\Shape2D\Ray</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +92,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_TriangleTriangle.h">
       <Filter>Src\Collision2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Type\PhysicsCollision2DTypes.h">
+      <Filter>Src\Type</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Collision2D\PhysicsCollision2D_RayCast.h">
+      <Filter>Src\Collision2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Physics\Shapde2D\Ray\PhysicsShape2DRay.h">
+      <Filter>Src\Shape2D\Ray</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

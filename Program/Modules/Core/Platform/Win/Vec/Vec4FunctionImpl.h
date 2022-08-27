@@ -12,19 +12,27 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
+Vec4 VecSetImpl(const f32 _x, const f32 _y, const f32 _z, const f32 _w);
+Vec4 VecSetZeroImpl();
+
+Vec4 VecAddImpl(const Vec4& _v1, const Vec4& _v2);
+Vec4 VecSubImpl(const Vec4& _v1, const Vec4& _v2);
+Vec4 VecMulImpl(const Vec4& _v1, const Vec4& _v2);
+Vec4 VecDivImpl(const Vec4& _v1, const Vec4& _v2);
+
 // 内積の実装部
-f32 VecDotImpl(const Vec4Impl _v1, const Vec4Impl _v2);
+f32 VecDotImpl(const Vec4& _v1, const Vec4& _v2);
 
 // 外積の実装部
-Vec4Impl VecCrossImpl(const Vec4Impl _v1, const Vec4Impl _v2);
+Vec4 VecCrossImpl(const Vec4& _v1, const Vec4& _v2);
 
-f32 VecMagImpl(const Vec4Impl _v);
-f32 VecMagSqrImpl(const Vec4Impl _v);
+f32 VecMagImpl(const Vec4& _v);
+f32 VecMagSqrImpl(const Vec4& _v);
 
-f32 VecDistImpl(const Vec4Impl _v1, const Vec4Impl _v2);
-f32 VecDistSqrImpl(const Vec4Impl _v1, const Vec4Impl _v2);
+f32 VecDistImpl(const Vec4& _v1, const Vec4& _v2);
+f32 VecDistSqrImpl(const Vec4& _v1, const Vec4& _v2);
 
-Vec4Impl VecNormalizeImpl(const Vec4Impl _v);
+Vec4 VecNormalizeImpl(const Vec4& _v);
 
 CANDY_CORE_NAMESPACE_END
 

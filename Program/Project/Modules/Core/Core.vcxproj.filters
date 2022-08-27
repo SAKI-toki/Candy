@@ -540,6 +540,9 @@
     <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4Impl.cpp">
       <Filter>Src\Platform\Win\Vec</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Vec\Vec4.cpp">
+      <Filter>Src\Vec</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Modules\Core\Rect\Rect.inl">

@@ -23,6 +23,9 @@ namespace Shape2D
 		// セット
 		void set(const Vec4 _p1, const Vec4 _p2, const Vec4 _p3, const Vec4 _p4);
 
+		// へこんでいる頂点のインデックス取得
+		std::optional<s32> getConcavePointIndex()const;
+
 		Vec4 m_Points[4];
 	};
 }

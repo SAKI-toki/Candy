@@ -169,7 +169,7 @@ namespace Model
 	void Primitive::AddLine2D(const Vec4 _begin, const Vec4 _end, const f32 _width, const Color _color)
 	{
 		const Vec4 dir = (_end - _begin);
-		const Vec4 side = VecNormalize(VecCross(dir, FrontVector)) * _width;
+		const Vec4 side = VecNormalize(VecCross(dir, FrontVector)) * (_width / -2.0f);
 		const Vec4 beginRight	= _begin + side;
 		const Vec4 beginLeft	= _begin - side;
 		const Vec4 endRight		= _end + side;

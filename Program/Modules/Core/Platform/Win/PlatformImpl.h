@@ -10,6 +10,8 @@
 
 #include <Core/CoreInclude.h>
 
+#define NOMINMAX
+
 #include <Windows.h>
 #include <d3d12.h>
 #include <dxgi1_6.h>
@@ -17,6 +19,7 @@
 #include <xaudio2fx.h>
 #include <wrl/client.h>
 #include <xmmintrin.h>
+#include <emmintrin.h>
 
 CANDY_CORE_NAMESPACE_BEGIN
 

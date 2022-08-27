@@ -48,6 +48,7 @@
 #include "Utility/StringSystem/Split/StringSystemSplit.cpp"
 #include "Utility/Path/Path.cpp"
 
+#include "Vec/Vec4.cpp"
 #include "Vec/Vec4Function.cpp"
 
 #if PLATFORM_WIN

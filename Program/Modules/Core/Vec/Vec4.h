@@ -16,7 +16,32 @@
 
 CANDY_NAMESPACE_BEGIN
 
-using Vec4 = core::Vec4Impl;
+struct Vec4 : core::Vec4Impl
+{
+	Vec4();
+	Vec4(const core::Vec4Impl& _v);
+	Vec4(core::Vec4Impl&& _v)noexcept;
+	Vec4(const f32 _x, const f32 _y, const f32 _z, const f32 _w = 1.0f);
+
+	Vec4& set(const f32 _x, const f32 _y, const f32 _z, const f32 _w = 1.0f);
+	Vec4& setZero();
+
+	Vec4 getXY()const;
+
+	Vec4 operator+(const Vec4&)const;
+	Vec4 operator-(const Vec4&)const;
+	Vec4 operator*(const Vec4&)const;
+	Vec4 operator/(const Vec4&)const;
+	Vec4 operator*(const f32&)const;
+	Vec4 operator/(const f32&)const;
+	Vec4& operator+=(const Vec4&);
+	Vec4& operator-=(const Vec4&);
+	Vec4& operator*=(const f32&);
+	Vec4& operator/=(const f32&);
+
+	bool operator==(const Vec4&)const;
+	bool operator!=(const Vec4&)const;
+};
 
 inline const Vec4 ZeroVector	= Vec4{  0.0f,  0.0f,  0.0f };
 inline const Vec4 RightVector	= Vec4{  1.0f,  0.0f,  0.0f };

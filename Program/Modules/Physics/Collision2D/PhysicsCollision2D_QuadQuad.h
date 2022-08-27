@@ -18,8 +18,11 @@ namespace Collision2D
 {
 	namespace QuadQuad
 	{
-		// 交差判定
-		bool Intersect(const Shape2D::Quad& _quad1, const Shape2D::Quad& _quad2);
+		// 凹みなし交差判定
+		bool IntersectConvex(const Shape2D::Quad& _quad1, const Shape2D::Quad& _quad2);
+
+		// 凹みあり交差判定
+		bool IntersectConcave(const Shape2D::Quad& _quad1, const Shape2D::Quad& _quad2);
 	}
 }
 

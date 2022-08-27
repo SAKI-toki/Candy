@@ -12,17 +12,25 @@
 
 CANDY_NAMESPACE_BEGIN
 
-f32 VecDot(const Vec4 _v1, const Vec4 _v2);
+Vec4 VecSet(const f32 _x, const f32 _y, const f32 _z, const f32 _w);
+Vec4 VecSetZero();
 
-Vec4 VecCross(const Vec4 _v1, const Vec4 _v2);
+Vec4 VecAdd(const Vec4& _v1, const Vec4& _v2);
+Vec4 VecSub(const Vec4& _v1, const Vec4& _v2);
+Vec4 VecMul(const Vec4& _v1, const Vec4& _v2);
+Vec4 VecDiv(const Vec4& _v1, const Vec4& _v2);
 
-f32 VecMag(const Vec4 _v);
-f32 VecMagSqr(const Vec4 _v);
+f32 VecDot(const Vec4& _v1, const Vec4& _v2);
 
-f32 VecDist(const Vec4 _v1, const Vec4 _v2);
-f32 VecDistSqr(const Vec4 _v1, const Vec4 _v2);
+Vec4 VecCross(const Vec4& _v1, const Vec4& _v2);
 
-Vec4 VecNormalize(const Vec4 _v);
+f32 VecMag(const Vec4& _v);
+f32 VecMagSqr(const Vec4& _v);
+
+f32 VecDist(const Vec4& _v1, const Vec4& _v2);
+f32 VecDistSqr(const Vec4& _v1, const Vec4& _v2);
+
+Vec4 VecNormalize(const Vec4& _v);
 
 CANDY_NAMESPACE_END
 

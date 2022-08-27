@@ -236,37 +236,41 @@ void GameFlow::Update()
 	auto norm = VecNormalize(m_TextureViews[2].m_Constant.m_Pos);
 	DebugDraw::DrawString(Vec4{ 100, 120, 0 }, "{0:.2f}, {1:.2f}, {2:.2f}", m_TextureViews[2].m_Constant.m_Pos.x, m_TextureViews[2].m_Constant.m_Pos.y, m_TextureViews[2].m_Constant.m_Pos.z);
 
-
 	static Vec4 pos1{};
-	Model::Primitive::AddQuad2D(
+	
+	Model::Primitive::AddLine2D(
+		Vec4{ 400.0f, 200.0f, 0.0f } + pos1,
 		Vec4{ 100.0f, 100.0f, 0.0f } + pos1,
-		Vec4{ 180.0f, 200.0f, 0.0f } + pos1,
-		Vec4{ 200.0f, 250.0f, 0.0f } + pos1,
-		Vec4{ 100.0f, 130.0f, 0.0f } + pos1,
-		core::GetColorRGB32(0xff, 0x00, 0x00));
+		10, core::GetColorRGB32(0xff, 0x00, 0x00)
+	);
 	Model::Primitive::AddQuad2D(
-		Vec4{ 200.0f, 300.0f, 0.0f },
-		Vec4{ 150.0f, 400.0f, 0.0f },
-		Vec4{ 130.0f, 250.0f, 0.0f },
-		Vec4{ 150.0f, 250.0f, 0.0f },
-		core::GetColorRGB32(0x00, 0xff, 0x00));
+		Vec4{ 40.0f, 250.0f, 0.0f },
+		Vec4{ 300.0f, 200.0f, 0.0f },
+		Vec4{ 400.0f, 400.0f, 0.0f },
+		Vec4{ 300.0f, 260.0f, 0.0f },
+		core::GetColorRGB32(0x00, 0xff, 0x00)
+	);
 
-	physics::Shape2D::Quad triangle1
+	physics::Shape2D::Ray ray
 	{
+		Vec4{ 400.0f, 200.0f, 0.0f } + pos1,
 		Vec4{ 100.0f, 100.0f, 0.0f } + pos1,
-		Vec4{ 180.0f, 200.0f, 0.0f } + pos1,
-		Vec4{ 200.0f, 250.0f, 0.0f } + pos1,
-		Vec4{ 100.0f, 130.0f, 0.0f } + pos1,
 	};
-	physics::Shape2D::Quad triangle2
+	physics::Shape2D::Quad quad
 	{
-		Vec4{ 200.0f, 300.0f, 0.0f },
-		Vec4{ 150.0f, 400.0f, 0.0f },
-		Vec4{ 130.0f, 250.0f, 0.0f },
-		Vec4{ 150.0f, 250.0f, 0.0f },
+		Vec4{ 40.0f, 250.0f, 0.0f },
+		Vec4{ 300.0f, 200.0f, 0.0f },
+		Vec4{ 400.0f, 400.0f, 0.0f },
+		Vec4{ 300.0f, 260.0f, 0.0f },
 	};
 	
-	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "{0}", physics::Collision2D::QuadQuad::Intersect(triangle1, triangle2) ? "HIT" : "NO");
+	auto hitInfo = physics::Collision2D::RayCast::ToConcaveQuad(ray, quad);
+	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "{0}", hitInfo ? "HIT" : "NO");
+	if (hitInfo)
+	{
+		DebugDraw::DrawString(Vec4{ 100, 160, 0 }, "x:{0:2f} y:{1:2f} z:{2:2f} ", hitInfo.value().m_Pos.x, hitInfo.value().m_Pos.y, hitInfo.value().m_Pos.z);
+		DebugDraw::DrawString(Vec4{ 100, 180, 0 }, "x:{0:2f} y:{1:2f} z:{2:2f} ", hitInfo.value().m_Normal.x, hitInfo.value().m_Normal.y, hitInfo.value().m_Normal.z);
+	}
 
 	if (core::Input::IsKeyOn('P'))
 	{

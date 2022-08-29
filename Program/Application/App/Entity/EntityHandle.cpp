@@ -1,11 +1,17 @@
-﻿#include "EntityHandle.h"
-#include "EntitySystem.h"
+﻿/*****************************************************************//**
+ * \file   EntityHandle.cpp
+ * \brief  エンティティのハンドラ
+ * \author Yu Ishiyama.
+ * \date   2022/08/27
+ *********************************************************************/
+#include "EntityHandle.h"
+#include "EntityManager.h"
 
 CANDY_APP_NAMESPACE_BEGIN
 
 Entity* EntityHandle::getPtr()const
 {
-	return g_EntitySystem.getEntityPtr(*this);
+	return EntityManager::GetEntityPtr(*this);
 }
 
 CANDY_APP_NAMESPACE_END

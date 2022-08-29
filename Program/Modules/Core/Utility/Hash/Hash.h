@@ -33,8 +33,8 @@ namespace Fnv
 		constexpr u32 StaticHash32Low(const char(&_str)[N]);
 	}
 
-#define CANDY_STATIC_FNV_HASH32(STR) (std::integral_constant<u32, Fnv::Impl::StaticHash32(STR)>::value)
-#define CANDY_STATIC_FNV_HASH32_LOW(STR) (std::integral_constant<u32, Fnv::Impl::StaticHash32Low(STR)>::value)
+#define CANDY_STATIC_FNV_HASH32(STR) (std::integral_constant<u32, candy::core::Fnv::Impl::StaticHash32(STR)>::value)
+#define CANDY_STATIC_FNV_HASH32_LOW(STR) (std::integral_constant<u32, candy::core::Fnv::Impl::StaticHash32Low(STR)>::value)
 }
 
 CANDY_CORE_NAMESPACE_END

@@ -112,7 +112,7 @@ namespace Collision2D
 		return Impl::ToQuadImpl(_ray, _quad, 
 			[]( const s32 _index0)
 			{
-				return core::LoopSizeStrict(_index0 + 2, 0, 4);
+				return core::LoopSizeStrictInt(_index0 + 2, 0, 4);
 			});
 	}
 
@@ -123,7 +123,7 @@ namespace Collision2D
 		if (!concavePointIndex)return ToConvexQuad(_ray, _quad);
 
 		const s32 concavePointIndexValue = concavePointIndex.value();
-		const s32 diagonalConcavePointIndex = core::LoopSizeStrict(concavePointIndexValue + 2, 0, 4);
+		const s32 diagonalConcavePointIndex = core::LoopSizeStrictInt(concavePointIndexValue + 2, 0, 4);
 
 		return Impl::ToQuadImpl(_ray, _quad, 
 			[concavePointIndexValue, diagonalConcavePointIndex](const s32 _index0)

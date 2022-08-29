@@ -19,9 +19,12 @@ namespace Shape2D
 	public:
 		Quad();
 		Quad(const Vec4 _p1, const Vec4 _p2, const Vec4 _p3, const Vec4 _p4);
+		Quad(const Rect& _rect);
 
 		// セット
 		void set(const Vec4 _p1, const Vec4 _p2, const Vec4 _p3, const Vec4 _p4);
+		// 矩形セット
+		void setRect(const Rect& _rect);
 
 		// へこんでいる頂点のインデックス取得
 		std::optional<s32> getConcavePointIndex()const;

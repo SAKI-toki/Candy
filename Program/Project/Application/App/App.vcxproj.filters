@@ -47,6 +47,24 @@
     <Filter Include="Src\Utility">
       <UniqueIdentifier>{62c0268a-bdba-41ba-af54-e821d36e94c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Component">
+      <UniqueIdentifier>{ddbf7b63-ff9b-43ea-8d98-a83365171b1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\System">
+      <UniqueIdentifier>{fca05992-8072-48d7-8fba-f0bb1db74d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\System\List">
+      <UniqueIdentifier>{1051f1d4-f289-474b-810f-d0eb1d697051}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\System\Manager">
+      <UniqueIdentifier>{89664615-9c53-4883-bb29-95c4d4071769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\System\Priority">
+      <UniqueIdentifier>{58188d59-9e90-4ad1-8221-be5610828cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\Behavior">
+      <UniqueIdentifier>{26c3ab8d-24ca-4fc4-91ca-8563539ab528}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Application\App\__RootCpp.cpp">
@@ -76,7 +94,7 @@
     <ClCompile Include="..\..\..\Application\App\Entity\EntityHandleSystem.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Entity\EntitySystem.cpp">
+    <ClCompile Include="..\..\..\Application\App\Entity\EntityManager.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Flow\__Flow.cpp">
@@ -127,6 +145,27 @@
     <ClCompile Include="..\..\..\Application\App\Utility\__UtilityCpp.cpp">
       <Filter>Src\Utility</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\ComponentBase.cpp">
+      <Filter>Src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\__ComponentCpp.cpp">
+      <Filter>Src\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\System\List\ComponentList.cpp">
+      <Filter>Src\Component\System\List</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\System\Priority\ComponentPriority.cpp">
+      <Filter>Src\Component\System\Priority</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\System\Manager\ComponentManager.cpp">
+      <Filter>Src\Component\System\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Behavior\EnemyBehaviorComponent.cpp">
+      <Filter>Src\Component\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Behavior\PlayerBehaviorComponent.cpp">
+      <Filter>Src\Component\Behavior</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Application\App\AppInclude.h">
@@ -150,7 +189,7 @@
     <ClInclude Include="..\..\..\Application\App\Entity\EntityHandleSystem.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Application\App\Entity\EntitySystem.h">
+    <ClInclude Include="..\..\..\Application\App\Entity\EntityManager.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Flow\Game\GameFlow.h">
@@ -180,10 +219,40 @@
     <ClInclude Include="..\..\..\Application\App\Utility\UtilityConvertPosition.h">
       <Filter>Src\Utility</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\ComponentBase.h">
+      <Filter>Src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\ComponentDef.h">
+      <Filter>Src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\System\List\ComponentList.h">
+      <Filter>Src\Component\System\List</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\System\Priority\ComponentPriority.h">
+      <Filter>Src\Component\System\Priority</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\System\Manager\ComponentManager.h">
+      <Filter>Src\Component\System\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Behavior\EnemyBehaviorComponent.h">
+      <Filter>Src\Component\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Behavior\PlayerBehaviorComponent.h">
+      <Filter>Src\Component\Behavior</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Application\App\Debug\Draw\DebugDraw.inl">
       <Filter>Src\Debug\Draw</Filter>
+    </None>
+    <None Include="..\..\..\Application\App\Component\System\List\ComponentList.inl">
+      <Filter>Src\Component\System\List</Filter>
+    </None>
+    <None Include="..\..\..\Application\App\Component\System\Priority\ComponentPriority.inl">
+      <Filter>Src\Component\System\Priority</Filter>
+    </None>
+    <None Include="..\..\..\Application\App\Component\System\Manager\ComponentManager.inl">
+      <Filter>Src\Component\System\Manager</Filter>
     </None>
   </ItemGroup>
 </Project>

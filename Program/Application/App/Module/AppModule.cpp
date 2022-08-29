@@ -7,6 +7,8 @@
 
 #include "AppModule.h"
 #include <App/Flow/Game/GameFlow.h>
+#include <App/Entity/EntityManager.h>
+#include <App/Component/System/Manager/ComponentManager.h>
 #include <App/Model/Model.h>
 #include <App/Font/Font.h>
 #include <App/Debug/Debug.h>
@@ -25,6 +27,8 @@ void Module::startupImpl()
 	Model::Startup();
 	Font::Startup();
 	Debug::Startup();
+	Component::Manager::Startup();
+	EntityManager::Startup();
 	GameFlow::Startup();
 }
 
@@ -32,6 +36,8 @@ void Module::startupImpl()
 void Module::cleanupImpl()
 {
 	GameFlow::Cleanup();
+	EntityManager::Cleanup();
+	Component::Manager::Cleanup();
 	Debug::Cleanup();
 	Font::Cleanup();
 	Model::Cleanup();
@@ -52,20 +58,21 @@ void Module::beginFrameImpl()
 // 前更新の実装部
 void Module::preUpdateImpl()
 {
-
+	GameFlow::Update();
+	Component::Manager::PreUpdate();
 }
 
 // 更新の実装部
 void Module::updateImpl()
 {
-	GameFlow::Update();
-	Debug::Update();
+	Component::Manager::Update();
 }
 
 // 後更新の実装部
 void Module::postUpdateImpl()
 {
-
+	Component::Manager::PostUpdate();
+	Debug::Update();
 }
 
 // 前描画の実装部

@@ -16,7 +16,7 @@ void JobSystem::startup(const s32 _threadCount, const s32 _minCoreNo, const s32 
 	for (s32 i = 0; i < _threadCount; ++i)
 	{
 		CreateThreadOption createThreadOption;
-		createThreadOption.m_CoreNo = LoopStrict(i + _minCoreNo, _minCoreNo, _maxCoreNo);
+		createThreadOption.m_CoreNo = LoopStrictInt(i + _minCoreNo, _minCoreNo, _maxCoreNo);
 		createThreadOption.m_Priority = THREAD_PRIORITY::HIGHEST;
 		m_ThreadInfos[i].m_ExecThreadEvent.startup();
 		m_ThreadInfos[i].m_EndThreadEvent.startup();

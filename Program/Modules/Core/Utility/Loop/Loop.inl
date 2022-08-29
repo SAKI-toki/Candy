@@ -34,8 +34,16 @@ template<typename T, typename MinT, typename MaxT, typename ResultT>
 ResultT LoopStrict(const T _v, const MinT _min, const MaxT _max)
 {
 	CANDY_ASSERT(_min < _max);
-	if (_v < _min)return LoopStrict(_v + (_max - _min) + 1, _min, _max);
-	if (_max < _v)return LoopStrict(_v - (_max - _min) - 1, _min, _max);
+	if (_v < _min)return LoopStrict(_v + (_max - _min), _min, _max);
+	if (_max < _v)return LoopStrict(_v - (_max - _min), _min, _max);
+	return _v;
+}
+template<typename T, typename MinT, typename MaxT, typename ResultT>
+ResultT LoopStrictInt(const T _v, const MinT _min, const MaxT _max)
+{
+	CANDY_ASSERT(_min < _max);
+	if (_v < _min)return LoopStrictInt(_v + (_max - _min) + 1, _min, _max);
+	if (_max < _v)return LoopStrictInt(_v - (_max - _min) - 1, _min, _max);
 	return _v;
 }
 
@@ -44,6 +52,11 @@ template<typename T, typename MinT, typename MaxT, typename ResultT>
 ResultT LoopSizeStrict(const T _v, const MinT _min, const MaxT _max)
 {
 	return LoopStrict(_v, _min, _max - 1);
+}
+template<typename T, typename MinT, typename MaxT, typename ResultT>
+ResultT LoopSizeStrictInt(const T _v, const MinT _min, const MaxT _max)
+{
+	return LoopStrictInt(_v, _min, _max - 1);
 }
 
 CANDY_CORE_NAMESPACE_END

@@ -23,10 +23,14 @@ ResultT LoopSize(const T _v, const MinT _min, const MaxT _max);
 // ループ(厳密)
 template<typename T, typename MinT, typename MaxT, typename ResultT = std::common_type_t<T, MinT, MaxT>>
 ResultT LoopStrict(const T _v, const MinT _min, const MaxT _max);
+template<typename T, typename MinT, typename MaxT, typename ResultT = std::common_type_t<T, MinT, MaxT>>
+ResultT LoopStrictInt(const T _v, const MinT _min, const MaxT _max);
 
 // ループ(サイズ・厳密)
 template<typename T, typename MinT, typename MaxT, typename ResultT = std::common_type_t<T, MinT, MaxT>>
 ResultT LoopSizeStrict(const T _v, const MinT _min, const MaxT _max);
+template<typename T, typename MinT, typename MaxT, typename ResultT = std::common_type_t<T, MinT, MaxT>>
+ResultT LoopSizeStrictInt(const T _v, const MinT _min, const MaxT _max);
 
 CANDY_CORE_NAMESPACE_END
 

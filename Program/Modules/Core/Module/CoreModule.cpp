@@ -22,6 +22,7 @@ void Module::initializeImpl()
 	ThreadSystem::SetPriority(threadHandle, THREAD_PRIORITY::NORMAL);
 	FileSystem::Startup();
 	Time::Startup();
+	Input::Startup();
 }
 
 // 他モジュールに依存する初期化の実装部
@@ -39,6 +40,7 @@ void Module::cleanupImpl()
 // 他モジュールに依存しない破棄の実装部
 void Module::releaseImpl()
 {
+	core::Input::Cleanup();
 	Time::Cleanup();
 	FileSystem::Cleanup();
 	Debug::Log::Cleanup();
@@ -48,6 +50,7 @@ void Module::releaseImpl()
 void Module::beginFrameImpl()
 {
 	Hardware::Update();
+	core::Input::Update();
 }
 
 // 前更新の実装部

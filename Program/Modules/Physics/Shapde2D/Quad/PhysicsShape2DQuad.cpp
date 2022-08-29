@@ -21,6 +21,11 @@ namespace Shape2D
 		set(_p1, _p2, _p3, _p4);
 	}
 
+	Quad::Quad(const Rect& _rect)
+	{
+		setRect(_rect);
+	}
+
 	// セット
 	void Quad::set(const Vec4 _p1, const Vec4 _p2, const Vec4 _p3, const Vec4 _p4)
 	{
@@ -28,6 +33,15 @@ namespace Shape2D
 		m_Points[1] = _p2;
 		m_Points[2] = _p3;
 		m_Points[3] = _p4;
+	}
+
+	// 矩形セット
+	void Quad::setRect(const Rect& _rect)
+	{
+		set(Vec4{ _rect.m_X, _rect.m_Y, 0.0f },
+			Vec4{ _rect.getRight(), _rect.m_Y, 0.0f },
+			Vec4{ _rect.getRight(), _rect.getBottom(), 0.0f },
+			Vec4{ _rect.m_X, _rect.getBottom(), 0.0f });
 	}
 
 	// へこんでいる頂点のインデックス取得

@@ -1,4 +1,11 @@
-﻿#ifndef CANDY_ENTITY_HANDLE_H
+﻿/*****************************************************************//**
+ * \file   EntityHandle.h
+ * \brief  エンティティのハンドラ
+ * \author Yu Ishiyama.
+ * \date   2022/08/27
+ *********************************************************************/
+
+#ifndef CANDY_ENTITY_HANDLE_H
 #define CANDY_ENTITY_HANDLE_H
 
 #include <App/AppInclude.h>

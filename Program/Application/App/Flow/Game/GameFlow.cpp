@@ -9,6 +9,9 @@
 #include <App/Flow/Scene/SceneFlow.h>
 #include <App/Model/Model.h>
 #include <App/Debug/Draw/DebugDraw.h>
+#include <App/Entity/EntityManager.h>
+#include <App/Component/Behavior/PlayerBehaviorComponent.h>
+#include <App/Component/Behavior/EnemyBehaviorComponent.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -197,183 +200,128 @@ namespace GameFlow
 	};
 
 	TextureView m_TextureViews[4];
+
+	std::vector<Entity*> m_Entities;
 }
 
 // 初期化
 void GameFlow::Startup()
 {
-	core::Input::Startup();
-
-	graphic::BufferStartupInfo bufferStartupInfo;
+	auto player = EntityManager::CreateEntity("Player");
+	player->addComponent<Component::PlayerBehavior>();
+	m_Entities.push_back(player);
+	auto enemy = EntityManager::CreateEntity("Enemy");
+	enemy->addComponent<Component::EnemyBehavior>();
+	m_Entities.push_back(enemy);
+	/*graphic::BufferStartupInfo bufferStartupInfo;
 	bufferStartupInfo.setRenderTargetStartupInfo(graphic::types::GRAPHIC_FORMAT::A8_UINT, graphic::Config::GetScreenWidth(), graphic::Config::GetScreenHeight());
 	m_MaskDescriptor.startup(graphic::System::GetDevice(), graphic::types::DESCRIPTOR_TYPE::RENDER_TARGET, 1);
 	m_MaskBuffer.startup(graphic::System::GetDevice(), bufferStartupInfo);
 	m_MaskDescriptor.bindingRenderTarget(graphic::System::GetDevice(), 0, m_MaskBuffer, graphic::types::GRAPHIC_FORMAT::A8_UINT);
 
-	m_TextureViews[0].startup(R"(Texture\forest.dds)", 512, 256, Vec4{ 8.0f * 9 / 16, 4.0f * 9 / 16, 1.0f }, TextureView::STARTUP_FLAG_NONE);
+	m_TextureViews[0].startup(R"(Texture\forest.dds)", 512, 256, Vec4{ 4.0f, 2.0f, 1.0f }, TextureView::STARTUP_FLAG_NONE);
 	m_TextureViews[1].startup(R"(Texture\house.dds)", 256, 256, Vec4{ 2.0f,2.0f,1.0f }, TextureView::STARTUP_FLAG_NONE);
 	m_TextureViews[2].startup(R"(Texture\player1.dds)", 256, 256, Vec4{ 0.5f,0.5f,1.0f }, TextureView::STARTUP_FLAG_USE_ALPHA);
 	m_TextureViews[3].startup(R"(Texture\player2.dds)", 256, 256, Vec4{ 0.5f,0.5f,1.0f }, TextureView::STARTUP_FLAG_NONE);
 	m_TextureViews[2].m_Constant.m_Pos.y = -0.65f;
-	m_TextureViews[3].m_Constant.m_Pos.y = -0.65f;
-
-	//Sound::CallSe("TestBgm.wav", Sound::CALL_SE_FLAG_LOOP);
+	m_TextureViews[3].m_Constant.m_Pos.y = -0.65f;*/
 }
 
 // 破棄
 void GameFlow::Cleanup()
 {
-	for (auto& textureView : m_TextureViews)textureView.cleanup();
-	core::Input::Cleanup();
+	for (auto entity : m_Entities)EntityManager::ReleaseEntity(entity);
+	m_Entities.clear();
+	//for (auto& textureView : m_TextureViews)textureView.cleanup();
 }
 
 // 更新
 void GameFlow::Update()
 {
-	core::Input::Update();
+	/*static Vec4 movePos = { 400.0f, 600.0f, 0.0f };
+	Vec4 size{ 40.0f, 100.0f, 0.0f };
+	static f32 velocity = 0.1f;
+	static bool landing = false;
 
-	DebugDraw::DrawString(Vec4{ 100, 100, 0 }, "PlayerPos[x:{0:.2f} y:{1:.2f}]", m_TextureViews[2].m_Constant.m_Pos.x, m_TextureViews[2].m_Constant.m_Pos.y);
-	auto norm = VecNormalize(m_TextureViews[2].m_Constant.m_Pos);
-	DebugDraw::DrawString(Vec4{ 100, 120, 0 }, "{0:.2f}, {1:.2f}, {2:.2f}", m_TextureViews[2].m_Constant.m_Pos.x, m_TextureViews[2].m_Constant.m_Pos.y, m_TextureViews[2].m_Constant.m_Pos.z);
+	Vec4 nextPos = movePos;
 
-	static Vec4 pos1{};
+	f32 rate = 1.0f;
+
+	if (core::Input::IsKeyOn(VK_LSHIFT))
+	{
+		rate *= 5.0f;
+	}
+
+	if (core::Input::IsKeyOn('A'))
+	{
+		nextPos.x -= 100.0f * Global::GetAppTime() * rate;
+	}
+	if (core::Input::IsKeyOn('D'))
+	{
+		nextPos.x += 100.0f * Global::GetAppTime() * rate;
+	}
+
+	if (landing && core::Input::IsKeyTrigger('W'))
+	{
+		landing = false;
+		velocity = -10.0f;
+	}
+
+	velocity += 30.0f * Global::GetAppTime();
+
+	nextPos.y += velocity;
 	
-	Model::Primitive::AddLine2D(
-		Vec4{ 400.0f, 200.0f, 0.0f } + pos1,
-		Vec4{ 100.0f, 100.0f, 0.0f } + pos1,
-		10, core::GetColorRGB32(0xff, 0x00, 0x00)
-	);
-	Model::Primitive::AddQuad2D(
-		Vec4{ 40.0f, 250.0f, 0.0f },
-		Vec4{ 300.0f, 200.0f, 0.0f },
-		Vec4{ 400.0f, 400.0f, 0.0f },
-		Vec4{ 300.0f, 260.0f, 0.0f },
-		core::GetColorRGB32(0x00, 0xff, 0x00)
-	);
+	f32 slopeOffset = 0.0f;
+	if (landing)slopeOffset = 5.0f;
 
-	physics::Shape2D::Ray ray
-	{
-		Vec4{ 400.0f, 200.0f, 0.0f } + pos1,
-		Vec4{ 100.0f, 100.0f, 0.0f } + pos1,
-	};
-	physics::Shape2D::Quad quad
-	{
-		Vec4{ 40.0f, 250.0f, 0.0f },
-		Vec4{ 300.0f, 200.0f, 0.0f },
-		Vec4{ 400.0f, 400.0f, 0.0f },
-		Vec4{ 300.0f, 260.0f, 0.0f },
-	};
-	
-	auto hitInfo = physics::Collision2D::RayCast::ToConcaveQuad(ray, quad);
-	DebugDraw::DrawString(Vec4{ 100, 140, 0 }, "{0}", hitInfo ? "HIT" : "NO");
-	if (hitInfo)
-	{
-		DebugDraw::DrawString(Vec4{ 100, 160, 0 }, "x:{0:2f} y:{1:2f} z:{2:2f} ", hitInfo.value().m_Pos.x, hitInfo.value().m_Pos.y, hitInfo.value().m_Pos.z);
-		DebugDraw::DrawString(Vec4{ 100, 180, 0 }, "x:{0:2f} y:{1:2f} z:{2:2f} ", hitInfo.value().m_Normal.x, hitInfo.value().m_Normal.y, hitInfo.value().m_Normal.z);
-	}
-
-	if (core::Input::IsKeyOn('P'))
-	{
-		pos1.x += 1.0f;
-	}
-	if (core::Input::IsKeyOn('O'))
-	{
-		pos1.x -= 1.0f;
-	}
-	if (core::Input::IsKeyOn('0'))
-	{
-		pos1.y -= 1.0f;
-	}
-	if (core::Input::IsKeyOn('L'))
-	{
-		pos1.y += 1.0f;
-	}
-
-	constexpr f32 speed = 0.3f;
-	static bool isLanding = true;
-	static bool isSideVelocity = false;
-	static f32 velocity = 0.0f;
-	static f32 sideVelocity = 0.0f;
-	if (core::Input::IsKeyTrigger('A'))
-	{
-		sideVelocity -= 4.0f;
-		isSideVelocity = true;
-	}
-	if (core::Input::IsKeyTrigger('D'))
-	{
-		sideVelocity += 4.0f;
-		isSideVelocity = true;
-	}
-	if (core::Input::IsKeyTrigger('W'))
-	{
-		if (isLanding)velocity = 4.0f;
-		isLanding = false;
-	}
-	if (!isLanding)
-	{
-		m_TextureViews[2].m_Constant.m_Pos.y += velocity * Global::GetAppTime();
-		velocity -= 9.8f * Global::GetAppTime();
-	}
-
-	if (isSideVelocity)
-	{
-		m_TextureViews[2].m_Constant.m_Pos.x += sideVelocity * Global::GetAppTime();
-		auto prevSideVelocity = sideVelocity;
-		sideVelocity -= 9.8f * Global::GetAppTime() * (sideVelocity > 0.0f ? 1.0f : -1.0f);
-		if (prevSideVelocity > 0.0f && sideVelocity <= 0.0f ||
-			prevSideVelocity < 0.0f && sideVelocity >= 0.0f)
+	if (auto result = physics::Collision2D::RayCast::ToConvexQuad({ nextPos - Vec4{ 0.0f, size.y / 2.0f, 0.0f }, nextPos + Vec4{ 0.0f, size.y / 2.0f + slopeOffset, 0.0f } },
 		{
-			sideVelocity = 0.0f;
-			isSideVelocity = false;
-		}
-	}
-	if (m_TextureViews[2].m_Constant.m_Pos.y <= -0.65f)
+			Vec4{ 0.0f, 800.0f, 0.0f }, 
+			Vec4{ 1600.0f, 500.0f, 0.0f },
+			Vec4{ 1600.0f, 520.0f, 0.0f }, 
+			Vec4{ 0.0f, 820.0f, 0.0f }
+			 }))
 	{
-		m_TextureViews[2].m_Constant.m_Pos.y = -0.65f;
 		velocity = 0.0f;
-		isLanding = true;
+		nextPos = result.value().m_Pos - Vec4{ 0.0f, size.y / 2.0f, 0.0f };
+		landing = true;
 	}
-	if (m_TextureViews[2].m_Constant.m_Pos.x > 0.7f ||
-		m_TextureViews[2].m_Constant.m_Pos.x < -0.8f)
+	else
 	{
-		m_TextureViews[2].m_Constant.m_Pos.x = core::Clamp(m_TextureViews[2].m_Constant.m_Pos.x, -0.8f, 0.7f);
-		sideVelocity = 0.0f;
-		isSideVelocity = true;
+		landing = false;
 	}
+	movePos = nextPos;
 
-	if (core::Input::IsKeyOn('J'))m_TextureViews[3].m_Constant.m_Pos.x -= speed * Global::GetAppTime();
-	if (core::Input::IsKeyOn('L'))m_TextureViews[3].m_Constant.m_Pos.x += speed * Global::GetAppTime();
+	Rect playerRect;
+	playerRect.setSize(movePos.x - size.x / 2.0f, movePos.y - size.y / 2.0f, size.x, size.y);
+
+	Model::Primitive::AddRect2D(playerRect, core::GetColorRGB32(0xff, 0xff, 0x00));
+	Model::Primitive::AddQuad2D(
+		Vec4{ 0.0f, 800.0f, 0.0f },
+		Vec4{ 1600.0f, 500.0f, 0.0f },
+		Vec4{ 1600.0f, 520.0f, 0.0f },
+		Vec4{ 0.0f, 820.0f, 0.0f }, core::GetColorRGB32(0xff, 0xff, 0xff));
 
 	for (auto& textureView : m_TextureViews)
 	{
 		textureView.update();
-	}
-
-	if (core::Input::IsKeyOn('T'))
-	{
-		Rect rect;
-		f32 width = static_cast<f32>(graphic::Config::GetScreenWidth());
-		f32 height = static_cast<f32>(graphic::Config::GetScreenHeight());
-		Vec4 mousePos = core::Input::GetClientMousePos();
-		rect.setSize(mousePos.x / width * 2.0f - 1.0f, mousePos.y / height * -2.0f + 1.0f, 0.1f, 0.1f);
-		Model::Primitive::AddRect2D(rect, core::GetColorRGB32(0xff, 0xff, 0x00));
-	}
+	}*/
 }
 
 // 描画
 void GameFlow::Draw()
 {
-	auto& commandList = graphic::System::GetCommandList();
-	m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::RENDER_TARGET);
-	commandList.clearRenderTarget(m_MaskDescriptor.getCpuHandle(0), core::GetColorRGBA32(0x00, 0x00, 0x00, 0x00));
-	m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
+	//auto& commandList = graphic::System::GetCommandList();
+	//m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::RENDER_TARGET);
+	//commandList.clearRenderTarget(m_MaskDescriptor.getCpuHandle(0), core::GetColorRGBA32(0x00, 0x00, 0x00, 0x00));
+	//m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 
-	for (auto& textureView : m_TextureViews)
-	{
-		textureView.draw();
-	}
+	///*for (auto& textureView : m_TextureViews)
+	//{
+	//	textureView.draw();
+	//}*/
 
-	graphic::ResourceManager::Regist(m_MaskBuffer);
+	//graphic::ResourceManager::Regist(m_MaskBuffer);
 }
 
 CANDY_APP_NAMESPACE_END

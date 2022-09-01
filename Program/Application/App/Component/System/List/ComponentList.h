@@ -13,6 +13,8 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
+class Entity;
+
 namespace Component
 {
 	class Base;
@@ -41,7 +43,11 @@ namespace Component
 		template<typename T, is_base_component_interface_t<T> = nullptr>
 		const T* getComponent()const;
 
-		void setOwnerEntityHandle(const EntityHandle _handle) { m_OwnerEntityHandle = _handle; }
+		void setOwnerEntity(Entity* const _ownerEntity);
+
+		// コンポーネントの追加(RequireTable以外からの呼び出し禁止)
+		template<typename T, typename ...ArgsT, is_base_component_interface_t<T> = nullptr>
+		T* addComponentFromRequire(ArgsT&& ..._args);
 
 	private:
 		// コンポーネントの追加
@@ -50,7 +56,7 @@ namespace Component
 		void removeComponentInternal(const s32 _index);
 
 		std::vector<Base*> m_Components;
-		EntityHandle m_OwnerEntityHandle;
+		Entity* m_OwnerEntity = nullptr;
 	};
 }
 

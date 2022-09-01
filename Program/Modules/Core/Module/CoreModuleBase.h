@@ -32,6 +32,12 @@ public:
 	void update();
 	// 後更新
 	void postUpdate();
+	// 前描画登録
+	void preRender();
+	// 描画登録
+	void render();
+	// 後描画登録
+	void postRender();
 	// 前描画
 	void preDraw();
 	// 描画
@@ -62,6 +68,12 @@ protected:
 	virtual void updateImpl() {}
 	// 後更新の実装部
 	virtual void postUpdateImpl() {}
+	// 前描画登録の実装部
+	virtual void preRenderImpl() {}
+	// 描画登録の実装部
+	virtual void renderImpl() {}
+	// 後描画登録の実装部
+	virtual void postRenderImpl() {}
 	// 前描画の実装部
 	virtual void preDrawImpl() {}
 	// 描画の実装部

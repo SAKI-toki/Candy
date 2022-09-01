@@ -10,9 +10,10 @@
 
 #include <App/AppInclude.h>
 #include "ComponentDef.h"
-#include <App/Entity/Entity.h>
 
 CANDY_APP_NAMESPACE_BEGIN
+
+class Entity;
 
 namespace Component
 {
@@ -21,22 +22,53 @@ namespace Component
 		CANDY_COMPONENT_DECLARE(Base, Interface);
 
 	public:
-		// 初期化
-		virtual void startup();
+		// 他コンポーネントに依存しない初期化
+		void initialize();
+		// 他コンポーネントに依存する初期化
+		void startup();
 		// 破棄
-		virtual void cleanup();
+		void cleanup();
 
 		// 前更新
-		virtual void preUpdate();
+		void preUpdate();
 		// 更新
-		virtual void update();
+		void update();
 		// 後更新
-		virtual void postUpdate();
+		void postUpdate();
 
-		void setOwnerEntityHandle(const EntityHandle _handle) { m_OwnerEntityHandle = _handle; }
+		// 前描画登録
+		void preRender();
+		// 描画登録
+		void render();
+		// 後描画登録
+		void postRender();
+
+		void setOwnerEntity(Entity* const _ownerEntity);
+		Entity* getOwnerEntity()const;
 
 	protected:
-		EntityHandle m_OwnerEntityHandle;
+		// 他コンポーネントに依存しない初期化の実装部
+		void initializeImpl() {}
+		// 他コンポーネントに依存する初期化の実装部
+		virtual void startupImpl() {}
+		// 破棄の実装部
+		virtual void cleanupImpl() {}
+
+		// 前更新の実装部
+		virtual void preUpdateImpl() {}
+		// 更新の実装部
+		virtual void updateImpl() {}
+		// 後更新の実装部
+		virtual void postUpdateImpl() {}
+
+		// 前描画登録の実装部
+		virtual void preRenderImpl() {}
+		// 描画登録の実装部
+		virtual void renderImpl() {}
+		// 後描画登録の実装部
+		virtual void postRenderImpl() {}
+
+		Entity* m_OwnerEntity = nullptr;
 	};
 }
 

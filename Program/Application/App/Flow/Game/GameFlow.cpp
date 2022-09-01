@@ -201,7 +201,7 @@ namespace GameFlow
 
 	TextureView m_TextureViews[4];
 
-	std::vector<Entity*> m_Entities;
+	std::vector<EntityHandle> m_Entities;
 }
 
 // 初期化
@@ -209,10 +209,17 @@ void GameFlow::Startup()
 {
 	auto player = EntityManager::CreateEntity("Player");
 	player->addComponent<Component::PlayerBehavior>();
-	m_Entities.push_back(player);
+	m_Entities.push_back(player->getHandle());
+
 	auto enemy = EntityManager::CreateEntity("Enemy");
 	enemy->addComponent<Component::EnemyBehavior>();
-	m_Entities.push_back(enemy);
+	m_Entities.push_back(enemy->getHandle());
+
+	if (auto component = player->getComponent<Component::PlayerBehavior>())
+	{
+		component->setEnemyEntityHandle(enemy->getHandle());
+	}
+
 	/*graphic::BufferStartupInfo bufferStartupInfo;
 	bufferStartupInfo.setRenderTargetStartupInfo(graphic::types::GRAPHIC_FORMAT::A8_UINT, graphic::Config::GetScreenWidth(), graphic::Config::GetScreenHeight());
 	m_MaskDescriptor.startup(graphic::System::GetDevice(), graphic::types::DESCRIPTOR_TYPE::RENDER_TARGET, 1);
@@ -230,7 +237,7 @@ void GameFlow::Startup()
 // 破棄
 void GameFlow::Cleanup()
 {
-	for (auto entity : m_Entities)EntityManager::ReleaseEntity(entity);
+	for (const auto& entity : m_Entities)EntityManager::ReleaseEntity(entity);
 	m_Entities.clear();
 	//for (auto& textureView : m_TextureViews)textureView.cleanup();
 }

@@ -18,7 +18,7 @@ namespace Component
 	{
     public:
         virtual ~Interface() = default;
-        virtual bool isSameClassId(const void* const /*_classNameId*/)const { return false; }
+        virtual bool isInheritedeClassId(const void* const /*_classNameId*/)const { return false; }
         virtual const void* getClassId()const { return nullptr; }
 	};
 
@@ -27,26 +27,27 @@ namespace Component
 
 #define CANDY_COMPONENT_DECLARE(CLASS_NAME, BASE_TYPE) \
 private: \
-using base_type = BASE_TYPE; \
 static constexpr const char* const ClassName = #CLASS_NAME; \
 static constexpr s32 InternalId = 0; \
 public: \
-virtual bool isSameClassId(const void* const _id)const override; \
+using base_type = BASE_TYPE; \
+virtual bool isInheritedeClassId(const void* const _id)const override; \
 virtual const void* getClassId()const override; \
+static constexpr const char* GetStaticClassName(){ return ClassName; } \
 static constexpr const void* GetStaticClassId(){ return &InternalId; } \
 template<typename T, typename ReturnT = std::conditional_t<std::is_const_v<T>, const CLASS_NAME*, CLASS_NAME*>, is_base_component_interface_t<T> = nullptr> \
 static ReturnT Cast(T* const _v) \
 { \
     if(!_v)return nullptr; \
-    if(_v->isSameClassId(GetStaticClassId()))return static_cast<ReturnT>(_v); \
+    if(_v->isInheritedeClassId(GetStaticClassId()))return static_cast<ReturnT>(_v); \
     return nullptr; \
 } \
 private:
 
 #define CANDY_COMPONENT_DEFINE(CLASS_NAME, BASE_TYPE) \
-bool CLASS_NAME::isSameClassId(const void* const _id)const \
+bool CLASS_NAME::isInheritedeClassId(const void* const _id)const \
 { \
-    if(base_type::isSameClassId(_id))return true; \
+    if(base_type::isInheritedeClassId(_id))return true; \
     return getClassId() == _id; \
 } \
 const void* CLASS_NAME::getClassId()const \

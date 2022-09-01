@@ -32,9 +32,9 @@ namespace FileSystem
 	// ファイル読み込み
 	bool FileRead(Work* const _work);
 	// ファイル情報リストの作成
-	void CreateFileInfo(const std::string_view _basePath);
+	void CreateFileInfo(std::string_view _basePath);
 	// 読み込みリクエストのワーク作成
-	Work* CreateRequestReadWork(const std::string_view _path, std::byte* const _buf, u64 _bufSize);
+	Work* CreateRequestReadWork(std::string_view _path, std::byte* const _buf, u64 _bufSize);
 }
 
 // 初期化
@@ -63,7 +63,7 @@ void FileSystem::Cleanup()
 }
 
 // ファイルサイズの取得
-u64 FileSystem::GetFileSize(const std::string_view _path)
+u64 FileSystem::GetFileSize(std::string_view _path)
 {
 	const u32 hash = Fnv::Hash32Low(Path::FormatPath(_path));
 	auto itr = std::find(m_FileInfos.begin(), m_FileInfos.end(), hash);
@@ -76,7 +76,7 @@ u64 FileSystem::GetFileSize(const std::string_view _path)
 }
 
 // 読み込みリクエスト
-FileSystem::WorkHandle FileSystem::RequestRead(const std::string_view _path, std::byte* const _buf, u64 _bufSize)
+FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, std::byte* const _buf, u64 _bufSize)
 {
 	Work* work = CreateRequestReadWork(_path, _buf, _bufSize);
 	if (!work)return WorkHandle{};
@@ -91,7 +91,7 @@ FileSystem::WorkHandle FileSystem::RequestRead(const std::string_view _path, std
 }
 
 // 読み込みリクエスト(即時)
-bool FileSystem::RequestReadNoWait(const std::string_view _path, std::byte* const _buf, u64 _bufSize)
+bool FileSystem::RequestReadNoWait(std::string_view _path, std::byte* const _buf, u64 _bufSize)
 {
 	Work* work = CreateRequestReadWork(_path, _buf, _bufSize);
 	if (!work)return false;
@@ -101,7 +101,7 @@ bool FileSystem::RequestReadNoWait(const std::string_view _path, std::byte* cons
 }
 
 // ファイル読み込み終了判定
-bool FileSystem::IsEndReadWork(const WorkHandle _handle)
+bool FileSystem::IsEndReadWork(const WorkHandle& _handle)
 {
 	return !m_WorkHandleSystem.getPtr(_handle);
 }

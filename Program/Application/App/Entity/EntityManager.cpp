@@ -7,14 +7,13 @@
 
 #include "EntityManager.h"
 #include "Entity.h"
-#include "EntityHandleSystem.h"
 
 CANDY_APP_NAMESPACE_BEGIN
 
 namespace EntityManager
 {
 	std::list<Entity*> m_Entities;
-	EntityHandleSystem m_EntityHandleSystem;
+	core::HandleSystem<Entity, EntityHandle> m_EntityHandleSystem;
 }
 
 void EntityManager::Startup()
@@ -27,7 +26,7 @@ void EntityManager::Cleanup()
 	m_EntityHandleSystem.cleanup();
 }
 
-Entity* EntityManager::CreateEntity(std::string name)
+Entity* EntityManager::CreateEntity(std::string_view _name)
 {
 	Entity* entity = new Entity();
 	if (!entity)return nullptr;
@@ -40,14 +39,15 @@ Entity* EntityManager::CreateEntity(std::string name)
 	}
 
 	entity->setHandle(handle);
-	entity->setName(name);
+	entity->setName(_name);
 	m_Entities.push_back(entity);
 	entity->startup();
 	return entity;
 }
 
-void EntityManager::ReleaseEntity(Entity* entity)
+void EntityManager::ReleaseEntity(const EntityHandle& _handle)
 {
+	auto entity = _handle.getPtr();
 	if (!entity)return;
 	entity->cleanup();
 	m_EntityHandleSystem.releaseHandle(entity->getHandle());
@@ -59,9 +59,9 @@ void EntityManager::ReleaseEntity(Entity* entity)
 	}
 }
 
-Entity* EntityManager::GetEntityPtr(EntityHandle handle)
+Entity* EntityManager::GetEntityPtr(const EntityHandle& _handle)
 {
-	return m_EntityHandleSystem.getPtr(handle);
+	return m_EntityHandleSystem.getPtr(_handle);
 }
 
 CANDY_APP_NAMESPACE_END

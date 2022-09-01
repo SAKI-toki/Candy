@@ -29,10 +29,10 @@ public:
 	// ハンドラの生成
 	HandleType createHandle(ValuePtrType _valuePtr);
 	// ハンドラの解放
-	void releaseHandle(HandleType handle);
+	void releaseHandle(const HandleType& handle);
 
 	// ハンドラからポインタの取得
-	ValuePtrType getPtr(HandleType handle)const;
+	ValuePtrType getPtr(const HandleType& handle)const;
 
 private:
 	struct Unit

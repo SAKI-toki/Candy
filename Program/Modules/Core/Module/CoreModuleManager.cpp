@@ -9,11 +9,30 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
+namespace ModuleManager
+{
+	// モジュールの更新
+	void updateModule();
+	// モジュールの描画
+	void drawModule();
+	// モジュールのフリップ
+	void flipModule();
+
+	// 正順でのモジュール変換
+	void transformModuleNormalOrder(void(ModuleBase::* _func)());
+	// 逆順でのモジュール変換
+	void transformModuleReverseOrder(void(ModuleBase::* _func)());
+
+	std::vector<std::unique_ptr<ModuleBase>> m_Modules;
+	std::unique_ptr<ModuleBase> m_CoreModule;
+	JobSystem m_JobSystem;
+}
+
 // 初期化(coreは最初に追加する)
 void ModuleManager::startup(std::unique_ptr<ModuleBase>&& _coreModule)
 {
 	m_JobSystem.startup(2, 0, 1);
-	m_JobSystem.setFunctions({ [this]() { updateModule(); }, [this]() { drawModule(); } });
+	m_JobSystem.setFunctions({ []() { updateModule(); }, []() { drawModule(); } });
 
 	if (_coreModule)
 	{
@@ -65,6 +84,9 @@ void ModuleManager::updateModule()
 	transformModuleNormalOrder(&ModuleBase::preUpdate);
 	transformModuleNormalOrder(&ModuleBase::update);
 	transformModuleNormalOrder(&ModuleBase::postUpdate);
+	transformModuleNormalOrder(&ModuleBase::preRender);
+	transformModuleNormalOrder(&ModuleBase::render);
+	transformModuleNormalOrder(&ModuleBase::postRender);
 }
 
 // モジュールの描画

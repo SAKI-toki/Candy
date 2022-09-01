@@ -22,13 +22,13 @@ struct HandleValue
 	uint64_t m_User{ static_cast<uint64_t>(-1) };
 
 	// 比較関数群
-	bool operator==(const HandleValue& handle)
+	bool operator==(const HandleValue& handle)const
 	{
 		return m_Index == handle.m_Index &&
 			m_Count == handle.m_Count &&
 			m_Hash == handle.m_Hash;
 	}
-	bool operator!=(const HandleValue& handle) { return !(*this == handle); }
+	bool operator!=(const HandleValue& handle)const { return !(*this == handle); }
 };
 
 template<typename T, typename HandleType>
@@ -44,8 +44,8 @@ public:
 	void clear();
 
 	// 比較関数群
-	bool operator==(const Handle& handle) { return m_Value == handle.m_Value; }
-	bool operator!=(const Handle& handle) { return !(*this == handle); }
+	bool operator==(const Handle& handle)const { return m_Value == handle.m_Value; }
+	bool operator!=(const Handle& handle)const { return !(*this == handle); }
 
 protected:
 	HandleValue m_Value;

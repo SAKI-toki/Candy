@@ -9,7 +9,12 @@
 
 #include "System/List/ComponentList.cpp"
 #include "System/Manager/ComponentManager.cpp"
-#include "System/Priority/ComponentPriority.cpp"
+#include "System/Table/ComponentPriorityTable.cpp"
+#include "System/Table/ComponentRequireTable.cpp"
 
 #include "Behavior/PlayerBehaviorComponent.cpp"
 #include "Behavior/EnemyBehaviorComponent.cpp"
+
+#include "Renderer/RendererComponent.cpp"
+
+#include "Transform/TransformComponent.cpp"

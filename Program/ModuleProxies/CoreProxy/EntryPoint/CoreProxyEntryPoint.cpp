@@ -14,7 +14,7 @@ CANDY_CORE_PROXY_NAMESPACE_BEGIN
 
 namespace EntryPoint
 {
-	core::ModuleManager m_ModuleManager;
+
 }
 
 // 前初期化のプロキシ
@@ -26,21 +26,21 @@ void EntryPoint::PreStartupProxy()
 // 後初期化のプロキシ
 void EntryPoint::PostStartupProxy()
 {
-	m_ModuleManager.startup(std::make_unique<core::Module>());
+	core::ModuleManager::startup(std::make_unique<core::Module>());
 
-	m_ModuleManager.addModule(std::make_unique<graphic::Module>());
-	m_ModuleManager.addModule(std::make_unique<sound::Module>());
-	m_ModuleManager.addModule(std::make_unique<app::Module>());
+	core::ModuleManager::addModule(std::make_unique<graphic::Module>());
+	core::ModuleManager::addModule(std::make_unique<sound::Module>());
+	core::ModuleManager::addModule(std::make_unique<app::Module>());
 
-	m_ModuleManager.startupModule();
+	core::ModuleManager::startupModule();
 }
 
 // 前破棄のプロキシ
 void EntryPoint::PreCleanupProxy()
 {
-	m_ModuleManager.cleanupModule();
+	core::ModuleManager::cleanupModule();
 
-	m_ModuleManager.cleanup();
+	core::ModuleManager::cleanup();
 }
 
 // 後破棄のプロキシ
@@ -52,8 +52,8 @@ void EntryPoint::PostCleanupProxy()
 // メインループの更新のプロキシ
 void EntryPoint::MainLoopProxy()
 {
-	m_ModuleManager.update();
-	m_ModuleManager.flip();
+	core::ModuleManager::update();
+	core::ModuleManager::flip();
 }
 
 // メインループの終了判定のプロキシ

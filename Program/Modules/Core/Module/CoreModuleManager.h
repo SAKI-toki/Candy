@@ -14,9 +14,8 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
-class ModuleManager
+namespace ModuleManager
 {
-public:
 	// 初期化(coreは最初に追加する)
 	void startup(std::unique_ptr<ModuleBase>&& _coreModule);
 	// 破棄
@@ -33,24 +32,6 @@ public:
 
 	// モジュールの追加
 	void addModule(std::unique_ptr<ModuleBase>&& _module);
-
-private:
-
-	// モジュールの更新
-	void updateModule();
-	// モジュールの描画
-	void drawModule();
-	// モジュールのフリップ
-	void flipModule();
-
-	// 正順でのモジュール変換
-	void transformModuleNormalOrder(void(ModuleBase::*_func)());
-	// 逆順でのモジュール変換
-	void transformModuleReverseOrder(void(ModuleBase::* _func)());
-
-	std::vector<std::unique_ptr<ModuleBase>> m_Modules;
-	std::unique_ptr<ModuleBase> m_CoreModule;
-	JobSystem m_JobSystem;
 };
 
 CANDY_CORE_NAMESPACE_END

@@ -15,6 +15,11 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
+namespace Component
+{
+	class Transform;
+}
+
 class Entity
 {
 public:
@@ -25,20 +30,33 @@ public:
 	Entity(Entity&&)noexcept = delete;
 	Entity& operator=(Entity&&)noexcept = delete;
 
+	// 初期化
 	void startup();
+	// 破棄
 	void cleanup();
 
-	EntityHandle getHandle()const { return m_Handle; }
-	std::string getName()const { return m_Name; }
-	void setHandle(const EntityHandle _handle) { m_Handle = _handle; }
-	void setName(std::string_view name) { m_Name = name; }
+	const EntityHandle& getHandle()const { return m_Handle; }
+	void setHandle(const EntityHandle& _handle) { m_Handle = _handle; }
+	
+	const std::string& getName()const { return m_Name; }
+	void setName(std::string_view _name) { m_Name = _name; }
 
-	template<typename T>
-	void addComponent() { m_ComponentList.addComponent<T>(); }
-	template<typename T>
+	// コンポーネントの追加
+	template<typename T, typename ...ArgsT, Component::is_base_component_interface_t<T> = nullptr>
+	void addComponent(ArgsT&& ..._args) { m_ComponentList.addComponent<T>(std::forward<ArgsT>(_args)...); }
+	// コンポーネントの削除
+	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
+	void removeComponent() { m_ComponentList.removeComponent<T>(); }
+	// コンポーネントの取得
+	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
 	T* getComponent() { return m_ComponentList.getComponent<T>(); }
-	template<typename T>
+	// コンポーネントの取得
+	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
 	const T* getComponent()const { return m_ComponentList.getComponent<T>(); }
+
+	// Transformコンポーネントの取得
+	Component::Transform* getTransformComponent();
+	const Component::Transform* getTransformComponent()const;
 
 private:
 	EntityHandle m_Handle{};

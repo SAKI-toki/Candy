@@ -12,6 +12,8 @@
 
 #include "EntryPoint/CoreProxyEntryPoint.cpp"
 
+#include "Module/CoreProxyModuleManager.cpp"
+
 #if PLATFORM_WIN
 
 #include "Platform/Win/Debug/Assert/CoreProxyAssertImpl.cpp"

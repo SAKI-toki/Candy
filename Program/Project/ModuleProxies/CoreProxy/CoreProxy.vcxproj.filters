@@ -35,6 +35,9 @@
     <Filter Include="Src\Config">
       <UniqueIdentifier>{9a48d545-9a19-4910-94f8-2f3154c79db1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Module">
+      <UniqueIdentifier>{c7f660f2-b36e-44ce-86ec-a6aa8842a4f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\__CoreProxyCpp.cpp">
@@ -58,6 +61,9 @@
     <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\Config\CoreProxyConfig.cpp">
       <Filter>Src\Config</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\ModuleProxies\CoreProxy\Module\CoreProxyModuleManager.cpp">
+      <Filter>Src\Module</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\CoreProxyInclude.h">
@@ -80,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\Config\CoreProxyConfig.h">
       <Filter>Src\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\ModuleProxies\CoreProxy\Module\CoreProxyModuleManager.h">
+      <Filter>Src\Module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

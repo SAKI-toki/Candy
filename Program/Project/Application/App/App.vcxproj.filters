@@ -59,11 +59,17 @@
     <Filter Include="Src\Component\System\Manager">
       <UniqueIdentifier>{89664615-9c53-4883-bb29-95c4d4071769}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Component\System\Priority">
-      <UniqueIdentifier>{58188d59-9e90-4ad1-8221-be5610828cb4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Component\Behavior">
       <UniqueIdentifier>{26c3ab8d-24ca-4fc4-91ca-8563539ab528}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\Renderer">
+      <UniqueIdentifier>{20314f94-3ad7-42ad-80f2-99a5c110eda6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\Transform">
+      <UniqueIdentifier>{134a567b-d16e-466c-a944-c1f49e6145e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Component\System\Table">
+      <UniqueIdentifier>{58188d59-9e90-4ad1-8221-be5610828cb4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -89,9 +95,6 @@
       <Filter>Src\Entity</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Entity\EntityHandle.cpp">
-      <Filter>Src\Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Entity\EntityHandleSystem.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Entity\EntityManager.cpp">
@@ -154,9 +157,6 @@
     <ClCompile Include="..\..\..\Application\App\Component\System\List\ComponentList.cpp">
       <Filter>Src\Component\System\List</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Component\System\Priority\ComponentPriority.cpp">
-      <Filter>Src\Component\System\Priority</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Component\System\Manager\ComponentManager.cpp">
       <Filter>Src\Component\System\Manager</Filter>
     </ClCompile>
@@ -165,6 +165,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Component\Behavior\PlayerBehaviorComponent.cpp">
       <Filter>Src\Component\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Renderer\RendererComponent.cpp">
+      <Filter>Src\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Transform\TransformComponent.cpp">
+      <Filter>Src\Component\Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\System\Table\ComponentPriorityTable.cpp">
+      <Filter>Src\Component\System\Table</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\System\Table\ComponentRequireTable.cpp">
+      <Filter>Src\Component\System\Table</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,9 +196,6 @@
       <Filter>Src\Entity</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Entity\EntityHandle.h">
-      <Filter>Src\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Application\App\Entity\EntityHandleSystem.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Entity\EntityManager.h">
@@ -228,9 +237,6 @@
     <ClInclude Include="..\..\..\Application\App\Component\System\List\ComponentList.h">
       <Filter>Src\Component\System\List</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Application\App\Component\System\Priority\ComponentPriority.h">
-      <Filter>Src\Component\System\Priority</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Component\System\Manager\ComponentManager.h">
       <Filter>Src\Component\System\Manager</Filter>
     </ClInclude>
@@ -240,6 +246,24 @@
     <ClInclude Include="..\..\..\Application\App\Component\Behavior\PlayerBehaviorComponent.h">
       <Filter>Src\Component\Behavior</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Renderer\RendererComponent.h">
+      <Filter>Src\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Transform\TransformComponent.h">
+      <Filter>Src\Component\Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\ComponentHeaderInclude.h">
+      <Filter>Src\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\System\Table\ComponentPriorityTable.h">
+      <Filter>Src\Component\System\Table</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\System\AllComponentInclude.h">
+      <Filter>Src\Component\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\System\Table\ComponentRequireTable.h">
+      <Filter>Src\Component\System\Table</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Application\App\Debug\Draw\DebugDraw.inl">
@@ -248,11 +272,14 @@
     <None Include="..\..\..\Application\App\Component\System\List\ComponentList.inl">
       <Filter>Src\Component\System\List</Filter>
     </None>
-    <None Include="..\..\..\Application\App\Component\System\Priority\ComponentPriority.inl">
-      <Filter>Src\Component\System\Priority</Filter>
-    </None>
     <None Include="..\..\..\Application\App\Component\System\Manager\ComponentManager.inl">
       <Filter>Src\Component\System\Manager</Filter>
+    </None>
+    <None Include="..\..\..\Application\App\Component\System\Table\ComponentPriorityTable.inl">
+      <Filter>Src\Component\System\Table</Filter>
+    </None>
+    <None Include="..\..\..\Application\App\Component\System\Table\ComponentRequireTable.inl">
+      <Filter>Src\Component\System\Table</Filter>
     </None>
   </ItemGroup>
 </Project>

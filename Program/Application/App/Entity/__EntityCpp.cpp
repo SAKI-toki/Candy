@@ -7,5 +7,4 @@
 
 #include "Entity.cpp"
 #include "EntityHandle.cpp"
-#include "EntityHandleSystem.cpp"
 #include "EntityManager.cpp"

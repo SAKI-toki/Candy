@@ -31,6 +31,12 @@ class Module : public core::ModuleBase
 	void updateImpl()override;
 	// 後更新の実装部
 	void postUpdateImpl()override;
+	// 前描画登録の実装部
+	void preRenderImpl()override;
+	// 描画登録の実装部
+	void renderImpl()override;
+	// 後描画登録の実装部
+	void postRenderImpl()override;
 	// 前描画の実装部
 	void preDrawImpl()override;
 	// 描画の実装部

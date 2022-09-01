@@ -57,6 +57,24 @@ void ModuleBase::postUpdate()
 	postUpdateImpl();
 }
 
+// 前描画登録
+void ModuleBase::preRender()
+{
+	preRenderImpl();
+}
+
+// 描画登録
+void ModuleBase::render()
+{
+	renderImpl();
+}
+
+// 後描画登録
+void ModuleBase::postRender()
+{
+	postRenderImpl();
+}
+
 // 前描画
 void ModuleBase::preDraw()
 {

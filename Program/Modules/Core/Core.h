@@ -67,6 +67,7 @@
 #include "Utility/Clamp/Clamp.h"
 #include "Utility/Endian/Endian.h"
 #include "Utility/Hash/Hash.h"
+#include "Utility/InRange/CoreInRange.h"
 #include "Utility/Loop/Loop.h"
 #include "Utility/MinMax/MinMax.h"
 #include "Utility/Path/Path.h"

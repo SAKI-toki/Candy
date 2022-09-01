@@ -10,14 +10,28 @@
 CANDY_CORE_NAMESPACE_BEGIN
 
 // 初期化
-void JobSystem::startup(const s32 _threadCount, const s32 _minCoreNo, const s32 _maxCoreNo)
+void JobSystem::startup(const s32 _threadCount, const s32 _minCoreNo, const s32 _maxCoreNo, const THREAD_PRIORITY _priority)
 {
 	m_ThreadInfos.resize(_threadCount);
 	for (s32 i = 0; i < _threadCount; ++i)
 	{
 		CreateThreadOption createThreadOption;
 		createThreadOption.m_CoreNo = LoopStrictInt(i + _minCoreNo, _minCoreNo, _maxCoreNo);
-		createThreadOption.m_Priority = THREAD_PRIORITY::HIGHEST;
+		createThreadOption.m_Priority = _priority;
+		m_ThreadInfos[i].m_ExecThreadEvent.startup();
+		m_ThreadInfos[i].m_EndThreadEvent.startup();
+		m_ThreadInfos[i].m_Thread.create(ThreadFunc, (void*)&m_ThreadInfos[i], createThreadOption);
+	}
+}
+
+void JobSystem::startup(const s32* const _coreNoList, const s32 _count, const THREAD_PRIORITY _priority)
+{
+	m_ThreadInfos.resize(_count);
+	for (s32 i = 0; i < _count; ++i)
+	{
+		CreateThreadOption createThreadOption;
+		createThreadOption.m_CoreNo = _coreNoList[i];
+		createThreadOption.m_Priority = _priority;
 		m_ThreadInfos[i].m_ExecThreadEvent.startup();
 		m_ThreadInfos[i].m_EndThreadEvent.startup();
 		m_ThreadInfos[i].m_Thread.create(ThreadFunc, (void*)&m_ThreadInfos[i], createThreadOption);

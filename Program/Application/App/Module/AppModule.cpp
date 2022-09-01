@@ -75,6 +75,24 @@ void Module::postUpdateImpl()
 	Debug::Update();
 }
 
+// 前描画登録の実装部
+void Module::preRenderImpl()
+{
+	Component::Manager::PreRender();
+}
+
+// 描画登録の実装部
+void Module::renderImpl()
+{
+	Component::Manager::Render();
+}
+
+// 後描画登録の実装部
+void Module::postRenderImpl()
+{
+	Component::Manager::PostRender();
+}
+
 // 前描画の実装部
 void Module::preDrawImpl()
 {
@@ -94,6 +112,7 @@ void Module::postDrawImpl()
 {
 
 }
+
 // フレーム終了の実装部
 void Module::endFrameImpl()
 {

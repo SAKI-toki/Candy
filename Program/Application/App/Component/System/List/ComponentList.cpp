@@ -6,7 +6,9 @@
  *********************************************************************/
 
 #include "ComponentList.h"
+#include <App/Component/ComponentBase.h>
 #include <App/Component/System/Manager/ComponentManager.h>
+#include <App/Component/System/Table/ComponentPriorityTable.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -31,10 +33,15 @@ namespace Component
 		}
 	}
 
+	void List::setOwnerEntity(Entity* const _ownerEntity)
+	{
+		m_OwnerEntity = _ownerEntity;
+	}
+
 	// コンポーネントの追加
 	void List::addComponentInternal(Base* const _component)
 	{
-		const s32 addPriority = Priority::GetFromId(_component->getClassId());
+		const s32 addPriority = PriorityTable::GetUpdatePriorityFromId(_component->getClassId());
 
 		auto itr = m_Components.begin();
 		while (itr != m_Components.end())
@@ -42,12 +49,12 @@ namespace Component
 			auto component = *itr;
 			++itr;
 			if (!component)continue;
-			const s32 priority = Priority::GetFromId(component->getClassId());
+			const s32 priority = PriorityTable::GetUpdatePriorityFromId(component->getClassId());
 			if (priority < addPriority)continue;
 			break;
 		}
 		m_Components.insert(itr, _component);
-		_component->startup();
+		_component->initialize();
 	}
 
 	// コンポーネントの削除

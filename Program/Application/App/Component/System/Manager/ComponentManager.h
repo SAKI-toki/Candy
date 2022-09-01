@@ -13,6 +13,8 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
+class Entity;
+
 namespace Component
 {
 	class Base;
@@ -26,8 +28,12 @@ namespace Component
 		void Update();
 		void PostUpdate();
 
+		void PreRender();
+		void Render();
+		void PostRender();
+
 		template<typename T, typename ...ArgsT, is_base_component_interface_t<T> = nullptr>
-		Base* addComponent(const EntityHandle _ownerHandle, ArgsT&& ..._args);
+		Base* addComponent(Entity* const _ownerEntity, ArgsT&& ..._args);
 
 		void removeComponent(const Base* const _component);
 	};

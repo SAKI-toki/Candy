@@ -8,8 +8,7 @@
 #ifndef CANDY_APP_ENEMY_BEHAVIOR_COMPONENT_H
 #define CANDY_APP_ENEMY_BEHAVIOR_COMPONENT_H
 
-#include <App/AppInclude.h>
-#include <App/Component/ComponentBase.h>
+#include <App/Component/ComponentHeaderInclude.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -19,10 +18,9 @@ namespace Component
 	{
 		CANDY_COMPONENT_DECLARE(EnemyBehavior, Base);
 
-	public:
-		void update()override;
-
-		f32 value{};
+	protected:
+		void startupImpl()override;
+		void updateImpl()override;
 	};
 }
 

@@ -69,7 +69,7 @@ HandleType HandleSystem<T, HandleType>::createHandle(ValuePtrType _valuePtr)
 
 // ハンドラの解放
 template<typename T,typename HandleType>
-void HandleSystem<T, HandleType>::releaseHandle(HandleType handle)
+void HandleSystem<T, HandleType>::releaseHandle(const HandleType& handle)
 {
 	if (m_Units.empty())return;
 	if (m_Units[handle.m_Value.m_Index].m_Handle != handle)return;
@@ -80,7 +80,7 @@ void HandleSystem<T, HandleType>::releaseHandle(HandleType handle)
 
 // ハンドラからポインタの取得
 template<typename T, typename HandleType>
-HandleSystem<T, HandleType>::ValuePtrType HandleSystem<T, HandleType>::getPtr(HandleType handle)const
+HandleSystem<T, HandleType>::ValuePtrType HandleSystem<T, HandleType>::getPtr(const HandleType& handle)const
 {
 	if (m_Units.empty())return nullptr;
 	if (handle.m_Value.m_Index == static_cast<u64>(-1))return nullptr;

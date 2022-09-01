@@ -18,7 +18,8 @@ CANDY_CORE_NAMESPACE_BEGIN
 class JobSystem
 {
 public:
-	void startup(const s32 _threadCount, const s32 _minCoreNo, const s32 _maxCoreNo);
+	void startup(const s32 _threadCount, const s32 _minCoreNo, const s32 _maxCoreNo, const THREAD_PRIORITY _priority = THREAD_PRIORITY::NORMAL);
+	void startup(const s32* const _coreNoList, const s32 _count, const THREAD_PRIORITY _priority = THREAD_PRIORITY::NORMAL);
 	void cleanup();
 
 	void setFunction(std::function<void()>&& _func, const s32 _execThreadCount = 1);

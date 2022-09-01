@@ -8,8 +8,7 @@
 #ifndef CANDY_APP_PLAYER_BEHAVIOR_COMPONENT_H
 #define CANDY_APP_PLAYER_BEHAVIOR_COMPONENT_H
 
-#include <App/AppInclude.h>
-#include <App/Component/ComponentBase.h>
+#include <App/Component/ComponentHeaderInclude.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -20,9 +19,11 @@ namespace Component
 		CANDY_COMPONENT_DECLARE(PlayerBehavior, Base);
 
 	public:
-		void update()override;
+		void updateImpl()override;
 
-		f32 value{};
+		void setEnemyEntityHandle(const EntityHandle& _handle) { m_EnemyHandle = _handle; }
+
+		EntityHandle m_EnemyHandle;
 	};
 }
 

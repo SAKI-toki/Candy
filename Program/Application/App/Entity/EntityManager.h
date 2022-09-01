@@ -19,10 +19,10 @@ namespace EntityManager
 	void Startup();
 	void Cleanup();
 
-	Entity* CreateEntity(std::string name);
-	void ReleaseEntity(Entity* entity);
+	Entity* CreateEntity(std::string_view _name);
+	void ReleaseEntity(const EntityHandle& _handle);
 
-	Entity* GetEntityPtr(EntityHandle handle);
+	Entity* GetEntityPtr(const EntityHandle& _handle);
 }
 
 CANDY_APP_NAMESPACE_END

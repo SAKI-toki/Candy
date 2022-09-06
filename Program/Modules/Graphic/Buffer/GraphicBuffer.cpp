@@ -20,14 +20,20 @@ void Buffer::cleanup()
 	BufferImpl::cleanup();
 }
 
-void Buffer::translationBarrier(const CommandList& _commandList, const types::BARRIER_STATE _barrierState)
+void Buffer::translationBarrier(const CommandList& _commandList, 
+	const types::BARRIER_STATE _prevBarrierState, const types::BARRIER_STATE _nextBarrierState)
 {
-	BufferImpl::translationBarrier(_commandList.getCommandList(), _barrierState);
+	BufferImpl::translationBarrier(_commandList.getCommandList(), _prevBarrierState, _nextBarrierState);
 }
 
 void Buffer::store(const std::byte* const _buf, const u64 _size, const u64 _offset)
 {
 	BufferImpl::store(_buf, _size, _offset);
+}
+
+void Buffer::setName(const std::string_view _name)
+{
+	BufferImpl::setName(_name);
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

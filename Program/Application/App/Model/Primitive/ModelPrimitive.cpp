@@ -7,6 +7,7 @@
 
 #include "ModelPrimitive.h"
 #include <App/Utility/UtilityConvertPosition.h>
+#include <App/Rendering/RenderingManager.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -79,10 +80,10 @@ namespace Model
 	}
 
 	// 描画
-	void Primitive::Draw(graphic::CommandList& _commandList)
+	void Primitive::Draw()
 	{
-		auto& vertexInfos2D = m_VertexInfo2DLists[Global::GetDrawIndex()];
-		auto& indices2D = m_Indices2DLists[Global::GetDrawIndex()];
+		auto& vertexInfos2D = m_VertexInfo2DLists[core::System::GetDrawIndex()];
+		auto& indices2D = m_Indices2DLists[core::System::GetDrawIndex()];
 		if (vertexInfos2D.empty() || indices2D.empty())return;
 
 		auto& vertexBuffer2D = m_VertexBufferList2D[graphic::System::GetBackBufferIndex()];
@@ -96,13 +97,15 @@ namespace Model
 		graphic::IndexBufferView indexBufferView2D;
 		indexBufferView2D.startup(indexBuffer2D, 0, static_cast<u32>(indices2D.size()), sizeof(u16), graphic::types::GRAPHIC_FORMAT::R16_UINT);
 
-		_commandList.setRootSignature(m_RootSignature2D);
-		_commandList.setPipeline(m_Pipeline2D);
-		_commandList.setVertexBuffer(0, vertexBufferView2D);
-		_commandList.registVertexBuffers(1);
-		_commandList.setIndexBuffer(indexBufferView2D);
-		_commandList.setPrimitiveTopology(graphic::types::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
-		_commandList.drawIndexedInstanced(static_cast<u32>(indices2D.size()), 1, 0, 0, 0);
+		auto& commandList = RenderingManager::GetModelCommandList();
+
+		commandList.setRootSignature(m_RootSignature2D);
+		commandList.setPipeline(m_Pipeline2D);
+		commandList.setVertexBuffer(0, vertexBufferView2D);
+		commandList.registVertexBuffers(1);
+		commandList.setIndexBuffer(indexBufferView2D);
+		commandList.setPrimitiveTopology(graphic::types::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
+		commandList.drawIndexedInstanced(static_cast<u32>(indices2D.size()), 1, 0, 0, 0);
 		graphic::ResourceManager::Regist(vertexBuffer2D);
 		graphic::ResourceManager::Regist(indexBuffer2D);
 		vertexInfos2D.clear();
@@ -186,8 +189,8 @@ namespace Model
 	// 2Dの描画登録
 	void Primitive::Add2D(const VertexInfo* const _vertices, const s32 _vertexCount, const u16* const _indices, const s32 _indexCount)
 	{
-		auto& vertexInfos2D = m_VertexInfo2DLists[Global::GetUpdateIndex()];
-		auto& indices2D = m_Indices2DLists[Global::GetUpdateIndex()];
+		auto& vertexInfos2D = m_VertexInfo2DLists[core::System::GetUpdateIndex()];
+		auto& indices2D = m_Indices2DLists[core::System::GetUpdateIndex()];
 		
 		CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
 		
@@ -209,9 +212,7 @@ namespace Model
 		}
 		for (s32 i = 0; i < _vertexCount; ++i)
 		{
-			VertexInfo v = _vertices[i];
-			v.m_Pos = Utility::ToScreenPosFrom2DPos(v.m_Pos);
-			vertexInfos2D.push_back(v);
+			vertexInfos2D.push_back(_vertices[i]);
 		}
 	}
 }

@@ -52,10 +52,16 @@ void Module::postUpdateImpl()
 
 }
 
+// 描画開始の実装部
+void Module::beginDrawImpl()
+{
+	System::BeginDraw();
+}
+
 // 前描画の実装部
 void Module::preDrawImpl()
 {
-	System::PreDraw();
+	
 }
 
 // 描画の実装部
@@ -67,7 +73,13 @@ void Module::drawImpl()
 // 後描画の実装部
 void Module::postDrawImpl()
 {
-	System::PostDraw();
+
+}
+
+// 描画終了の実装部
+void Module::endDrawImpl()
+{
+
 }
 
 // フリップの実装部

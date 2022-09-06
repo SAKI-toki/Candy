@@ -18,7 +18,8 @@ namespace DebugDraw
 void DebugDraw::Startup()
 {
 #if BUILD_DEBUG
-	DebugDraw::String::Startup();
+	Primitive2D::Startup();
+	String::Startup();
 #endif // BUILD_DEBUG
 }
 
@@ -26,7 +27,8 @@ void DebugDraw::Startup()
 void DebugDraw::Cleanup()
 {
 #if BUILD_DEBUG
-	DebugDraw::String::Cleanup();
+	Primitive2D::Cleanup();
+	String::Cleanup();
 #endif // BUILD_DEBUG
 }
 
@@ -34,7 +36,8 @@ void DebugDraw::Cleanup()
 void DebugDraw::Update()
 {
 #if BUILD_DEBUG
-	DebugDraw::String::Update();
+	Primitive2D::Update();
+	String::Update();
 #endif // BUILD_DEBUG
 }
 
@@ -42,7 +45,8 @@ void DebugDraw::Update()
 void DebugDraw::Draw()
 {
 #if BUILD_DEBUG
-	DebugDraw::String::Draw();
+	Primitive2D::Draw();
+	String::Draw();
 #endif // BUILD_DEBUG
 }
 

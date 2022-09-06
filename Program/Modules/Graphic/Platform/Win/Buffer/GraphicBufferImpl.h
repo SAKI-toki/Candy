@@ -17,9 +17,12 @@ namespace impl
 
 		void cleanup();
 
-		void translationBarrier(ID3D12GraphicsCommandList* const _graphicCommandList, const types::BARRIER_STATE _nextBarrierState);
+		void translationBarrier(ID3D12GraphicsCommandList* const _graphicCommandList, 
+			const types::BARRIER_STATE _prevBarrierState, const types::BARRIER_STATE _nextBarrierState);
 
 		void store(const std::byte* const _buf, const u64 _size,const u64 _offset);
+
+		void setName(const std::string_view _name);
 
 	public:
 		ID3D12Resource* getBuffer()const { return m_Buffer.Get(); }
@@ -27,7 +30,6 @@ namespace impl
 
 	private:
 		ComPtr<ID3D12Resource> m_Buffer;
-		D3D12_RESOURCE_STATES m_ResourceState = D3D12_RESOURCE_STATE_COMMON;
 	};
 }
 

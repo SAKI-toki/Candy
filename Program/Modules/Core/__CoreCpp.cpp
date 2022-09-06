@@ -18,7 +18,6 @@
 
 #include "FileSystem/FileSystem.cpp"
 #include "FileSystem/FileEnumerator/FileSystemFileEnumerator.cpp"
-#include "FileSystem/FileInfo/FileSystemFileInfo.cpp"
 #include "FileSystem/Work/FileSystemWork.cpp"
 #include "FileSystem/Work/FileSystemWorkHandle.cpp"
 
@@ -30,12 +29,17 @@
 
 #include "JobSystem/CoreJobSystem.cpp"
 
+#include "Matrix/Matrix.cpp"
+
 #include "Module/CoreModule.cpp"
 #include "Module/CoreModuleBase.cpp"
 #include "Module/CoreModuleManager.cpp"
 
 #include "Mutex/CriticalSection.cpp"
 #include "Mutex/ThreadEvent.cpp"
+
+#include "System/CoreSystem.cpp"
+#include "System/CoreSystemUpdateDrawIndex.cpp"
 
 #include "Thread/Thread.cpp"
 #include "Thread/ThreadHandle.cpp"
@@ -57,12 +61,13 @@
 
 #include "Platform/Win/FileSystem/FileSystemImpl.cpp"
 #include "Platform/Win/FileSystem/FileEnumerator/FileSystemFileEnumeratorImpl.cpp"
-#include "Platform/Win/FileSystem/FileInfo/FileSystemFileInfoImpl.cpp"
 
 #include "Platform/Win/Hardware/HardwareImpl.cpp"
 
 #include "Platform/Win/Input/Keyboard/InputKeyboardImpl.cpp"
 #include "Platform/Win/Input/Mouse/InputMouseImpl.cpp"
+
+#include "Platform/Win/Matrix/MatrixImpl.cpp"
 
 #include "Platform/Win/Mutex/CriticalSectionImpl.cpp"
 #include "Platform/Win/Mutex/ThreadEventImpl.cpp"

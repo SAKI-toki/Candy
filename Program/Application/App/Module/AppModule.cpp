@@ -6,6 +6,7 @@
  *********************************************************************/
 
 #include "AppModule.h"
+#include <App/Rendering/RenderingManager.h>
 #include <App/Flow/Game/GameFlow.h>
 #include <App/Entity/EntityManager.h>
 #include <App/Component/System/Manager/ComponentManager.h>
@@ -24,6 +25,7 @@ void Module::initializeImpl()
 // 他モジュールに依存する初期化の実装部
 void Module::startupImpl()
 {
+	RenderingManager::Startup();
 	Model::Startup();
 	Font::Startup();
 	Debug::Startup();
@@ -41,6 +43,7 @@ void Module::cleanupImpl()
 	Debug::Cleanup();
 	Font::Cleanup();
 	Model::Cleanup();
+	RenderingManager::Cleanup();
 }
 
 // 他モジュールに依存しない破棄の実装部
@@ -96,21 +99,20 @@ void Module::postRenderImpl()
 // 前描画の実装部
 void Module::preDrawImpl()
 {
-
+	RenderingManager::PreDraw();
 }
 
 // 描画の実装部
 void Module::drawImpl()
 {
-	GameFlow::Draw();
-	Model::Primitive::Draw(graphic::System::GetCommandList());
+	Model::Primitive::Draw();
 	Debug::Draw();
 }
 
 // 後描画の実装部
 void Module::postDrawImpl()
 {
-
+	RenderingManager::PostDraw();
 }
 
 // フレーム終了の実装部
@@ -122,7 +124,7 @@ void Module::endFrameImpl()
 // フリップの実装部
 void Module::flipImpl()
 {
-	Global::Flip();
+	EntityManager::Flip();
 }
 
 CANDY_APP_NAMESPACE_END

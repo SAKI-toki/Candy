@@ -29,12 +29,16 @@ class Module : public core::ModuleBase
 	void updateImpl()override;
 	// 後更新の実装部
 	void postUpdateImpl()override;
+	// 描画開始の実装部
+	void beginDrawImpl()override;
 	// 前描画の実装部
 	void preDrawImpl()override;
 	// 描画の実装部
 	void drawImpl()override;
 	// 後描画の実装部
 	void postDrawImpl()override;
+	// 描画終了の実装部
+	void endDrawImpl()override;
 
 	// フリップの実装部
 	void flipImpl()override;

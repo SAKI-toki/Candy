@@ -53,8 +53,6 @@
 
 #if PLATFORM_WIN
 
-#include "Platform/Win/GraphicImpl.cpp"
-
 #include "Platform/Win/Buffer/GraphicBufferImpl.cpp"
 #include "Platform/Win/Buffer/StartupInfo/GraphicBufferStartupInfoImpl.cpp"
 
@@ -84,6 +82,8 @@
 #include "Platform/Win/Shader/Base/GraphicBaseShaderImpl.cpp"
 
 #include "Platform/Win/SwapChain/GraphicSwapChainImpl.cpp"
+
+#include "Platform/Win/System/GraphicSystemImpl.cpp"
 
 #include "Platform/Win/Types/GraphicTypeConvert.cpp"
 

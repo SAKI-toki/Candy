@@ -12,10 +12,11 @@ CANDY_CORE_NAMESPACE_BEGIN
 namespace FileSystem
 {
 	// 初期化
-	void Work::startup(const u32 _hash, std::byte* _buf)
+	void Work::startup(const std::string_view _path, BufferInfo* const _bufferInfo)
 	{
-		m_Hash = _hash;
-		m_Buffer = _buf;
+		m_Path = _path;
+		m_Hash = Fnv::Hash32Low(_path);
+		m_BufferInfo = _bufferInfo;
 	}
 
 	// 破棄
@@ -30,16 +31,22 @@ namespace FileSystem
 		return m_Handle;
 	}
 
+	// パスの取得
+	std::string Work::getPath()const
+	{
+		return m_Path;
+	}
+
 	// ハッシュの取得
 	u32 Work::getHash()const
 	{
 		return m_Hash;
 	}
 
-	// バッファの取得
-	std::byte* Work::getBuffer()const
+	// バッファ情報の取得
+	BufferInfo* Work::getBufferInfo()
 	{
-		return m_Buffer;
+		return m_BufferInfo;
 	}
 
 	// ハンドルのセット

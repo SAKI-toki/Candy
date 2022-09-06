@@ -58,9 +58,13 @@ public:
 	Component::Transform* getTransformComponent();
 	const Component::Transform* getTransformComponent()const;
 
+	bool isAlive()const { return m_IsAlive; }
+	void setAlive(const bool _alive) { m_IsAlive = _alive; }
+
 private:
 	EntityHandle m_Handle{};
 	std::string m_Name{};
+	bool m_IsAlive = true;
 
 	Component::List m_ComponentList;
 };

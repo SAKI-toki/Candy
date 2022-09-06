@@ -6,7 +6,7 @@
  *********************************************************************/
 
 #include "PlayerBehaviorComponent.h"
-#include <App/Model/Primitive/ModelPrimitive.h>
+#include <App/Debug/Draw/DebugDraw.h>
 #include <App/Entity/EntityManager.h>
 #include "EnemyBehaviorComponent.h"
 
@@ -29,20 +29,20 @@ namespace Component
 		}
 
 		auto playerPos = transform->getPos();
+		auto playerScale = transform->getScale();
 
 		Rect playerRect;
-		playerRect.setSize(playerPos.x, playerPos.y, 20.0f, 50.0f);
-		
-		Model::Primitive::AddRect2D(playerRect, core::GetColorRGB32(0xff, 0xff, 0xff));
+		playerRect.setSize(playerPos.x, playerPos.y, playerScale.x, playerScale.y);
 
 		if (auto enemy = m_EnemyHandle.getPtr())
 		{
 			if (auto enemyTransformComponent = enemy->getTransformComponent())
 			{
 				auto enemyPos = enemyTransformComponent->getPos();
+				auto enemyScale = enemyTransformComponent->getScale();
 
 				Rect enemyRect;
-				enemyRect.setSize(enemyPos.x, enemyPos.y, 20.0f, 50.0f);
+				enemyRect.setSize(enemyPos.x, enemyPos.y, enemyScale.x, enemyScale.y);
 
 				if (physics::Collision2D::QuadQuad::IntersectConvex(playerRect, enemyRect))
 				{

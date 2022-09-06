@@ -26,23 +26,21 @@ void ShaderManager::Startup()
 	{
 		{
 			std::string filePath = baseShaderPath + shaderFileName + ".vso";
-			u64 fileSize = core::FileSystem::GetFileSize(filePath);
-			std::byte* buf = new std::byte[fileSize];
-			core::FileSystem::RequestReadNoWait(filePath, buf, fileSize);
-			m_ShaderBuffers.push_back(buf);
+			core::FileSystem::BufferInfo bufferInfo;
+			core::FileSystem::RequestReadNoWait(filePath,&bufferInfo);
+			m_ShaderBuffers.push_back(bufferInfo.m_Buffer);
 			VertexShader vs;
-			vs.startup(buf, fileSize);
+			vs.startup(bufferInfo.m_Buffer, bufferInfo.m_BufferSize);
 			m_VertexShaders.push_back(vs);
 		}
 
 		{
 			std::string filePath = baseShaderPath + shaderFileName + ".pso";
-			u64 fileSize = core::FileSystem::GetFileSize(filePath);
-			std::byte* buf = new std::byte[fileSize];
-			core::FileSystem::RequestReadNoWait(filePath, buf, fileSize);
-			m_ShaderBuffers.push_back(buf);
+			core::FileSystem::BufferInfo bufferInfo;
+			core::FileSystem::RequestReadNoWait(filePath, &bufferInfo);
+			m_ShaderBuffers.push_back(bufferInfo.m_Buffer);
 			PixelShader ps;
-			ps.startup(buf, fileSize);
+			ps.startup(bufferInfo.m_Buffer, bufferInfo.m_BufferSize);
 			m_PixelShaders.push_back(ps);
 		}
 	}

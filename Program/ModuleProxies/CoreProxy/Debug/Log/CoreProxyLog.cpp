@@ -7,7 +7,7 @@
 
 #include "CoreProxyLog.h"
 
-#include <App/Debug/Draw/DebugDraw.h>
+#include <App/Debug/Draw/String/DebugDrawString.h>
 
 #if PLATFORM_WIN
 #include <CoreProxy/Platform/Win/Debug/Log/CoreProxyLogImpl.h>
@@ -64,7 +64,7 @@ namespace Debug
 			{
 				const size_t logIndex = m_LogInfos.size() - i - 1;
 				const auto& logInfo = m_LogInfos[logIndex];
-				app::DebugDraw::DrawString(Vec4{ 50.0f, 0.0f + i * 30.0f, 0.0f }, logInfo.m_Color, 30.0f, logInfo.m_Message.c_str());
+				app::DebugDraw::String::Add(Vec4{ 50.0f, 0.0f + i * 30.0f, 0.0f }, logInfo.m_Color, 30.0f, logInfo.m_Message.c_str());
 			}
 			m_Timer -= app::Global::GetAppTime();
 		}

@@ -34,6 +34,9 @@ class Module : public ModuleBase
 	void postUpdateImpl()override;
 	// フレーム終了の実装部
 	void endFrameImpl()override;
+
+	// フリップの実装部
+	void flipImpl()override;
 };
 
 CANDY_CORE_NAMESPACE_END

@@ -26,6 +26,24 @@ void EntityManager::Cleanup()
 	m_EntityHandleSystem.cleanup();
 }
 
+void EntityManager::Flip()
+{
+	auto itr = m_Entities.begin();
+	while (itr != m_Entities.end())
+	{
+		auto entity = *itr;
+		if (entity->isAlive())
+		{
+			++itr;
+			continue;
+		}
+		entity->cleanup();
+		m_EntityHandleSystem.releaseHandle(entity->getHandle());
+		delete (*itr);
+		itr = m_Entities.erase(itr);
+	}
+}
+
 Entity* EntityManager::CreateEntity(std::string_view _name)
 {
 	Entity* entity = new Entity();
@@ -49,14 +67,8 @@ void EntityManager::ReleaseEntity(const EntityHandle& _handle)
 {
 	auto entity = _handle.getPtr();
 	if (!entity)return;
-	entity->cleanup();
-	m_EntityHandleSystem.releaseHandle(entity->getHandle());
-	auto itr = std::find(m_Entities.begin(), m_Entities.end(), entity);
-	if (itr != m_Entities.end())
-	{
-		delete (*itr);
-		m_Entities.erase(itr);
-	}
+	if (!entity->isAlive())return;
+	entity->setAlive(false);
 }
 
 Entity* EntityManager::GetEntityPtr(const EntityHandle& _handle)

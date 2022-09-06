@@ -8,6 +8,7 @@
 #include "DebugDrawString.h"
 #include <App/Font/Font.h>
 #include <App/Utility/UtilityConvertPosition.h>
+#include <App/Rendering/RenderingManager.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -114,7 +115,7 @@ namespace DebugDraw
 	void String::Draw()
 	{
 #if BUILD_DEBUG
-		auto& drawStringInfoList = m_DrawStringInfoLists[Global::GetDrawIndex()];
+		auto& drawStringInfoList = m_DrawStringInfoLists[core::System::GetDrawIndex()];
 		if (drawStringInfoList.empty())return;
 
 		std::vector<VertexInfo> vertexInfos;
@@ -193,14 +194,10 @@ namespace DebugDraw
 		m_VertexBuffers[graphic::System::GetBackBufferIndex()].store(reinterpret_cast<std::byte*>(vertexInfos.data()), core::Min(vertexInfos.size(), 0xffff) * sizeof(VertexInfo), 0);
 		m_IndexBuffers[graphic::System::GetBackBufferIndex()].store(reinterpret_cast<std::byte*>(indices.data()), core::Min(indices.size(), 0xffff) * sizeof(u16), 0);
 
-		auto& commandList = graphic::System::GetCommandList();
-
-		commandList.setRenderTargets(graphic::System::GetBackBufferDescriptor().getCpuHandle(graphic::System::GetBackBufferIndex()), 1);
+		auto& commandList = RenderingManager::GetDebug2DCommandList();
 
 		commandList.setRootSignature(m_RootSignature);
 		commandList.setPipeline(m_Pipeline);
-
-		Font::GetFontTextureBuffer(DefaultFontType).translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 
 		commandList.setDescriptor(0, m_Descriptor);
 		commandList.registDescriptors(1, 0);
@@ -222,8 +219,8 @@ namespace DebugDraw
 #endif // BUILD_DEBUG
 	}
 
-	// 描画登録(位置, 色, サイズ)
-	void String::Add(
+	// 描画登録(直接)
+	void String::AddDirect(
 		CANDY_UNUSED_VALUE_ATTR const AddInfo& _addInfo, 
 		CANDY_UNUSED_VALUE_ATTR const std::string_view _format)
 	{
@@ -234,7 +231,7 @@ namespace DebugDraw
 		drawStringInfo.m_Scale = _addInfo.m_Scale;
 		drawStringInfo.m_Wstring = core::StringSystem::ConvertMultiByteToWideCharSJIS(_format);
 		CANDY_CRITICAL_SECTION_SCOPE(m_CriticalSection);
-		m_DrawStringInfoLists[Global::GetUpdateIndex()].push_back(drawStringInfo);
+		m_DrawStringInfoLists[core::System::GetUpdateIndex()].push_back(drawStringInfo);
 #endif // BUILD_DEBUG
 	}
 }

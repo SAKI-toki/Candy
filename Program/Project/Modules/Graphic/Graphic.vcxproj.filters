@@ -173,6 +173,9 @@
     <Filter Include="Src\System">
       <UniqueIdentifier>{d252fae4-610c-444a-9173-5bbc07a5f05c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Platform\Win\System">
+      <UniqueIdentifier>{070e0f39-0d6f-4f0a-a39d-5aa9d790721b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Graphic\__GraphicCpp.cpp">
@@ -271,9 +274,6 @@
     <ClCompile Include="..\..\..\Modules\Graphic\Platform\Win\Viewport\GraphicViewportImpl.cpp">
       <Filter>Src\Platform\Win\Viewport</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Graphic\Platform\Win\GraphicImpl.cpp">
-      <Filter>Src\Platform\Win</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Modules\Graphic\ResourceManager\GraphicResourceManager.cpp">
       <Filter>Src\ResourceManager</Filter>
     </ClCompile>
@@ -324,6 +324,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Graphic\System\GraphicSystem.cpp">
       <Filter>Src\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Graphic\Platform\Win\System\GraphicSystemImpl.cpp">
+      <Filter>Src\Platform\Win\System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -420,9 +423,6 @@
     <ClInclude Include="..\..\..\Modules\Graphic\Platform\Win\Viewport\GraphicViewportImpl.h">
       <Filter>Src\Platform\Win\Viewport</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Graphic\Platform\Win\GraphicImpl.h">
-      <Filter>Src\Platform\Win</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Modules\Graphic\ResourceManager\GraphicResourceManager.h">
       <Filter>Src\ResourceManager</Filter>
     </ClInclude>
@@ -482,6 +482,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Graphic\System\GraphicSystem.h">
       <Filter>Src\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Graphic\Platform\Win\System\GraphicSystemImpl.h">
+      <Filter>Src\Platform\Win\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -10,6 +10,8 @@
 
 #include <Core/CoreInclude.h>
 
+#include "FileSystemDef.h"
+
 #include "Work/FileSystemWork.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -21,12 +23,10 @@ namespace FileSystem
 	// 更新
 	void Cleanup();
 
-	// ファイルサイズの取得
-	u64 GetFileSize(std::string_view _path);
 	// 読み込みリクエスト
-	WorkHandle RequestRead(std::string_view _path, std::byte* const _buf, u64 _bufSize);
+	WorkHandle RequestRead(std::string_view _path, BufferInfo* const _bufferInfo);
 	// 読み込みリクエスト(即時)
-	bool RequestReadNoWait(std::string_view _path, std::byte* const _buf, u64 _bufSize);
+	bool RequestReadNoWait(std::string_view _path, BufferInfo* const _bufferInfo);
 	// ファイル読み込み終了判定
 	bool IsEndReadWork(const WorkHandle& _handle);
 }

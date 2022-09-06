@@ -40,6 +40,11 @@ void CommandList::setScissorRect(const ScissorRect& _scissorRect)
 	CommandListImpl::setScissorRect(_scissorRect.getScissorRect());
 }
 
+void CommandList::setRenderTargetsDepthStencilNull()
+{
+	CommandListImpl::setRenderTargets(nullptr, 0, nullptr);
+}
+
 void CommandList::setRenderTargets(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const s32 _renderTargetCount)
 {
 	CommandListImpl::setRenderTargets(_rtDescriptorCpuHandle.getHandleAddress(), _renderTargetCount, nullptr);
@@ -125,6 +130,12 @@ void CommandList::setDescriptorTable(const s32 _rootParameterIndex, const Descri
 	CommandListImpl::setDescriptorTable(_rootParameterIndex, _descriptor.getGpuHandle(_offsetIndex).getHandle());
 }
 
+void CommandList::translationBufferBarrier(Buffer& _buffer, 
+	const types::BARRIER_STATE _prevBarrierState, const types::BARRIER_STATE _nextBarrierState)
+{
+	_buffer.translationBarrier(*this, _prevBarrierState, _nextBarrierState);
+}
+
 void CommandList::drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
 	const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation)
 {
@@ -137,6 +148,11 @@ void CommandList::copyTexture(const Device& _device, const Buffer& _dstBuffer, c
 	CommandListImpl::copyTexture(_device.getDevice(), _dstBuffer.getBuffer(), _srcBuffer.getBuffer());
 	ResourceManager::Regist(_dstBuffer);
 	ResourceManager::Regist(_srcBuffer);
+}
+
+void CommandList::setName(const std::string_view _name)
+{
+	CommandListImpl::setName(_name);
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

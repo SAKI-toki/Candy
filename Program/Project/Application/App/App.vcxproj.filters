@@ -71,6 +71,18 @@
     <Filter Include="Src\Component\System\Table">
       <UniqueIdentifier>{58188d59-9e90-4ad1-8221-be5610828cb4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Debug\Draw\Primitive2D">
+      <UniqueIdentifier>{c9f174a7-0cc0-4f8e-9a65-5f2de23cccef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Rendering">
+      <UniqueIdentifier>{cc58a958-76e0-4001-8d0a-7cb39eadb0f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Rendering\Pass">
+      <UniqueIdentifier>{b9ab09e4-bb15-45df-81bf-a179a9c42d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Rendering\Sprite">
+      <UniqueIdentifier>{cf5669d5-eee5-4b7f-81c0-6273e3df45dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Application\App\__RootCpp.cpp">
@@ -178,6 +190,36 @@
     <ClCompile Include="..\..\..\Application\App\Component\System\Table\ComponentRequireTable.cpp">
       <Filter>Src\Component\System\Table</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Debug\Draw\Primitive2D\DebugDrawPrimitive2D.cpp">
+      <Filter>Src\Debug\Draw\Primitive2D</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\__RenderingCpp.cpp">
+      <Filter>Src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\RenderingManager.cpp">
+      <Filter>Src\Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Debug2D.cpp">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Sprite.cpp">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Model.cpp">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_BeginFrame.cpp">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_EndFrame.cpp">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Sprite\SpriteRenderingManager.cpp">
+      <Filter>Src\Rendering\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Sprite\Sprite.cpp">
+      <Filter>Src\Rendering\Sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Application\App\AppInclude.h">
@@ -264,11 +306,41 @@
     <ClInclude Include="..\..\..\Application\App\Component\System\Table\ComponentRequireTable.h">
       <Filter>Src\Component\System\Table</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Debug\Draw\Primitive2D\DebugDrawPrimitive2D.h">
+      <Filter>Src\Debug\Draw\Primitive2D</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\RenderingManager.h">
+      <Filter>Src\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\RenderingParam.h">
+      <Filter>Src\Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Debug2D.h">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Sprite.h">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Model.h">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_BeginFrame.h">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_EndFrame.h">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Pass\RenderingPassBase.h">
+      <Filter>Src\Rendering\Pass</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Sprite\SpriteRenderingManager.h">
+      <Filter>Src\Rendering\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Sprite\Sprite.h">
+      <Filter>Src\Rendering\Sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\Application\App\Debug\Draw\DebugDraw.inl">
-      <Filter>Src\Debug\Draw</Filter>
-    </None>
     <None Include="..\..\..\Application\App\Component\System\List\ComponentList.inl">
       <Filter>Src\Component\System\List</Filter>
     </None>
@@ -280,6 +352,9 @@
     </None>
     <None Include="..\..\..\Application\App\Component\System\Table\ComponentRequireTable.inl">
       <Filter>Src\Component\System\Table</Filter>
+    </None>
+    <None Include="..\..\..\Application\App\Debug\Draw\String\DebugDrawString.inl">
+      <Filter>Src\Debug\Draw\String</Filter>
     </None>
   </ItemGroup>
 </Project>

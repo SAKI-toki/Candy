@@ -27,7 +27,7 @@ namespace Model::Primitive
 	// 破棄
 	void Cleanup();
 	// 描画
-	void Draw(graphic::CommandList& _commandList);
+	void Draw();
 
 	// 2D三角形の描画登録
 	void AddTriangle2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Color _color);

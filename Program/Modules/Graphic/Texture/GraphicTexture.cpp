@@ -22,7 +22,7 @@ namespace TextureManager
 		Buffer m_DstBuffer;
 		Buffer m_SrcBuffer;
 	};
-	std::vector<UploadBufferInfo> m_UploadBufferInfos;
+	std::vector<UploadBufferInfo> m_UploadBufferInfoLists[2];
 	CommandList m_CommandList;
 }
 
@@ -36,7 +36,7 @@ void TextureManager::Startup()
 // 破棄
 void TextureManager::Cleanup()
 {
-	m_UploadBufferInfos.clear();
+	for (auto& uploadBufferInfoList : m_UploadBufferInfoLists)uploadBufferInfoList.clear();
 
 	m_CommandList.cleanup();
 }
@@ -44,13 +44,15 @@ void TextureManager::Cleanup()
 // アップロードテクスチャの実行
 void TextureManager::ExecuteUploadTexture(const CommandQueue& _commandQueue)
 {
-	if (m_UploadBufferInfos.empty())return;
+	auto& m_UploadBufferInfoList = m_UploadBufferInfoLists[core::System::GetDrawIndex()];
+	if (m_UploadBufferInfoList.empty())return;
 	m_CommandList.preDraw(System::GetBackBufferIndex());
-	for (auto& uploadBufferInfo : m_UploadBufferInfos)
+	for (auto& uploadBufferInfo : m_UploadBufferInfoList)
 	{
 		m_CommandList.copyTexture(System::GetDevice(), uploadBufferInfo.m_DstBuffer, uploadBufferInfo.m_SrcBuffer);
+		m_CommandList.translationBufferBarrier(uploadBufferInfo.m_DstBuffer, types::BARRIER_STATE::COPY_DEST, types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 	}
-	m_UploadBufferInfos.clear();
+	m_UploadBufferInfoList.clear();
 	m_CommandList.close();
 	_commandQueue.executeCommandList(m_CommandList);
 }
@@ -67,7 +69,7 @@ void TextureManager::CreateTexture(Buffer& _buffer, const std::byte* const _pixe
 	UploadBufferInfo uploadBufferInfo;
 	uploadBufferInfo.m_SrcBuffer = uploaderBuffer;
 	uploadBufferInfo.m_DstBuffer = _buffer;
-	m_UploadBufferInfos.push_back(uploadBufferInfo);
+	m_UploadBufferInfoLists[core::System::GetUpdateIndex()].push_back(uploadBufferInfo);
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

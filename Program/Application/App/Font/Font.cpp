@@ -71,23 +71,29 @@ void Font::LoadFont(const std::string& _fontName)
 {
 	const std::string binPath = core::Config::GetDataPath() + std::string{ R"(\Font\)"} + _fontName + ".bin";
 	const std::string texturePath = core::Config::GetDataPath() + std::string{ R"(\Font\)" } + _fontName + ".dds";
-	const u64 binSize = core::FileSystem::GetFileSize(binPath);
-	const u64 textureSize = core::FileSystem::GetFileSize(texturePath);
 
-	std::byte* binBuf = new std::byte[binSize];
-	std::byte* textureBuf = new std::byte[textureSize];
+	core::FileSystem::BufferInfo binBufferInfo;
+	core::FileSystem::BufferInfo textureBufferInfo;
 
-	core::FileSystem::RequestReadNoWait(binPath, binBuf, binSize);
-	core::FileSystem::RequestReadNoWait(texturePath, textureBuf, textureSize);
+	if (!core::FileSystem::RequestReadNoWait(binPath, &binBufferInfo))
+	{
+		CANDY_LOG_ERR("フォントのバイナリファイル読み込みに失敗");
+		return;
+	}
+	if (!core::FileSystem::RequestReadNoWait(texturePath, &textureBufferInfo))
+	{
+		CANDY_LOG_ERR("フォントのバイナリファイル読み込みに失敗");
+		return;
+	}
 
 	FontData fontData;
 
 	u32 binOffset = 0;
-	const UvHeader& uvHeader = *(UvHeader*)(binBuf + binOffset);
+	const UvHeader& uvHeader = *(UvHeader*)(binBufferInfo.m_Buffer + binOffset);
 	binOffset += sizeof(UvHeader);
 	for (u32 i = 0; i < uvHeader.m_NumCodes; ++i)
 	{
-		const UvInfoRaw& uvInfo = *(UvInfoRaw*)(binBuf + binOffset);
+		const UvInfoRaw& uvInfo = *(UvInfoRaw*)(binBufferInfo.m_Buffer + binOffset);
 		binOffset += sizeof(UvInfoRaw);
 
 		fontData.m_Uvs[uvInfo.m_Code].m_Rect.setPos(uvInfo.x0, uvInfo.y0, uvInfo.x1, uvInfo.y1);
@@ -96,7 +102,7 @@ void Font::LoadFont(const std::string& _fontName)
 	graphic::BufferStartupInfo textureBufferStartupInfo;
 	textureBufferStartupInfo.setTextureStartupInfo(graphic::types::GRAPHIC_FORMAT::BC3_UNORM, 4096, 4096);
 	fontData.m_TextureBuffer.startup(graphic::System::GetDevice(), textureBufferStartupInfo);
-	std::byte* ddsBuf = graphic::Texture::DDS::ReadAlloc(textureBuf, textureSize);
+	std::byte* ddsBuf = graphic::Texture::DDS::ReadAlloc(textureBufferInfo.m_Buffer, textureBufferInfo.m_BufferSize);
 	graphic::TextureManager::CreateTexture(fontData.m_TextureBuffer, ddsBuf, 4096 * 4096);
 
 	m_FontDatas.push_back(fontData);

@@ -22,7 +22,6 @@
 
 #include "FileSystem/FileSystem.h"
 #include "FileSystem/FileEnumerator/FileSystemFileEnumerator.h"
-#include "FileSystem/FileInfo/FileSystemFileInfo.h"
 #include "FileSystem/Work/FileSystemWork.h"
 #include "FileSystem/Work/FileSystemWorkHandle.h"
 
@@ -51,6 +50,9 @@
 #include "Rect/Rect.h"
 
 #include "Std/StdInclude.h"
+
+#include "System/CoreSystem.h"
+#include "System/CoreSystemUpdateDrawIndex.h"
 
 #include "Thread/ThreadDef.h"
 #include "Thread/Thread.h"

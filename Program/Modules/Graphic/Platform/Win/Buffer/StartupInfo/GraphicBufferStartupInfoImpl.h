@@ -11,10 +11,11 @@ namespace impl
 	{
 	protected:
 		void setBufferStartupInfo(const u64 _size);
-		void setRenderTargetStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
+		void setRenderTargetStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height, const Color& _clearColor);
 		void setDepthStencilStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
 		void setTextureStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
 		void reset();
+		void setInitBarrierState(const types::BARRIER_STATE _barrierState);
 
 	public:
 		const D3D12_HEAP_PROPERTIES& getHeapProperties()const { return m_HeapProperties; }
@@ -23,7 +24,7 @@ namespace impl
 		const D3D12_RESOURCE_DESC* getResourceDescAddress()const { return &m_ResourceDesc; }
 		const D3D12_CLEAR_VALUE getClearValue()const { return m_ClearValue; }
 		const D3D12_CLEAR_VALUE* getClearValueAddress()const { return m_UseClearValue ? &m_ClearValue : nullptr; }
-		D3D12_RESOURCE_STATES getInitState()const { return m_InitState; }
+		D3D12_RESOURCE_STATES getInitBarrierState()const { return m_InitState; }
 
 	private:
 		D3D12_HEAP_PROPERTIES m_HeapProperties{};

@@ -10,8 +10,8 @@
 #include <App/Model/Model.h>
 #include <App/Debug/Draw/DebugDraw.h>
 #include <App/Entity/EntityManager.h>
-#include <App/Component/Behavior/PlayerBehaviorComponent.h>
-#include <App/Component/Behavior/EnemyBehaviorComponent.h>
+#include <App/Component/System/AllComponentInclude.h>
+#include <App/Rendering/RenderingManager.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -117,10 +117,9 @@ namespace GameFlow
 			m_Descriptor.bindingTexture2D(graphic::System::GetDevice(), graphic::Config::GetBackBufferCount() + 1, m_MaskBuffer, graphic::types::GRAPHIC_FORMAT::A8_UINT);
 
 			auto path = std::string{ core::Config::GetDataPath() } + _texturePath;
-			u64 size = core::FileSystem::GetFileSize(path);
-			std::byte* buf = new std::byte[size];
-			core::FileSystem::RequestReadNoWait(path, buf, size);
-			auto result = graphic::Texture::DDS::ReadAlloc(buf, size);
+			core::FileSystem::BufferInfo bufferInfo;
+			core::FileSystem::RequestReadNoWait(path, &bufferInfo);
+			auto result = graphic::Texture::DDS::ReadAlloc(bufferInfo.m_Buffer, bufferInfo.m_BufferSize);
 			graphic::TextureManager::CreateTexture(m_TextureBuffer, result, _width * _height / ((_startupFlag & STARTUP_FLAG_USE_ALPHA) ? 1 : 2));
 		}
 		void cleanup()
@@ -139,18 +138,18 @@ namespace GameFlow
 		}
 		void draw()
 		{
-			auto& commandList = graphic::System::GetCommandList();
+			auto& commandList = RenderingManager::GetModelCommandList();
 
 			if(flag & STARTUP_FLAG_WRITE_MASK)
 			{
-				m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::RENDER_TARGET);
+				//m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::RENDER_TARGET);
 				commandList.setRenderTargets(m_MaskDescriptor.getCpuHandle(0), 1);
 			}
 
 			commandList.setRootSignature(m_RootSignature);
 			commandList.setPipeline(m_Pipeline);
 
-			m_TextureBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
+			//m_TextureBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 
 			commandList.setDescriptor(0, m_Descriptor);
 			commandList.registDescriptors(1, 0);
@@ -173,7 +172,7 @@ namespace GameFlow
 
 			if (flag & STARTUP_FLAG_WRITE_MASK)
 			{
-				m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
+				//m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 				commandList.setRenderTargets(graphic::System::GetBackBufferDescriptor().getCpuHandle(graphic::System::GetBackBufferIndex()), 1);
 			}
 
@@ -209,29 +208,28 @@ void GameFlow::Startup()
 {
 	auto player = EntityManager::CreateEntity("Player");
 	player->addComponent<Component::PlayerBehavior>();
+	player->addComponent<Component::Renderer>();
+	if (auto transform = player->getTransformComponent())
+	{
+		transform->setPos({ 100.0f, 100.0f, 0.0f });
+		transform->setScale({ 20.0f, 40.0f, 0.0f });
+	}
 	m_Entities.push_back(player->getHandle());
 
 	auto enemy = EntityManager::CreateEntity("Enemy");
 	enemy->addComponent<Component::EnemyBehavior>();
+	enemy->addComponent<Component::Renderer>();
+	if (auto transform = enemy->getTransformComponent())
+	{
+		transform->setPos({ 200.0f, 200.0f, 0.0f });
+		transform->setScale({ 70.0f, 30.0f, 0.0f });
+	}
 	m_Entities.push_back(enemy->getHandle());
 
 	if (auto component = player->getComponent<Component::PlayerBehavior>())
 	{
 		component->setEnemyEntityHandle(enemy->getHandle());
 	}
-
-	/*graphic::BufferStartupInfo bufferStartupInfo;
-	bufferStartupInfo.setRenderTargetStartupInfo(graphic::types::GRAPHIC_FORMAT::A8_UINT, graphic::Config::GetScreenWidth(), graphic::Config::GetScreenHeight());
-	m_MaskDescriptor.startup(graphic::System::GetDevice(), graphic::types::DESCRIPTOR_TYPE::RENDER_TARGET, 1);
-	m_MaskBuffer.startup(graphic::System::GetDevice(), bufferStartupInfo);
-	m_MaskDescriptor.bindingRenderTarget(graphic::System::GetDevice(), 0, m_MaskBuffer, graphic::types::GRAPHIC_FORMAT::A8_UINT);
-
-	m_TextureViews[0].startup(R"(Texture\forest.dds)", 512, 256, Vec4{ 4.0f, 2.0f, 1.0f }, TextureView::STARTUP_FLAG_NONE);
-	m_TextureViews[1].startup(R"(Texture\house.dds)", 256, 256, Vec4{ 2.0f,2.0f,1.0f }, TextureView::STARTUP_FLAG_NONE);
-	m_TextureViews[2].startup(R"(Texture\player1.dds)", 256, 256, Vec4{ 0.5f,0.5f,1.0f }, TextureView::STARTUP_FLAG_USE_ALPHA);
-	m_TextureViews[3].startup(R"(Texture\player2.dds)", 256, 256, Vec4{ 0.5f,0.5f,1.0f }, TextureView::STARTUP_FLAG_NONE);
-	m_TextureViews[2].m_Constant.m_Pos.y = -0.65f;
-	m_TextureViews[3].m_Constant.m_Pos.y = -0.65f;*/
 }
 
 // 破棄
@@ -239,96 +237,18 @@ void GameFlow::Cleanup()
 {
 	for (const auto& entity : m_Entities)EntityManager::ReleaseEntity(entity);
 	m_Entities.clear();
-	//for (auto& textureView : m_TextureViews)textureView.cleanup();
 }
 
 // 更新
 void GameFlow::Update()
 {
-	/*static Vec4 movePos = { 400.0f, 600.0f, 0.0f };
-	Vec4 size{ 40.0f, 100.0f, 0.0f };
-	static f32 velocity = 0.1f;
-	static bool landing = false;
 
-	Vec4 nextPos = movePos;
-
-	f32 rate = 1.0f;
-
-	if (core::Input::IsKeyOn(VK_LSHIFT))
-	{
-		rate *= 5.0f;
-	}
-
-	if (core::Input::IsKeyOn('A'))
-	{
-		nextPos.x -= 100.0f * Global::GetAppTime() * rate;
-	}
-	if (core::Input::IsKeyOn('D'))
-	{
-		nextPos.x += 100.0f * Global::GetAppTime() * rate;
-	}
-
-	if (landing && core::Input::IsKeyTrigger('W'))
-	{
-		landing = false;
-		velocity = -10.0f;
-	}
-
-	velocity += 30.0f * Global::GetAppTime();
-
-	nextPos.y += velocity;
-	
-	f32 slopeOffset = 0.0f;
-	if (landing)slopeOffset = 5.0f;
-
-	if (auto result = physics::Collision2D::RayCast::ToConvexQuad({ nextPos - Vec4{ 0.0f, size.y / 2.0f, 0.0f }, nextPos + Vec4{ 0.0f, size.y / 2.0f + slopeOffset, 0.0f } },
-		{
-			Vec4{ 0.0f, 800.0f, 0.0f }, 
-			Vec4{ 1600.0f, 500.0f, 0.0f },
-			Vec4{ 1600.0f, 520.0f, 0.0f }, 
-			Vec4{ 0.0f, 820.0f, 0.0f }
-			 }))
-	{
-		velocity = 0.0f;
-		nextPos = result.value().m_Pos - Vec4{ 0.0f, size.y / 2.0f, 0.0f };
-		landing = true;
-	}
-	else
-	{
-		landing = false;
-	}
-	movePos = nextPos;
-
-	Rect playerRect;
-	playerRect.setSize(movePos.x - size.x / 2.0f, movePos.y - size.y / 2.0f, size.x, size.y);
-
-	Model::Primitive::AddRect2D(playerRect, core::GetColorRGB32(0xff, 0xff, 0x00));
-	Model::Primitive::AddQuad2D(
-		Vec4{ 0.0f, 800.0f, 0.0f },
-		Vec4{ 1600.0f, 500.0f, 0.0f },
-		Vec4{ 1600.0f, 520.0f, 0.0f },
-		Vec4{ 0.0f, 820.0f, 0.0f }, core::GetColorRGB32(0xff, 0xff, 0xff));
-
-	for (auto& textureView : m_TextureViews)
-	{
-		textureView.update();
-	}*/
 }
 
 // 描画
 void GameFlow::Draw()
 {
-	//auto& commandList = graphic::System::GetCommandList();
-	//m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::RENDER_TARGET);
-	//commandList.clearRenderTarget(m_MaskDescriptor.getCpuHandle(0), core::GetColorRGBA32(0x00, 0x00, 0x00, 0x00));
-	//m_MaskBuffer.translationBarrier(commandList, graphic::types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 
-	///*for (auto& textureView : m_TextureViews)
-	//{
-	//	textureView.draw();
-	//}*/
-
-	//graphic::ResourceManager::Regist(m_MaskBuffer);
 }
 
 CANDY_APP_NAMESPACE_END

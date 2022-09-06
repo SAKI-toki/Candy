@@ -1,4 +1,4 @@
-﻿#include "GraphicImpl.h"
+﻿#include <Graphic/Platform/Win/System/GraphicSystemImpl.h>
 
 CANDY_GRAPHIC_NAMESPACE_BEGIN
 

@@ -13,9 +13,10 @@ class BufferStartupInfo : public impl::BufferStartupInfoImpl
 {
 public:
 	void setBufferStartupInfo(const u64 _size);
-	void setRenderTargetStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
+	void setRenderTargetStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height, const Color& _clearColor);
 	void setDepthStencilStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
 	void setTextureStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height);
+	void setInitBarrierState(const types::BARRIER_STATE _barrierState);
 };
 
 CANDY_GRAPHIC_NAMESPACE_END

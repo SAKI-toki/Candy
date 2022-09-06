@@ -10,7 +10,7 @@ namespace UI
 
 void UI::Startup()
 {
-	auto& device = graphic::System::GetDevice();
+	/*auto& device = graphic::System::GetDevice();
 
 	graphic::BufferStartupInfo bufferStartupInfo;
 	bufferStartupInfo.setRenderTargetStartupInfo(graphic::types::GRAPHIC_FORMAT::R8G8B8A8_UNORM,
@@ -19,7 +19,7 @@ void UI::Startup()
 
 	bufferStartupInfo.setDepthStencilStartupInfo(graphic::types::GRAPHIC_FORMAT::D24_UNORM_S8_UINT,
 		graphic::Config::GetScreenWidth(), graphic::Config::GetScreenHeight());
-	m_MaskStencilBuffer.startup(device, bufferStartupInfo);
+	m_MaskStencilBuffer.startup(device, bufferStartupInfo);*/
 }
 
 void UI::Cleanup()

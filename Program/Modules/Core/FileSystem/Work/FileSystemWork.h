@@ -10,6 +10,7 @@
 
 #include <Core/CoreInclude.h>
 
+#include <Core/FileSystem/FileSystemDef.h>
 #include "FileSystemWorkHandle.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
@@ -20,24 +21,27 @@ namespace FileSystem
 	{
 	public:
 		// 初期化
-		void startup(const u32 _hash, std::byte* const _buf);
+		void startup(const std::string_view _path, BufferInfo* const _bufferInfo);
 		// 破棄
 		void cleanup();
 
 		// ワークハンドルの取得
 		WorkHandle getHandle()const;
+		// パスの取得
+		std::string getPath()const;
 		// ハッシュの取得
 		u32 getHash()const;
-		// バッファの取得
-		std::byte* getBuffer()const;
+		// バッファ情報の取得
+		BufferInfo* getBufferInfo();
 
 		// ハンドルのセット
 		void setHandle(const WorkHandle _handle);
 
 	private:
 		WorkHandle m_Handle{};
+		std::string m_Path{};
 		u32 m_Hash{};
-		std::byte* m_Buffer = nullptr;
+		BufferInfo* m_BufferInfo{};
 	};
 }
 

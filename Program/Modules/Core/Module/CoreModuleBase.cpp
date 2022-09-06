@@ -39,6 +39,12 @@ void ModuleBase::beginFrame()
 	beginFrameImpl();
 }
 
+// 更新開始
+void ModuleBase::beginUpdate()
+{
+	beginUpdateImpl();
+}
+
 // 前更新
 void ModuleBase::preUpdate()
 {
@@ -55,6 +61,18 @@ void ModuleBase::update()
 void ModuleBase::postUpdate()
 {
 	postUpdateImpl();
+}
+
+// 更新終了
+void ModuleBase::endUpdate()
+{
+	endUpdateImpl();
+}
+
+// 描画登録開始
+void ModuleBase::beginRender()
+{
+	beginRenderImpl();
 }
 
 // 前描画登録
@@ -75,6 +93,18 @@ void ModuleBase::postRender()
 	postRenderImpl();
 }
 
+// 描画登録終了
+void ModuleBase::endRender()
+{
+	endRenderImpl();
+}
+
+// 描画開始
+void ModuleBase::beginDraw()
+{
+	beginDrawImpl();
+}
+
 // 前描画
 void ModuleBase::preDraw()
 {
@@ -91,6 +121,12 @@ void ModuleBase::draw()
 void ModuleBase::postDraw()
 {
 	postDrawImpl();
+}
+
+// 描画終了
+void ModuleBase::endDraw()
+{
+	endDrawImpl();
 }
 
 // フレーム終了

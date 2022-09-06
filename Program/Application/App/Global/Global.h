@@ -20,18 +20,11 @@ namespace Global
 	void Cleanup();
 	// 更新
 	void Update();
-	// フリップ
-	void Flip();
 
 	// 前フレームの経過時間の取得
 	f32 GetAppTime();
 	// トータルのフレームの経過時間の取得
 	f32 GetAppTimeAll();
-
-	// 更新インデックス
-	s32 GetUpdateIndex();
-	// 描画インデックス
-	s32 GetDrawIndex();
 }
 
 CANDY_APP_NAMESPACE_END

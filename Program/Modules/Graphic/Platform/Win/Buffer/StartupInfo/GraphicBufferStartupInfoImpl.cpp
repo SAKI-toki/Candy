@@ -25,7 +25,8 @@ namespace impl
 		m_InitState = D3D12_RESOURCE_STATE_GENERIC_READ;
 	}
 
-	void BufferStartupInfoImpl::setRenderTargetStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height)
+	void BufferStartupInfoImpl::setRenderTargetStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, 
+		const u64 _width, const u64 _height, const Color& _clearColor)
 	{
 		reset();
 
@@ -43,7 +44,10 @@ namespace impl
 		m_ResourceDesc.Flags = D3D12_RESOURCE_FLAG_ALLOW_RENDER_TARGET;
 
 		m_ClearValue.Format = graphicFormat;
-		m_ClearValue.Color[0] = m_ClearValue.Color[1] = m_ClearValue.Color[2] = m_ClearValue.Color[3] = 0.0f;
+		m_ClearValue.Color[0] = _clearColor.x;
+		m_ClearValue.Color[1] = _clearColor.y;
+		m_ClearValue.Color[2] = _clearColor.z;
+		m_ClearValue.Color[3] = _clearColor.w;
 		m_UseClearValue = true;
 	}
 
@@ -101,6 +105,11 @@ namespace impl
 		m_ClearValue = D3D12_CLEAR_VALUE{};
 		m_InitState = D3D12_RESOURCE_STATE_COMMON;
 		m_UseClearValue = false;
+	}
+
+	void BufferStartupInfoImpl::setInitBarrierState(const types::BARRIER_STATE _barrierState)
+	{
+		m_InitState = ConvBarrierState(_barrierState);
 	}
 }
 

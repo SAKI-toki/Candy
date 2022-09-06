@@ -137,6 +137,11 @@ namespace impl
 		srcTextureCopyLocation.PlacedFootprint = placedSubresourceFootprint;
 		m_CommandList->CopyTextureRegion(&dstTextureCopyLocation, 0, 0, 0, &srcTextureCopyLocation, nullptr);
 	}
+
+	void CommandListImpl::setName(const std::string_view _name)
+	{
+		m_CommandList->SetName(core::StringSystem::ConvertMultiByteToWideCharSJIS(_name).data());
+	}
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

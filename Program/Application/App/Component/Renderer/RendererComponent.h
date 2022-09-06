@@ -20,6 +20,12 @@ namespace Component
 
 	public:
 		void renderImpl()override;
+
+		void setColor(const Color& _color) { m_Color = _color; }
+		const Color& getColor()const { return m_Color; }
+
+	private:
+		Color m_Color{ OneVector };
 	};
 }
 

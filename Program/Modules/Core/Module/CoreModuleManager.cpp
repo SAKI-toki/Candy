@@ -54,8 +54,10 @@ void ModuleManager::cleanup()
 void ModuleManager::update()
 {
 	transformModuleNormalOrder(&ModuleBase::beginFrame);
-	m_JobSystem.execute();
-	m_JobSystem.wait();
+	updateModule();
+	drawModule();
+	/*m_JobSystem.execute();
+	m_JobSystem.wait();*/
 	transformModuleReverseOrder(&ModuleBase::endFrame);
 }
 
@@ -81,20 +83,26 @@ void ModuleManager::cleanupModule()
 // モジュールの更新
 void ModuleManager::updateModule()
 {
+	transformModuleNormalOrder(&ModuleBase::beginUpdate);
 	transformModuleNormalOrder(&ModuleBase::preUpdate);
 	transformModuleNormalOrder(&ModuleBase::update);
 	transformModuleNormalOrder(&ModuleBase::postUpdate);
+	transformModuleNormalOrder(&ModuleBase::endUpdate);
+	transformModuleNormalOrder(&ModuleBase::beginRender);
 	transformModuleNormalOrder(&ModuleBase::preRender);
 	transformModuleNormalOrder(&ModuleBase::render);
 	transformModuleNormalOrder(&ModuleBase::postRender);
+	transformModuleNormalOrder(&ModuleBase::endRender);
 }
 
 // モジュールの描画
 void ModuleManager::drawModule()
 {
+	transformModuleNormalOrder(&ModuleBase::beginDraw);
 	transformModuleNormalOrder(&ModuleBase::preDraw);
 	transformModuleNormalOrder(&ModuleBase::draw);
 	transformModuleNormalOrder(&ModuleBase::postDraw);
+	transformModuleNormalOrder(&ModuleBase::endDraw);
 }
 
 // モジュールのフリップ

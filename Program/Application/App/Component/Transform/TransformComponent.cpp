@@ -12,6 +12,11 @@ CANDY_APP_NAMESPACE_BEGIN
 namespace Component
 {
 	CANDY_COMPONENT_DEFINE(Transform, Base);
+
+	void Transform::updateMatrix()
+	{
+		if (!std::exchange(m_IsUpdateMatrix, false))return;
+	}
 }
 
 CANDY_APP_NAMESPACE_END

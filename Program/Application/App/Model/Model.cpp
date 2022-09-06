@@ -13,6 +13,7 @@ namespace Model
 {
 
 }
+
 // 初期化
 void Model::Startup()
 {

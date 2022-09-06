@@ -15,8 +15,6 @@ namespace Global
 	core::Tick m_PrevFrameTick;
 	f32 m_AppTime = 0.0f;
 	f32 m_AppTimeAll = 0.0f;
-	s32 m_UpdateIndex = 0;
-	s32 m_DrawIndex = 1;
 }
 
 // 初期化
@@ -40,12 +38,6 @@ void Global::Update()
 	m_AppTimeAll += m_AppTime;
 }
 
-// フリップ
-void Global::Flip()
-{
-	std::swap(m_UpdateIndex, m_DrawIndex);
-}
-
 // 前フレームの経過時間の取得
 f32 Global::GetAppTime()
 {
@@ -56,18 +48,6 @@ f32 Global::GetAppTime()
 f32 Global::GetAppTimeAll()
 {
 	return m_AppTimeAll;
-}
-
-// 更新インデックス
-s32 Global::GetUpdateIndex()
-{
-	return m_UpdateIndex;
-}
-
-// 描画インデックス
-s32 Global::GetDrawIndex()
-{
-	return m_DrawIndex;
 }
 
 CANDY_APP_NAMESPACE_END

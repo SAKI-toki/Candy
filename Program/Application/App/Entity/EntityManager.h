@@ -19,6 +19,8 @@ namespace EntityManager
 	void Startup();
 	void Cleanup();
 
+	void Flip();
+
 	Entity* CreateEntity(std::string_view _name);
 	void ReleaseEntity(const EntityHandle& _handle);
 

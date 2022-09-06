@@ -116,9 +116,6 @@
     <Filter Include="Src\FileSystem\FileEnumerator">
       <UniqueIdentifier>{29edaecd-63b3-457b-b879-1b4f09c493ee}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\FileSystem\FileInfo">
-      <UniqueIdentifier>{e85fe899-b86c-4d88-afcd-712800a1d3de}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\FileSystem\Work">
       <UniqueIdentifier>{f640a0c5-276a-41fb-99c3-88501638b6ee}</UniqueIdentifier>
     </Filter>
@@ -151,9 +148,6 @@
     </Filter>
     <Filter Include="Src\Platform\Win\FileSystem">
       <UniqueIdentifier>{f39bcc13-1d7b-4287-ac76-bd3c7ba537d7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Platform\Win\FileSystem\FileInfo">
-      <UniqueIdentifier>{ab4b0c19-02f2-470a-a8aa-bff77d0e6f01}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Platform\Win\FileSystem\FileEnumerator">
       <UniqueIdentifier>{475007e7-ed3b-4fb7-88e5-c226f81e18b8}</UniqueIdentifier>
@@ -190,6 +184,15 @@
     </Filter>
     <Filter Include="Src\Utility\InRange">
       <UniqueIdentifier>{20cad3cf-c6f2-4867-a4a2-d31eaf4a2675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\System">
+      <UniqueIdentifier>{ec7a9652-34a7-4ec1-b3f9-4075a912fe9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Matrix">
+      <UniqueIdentifier>{02886289-970f-4fbd-b23d-350e7973e996}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Matrix">
+      <UniqueIdentifier>{3d9a9836-ba02-4b95-89e6-9f190432c6b7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -322,9 +325,6 @@
     <ClInclude Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWorkHandle.h">
       <Filter>Src\FileSystem\Work</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Core\FileSystem\FileInfo\FileSystemFileInfo.h">
-      <Filter>Src\FileSystem\FileInfo</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\FileSystem\FileEnumerator\FileSystemFileEnumerator.h">
       <Filter>Src\FileSystem\FileEnumerator</Filter>
     </ClInclude>
@@ -357,9 +357,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileSystemImpl.h">
       <Filter>Src\Platform\Win\FileSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileInfo\FileSystemFileInfoImpl.h">
-      <Filter>Src\Platform\Win\FileSystem\FileInfo</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileEnumerator\FileSystemFileEnumeratorImpl.h">
       <Filter>Src\Platform\Win\FileSystem\FileEnumerator</Filter>
@@ -405,6 +402,21 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\Utility\InRange\CoreInRange.h">
       <Filter>Src\Utility\InRange</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\FileSystem\FileSystemDef.h">
+      <Filter>Src\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\System\CoreSystemUpdateDrawIndex.h">
+      <Filter>Src\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\System\CoreSystem.h">
+      <Filter>Src\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Matrix\Matrix.h">
+      <Filter>Src\Matrix</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Matrix\MatrixImpl.h">
+      <Filter>Src\Platform\Win\Matrix</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -483,9 +495,6 @@
     <ClCompile Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWorkHandle.cpp">
       <Filter>Src\FileSystem\Work</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Core\FileSystem\FileInfo\FileSystemFileInfo.cpp">
-      <Filter>Src\FileSystem\FileInfo</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\FileSystem\FileEnumerator\FileSystemFileEnumerator.cpp">
       <Filter>Src\FileSystem\FileEnumerator</Filter>
     </ClCompile>
@@ -512,9 +521,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileSystemImpl.cpp">
       <Filter>Src\Platform\Win\FileSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileInfo\FileSystemFileInfoImpl.cpp">
-      <Filter>Src\Platform\Win\FileSystem\FileInfo</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileEnumerator\FileSystemFileEnumeratorImpl.cpp">
       <Filter>Src\Platform\Win\FileSystem\FileEnumerator</Filter>
@@ -548,6 +554,18 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Vec\Vec4.cpp">
       <Filter>Src\Vec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\System\CoreSystemUpdateDrawIndex.cpp">
+      <Filter>Src\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\System\CoreSystem.cpp">
+      <Filter>Src\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Matrix\Matrix.cpp">
+      <Filter>Src\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Matrix\MatrixImpl.cpp">
+      <Filter>Src\Platform\Win\Matrix</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

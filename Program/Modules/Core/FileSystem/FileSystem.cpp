@@ -6,7 +6,6 @@
  *********************************************************************/
 
 #include "FileSystem.h"
-#include "FileInfo/FileSystemFileInfo.h"
 #include "FileEnumerator/FileSystemFileEnumerator.h"
 #include <Core/Thread/ThreadSystem.h>
 #include <Core/Handle/HandleSystem.h>
@@ -20,7 +19,7 @@ CANDY_CORE_NAMESPACE_BEGIN
 
 namespace FileSystem
 {
-	std::unordered_set<FileInfo> m_FileInfos;
+	std::unordered_set<u32> m_FilePathHashes;
 	HandleSystem<Work, WorkHandle> m_WorkHandleSystem;
 	std::queue<Work*> m_Works;
 	Thread m_FileReadThread;
@@ -31,10 +30,10 @@ namespace FileSystem
 	void FileReadThreadFunc();
 	// ファイル読み込み
 	bool FileRead(Work* const _work);
-	// ファイル情報リストの作成
-	void CreateFileInfo(std::string_view _basePath);
+	// ファイルパスのハッシュリストの作成
+	void CreateFilePathHashList(std::string_view _basePath);
 	// 読み込みリクエストのワーク作成
-	Work* CreateRequestReadWork(std::string_view _path, std::byte* const _buf, u64 _bufSize);
+	Work* CreateRequestReadWork(std::string_view _path, BufferInfo* const _bufferInfo);
 }
 
 // 初期化
@@ -42,7 +41,7 @@ void FileSystem::Startup()
 {
 	m_Cs.startup();
 	m_EndFileReadThread = false;
-	CreateFileInfo(Config::GetDataPath());
+	CreateFilePathHashList(Config::GetDataPath());
 	CreateThreadOption threadOption;
 	threadOption.m_Priority = THREAD_PRIORITY::LOWEST;
 	threadOption.m_CoreNo = 1;
@@ -57,28 +56,14 @@ void FileSystem::Cleanup()
 	m_FileReadThread.wait();
 	while (!m_Works.empty()) { delete m_Works.front(); m_Works.pop(); }
 	m_WorkHandleSystem.cleanup();
-	for (auto fileInfo : m_FileInfos)fileInfo.cleanup();
-	m_FileInfos.clear();
+	m_FilePathHashes.clear();
 	m_Cs.cleanup();
 }
 
-// ファイルサイズの取得
-u64 FileSystem::GetFileSize(std::string_view _path)
-{
-	const u32 hash = Fnv::Hash32Low(Path::FormatPath(_path));
-	auto itr = std::find(m_FileInfos.begin(), m_FileInfos.end(), hash);
-	if (itr == m_FileInfos.end())
-	{
-		CANDY_LOG("ファイルが見つかりませんでした");
-		return 0;
-	}
-	return itr->getSize();
-}
-
 // 読み込みリクエスト
-FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, std::byte* const _buf, u64 _bufSize)
+FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, BufferInfo* const _bufferInfo)
 {
-	Work* work = CreateRequestReadWork(_path, _buf, _bufSize);
+	Work* work = CreateRequestReadWork(_path, _bufferInfo);
 	if (!work)return WorkHandle{};
 
 	work->setHandle(m_WorkHandleSystem.createHandle(work));
@@ -91,9 +76,9 @@ FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, std::byte
 }
 
 // 読み込みリクエスト(即時)
-bool FileSystem::RequestReadNoWait(std::string_view _path, std::byte* const _buf, u64 _bufSize)
+bool FileSystem::RequestReadNoWait(std::string_view _path, BufferInfo* const _bufferInfo)
 {
-	Work* work = CreateRequestReadWork(_path, _buf, _bufSize);
+	Work* work = CreateRequestReadWork(_path, _bufferInfo);
 	if (!work)return false;
 
 	CANDY_CRITICAL_SECTION_SCOPE(m_Cs);
@@ -135,20 +120,20 @@ void FileSystem::FileReadThreadFunc()
 // ファイル読み込み
 bool FileSystem::FileRead(Work* const _work)
 {
-	auto itr = std::find(m_FileInfos.begin(), m_FileInfos.end(), _work->getHash());
-	if (itr == m_FileInfos.end())
+	auto itr = m_FilePathHashes.find(_work->getHash());
+	if (itr == m_FilePathHashes.end())
 	{
 		CANDY_LOG("ファイルが見つかりません");
 		return false;
 	}
 
-	Impl::FileRead(itr->getHandle(), _work->getBuffer(), itr->getSize());
+	Impl::FileRead(_work->getPath(), _work->getBufferInfo()->m_Buffer, _work->getBufferInfo()->m_BufferSize);
 
 	return true;
 }
 
 // ファイル情報リストの作成
-void FileSystem::CreateFileInfo(const std::string_view _basePath)
+void FileSystem::CreateFilePathHashList(const std::string_view _basePath)
 {
 	FileEnumerator fileEnumrator;
 	fileEnumrator.startup(_basePath);
@@ -161,37 +146,32 @@ void FileSystem::CreateFileInfo(const std::string_view _basePath)
 			// カレントディレクトリは無視
 			if (*path.rbegin() != '.')
 			{
-				CreateFileInfo(path);
+				CreateFilePathHashList(path);
 			}
 		}
 		else
 		{
-			FileInfo fileInfo;
-			fileInfo.startup(path);
-			CANDY_ASSERT(!m_FileInfos.contains(fileInfo));
-			m_FileInfos.insert(fileInfo);
+			const u32 hash = Fnv::Hash32Low(Path::FormatPath(path));
+			CANDY_ASSERT(!m_FilePathHashes.contains(hash));
+			m_FilePathHashes.insert(hash);
 		}
 	}
 }
 
 // 読み込みリクエストのワーク作成
-FileSystem::Work* FileSystem::CreateRequestReadWork(const std::string_view _path, std::byte* const _buf, u64 _bufSize)
+FileSystem::Work* FileSystem::CreateRequestReadWork(const std::string_view _path, BufferInfo* const _bufferInfo)
 {
-	const u32 hash = Fnv::Hash32Low(Path::FormatPath(_path));
-	auto itr = std::find(m_FileInfos.begin(), m_FileInfos.end(), hash);
-	if (itr == m_FileInfos.end())
+	const auto path = Path::FormatPath(_path);
+	const u32 hash = Fnv::Hash32Low(path);
+	auto itr = m_FilePathHashes.find(hash);
+	if (itr == m_FilePathHashes.end())
 	{
 		CANDY_LOG("ファイルが見つかりませんでした");
 		return nullptr;
 	}
-	if (itr->getSize() > _bufSize)
-	{
-		CANDY_LOG("バッファのサイズが足りません");
-		return nullptr;
-	}
 
 	Work* work = new Work();
-	work->startup(hash, _buf);
+	work->startup(path, _bufferInfo);
 	return work;
 }
 

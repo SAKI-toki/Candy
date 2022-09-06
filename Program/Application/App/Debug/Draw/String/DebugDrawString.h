@@ -30,10 +30,24 @@ namespace DebugDraw::String
 		f32 m_Scale{ 20.0f };
 	};
 
-	// 描画登録
-	void Add(const AddInfo& _addInfo, const std::string_view _format);
+	// 文字列登録
+	template<typename ...Types>
+	void Add(const String::AddInfo& _addInfo, const std::string_view _format, Types&& ..._args);
+	// 文字列登録(位置)
+	template<typename ...Types>
+	void Add(const Vec4 _pos, const std::string_view _format, Types&& ..._args);
+	// 文字列登録(位置, 色)
+	template<typename ...Types>
+	void Add(const Vec4 _pos, const Color _color, const std::string_view _format, Types&& ..._args);
+	// 文字列登録(位置, 色, サイズ)
+	template<typename ...Types>
+	void Add(const Vec4 _pos, const Color _color, const f32 _scale, const std::string_view _format, Types&& ..._args);
+	// 文字列登録(直接)
+	void AddDirect(const AddInfo& _addInfo, const std::string_view _format);
 }
 
 CANDY_APP_NAMESPACE_END
+
+#include "DebugDrawString.inl"
 
 #endif // CANDY_DEBUG_DRAW_STRING_H

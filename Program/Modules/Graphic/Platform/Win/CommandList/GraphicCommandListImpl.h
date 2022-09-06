@@ -43,6 +43,8 @@ namespace impl
 
 		void copyTexture(ID3D12Device* const _device, ID3D12Resource* const _dstBuffer, ID3D12Resource* const _srcBuffer);
 
+		void setName(const std::string_view _name);
+
 	public:
 		ID3D12GraphicsCommandList* getCommandList()const { return m_CommandList.Get(); }
 

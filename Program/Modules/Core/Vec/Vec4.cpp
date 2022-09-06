@@ -13,11 +13,29 @@ Vec4::Vec4()
 {
 	set(0.0f, 0.0f, 0.0f);
 }
-Vec4::Vec4(const core::Vec4Impl& _v) : core::Vec4Impl{ _v }
+Vec4& Vec4::operator=(const Vec4& _other)
+{
+	copy(_other);
+	return *this;
+}
+Vec4::Vec4(const Vec4& _other) : core::Vec4Impl{ _other }
 {
 
 }
-Vec4::Vec4(core::Vec4Impl&& _v)noexcept : core::Vec4Impl{ std::move(_v) }
+Vec4& Vec4::operator=(Vec4&& _other)noexcept
+{
+	move(std::move(_other));
+	return *this;
+}
+Vec4::Vec4(Vec4&& _other)noexcept : core::Vec4Impl{ std::move(_other) }
+{
+
+}
+Vec4::Vec4(const core::Vec4Impl& _other) : core::Vec4Impl{ _other }
+{
+
+}
+Vec4::Vec4(core::Vec4Impl&& _other)noexcept : core::Vec4Impl{ std::move(_other) }
 {
 
 }

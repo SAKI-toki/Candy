@@ -33,6 +33,7 @@ public:
 	void setViewport(const Viewport& _viewport);
 	void setScissorRect(const ScissorRect& _scissorRect);
 
+	void setRenderTargetsDepthStencilNull();
 	void setRenderTargets(const DescriptorCpuHandle& _rtDescriptorCpuHandle, const s32 _renderTargetCount);
 	void setDepthStencil(const DescriptorCpuHandle& _dsDescriptorCpuHandle);
 	void setRenderTargetsDepthStencil(const DescriptorCpuHandle& _rtDescriptorCpuHandle,
@@ -54,10 +55,15 @@ public:
 	void registDescriptors(const s32 _count, const s32 _offsetIndex);
 	void setDescriptorTable(const s32 _rootParameterIndex, const Descriptor& _descriptor, const s32 _offsetIndex);
 
+	void translationBufferBarrier(Buffer& _buffer,
+		const types::BARRIER_STATE _prevBarrierState, const types::BARRIER_STATE _nextBarrierState);
+
 	void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
 		const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation);
 
 	void copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer);
+
+	void setName(const std::string_view _name);
 };
 
 CANDY_GRAPHIC_NAMESPACE_END

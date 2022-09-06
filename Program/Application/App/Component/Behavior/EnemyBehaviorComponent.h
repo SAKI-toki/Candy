@@ -19,7 +19,6 @@ namespace Component
 		CANDY_COMPONENT_DECLARE(EnemyBehavior, Base);
 
 	protected:
-		void startupImpl()override;
 		void updateImpl()override;
 	};
 }

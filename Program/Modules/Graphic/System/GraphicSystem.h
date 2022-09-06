@@ -4,8 +4,11 @@
 #include <Graphic/GraphicInclude.h>
 
 #include <Graphic/Device/GraphicDevice.h>
-#include <Graphic/CommandList/GraphicCommandList.h>
 #include <Graphic/Descriptor/GraphicDescriptor.h>
+#include <Graphic/Buffer/GraphicBuffer.h>
+#include <Graphic/Fence/GraphicFence.h>
+#include <Graphic/Viewport/GraphicViewport.h>
+#include <Graphic/ScissorRect/GraphicScissorRect.h>
 
 CANDY_GRAPHIC_NAMESPACE_BEGIN
 
@@ -14,14 +17,19 @@ namespace System
 	void Startup();
 	void Cleanup();
 	void Update();
-	void PreDraw();
-	void PostDraw();
+	void BeginDraw();
 	void Flip();
 
+	void ExecuteCommandList(CommandList& _commandList);
+
 	Device& GetDevice();
-	CommandList& GetCommandList();
+	Buffer& GetCurrentBackBuffer();
 	Descriptor& GetBackBufferDescriptor();
+	DescriptorCpuHandle GetBackBufferDescriptorCpuHandle();
+	const Viewport& GetBackBufferViewport();
+	const ScissorRect& GetBackBufferScissorRect();
 	s32 GetBackBufferIndex();
+	s32 GetNextBackBufferIndex();
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

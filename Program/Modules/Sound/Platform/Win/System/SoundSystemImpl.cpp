@@ -72,25 +72,28 @@ namespace System
 	void Impl::CallSe(const std::string_view _soundName, const u32 _callSeFlag)
 	{
 		std::string path = std::format(R"({0}\Sound\{1})", core::Config::GetDataPath(), _soundName);
-		const u64 bufSize = core::FileSystem::GetFileSize(path);
-		std::byte* buf = new std::byte[bufSize];
-		core::FileSystem::RequestReadNoWait(path, buf, bufSize);
+		core::FileSystem::BufferInfo bufferInfo;
+		if (!core::FileSystem::RequestReadNoWait(path, &bufferInfo))
+		{
+			CANDY_LOG_ERR("サウンドファイルの読み込みに失敗", _soundName);
+			return;
+		}
 
 		u32 offset = 0;
 		WAVEFORMATEX waveFormatEx{};
 
-		while (offset + sizeof(Chunk) <= bufSize)
+		while (offset + sizeof(Chunk) <= bufferInfo.m_BufferSize)
 		{
-			const Chunk& chunk = *(Chunk*)(buf + offset);
+			const Chunk& chunk = *(Chunk*)(bufferInfo.m_Buffer + offset);
 			offset += sizeof(Chunk);
 
 			switch (chunk.m_Id)
 			{
 			case CANDY_MAKE_FOURCC('R','I','F', 'F'):
 			{
-				if (offset + sizeof(RiffChunk) > bufSize)break;
+				if (offset + sizeof(RiffChunk) > bufferInfo.m_BufferSize)break;
 
-				const RiffChunk& riffChunk = *(RiffChunk*)(buf + offset);
+				const RiffChunk& riffChunk = *(RiffChunk*)(bufferInfo.m_Buffer + offset);
 				offset += sizeof(RiffChunk);
 				switch (riffChunk.m_FileFormat)
 				{
@@ -106,9 +109,9 @@ namespace System
 			break;
 			case CANDY_MAKE_FOURCC('f', 'm', 't', ' '):
 			{
-				if (offset + sizeof(FmtChunk) > bufSize)break;
+				if (offset + sizeof(FmtChunk) > bufferInfo.m_BufferSize)break;
 
-				const FmtChunk& fmtChunk = *(FmtChunk*)(buf + offset);
+				const FmtChunk& fmtChunk = *(FmtChunk*)(bufferInfo.m_Buffer + offset);
 				offset += chunk.m_Size;
 				waveFormatEx.wFormatTag = fmtChunk.m_WaveFormat.wFormatTag;
 				waveFormatEx.nChannels = fmtChunk.m_WaveFormat.nChannels;
@@ -126,12 +129,12 @@ namespace System
 			break;
 			case CANDY_MAKE_FOURCC('d', 'a', 't', 'a'):
 			{
-				if (offset + chunk.m_Size > bufSize)break;
+				if (offset + chunk.m_Size > bufferInfo.m_BufferSize)break;
 				SoundInfo soundInfo;
-				soundInfo.m_Buffer = buf;
+				soundInfo.m_Buffer = bufferInfo.m_Buffer;
 				CANDY_ASSERT_HRESULT(m_XAudio->CreateSourceVoice(&soundInfo.m_SourceVoice, &waveFormatEx));
 				XAUDIO2_BUFFER xaudio2Buffer{};
-				xaudio2Buffer.pAudioData = (const BYTE*)buf + offset;
+				xaudio2Buffer.pAudioData = (const BYTE*)bufferInfo.m_Buffer + offset;
 				xaudio2Buffer.AudioBytes = chunk.m_Size;
 				xaudio2Buffer.Flags = XAUDIO2_END_OF_STREAM;
 				if (_callSeFlag & types::CALL_SE_FLAG_LOOP)xaudio2Buffer.LoopCount = XAUDIO2_LOOP_INFINITE;

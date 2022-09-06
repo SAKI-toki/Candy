@@ -56,4 +56,6 @@ inline void DummyFunc(...) {}
 #include "Color/Color.h"
 #include "Color/ConvColor.h"
 
+#include "System/CoreSystem.h"
+
 #endif // CANDY_CORE_INCLUDE_H

@@ -77,4 +77,10 @@ void Module::endFrameImpl()
 
 }
 
+// フリップの実装部
+void Module::flipImpl()
+{
+	System::Flip();
+}
+
 CANDY_CORE_NAMESPACE_END

@@ -17,10 +17,10 @@ struct alignas(16) Vec4Impl
 	Vec4Impl();
 	Vec4Impl(const __m128 _v);
 
-	Vec4Impl(const Vec4Impl&);
-	Vec4Impl& operator=(const Vec4Impl&);
-	Vec4Impl(Vec4Impl&&)noexcept;
-	Vec4Impl& operator=(Vec4Impl&&)noexcept;
+	Vec4Impl(const Vec4Impl& _other);
+	Vec4Impl(Vec4Impl&& _other)noexcept;
+	void copy(const Vec4Impl& _other);
+	void move(Vec4Impl&& _other)noexcept;
 
 	union
 	{

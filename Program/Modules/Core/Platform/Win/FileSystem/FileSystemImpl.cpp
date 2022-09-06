@@ -10,13 +10,26 @@
 CANDY_CORE_NAMESPACE_BEGIN
 
 // ファイル読み込み
-void FileSystem::Impl::FileRead(const HANDLE _handle, std::byte* _buf, const u64 _readSize)
+bool FileSystem::Impl::FileRead(const std::string_view _path, std::byte*& _buf, u64& _bufferSize)
 {
-	::SetFilePointer(_handle, 0, nullptr, FILE_BEGIN);
-	if (!::ReadFile(_handle, static_cast<void*>(_buf), static_cast<DWORD>(sizeof(std::byte) * _readSize), nullptr, nullptr))
+	HANDLE fileHandle = ::CreateFile(_path.data(), GENERIC_READ, FILE_SHARE_READ,
+		nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+
+	if (fileHandle == INVALID_HANDLE_VALUE)return false;
+
+	const u64 fileSize = static_cast<u64>(::GetFileSize(fileHandle, nullptr));
+	_buf = new std::byte[fileSize];
+	_bufferSize = fileSize;
+
+	::SetFilePointer(fileHandle, 0, nullptr, FILE_BEGIN);
+	if (!::ReadFile(fileHandle, static_cast<void*>(_buf), static_cast<DWORD>(sizeof(std::byte) * fileSize), nullptr, nullptr))
 	{
 		CANDY_LOG_ERR("ファイルの読み込みに失敗");
 	}
+
+	::CloseHandle(fileHandle);
+
+	return true;
 }
 
 CANDY_CORE_NAMESPACE_END

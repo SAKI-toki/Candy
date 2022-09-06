@@ -21,9 +21,11 @@ enum class SHADER_TYPE
 	FONT_FONT,
 	TEST,
 	TEST_MASK,
+	TO_BACK_BUFFER,
 
 #if BUILD_DEBUG
 	DEBUG_STRING,
+	DEBUG_PRIMITIVE_2D,
 #endif // BUILD_DEBUG
 
 	SIZE,
@@ -34,9 +36,11 @@ inline constexpr const char* const ShaderFileNames[] =
 	"Font/Font",
 	"Test",
 	"TestMask",
+	"ToBackBuffer",
 
 #if BUILD_DEBUG
 	"Debug/String",
+	"Debug/Primitive2D",
 #endif // BUILD_DEBUG
 };
 static_assert((s32)SHADER_TYPE::SIZE == core::GetArraySize(ShaderFileNames));

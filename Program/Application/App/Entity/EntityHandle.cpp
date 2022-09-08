@@ -9,7 +9,7 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-Entity* EntityHandle::getPtr()const
+std::shared_ptr<Entity> EntityHandle::getPtr()const
 {
 	return EntityManager::GetEntityPtr(*this);
 }

@@ -16,7 +16,7 @@ class Entity;
 class EntityHandle : public core::Handle<Entity, EntityHandle>
 {
 public:
-	Entity* getPtr()const;
+	std::shared_ptr<Entity> getPtr()const;
 };
 
 inline constexpr EntityHandle INVALID_ENTITY_HANDLE = EntityHandle{};

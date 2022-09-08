@@ -19,7 +19,7 @@ CANDY_CORE_NAMESPACE_BEGIN
 template<typename T, typename HandleType>
 class HandleSystem
 {
-	using ValuePtrType = T*;
+	using ValuePtrType = std::weak_ptr<T>;
 public:
 	// 初期化
 	void startup();
@@ -27,7 +27,7 @@ public:
 	void cleanup();
 
 	// ハンドラの生成
-	HandleType createHandle(ValuePtrType _valuePtr);
+	HandleType createHandle(const ValuePtrType& _valuePtr);
 	// ハンドラの解放
 	void releaseHandle(const HandleType& handle);
 
@@ -37,7 +37,7 @@ public:
 private:
 	struct Unit
 	{
-		ValuePtrType m_pVaule = nullptr;
+		ValuePtrType m_pVaule;
 		HandleType m_Handle;
 	};
 

@@ -12,7 +12,7 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace EntityManager
 {
-	std::list<Entity*> m_Entities;
+	std::list<std::shared_ptr<Entity>> m_Entities;
 	core::HandleSystem<Entity, EntityHandle> m_EntityHandleSystem;
 }
 
@@ -23,6 +23,13 @@ void EntityManager::Startup()
 
 void EntityManager::Cleanup()
 {
+	while (!m_Entities.empty())
+	{
+		auto itr = m_Entities.begin();
+		(*itr)->cleanup();
+		m_EntityHandleSystem.releaseHandle((*itr)->getHandle());
+		m_Entities.erase(itr);
+	}
 	m_EntityHandleSystem.cleanup();
 }
 
@@ -39,20 +46,18 @@ void EntityManager::Flip()
 		}
 		entity->cleanup();
 		m_EntityHandleSystem.releaseHandle(entity->getHandle());
-		delete (*itr);
 		itr = m_Entities.erase(itr);
 	}
 }
 
-Entity* EntityManager::CreateEntity(std::string_view _name)
+std::shared_ptr<Entity> EntityManager::CreateEntity(std::string_view _name)
 {
-	Entity* entity = new Entity();
+	auto entity = std::make_shared<Entity>();
 	if (!entity)return nullptr;
 
 	EntityHandle handle = m_EntityHandleSystem.createHandle(entity);
 	if (handle == INVALID_ENTITY_HANDLE)
 	{
-		delete entity;
 		return nullptr;
 	}
 
@@ -71,9 +76,9 @@ void EntityManager::ReleaseEntity(const EntityHandle& _handle)
 	entity->setAlive(false);
 }
 
-Entity* EntityManager::GetEntityPtr(const EntityHandle& _handle)
+std::shared_ptr<Entity> EntityManager::GetEntityPtr(const EntityHandle& _handle)
 {
-	return m_EntityHandleSystem.getPtr(_handle);
+	return m_EntityHandleSystem.getPtr(_handle).lock();
 }
 
 CANDY_APP_NAMESPACE_END

@@ -21,10 +21,10 @@ namespace EntityManager
 
 	void Flip();
 
-	Entity* CreateEntity(std::string_view _name);
+	std::shared_ptr<Entity> CreateEntity(std::string_view _name);
 	void ReleaseEntity(const EntityHandle& _handle);
 
-	Entity* GetEntityPtr(const EntityHandle& _handle);
+	std::shared_ptr<Entity> GetEntityPtr(const EntityHandle& _handle);
 }
 
 CANDY_APP_NAMESPACE_END

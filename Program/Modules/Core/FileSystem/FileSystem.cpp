@@ -21,7 +21,7 @@ namespace FileSystem
 {
 	std::unordered_set<u32> m_FilePathHashes;
 	HandleSystem<Work, WorkHandle> m_WorkHandleSystem;
-	std::queue<Work*> m_Works;
+	std::queue<std::shared_ptr<Work>> m_Works;
 	Thread m_FileReadThread;
 	CriticalSection m_Cs;
 	bool m_EndFileReadThread;
@@ -29,11 +29,11 @@ namespace FileSystem
 	// ファイル読み込みのスレッド実行関数
 	void FileReadThreadFunc();
 	// ファイル読み込み
-	bool FileRead(Work* const _work);
+	bool FileRead(const std::shared_ptr<Work>& _work);
 	// ファイルパスのハッシュリストの作成
 	void CreateFilePathHashList(std::string_view _basePath);
 	// 読み込みリクエストのワーク作成
-	Work* CreateRequestReadWork(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
+	std::shared_ptr<Work> CreateRequestReadWork(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
 }
 
 // 初期化
@@ -54,7 +54,7 @@ void FileSystem::Cleanup()
 {
 	m_EndFileReadThread = true;
 	m_FileReadThread.wait();
-	while (!m_Works.empty()) { delete m_Works.front(); m_Works.pop(); }
+	while (!m_Works.empty()) { m_Works.pop(); }
 	m_WorkHandleSystem.cleanup();
 	m_FilePathHashes.clear();
 	m_Cs.cleanup();
@@ -63,7 +63,7 @@ void FileSystem::Cleanup()
 // 読み込みリクエスト
 FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
-	Work* work = CreateRequestReadWork(_path, _bufferInfo);
+	auto work = CreateRequestReadWork(_path, _bufferInfo);
 	if (!work)return WorkHandle{};
 
 	work->setHandle(m_WorkHandleSystem.createHandle(work));
@@ -78,7 +78,7 @@ FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, const std
 // 読み込みリクエスト(即時)
 bool FileSystem::RequestReadNoWait(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
-	Work* work = CreateRequestReadWork(_path, _bufferInfo);
+	auto work = CreateRequestReadWork(_path, _bufferInfo);
 	if (!work)return false;
 
 	CANDY_CRITICAL_SECTION_SCOPE(m_Cs);
@@ -88,7 +88,7 @@ bool FileSystem::RequestReadNoWait(std::string_view _path, const std::shared_ptr
 // ファイル読み込み終了判定
 bool FileSystem::IsEndReadWork(const WorkHandle& _handle)
 {
-	return !m_WorkHandleSystem.getPtr(_handle);
+	return m_WorkHandleSystem.getPtr(_handle).expired();
 }
 
 // ファイル読み込みのスレッド実行関数
@@ -112,13 +112,12 @@ void FileSystem::FileReadThreadFunc()
 		FileRead(work);
 
 		m_WorkHandleSystem.releaseHandle(work->getHandle());
-		delete work;
 		m_Works.pop();
 	}
 }
 
 // ファイル読み込み
-bool FileSystem::FileRead(Work* const _work)
+bool FileSystem::FileRead(const std::shared_ptr<Work>& _work)
 {
 	auto itr = m_FilePathHashes.find(_work->getHash());
 	if (itr == m_FilePathHashes.end())
@@ -159,7 +158,7 @@ void FileSystem::CreateFilePathHashList(const std::string_view _basePath)
 }
 
 // 読み込みリクエストのワーク作成
-FileSystem::Work* FileSystem::CreateRequestReadWork(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
+std::shared_ptr<FileSystem::Work> FileSystem::CreateRequestReadWork(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
 	const auto path = Path::FormatPath(_path);
 	const u32 hash = Fnv::Hash32Low(path);
@@ -170,7 +169,7 @@ FileSystem::Work* FileSystem::CreateRequestReadWork(const std::string_view _path
 		return nullptr;
 	}
 
-	Work* work = new Work();
+	auto work = std::make_shared<Work>();
 	work->startup(path, _bufferInfo);
 	return work;
 }

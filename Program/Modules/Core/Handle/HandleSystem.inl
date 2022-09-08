@@ -35,10 +35,11 @@ void HandleSystem<T, HandleType>::cleanup()
 
 // ハンドラの生成
 template<typename T, typename HandleType>
-HandleType HandleSystem<T, HandleType>::createHandle(ValuePtrType _valuePtr)
+HandleType HandleSystem<T, HandleType>::createHandle(const ValuePtrType& _valuePtr)
 {
 	HandleType handle;
-	if (!_valuePtr)return handle;
+	auto sharedValuePtr = _valuePtr.lock();
+	if (!sharedValuePtr)return handle;
 	if (m_Units.empty())return handle;
 	if (m_Count == 0xffff)return handle;
 
@@ -49,7 +50,7 @@ HandleType HandleSystem<T, HandleType>::createHandle(ValuePtrType _valuePtr)
 		m_ReleaseUnitIndices.erase(itr);
 		handle.m_Value.m_Index = index;
 		handle.m_Value.m_Count = ++m_Count;
-		handle.m_Value.m_Hash = reinterpret_cast<uint64_t>(_valuePtr);
+		handle.m_Value.m_Hash = reinterpret_cast<uint64_t>(sharedValuePtr.get());
 		m_Units[index].m_pVaule = _valuePtr;
 		m_Units[index].m_Handle = handle;
 		return handle;
@@ -60,7 +61,7 @@ HandleType HandleSystem<T, HandleType>::createHandle(ValuePtrType _valuePtr)
 	}
 	handle.m_Value.m_Index = m_Index;
 	handle.m_Value.m_Count = ++m_Count;
-	handle.m_Value.m_Hash = reinterpret_cast<uint64_t>(_valuePtr);
+	handle.m_Value.m_Hash = reinterpret_cast<uint64_t>(sharedValuePtr.get());
 	m_Units[m_Index].m_pVaule = _valuePtr;
 	m_Units[m_Index].m_Handle = handle;
 	++m_Index;
@@ -73,7 +74,7 @@ void HandleSystem<T, HandleType>::releaseHandle(const HandleType& handle)
 {
 	if (m_Units.empty())return;
 	if (m_Units[handle.m_Value.m_Index].m_Handle != handle)return;
-	m_Units[handle.m_Value.m_Index].m_pVaule = nullptr;
+	m_Units[handle.m_Value.m_Index].m_pVaule = ValuePtrType{};
 	m_Units[handle.m_Value.m_Index].m_Handle.clear();
 	m_ReleaseUnitIndices.push_back(handle.m_Value.m_Index);
 }
@@ -82,9 +83,9 @@ void HandleSystem<T, HandleType>::releaseHandle(const HandleType& handle)
 template<typename T, typename HandleType>
 HandleSystem<T, HandleType>::ValuePtrType HandleSystem<T, HandleType>::getPtr(const HandleType& handle)const
 {
-	if (m_Units.empty())return nullptr;
-	if (handle.m_Value.m_Index == static_cast<u64>(-1))return nullptr;
-	if (m_Units[handle.m_Value.m_Index].m_Handle != handle)return nullptr;
+	if (m_Units.empty())return ValuePtrType{};
+	if (handle.m_Value.m_Index == static_cast<u64>(-1))return ValuePtrType{};
+	if (m_Units[handle.m_Value.m_Index].m_Handle != handle)return ValuePtrType{};
 	return m_Units[handle.m_Value.m_Index].m_pVaule;
 }
 

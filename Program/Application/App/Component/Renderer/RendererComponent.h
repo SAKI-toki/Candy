@@ -9,6 +9,7 @@
 #define CANDY_APP_RENDERER_COMPONENT_H
 
 #include <App/Component/ComponentHeaderInclude.h>
+#include <App/Rendering/Sprite/Sprite.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -19,6 +20,8 @@ namespace Component
 		CANDY_COMPONENT_DECLARE(Renderer, Base);
 
 	public:
+		void startupImpl()override;
+		void cleanupImpl()override;
 		void renderImpl()override;
 
 		void setColor(const Color& _color) { m_Color = _color; }
@@ -26,6 +29,7 @@ namespace Component
 
 	private:
 		Color m_Color{ OneVector };
+		Sprite m_Sprite;
 	};
 }
 

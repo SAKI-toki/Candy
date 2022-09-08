@@ -35,7 +35,7 @@
 #include "Pipeline/GraphicPipeline.h"
 #include "Pipeline/StartupInfo/GraphicPipelineStartupInfo.h"
 
-#include "ResourceManager/GraphicResourceManager.h"
+#include "ResourceLifetime/GraphicResourceLifetime.h"
 
 #include "RootSignature/GraphicRootSignature.h"
 #include "RootSignature/StartupInfo/GraphicRootSignatureStartupInfo.h"
@@ -51,7 +51,7 @@
 
 #include "System/GraphicSystem.h"
 
-#include "Texture/GraphicTexture.h"
+#include "Texture/GraphicTextureUploder.h"
 #include "Texture/DDS/GraphicReadDDS.h"
 
 #include "Types/GraphicTypes.h"

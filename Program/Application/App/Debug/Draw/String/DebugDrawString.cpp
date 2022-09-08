@@ -213,9 +213,9 @@ namespace DebugDraw
 		commandList.setPrimitiveTopology(graphic::types::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
 		commandList.drawIndexedInstanced(indexBufferView.getIndexCount(), 1, 0, 0, 0);
 
-		graphic::ResourceManager::Regist(m_VertexBuffers[graphic::System::GetBackBufferIndex()]);
-		graphic::ResourceManager::Regist(m_IndexBuffers[graphic::System::GetBackBufferIndex()]);
-		graphic::ResourceManager::Regist(Font::GetFontTextureBuffer(DefaultFontType));
+		graphic::ResourceLifetime::Regist(m_VertexBuffers[graphic::System::GetBackBufferIndex()]);
+		graphic::ResourceLifetime::Regist(m_IndexBuffers[graphic::System::GetBackBufferIndex()]);
+		graphic::ResourceLifetime::Regist(Font::GetFontTextureBuffer(DefaultFontType));
 #endif // BUILD_DEBUG
 	}
 

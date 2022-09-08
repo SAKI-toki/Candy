@@ -7,6 +7,8 @@
 
 #include "AppModule.h"
 #include <App/Rendering/RenderingManager.h>
+#include <App/Rendering/Sprite/SpriteRenderingManager.h>
+#include <App/Resource/Texture/TextureManager.h>
 #include <App/Flow/Game/GameFlow.h>
 #include <App/Entity/EntityManager.h>
 #include <App/Component/System/Manager/ComponentManager.h>
@@ -25,7 +27,9 @@ void Module::initializeImpl()
 // 他モジュールに依存する初期化の実装部
 void Module::startupImpl()
 {
+	TextureManager::Startup();
 	RenderingManager::Startup();
+	SpriteRenderingManager::Startup();
 	Model::Startup();
 	Font::Startup();
 	Debug::Startup();
@@ -43,7 +47,9 @@ void Module::cleanupImpl()
 	Debug::Cleanup();
 	Font::Cleanup();
 	Model::Cleanup();
+	SpriteRenderingManager::Cleanup();
 	RenderingManager::Cleanup();
+	TextureManager::Cleanup();
 }
 
 // 他モジュールに依存しない破棄の実装部
@@ -106,6 +112,7 @@ void Module::preDrawImpl()
 void Module::drawImpl()
 {
 	Model::Primitive::Draw();
+	SpriteRenderingManager::Draw();
 	Debug::Draw();
 }
 

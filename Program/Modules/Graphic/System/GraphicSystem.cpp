@@ -4,9 +4,9 @@
 #include <Graphic/SwapChain/GraphicSwapChain.h>
 #include <Graphic/Viewport/GraphicViewport.h>
 #include <Graphic/ScissorRect/GraphicScissorRect.h>
-#include <Graphic/ResourceManager/GraphicResourceManager.h>
+#include <Graphic/ResourceLifetime/GraphicResourceLifetime.h>
 #include <Graphic/Shader/GraphicShaderManager.h>
-#include <Graphic/Texture/GraphicTexture.h>
+#include <Graphic/Texture/GraphicTextureUploder.h>
 
 #if PLATFORM_WIN
 #include <Graphic/Platform/Win/System/GraphicSystemImpl.h>
@@ -33,7 +33,7 @@ void System::Startup()
 {
 	m_Device.startup();
 	impl::Startup(m_Device.getDevice());
-	ResourceManager::Startup();
+	ResourceLifetime::Startup();
 
 	Rect rect{ 0.0f, 0.0f, static_cast<f32>(Config::GetScreenWidth()), static_cast<f32>(Config::GetScreenHeight()) };
 	m_BackBufferViewport.set(rect, 0.0f, 1.0f);
@@ -58,7 +58,7 @@ void System::Startup()
 	m_FrameFenceValue = 0;
 
 	ShaderManager::Startup();
-	TextureManager::Startup();
+	TextureUploder::Startup();
 }
 
 void System::Cleanup()
@@ -66,8 +66,8 @@ void System::Cleanup()
 	m_FrameFence.signalFromGpu(m_CommandQueue, m_FrameFenceValue);
 	m_FrameFence.waitCpu(m_FrameFenceValue);
 
-	TextureManager::Cleanup();
-	ResourceManager::Cleanup();
+	TextureUploder::Cleanup();
+	ResourceLifetime::Cleanup();
 	m_FrameFence.cleanup();
 	m_BackBufferDescriptor.cleanup();
 	for (auto& backBuffer : m_BackBuffers)backBuffer.cleanup();
@@ -85,7 +85,7 @@ void System::Update()
 
 void System::BeginDraw()
 {
-	TextureManager::ExecuteUploadTexture(m_CommandQueue);
+	TextureUploder::ExecuteUploadTexture(m_CommandQueue);
 }
 
 void System::Flip()
@@ -100,7 +100,7 @@ void System::Flip()
 	}
 	m_FrameFenceValue = m_FrameFenceValue + 1;
 
-	ResourceManager::Flip(prevBackBufferIndex, m_BackBufferIndex);
+	ResourceLifetime::Flip(prevBackBufferIndex, m_BackBufferIndex);
 
 	m_FrameFence.signalFromGpu(m_CommandQueue, m_FrameFenceValue);
 }

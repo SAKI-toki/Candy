@@ -14,17 +14,24 @@ namespace Component
 {
 	CANDY_COMPONENT_DEFINE(Renderer, Base);
 
+	void Renderer::startupImpl()
+	{
+		m_Sprite.startup();
+	}
+
+	void Renderer::cleanupImpl()
+	{
+		m_Sprite.cleanup();
+	}
+
 	void Renderer::renderImpl()
 	{
 		auto transform = m_OwnerEntity->getTransformComponent();
 		if (!transform)return;
 
 		auto pos = transform->getPos();
-		auto scale = transform->getScale();
 
-		Rect rect;
-		rect.setSize(pos.x, pos.y, scale.x, scale.y);
-		DebugDraw::Primitive2D::AddRect2D(rect, m_Color);
+		m_Sprite.render(pos, m_Color);
 	}
 }
 

@@ -21,7 +21,7 @@ namespace FileSystem
 	{
 	public:
 		// 初期化
-		void startup(const std::string_view _path, BufferInfo* const _bufferInfo);
+		void startup(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
 		// 破棄
 		void cleanup();
 
@@ -32,7 +32,7 @@ namespace FileSystem
 		// ハッシュの取得
 		u32 getHash()const;
 		// バッファ情報の取得
-		BufferInfo* getBufferInfo();
+		const std::shared_ptr<BufferInfo>& getBufferInfo();
 
 		// ハンドルのセット
 		void setHandle(const WorkHandle _handle);
@@ -41,7 +41,7 @@ namespace FileSystem
 		WorkHandle m_Handle{};
 		std::string m_Path{};
 		u32 m_Hash{};
-		BufferInfo* m_BufferInfo{};
+		std::shared_ptr<BufferInfo> m_BufferInfo{};
 	};
 }
 

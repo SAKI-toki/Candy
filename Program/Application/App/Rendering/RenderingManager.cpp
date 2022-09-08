@@ -80,8 +80,8 @@ void RenderingManager::PreDraw()
 		if (pass)pass->beginPass(commandList);
 	}
 
-	graphic::ResourceManager::Regist(m_DepthStencilBuffer);
-	graphic::ResourceManager::Regist(m_DepthStencilBufferDescriptor);
+	graphic::ResourceLifetime::Regist(m_DepthStencilBuffer);
+	graphic::ResourceLifetime::Regist(m_DepthStencilBufferDescriptor);
 }
 
 void RenderingManager::PostDraw()

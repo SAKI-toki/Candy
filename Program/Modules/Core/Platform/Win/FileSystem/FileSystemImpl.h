@@ -15,7 +15,7 @@ CANDY_CORE_NAMESPACE_BEGIN
 namespace FileSystem::Impl
 {
 	// ファイル読み込み
-	bool FileRead(const std::string_view _path, std::byte*& _buf, u64& _bufferSize);
+	bool FileRead(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
 }
 
 CANDY_CORE_NAMESPACE_END

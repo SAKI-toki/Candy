@@ -1,4 +1,4 @@
-﻿#include "GraphicResourceManager.h"
+﻿#include "GraphicResourceLifetime.h"
 #include <Graphic/Buffer/GraphicBuffer.h>
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/Pipeline/GraphicPipeline.h>
@@ -7,7 +7,7 @@
 
 CANDY_GRAPHIC_NAMESPACE_BEGIN
 
-namespace ResourceManager
+namespace ResourceLifetime
 {
 	template<typename T>
 	using RegistListType = std::vector<std::vector<T>>;
@@ -17,7 +17,7 @@ namespace ResourceManager
 	RegistListType<Descriptor> m_RegistDescriptorLists;
 }
 
-void ResourceManager::Startup()
+void ResourceLifetime::Startup()
 {
 	m_RegistBufferLists.resize(Config::GetBackBufferCount());
 	m_RegistRootSignatureLists.resize(Config::GetBackBufferCount());
@@ -25,7 +25,7 @@ void ResourceManager::Startup()
 	m_RegistDescriptorLists.resize(Config::GetBackBufferCount());
 }
 
-void ResourceManager::Cleanup()
+void ResourceLifetime::Cleanup()
 {
 	m_RegistBufferLists.clear();
 	m_RegistRootSignatureLists.clear();
@@ -33,7 +33,7 @@ void ResourceManager::Cleanup()
 	m_RegistDescriptorLists.clear();
 }
 
-void ResourceManager::Flip(const s32 _prevBackBufferIndex, const s32 _nextBackBufferIndex)
+void ResourceLifetime::Flip(const s32 _prevBackBufferIndex, const s32 _nextBackBufferIndex)
 {
 	CANDY_UNUSED_VALUE(_prevBackBufferIndex);
 
@@ -43,19 +43,19 @@ void ResourceManager::Flip(const s32 _prevBackBufferIndex, const s32 _nextBackBu
 	m_RegistDescriptorLists[_nextBackBufferIndex].clear();
 }
 
-void ResourceManager::Regist(const Buffer& _buffer)
+void ResourceLifetime::Regist(const Buffer& _buffer)
 {
 	m_RegistBufferLists[System::GetBackBufferIndex()].push_back(_buffer);
 }
-void ResourceManager::Regist(const RootSignature& _rootSignature)
+void ResourceLifetime::Regist(const RootSignature& _rootSignature)
 {
 	m_RegistRootSignatureLists[System::GetBackBufferIndex()].push_back(_rootSignature);
 }
-void ResourceManager::Regist(const Pipeline& _pipeline)
+void ResourceLifetime::Regist(const Pipeline& _pipeline)
 {
 	m_RegistPipelineLists[System::GetBackBufferIndex()].push_back(_pipeline);
 }
-void ResourceManager::Regist(const Descriptor& _descriptor)
+void ResourceLifetime::Regist(const Descriptor& _descriptor)
 {
 	m_RegistDescriptorLists[System::GetBackBufferIndex()].push_back(_descriptor);
 }

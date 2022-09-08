@@ -12,7 +12,7 @@ CANDY_CORE_NAMESPACE_BEGIN
 namespace FileSystem
 {
 	// 初期化
-	void Work::startup(const std::string_view _path, BufferInfo* const _bufferInfo)
+	void Work::startup(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 	{
 		m_Path = _path;
 		m_Hash = Fnv::Hash32Low(_path);
@@ -44,7 +44,7 @@ namespace FileSystem
 	}
 
 	// バッファ情報の取得
-	BufferInfo* Work::getBufferInfo()
+	const std::shared_ptr<BufferInfo>& Work::getBufferInfo()
 	{
 		return m_BufferInfo;
 	}

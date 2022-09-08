@@ -9,6 +9,7 @@
 #define CANDY_APP_SPRITE_RENDERING_MANAGER_H
 
 #include <App/AppInclude.h>
+#include "SpriteImpl.h"
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -19,7 +20,7 @@ namespace SpriteRenderingManager
 
 	void Draw();
 
-	void Add();
+	void Add(const std::shared_ptr<SpriteImpl>& _sprite);
 }
 
 CANDY_APP_NAMESPACE_END

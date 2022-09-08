@@ -6,7 +6,7 @@
 #include <Graphic/RootSignature/GraphicRootSignature.h>
 #include <Graphic/Pipeline/GraphicPipeline.h>
 #include <Graphic/Buffer/GraphicBuffer.h>
-#include <Graphic/ResourceManager/GraphicResourceManager.h>
+#include <Graphic/ResourceLifetime/GraphicResourceLifetime.h>
 
 CANDY_GRAPHIC_NAMESPACE_BEGIN
 
@@ -85,13 +85,13 @@ void CommandList::clearDepthStencil(const DescriptorCpuHandle& _dsDescriptorCpuH
 void CommandList::setRootSignature(const RootSignature& _rootSignature)
 {
 	CommandListImpl::setRootSignature(_rootSignature.getRootSignature());
-	ResourceManager::Regist(_rootSignature);
+	ResourceLifetime::Regist(_rootSignature);
 }
 
 void CommandList::setPipeline(const Pipeline& _pipeline)
 {
 	CommandListImpl::setPipeline(_pipeline.getPipeline());
-	ResourceManager::Regist(_pipeline);
+	ResourceLifetime::Regist(_pipeline);
 }
 
 void CommandList::setPrimitiveTopology(const types::PRIMITIVE_TOPOLOGY_TYPE _primitiveTopologyType)
@@ -117,7 +117,7 @@ void CommandList::setIndexBuffer(const IndexBufferView& _indexBufferView)
 void CommandList::setDescriptor(const s32 _index, const Descriptor& _descriptor)
 {
 	CommandListImpl::setDescriptor(_index, _descriptor.getDescriptor());
-	ResourceManager::Regist(_descriptor);
+	ResourceLifetime::Regist(_descriptor);
 }
 
 void CommandList::registDescriptors(const s32 _count, const s32 _offsetIndex)
@@ -146,8 +146,8 @@ void CommandList::drawIndexedInstanced(const u32 _indexCountPerInstance, const u
 void CommandList::copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer)
 {
 	CommandListImpl::copyTexture(_device.getDevice(), _dstBuffer.getBuffer(), _srcBuffer.getBuffer());
-	ResourceManager::Regist(_dstBuffer);
-	ResourceManager::Regist(_srcBuffer);
+	ResourceLifetime::Regist(_dstBuffer);
+	ResourceLifetime::Regist(_srcBuffer);
 }
 
 void CommandList::setName(const std::string_view _name)

@@ -30,7 +30,7 @@
 #include "Pipeline/GraphicPipeline.cpp"
 #include "Pipeline/StartupInfo/GraphicPipelineStartupInfo.cpp"
 
-#include "ResourceManager/GraphicResourceManager.cpp"
+#include "ResourceLifetime/GraphicResourceLifetime.cpp"
 
 #include "RootSignature/GraphicRootSignature.cpp"
 #include "RootSignature/StartupInfo/GraphicRootSignatureStartupInfo.cpp"
@@ -46,7 +46,7 @@
 
 #include "SwapChain/GraphicSwapChain.cpp"
 
-#include "Texture/GraphicTexture.cpp"
+#include "Texture/GraphicTextureUploder.cpp"
 #include "Texture/DDS/GraphicReadDDS.cpp"
 
 #include "Viewport/GraphicViewport.cpp"

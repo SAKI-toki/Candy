@@ -14,4 +14,5 @@
 #include "Pass/RenderingPass_Sprite.cpp"
 
 #include "Sprite/Sprite.cpp"
+#include "Sprite/SpriteImpl.cpp"
 #include "Sprite/SpriteRenderingManager.cpp"

@@ -20,11 +20,6 @@ namespace RenderingManager
 		_commandList.setViewport(m_Viewport);
 		_commandList.setScissorRect(m_ScissorRect);
 	}
-
-	void Debug2DPass::endPass(graphic::CommandList& /*_commandList*/)
-	{
-
-	}
 }
 
 #endif // BUILD_DEBUG

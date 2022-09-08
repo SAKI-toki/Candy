@@ -12,7 +12,7 @@ CANDY_GRAPHIC_NAMESPACE_BEGIN
 
 namespace ShaderManager
 {
-	std::vector<std::byte*> m_ShaderBuffers;
+	std::vector<std::unique_ptr<std::byte[]>> m_ShaderBuffers;
 	std::vector<VertexShader> m_VertexShaders;
 	std::vector<PixelShader> m_PixelShaders;
 }
@@ -26,21 +26,21 @@ void ShaderManager::Startup()
 	{
 		{
 			std::string filePath = baseShaderPath + shaderFileName + ".vso";
-			core::FileSystem::BufferInfo bufferInfo;
-			core::FileSystem::RequestReadNoWait(filePath,&bufferInfo);
-			m_ShaderBuffers.push_back(bufferInfo.m_Buffer);
+			auto bufferInfo = std::make_shared<core::FileSystem::BufferInfo>();
+			core::FileSystem::RequestReadNoWait(filePath, bufferInfo);
 			VertexShader vs;
-			vs.startup(bufferInfo.m_Buffer, bufferInfo.m_BufferSize);
+			vs.startup(bufferInfo->m_Buffer.get(), bufferInfo->m_BufferSize);
+			m_ShaderBuffers.push_back(std::move(bufferInfo->m_Buffer));
 			m_VertexShaders.push_back(vs);
 		}
 
 		{
 			std::string filePath = baseShaderPath + shaderFileName + ".pso";
-			core::FileSystem::BufferInfo bufferInfo;
-			core::FileSystem::RequestReadNoWait(filePath, &bufferInfo);
-			m_ShaderBuffers.push_back(bufferInfo.m_Buffer);
+			auto bufferInfo = std::make_shared<core::FileSystem::BufferInfo>();
+			core::FileSystem::RequestReadNoWait(filePath, bufferInfo);
 			PixelShader ps;
-			ps.startup(bufferInfo.m_Buffer, bufferInfo.m_BufferSize);
+			ps.startup(bufferInfo->m_Buffer.get(), bufferInfo->m_BufferSize);
+			m_ShaderBuffers.push_back(std::move(bufferInfo->m_Buffer));
 			m_PixelShaders.push_back(ps);
 		}
 	}
@@ -53,7 +53,6 @@ void ShaderManager::Cleanup()
 	for (auto& pixelShader : m_PixelShaders)pixelShader.cleanup();
 	m_VertexShaders.clear();
 	m_PixelShaders.clear();
-	for (auto& shaderBuffer : m_ShaderBuffers)delete[] shaderBuffer;
 	m_ShaderBuffers.clear();
 }
 

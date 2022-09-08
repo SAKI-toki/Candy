@@ -21,7 +21,6 @@ namespace RenderingManager
 	{
 	public:
 		void beginPass(graphic::CommandList& _commandList)override;
-		void endPass(graphic::CommandList& _commandList)override;
 	};
 }
 

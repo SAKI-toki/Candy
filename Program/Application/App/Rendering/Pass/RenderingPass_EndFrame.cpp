@@ -97,8 +97,8 @@ namespace RenderingManager
 		_commandList.drawIndexedInstanced(m_IndexBufferView.getIndexCount(), 1, 0, 0, 0);
 		_commandList.translationBufferBarrier(currentBackBuffer, graphic::types::BARRIER_STATE::RENDER_TARGET, graphic::types::BARRIER_STATE::PRESENT);
 
-		graphic::ResourceManager::Regist(m_VertexBuffer);
-		graphic::ResourceManager::Regist(m_IndexBuffer);
+		graphic::ResourceLifetime::Regist(m_VertexBuffer);
+		graphic::ResourceLifetime::Regist(m_IndexBuffer);
 	}
 }
 

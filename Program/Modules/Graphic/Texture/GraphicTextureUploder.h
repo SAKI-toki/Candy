@@ -1,6 +1,6 @@
 ﻿/*****************************************************************//**
- * \file   GraphicTexture.h
- * \brief  テクスチャ
+ * \file   TextureUploder.h
+ * \brief  テクスチャのアップローダー
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -15,7 +15,7 @@ CANDY_GRAPHIC_NAMESPACE_BEGIN
 class Buffer;
 class CommandQueue;
 
-namespace TextureManager
+namespace TextureUploder
 {
 	// 初期化
 	void Startup();

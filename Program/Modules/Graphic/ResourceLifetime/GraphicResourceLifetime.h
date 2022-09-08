@@ -1,5 +1,5 @@
-﻿#ifndef CANDY_GRAPHIC_RESOURCE_MANAGER_H
-#define CANDY_GRAPHIC_RESOURCE_MANAGER_H
+﻿#ifndef CANDY_GRAPHIC_RESOURCE_LIFETIME_H
+#define CANDY_GRAPHIC_RESOURCE_LIFETIME_H
 
 #include <Graphic/GraphicInclude.h>
 
@@ -10,7 +10,7 @@ class RootSignature;
 class Pipeline;
 class Descriptor;
 
-namespace ResourceManager
+namespace ResourceLifetime
 {
 	void Startup();
 	void Cleanup();
@@ -25,4 +25,4 @@ namespace ResourceManager
 
 CANDY_GRAPHIC_NAMESPACE_END
 
-#endif // CANDY_GRAPHIC_RESOURCE_MANAGER_H
+#endif // CANDY_GRAPHIC_RESOURCE_LIFETIME_H

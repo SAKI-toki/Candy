@@ -83,6 +83,12 @@
     <Filter Include="Src\Rendering\Sprite">
       <UniqueIdentifier>{cf5669d5-eee5-4b7f-81c0-6273e3df45dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Resource">
+      <UniqueIdentifier>{9d2906d7-f516-4236-b700-4b4bd5c0dc2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Resource\Texture">
+      <UniqueIdentifier>{52ab0203-a3a7-43cf-a052-54a769ed7b12}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Application\App\__RootCpp.cpp">
@@ -220,6 +226,15 @@
     <ClCompile Include="..\..\..\Application\App\Rendering\Sprite\Sprite.cpp">
       <Filter>Src\Rendering\Sprite</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Resource\Texture\TextureManager.cpp">
+      <Filter>Src\Resource\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Resource\__ResourceCpp.cpp">
+      <Filter>Src\Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Sprite\SpriteImpl.cpp">
+      <Filter>Src\Rendering\Sprite</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Application\App\AppInclude.h">
@@ -337,6 +352,12 @@
       <Filter>Src\Rendering\Sprite</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Rendering\Sprite\Sprite.h">
+      <Filter>Src\Rendering\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Resource\Texture\TextureManager.h">
+      <Filter>Src\Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Sprite\SpriteImpl.h">
       <Filter>Src\Rendering\Sprite</Filter>
     </ClInclude>
   </ItemGroup>

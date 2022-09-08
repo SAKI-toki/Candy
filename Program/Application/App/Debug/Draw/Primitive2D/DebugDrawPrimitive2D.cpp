@@ -120,8 +120,8 @@ namespace DebugDraw
 		commandList.setIndexBuffer(indexBufferView2D);
 		commandList.setPrimitiveTopology(graphic::types::PRIMITIVE_TOPOLOGY_TYPE::TRIANGLE_LIST);
 		commandList.drawIndexedInstanced(static_cast<u32>(indices2D.size()), 1, 0, 0, 0);
-		graphic::ResourceManager::Regist(vertexBuffer2D);
-		graphic::ResourceManager::Regist(indexBuffer2D);
+		graphic::ResourceLifetime::Regist(vertexBuffer2D);
+		graphic::ResourceLifetime::Regist(indexBuffer2D);
 		vertexInfos2D.clear();
 		indices2D.clear();
 #endif // BUILD_DEBUG

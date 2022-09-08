@@ -32,9 +32,6 @@
     <Filter Include="Src\Platform">
       <UniqueIdentifier>{9195e272-356f-49d0-a528-cb25e633fa9a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\ResourceManager">
-      <UniqueIdentifier>{0fb2641f-68ee-42b2-a0d0-35098571a759}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\RootSignature">
       <UniqueIdentifier>{7942ff2f-e19c-4a44-a003-6a09665bd4e3}</UniqueIdentifier>
     </Filter>
@@ -176,6 +173,9 @@
     <Filter Include="Src\Platform\Win\System">
       <UniqueIdentifier>{070e0f39-0d6f-4f0a-a39d-5aa9d790721b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\ResourceLifetime">
+      <UniqueIdentifier>{0fb2641f-68ee-42b2-a0d0-35098571a759}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Graphic\__GraphicCpp.cpp">
@@ -274,9 +274,6 @@
     <ClCompile Include="..\..\..\Modules\Graphic\Platform\Win\Viewport\GraphicViewportImpl.cpp">
       <Filter>Src\Platform\Win\Viewport</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Graphic\ResourceManager\GraphicResourceManager.cpp">
-      <Filter>Src\ResourceManager</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Modules\Graphic\RootSignature\StartupInfo\GraphicRootSignatureStartupInfo.cpp">
       <Filter>Src\RootSignature\StartupInfo</Filter>
     </ClCompile>
@@ -307,7 +304,7 @@
     <ClCompile Include="..\..\..\Modules\Graphic\Platform\Win\Shader\Base\GraphicBaseShaderImpl.cpp">
       <Filter>Src\Platform\Win\Shader\Base</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Graphic\Texture\GraphicTexture.cpp">
+    <ClCompile Include="..\..\..\Modules\Graphic\Texture\GraphicTextureUploder.cpp">
       <Filter>Src\Texture</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Graphic\Texture\DDS\GraphicReadDDS.cpp">
@@ -327,6 +324,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Graphic\Platform\Win\System\GraphicSystemImpl.cpp">
       <Filter>Src\Platform\Win\System</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Graphic\ResourceLifetime\GraphicResourceLifetime.cpp">
+      <Filter>Src\ResourceLifetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -423,9 +423,6 @@
     <ClInclude Include="..\..\..\Modules\Graphic\Platform\Win\Viewport\GraphicViewportImpl.h">
       <Filter>Src\Platform\Win\Viewport</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Graphic\ResourceManager\GraphicResourceManager.h">
-      <Filter>Src\ResourceManager</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Modules\Graphic\RootSignature\StartupInfo\GraphicRootSignatureStartupInfo.h">
       <Filter>Src\RootSignature\StartupInfo</Filter>
     </ClInclude>
@@ -459,7 +456,7 @@
     <ClInclude Include="..\..\..\Modules\Graphic\GraphicInclude.h">
       <Filter>Src</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Graphic\Texture\GraphicTexture.h">
+    <ClInclude Include="..\..\..\Modules\Graphic\Texture\GraphicTextureUploder.h">
       <Filter>Src\Texture</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Graphic\Texture\DDS\GraphicReadDDS.h">
@@ -485,6 +482,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Graphic\Platform\Win\System\GraphicSystemImpl.h">
       <Filter>Src\Platform\Win\System</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Graphic\ResourceLifetime\GraphicResourceLifetime.h">
+      <Filter>Src\ResourceLifetime</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

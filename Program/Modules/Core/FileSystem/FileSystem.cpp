@@ -33,7 +33,7 @@ namespace FileSystem
 	// ファイルパスのハッシュリストの作成
 	void CreateFilePathHashList(std::string_view _basePath);
 	// 読み込みリクエストのワーク作成
-	Work* CreateRequestReadWork(std::string_view _path, BufferInfo* const _bufferInfo);
+	Work* CreateRequestReadWork(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
 }
 
 // 初期化
@@ -61,7 +61,7 @@ void FileSystem::Cleanup()
 }
 
 // 読み込みリクエスト
-FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, BufferInfo* const _bufferInfo)
+FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
 	Work* work = CreateRequestReadWork(_path, _bufferInfo);
 	if (!work)return WorkHandle{};
@@ -76,7 +76,7 @@ FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, BufferInf
 }
 
 // 読み込みリクエスト(即時)
-bool FileSystem::RequestReadNoWait(std::string_view _path, BufferInfo* const _bufferInfo)
+bool FileSystem::RequestReadNoWait(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
 	Work* work = CreateRequestReadWork(_path, _bufferInfo);
 	if (!work)return false;
@@ -127,7 +127,7 @@ bool FileSystem::FileRead(Work* const _work)
 		return false;
 	}
 
-	Impl::FileRead(_work->getPath(), _work->getBufferInfo()->m_Buffer, _work->getBufferInfo()->m_BufferSize);
+	Impl::FileRead(_work->getPath(), _work->getBufferInfo());
 
 	return true;
 }
@@ -159,7 +159,7 @@ void FileSystem::CreateFilePathHashList(const std::string_view _basePath)
 }
 
 // 読み込みリクエストのワーク作成
-FileSystem::Work* FileSystem::CreateRequestReadWork(const std::string_view _path, BufferInfo* const _bufferInfo)
+FileSystem::Work* FileSystem::CreateRequestReadWork(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
 	const auto path = Path::FormatPath(_path);
 	const u32 hash = Fnv::Hash32Low(path);

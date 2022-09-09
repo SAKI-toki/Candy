@@ -17,15 +17,17 @@ namespace Component
 {
 	namespace Manager
 	{
-		inline std::vector<std::vector<Base*>> m_UpdateComponentLists;
-		inline std::vector<std::vector<Base*>> m_RenderComponentLists;
+		inline std::vector<std::shared_ptr<Base>> m_AllComponentLists;
+		inline std::vector<std::vector<std::shared_ptr<Base>>> m_UpdateComponentLists;
+		inline std::vector<std::vector<std::shared_ptr<Base>>> m_RenderComponentLists;
 	}
 
 	template<typename T, typename ...ArgsT, is_base_component_interface_t<T>>
-	Base* Manager::addComponent(Entity* const _ownerEntity, ArgsT&& ..._args)
+	std::weak_ptr<Base> Manager::addComponent(const std::weak_ptr<Entity>& _ownerEntity, ArgsT&& ..._args)
 	{
-		auto component = new T{ std::forward<ArgsT>(_args)... };
+		auto component = std::make_shared<T>(std::forward<ArgsT>(_args)...);
 		component->setOwnerEntity(_ownerEntity);
+		m_AllComponentLists.push_back(component);
 
 		const s32 updatePriority = PriorityTable::template GetUpdatePriorityFromType<T>();
 		if (core::InRangeSize(updatePriority, 0, m_UpdateComponentLists.size()))

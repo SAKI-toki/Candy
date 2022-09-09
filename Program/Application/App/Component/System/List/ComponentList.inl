@@ -18,37 +18,50 @@ namespace Component
 {
 	// コンポーネントの追加(同じコンポーネントの追加はできない)
 	template<typename T, typename ...ArgsT, is_base_component_interface_t<T>>
-	T* List::addComponent(ArgsT&& ..._args)
+	std::weak_ptr<T> List::addComponent(ArgsT&& ..._args)
 	{
-		if (getComponent<T>())
+		if (!getComponent<T>().expired())
 		{
-			return nullptr;
+			return std::weak_ptr<T>{};
 		}
 		auto p = Component::Manager::template addComponent<T>(m_OwnerEntity, std::forward<ArgsT>(_args)...);
+		auto sharedComponent = p.lock();
+		if (!sharedComponent)
+		{
+			return std::weak_ptr<T>{};
+		}
 		addComponentInternal(p);
-		std::vector<Base*> requireComponents;
+		std::vector<std::shared_ptr<Base>> requireComponents;
 		RequireTable::RequireFuncListType requireFuncList;
 		RequireTable::GetRequireFuncListFromType<T>(requireFuncList);
 		for (const auto& requireFunc : requireFuncList)
 		{
-			auto requireComponent = requireFunc(*this);
+			auto requireComponent = requireFunc(*this).lock();
 			if (!requireComponent)continue;
 			requireComponents.push_back(requireComponent);
 		}
-		p->startup();
+		sharedComponent->startup();
 		for (auto requireComponent : requireComponents)requireComponent->startup();
-		return static_cast<T*>(p);
+		return std::static_pointer_cast<T>(sharedComponent);
 	}
 
 	// コンポーネントの追加(RequireTable以外からの呼び出し禁止)
 	template<typename T, typename ...ArgsT, is_base_component_interface_t<T>>
-	T* List::addComponentFromRequire(ArgsT&& ..._args)
+	std::weak_ptr<T> List::addComponentFromRequire(ArgsT&& ..._args)
 	{
-		if (getComponent<T>())return nullptr;
+		if (!getComponent<T>().expired())
+		{
+			return std::weak_ptr<T>{};
+		}
 		auto p = Component::Manager::template addComponent<T>(m_OwnerEntity, std::forward<ArgsT>(_args)...);
+		auto sharedComponent = p.lock();
+		if (!sharedComponent)
+		{
+			return std::weak_ptr<T>{};
+		}
 		addComponentInternal(p);
 		// startupはここではしない
-		return static_cast<T*>(p);
+		return std::static_pointer_cast<T>(sharedComponent);
 	}
 
 	// コンポーネントの削除
@@ -66,7 +79,7 @@ namespace Component
 
 	// コンポーネントの取得
 	template<typename T, is_base_component_interface_t<T>>
-	T* List::getComponent()
+	std::weak_ptr<T> List::getComponent()
 	{
 		for (auto& component : m_Components)
 		{
@@ -74,12 +87,12 @@ namespace Component
 			if (!castComponent)continue;
 			return castComponent;
 		}
-		return nullptr;
+		return std::weak_ptr<T>{};
 	}
 
 	// コンポーネントの取得
 	template<typename T, is_base_component_interface_t<T>>
-	const T* List::getComponent()const
+	const std::weak_ptr<T> List::getComponent()const
 	{
 		for (auto& component : m_Components)
 		{
@@ -87,7 +100,7 @@ namespace Component
 			if (!castComponent)continue;
 			return castComponent;
 		}
-		return nullptr;
+		return std::weak_ptr<T>{};
 	}
 }
 

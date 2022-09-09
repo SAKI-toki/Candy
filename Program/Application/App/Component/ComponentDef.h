@@ -35,12 +35,17 @@ virtual bool isInheritedeClassId(const void* const _id)const override; \
 virtual const void* getClassId()const override; \
 static constexpr const char* GetStaticClassName(){ return ClassName; } \
 static constexpr const void* GetStaticClassId(){ return &InternalId; } \
-template<typename T, typename ReturnT = std::conditional_t<std::is_const_v<T>, const CLASS_NAME*, CLASS_NAME*>, is_base_component_interface_t<T> = nullptr> \
-static ReturnT Cast(T* const _v) \
+template<typename T, typename ReturnT = std::conditional_t<std::is_const_v<T>, const std::shared_ptr<CLASS_NAME>, std::shared_ptr<CLASS_NAME>>, is_base_component_interface_t<T> = nullptr> \
+static ReturnT Cast(const std::shared_ptr<T>& _v) \
 { \
     if(!_v)return nullptr; \
-    if(_v->isInheritedeClassId(GetStaticClassId()))return static_cast<ReturnT>(_v); \
+    if(_v->isInheritedeClassId(GetStaticClassId()))return std::static_pointer_cast<CLASS_NAME>(_v); \
     return nullptr; \
+} \
+template<typename T, typename ReturnT = std::conditional_t<std::is_const_v<T>, const std::shared_ptr<CLASS_NAME>, std::shared_ptr<CLASS_NAME>>, is_base_component_interface_t<T> = nullptr> \
+static ReturnT Cast(const std::weak_ptr<T>& _v) \
+{ \
+    return Cast(_v.lock()); \
 } \
 private:
 

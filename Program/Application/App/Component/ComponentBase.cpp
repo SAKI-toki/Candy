@@ -66,9 +66,6 @@ namespace Component
 	{
 		postRenderImpl();
 	}
-
-	void Base::setOwnerEntity(Entity* const _ownerEntity) { m_OwnerEntity = _ownerEntity; }
-	Entity* Base::getOwnerEntity()const { return m_OwnerEntity; }
 }
 
 CANDY_APP_NAMESPACE_END

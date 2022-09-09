@@ -33,20 +33,18 @@ namespace Component
 		}
 	}
 
-	void List::setOwnerEntity(Entity* const _ownerEntity)
-	{
-		m_OwnerEntity = _ownerEntity;
-	}
-
 	// コンポーネントの追加
-	void List::addComponentInternal(Base* const _component)
+	void List::addComponentInternal(const std::weak_ptr<Base>& _component)
 	{
-		const s32 addPriority = PriorityTable::GetUpdatePriorityFromId(_component->getClassId());
+		auto sharedComponent = _component.lock();
+		if (!sharedComponent)return;
+
+		const s32 addPriority = PriorityTable::GetUpdatePriorityFromId(sharedComponent->getClassId());
 
 		auto itr = m_Components.begin();
 		while (itr != m_Components.end())
 		{
-			auto component = *itr;
+			auto component = itr->lock();
 			++itr;
 			if (!component)continue;
 			const s32 priority = PriorityTable::GetUpdatePriorityFromId(component->getClassId());
@@ -54,16 +52,19 @@ namespace Component
 			break;
 		}
 		m_Components.insert(itr, _component);
-		_component->initialize();
+		sharedComponent->initialize();
 	}
 
 	// コンポーネントの削除
-	void List::removeComponent(const Base* const _component)
+	void List::removeComponent(const std::weak_ptr<Base>& _component)
 	{
-		if (!_component)return;
+		auto sharedComponent = _component.lock();
+		if (!sharedComponent)return;
 		for (s32 i = 0; i < (s32)m_Components.size(); ++i)
 		{
-			if (_component != m_Components[i])continue;
+			auto component = m_Components[i].lock();
+			if (!component)continue;
+			if (sharedComponent != component)continue;
 			removeComponentInternal(i);
 			return;
 		}
@@ -74,7 +75,10 @@ namespace Component
 	{
 		if (_index < 0 || _index >= (s32)m_Components.size())return;
 		auto itr = m_Components.begin() + _index;
-		(*itr)->cleanup();
+		if (auto sharedComponent = itr->lock())
+		{
+			sharedComponent->cleanup();
+		}
 		Manager::removeComponent(m_Components[_index]);
 		m_Components.erase(itr);
 	}

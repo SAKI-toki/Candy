@@ -9,8 +9,7 @@
 #define CANDY_ENTITY_MANGER_H
 
 #include <App/AppInclude.h>
-
-#include "EntityHandle.h"
+#include "Entity.h"
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -21,10 +20,8 @@ namespace EntityManager
 
 	void Flip();
 
-	std::shared_ptr<Entity> CreateEntity(std::string_view _name);
-	void ReleaseEntity(const EntityHandle& _handle);
-
-	std::shared_ptr<Entity> GetEntityPtr(const EntityHandle& _handle);
+	std::weak_ptr<Entity> CreateEntity(std::string_view _name);
+	void ReleaseEntity(const std::weak_ptr<Entity>& _entity);
 }
 
 CANDY_APP_NAMESPACE_END

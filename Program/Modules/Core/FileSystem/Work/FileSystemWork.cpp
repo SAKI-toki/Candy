@@ -25,12 +25,6 @@ namespace FileSystem
 
 	}
 
-	// ワークハンドルの取得
-	WorkHandle Work::getHandle()const
-	{
-		return m_Handle;
-	}
-
 	// パスの取得
 	std::string Work::getPath()const
 	{
@@ -47,12 +41,6 @@ namespace FileSystem
 	const std::shared_ptr<BufferInfo>& Work::getBufferInfo()
 	{
 		return m_BufferInfo;
-	}
-
-	// ハンドルのセット
-	void Work::setHandle(const WorkHandle _handle)
-	{
-		m_Handle = _handle;
 	}
 }
 

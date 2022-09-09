@@ -12,7 +12,7 @@ CANDY_GRAPHIC_NAMESPACE_BEGIN
 
 namespace ShaderManager
 {
-	std::vector<std::unique_ptr<std::byte[]>> m_ShaderBuffers;
+	std::vector<std::shared_ptr<std::byte[]>> m_ShaderBuffers;
 	std::vector<VertexShader> m_VertexShaders;
 	std::vector<PixelShader> m_PixelShaders;
 }
@@ -30,7 +30,7 @@ void ShaderManager::Startup()
 			core::FileSystem::RequestReadNoWait(filePath, bufferInfo);
 			VertexShader vs;
 			vs.startup(bufferInfo->m_Buffer.get(), bufferInfo->m_BufferSize);
-			m_ShaderBuffers.push_back(std::move(bufferInfo->m_Buffer));
+			m_ShaderBuffers.push_back(bufferInfo->m_Buffer);
 			m_VertexShaders.push_back(vs);
 		}
 
@@ -40,7 +40,7 @@ void ShaderManager::Startup()
 			core::FileSystem::RequestReadNoWait(filePath, bufferInfo);
 			PixelShader ps;
 			ps.startup(bufferInfo->m_Buffer.get(), bufferInfo->m_BufferSize);
-			m_ShaderBuffers.push_back(std::move(bufferInfo->m_Buffer));
+			m_ShaderBuffers.push_back(bufferInfo->m_Buffer);
 			m_PixelShaders.push_back(ps);
 		}
 	}

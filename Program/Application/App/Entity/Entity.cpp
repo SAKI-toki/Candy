@@ -10,9 +10,9 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-void Entity::startup()
+void Entity::startup(const std::weak_ptr<Entity>& _entity)
 {
-	m_ComponentList.setOwnerEntity(this);
+	m_ComponentList.setOwnerEntity(_entity);
 }
 
 void Entity::cleanup()
@@ -21,13 +21,13 @@ void Entity::cleanup()
 }
 
 // Transformコンポーネントの取得
-Component::Transform* Entity::getTransformComponent()
+std::weak_ptr<Component::Transform> Entity::getTransformComponent()
 {
 	return m_ComponentList.getComponent<Component::Transform>();
 }
 
 // Transformコンポーネントの取得
-const Component::Transform* Entity::getTransformComponent()const
+const std::weak_ptr<Component::Transform> Entity::getTransformComponent()const
 {
 	return m_ComponentList.getComponent<Component::Transform>();
 }

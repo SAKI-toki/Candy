@@ -20,7 +20,9 @@ namespace Component
 	{
 		base_type::updateImpl();
 
-		auto transform = getOwnerEntity()->getTransformComponent();
+		auto ownerEntity = getOwnerEntity().lock();
+		if (!ownerEntity)return;
+		auto transform = ownerEntity->getTransformComponent().lock();
 		if (!transform)return;
 
 		if (core::Input::IsKeyOn('F'))
@@ -34,9 +36,9 @@ namespace Component
 		Rect playerRect;
 		playerRect.setSize(playerPos.x, playerPos.y, playerScale.x, playerScale.y);
 
-		if (auto enemy = m_EnemyHandle.getPtr())
+		if (auto enemy = m_EnemyEntity.lock())
 		{
-			if (auto enemyTransformComponent = enemy->getTransformComponent())
+			if (auto enemyTransformComponent = enemy->getTransformComponent().lock())
 			{
 				auto enemyPos = enemyTransformComponent->getPos();
 				auto enemyScale = enemyTransformComponent->getScale();
@@ -46,7 +48,8 @@ namespace Component
 
 				if (physics::Collision2D::QuadQuad::IntersectConvex(playerRect, enemyRect))
 				{
-					EntityManager::ReleaseEntity(m_EnemyHandle);
+					EntityManager::ReleaseEntity(m_EnemyEntity);
+					m_EnemyEntity.reset();
 				}
 			}
 		}

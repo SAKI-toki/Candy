@@ -102,9 +102,8 @@ void Font::LoadFont(const std::string& _fontName)
 	graphic::BufferStartupInfo textureBufferStartupInfo;
 	textureBufferStartupInfo.setTextureStartupInfo(graphic::types::GRAPHIC_FORMAT::BC3_UNORM, 4096, 4096);
 	fontData.m_TextureBuffer.startup(graphic::System::GetDevice(), textureBufferStartupInfo);
-	std::byte* ddsBuf = graphic::Texture::DDS::ReadAlloc(textureBufferInfo->m_Buffer.get(), textureBufferInfo->m_BufferSize);
-	graphic::TextureUploder::CreateTexture(fontData.m_TextureBuffer, ddsBuf, 4096 * 4096);
-	delete ddsBuf;
+	auto ddsBuf = graphic::Texture::DDS::ReadAlloc(textureBufferInfo->m_Buffer, textureBufferInfo->m_BufferSize);
+	graphic::TextureUploder::CreateTexture(fontData.m_TextureBuffer, ddsBuf.get(), 4096 * 4096);
 
 	m_FontDatas.push_back(fontData);
 }

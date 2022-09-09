@@ -30,33 +30,33 @@ namespace Component
 
 		// コンポーネントの追加(同じコンポーネントの追加はできない)
 		template<typename T, typename ...ArgsT, is_base_component_interface_t<T> = nullptr>
-		T* addComponent(ArgsT&& ..._args);
+		std::weak_ptr<T> addComponent(ArgsT&& ..._args);
 		// コンポーネントの削除
 		template<typename T, is_base_component_interface_t<T> = nullptr>
 		void removeComponent();
 		// コンポーネントの削除
-		void removeComponent(const Base* const _component);
+		void removeComponent(const std::weak_ptr<Base>& _component);
 		// コンポーネントの取得
 		template<typename T, is_base_component_interface_t<T> = nullptr>
-		T* getComponent();
+		std::weak_ptr<T> getComponent();
 		// コンポーネントの取得
 		template<typename T, is_base_component_interface_t<T> = nullptr>
-		const T* getComponent()const;
+		const std::weak_ptr<T> getComponent()const;
 
-		void setOwnerEntity(Entity* const _ownerEntity);
+		void setOwnerEntity(const std::weak_ptr<Entity>& _ownerEntity) { m_OwnerEntity = _ownerEntity; }
 
 		// コンポーネントの追加(RequireTable以外からの呼び出し禁止)
 		template<typename T, typename ...ArgsT, is_base_component_interface_t<T> = nullptr>
-		T* addComponentFromRequire(ArgsT&& ..._args);
+		std::weak_ptr<T> addComponentFromRequire(ArgsT&& ..._args);
 
 	private:
 		// コンポーネントの追加
-		void addComponentInternal(Base* const _component);
+		void addComponentInternal(const std::weak_ptr<Base>& _component);
 		// コンポーネントの削除
 		void removeComponentInternal(const s32 _index);
 
-		std::vector<Base*> m_Components;
-		Entity* m_OwnerEntity = nullptr;
+		std::vector<std::weak_ptr<Base>> m_Components;
+		std::weak_ptr<Entity> m_OwnerEntity;
 	};
 }
 

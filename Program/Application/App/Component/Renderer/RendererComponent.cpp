@@ -26,7 +26,10 @@ namespace Component
 
 	void Renderer::renderImpl()
 	{
-		auto transform = m_OwnerEntity->getTransformComponent();
+		auto ownerEntity = getOwnerEntity().lock();
+		if (!ownerEntity)return;
+
+		auto transform = ownerEntity->getTransformComponent().lock();
 		if (!transform)return;
 
 		auto pos = transform->getPos();

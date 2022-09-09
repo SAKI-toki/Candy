@@ -110,9 +110,6 @@
     <Filter Include="Src\Utility\StaticVector">
       <UniqueIdentifier>{0951d9ad-c53d-4bf6-88ee-83ddd99c42a7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Handle">
-      <UniqueIdentifier>{b513b6d8-bffd-476f-8387-5ebe56d4aef4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\FileSystem\FileEnumerator">
       <UniqueIdentifier>{29edaecd-63b3-457b-b879-1b4f09c493ee}</UniqueIdentifier>
     </Filter>
@@ -322,17 +319,8 @@
     <ClInclude Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWork.h">
       <Filter>Src\FileSystem\Work</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWorkHandle.h">
-      <Filter>Src\FileSystem\Work</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\FileSystem\FileEnumerator\FileSystemFileEnumerator.h">
       <Filter>Src\FileSystem\FileEnumerator</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Core\Handle\Handle.h">
-      <Filter>Src\Handle</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Core\Handle\HandleSystem.h">
-      <Filter>Src\Handle</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\Input\Input.h">
       <Filter>Src\Input</Filter>
@@ -492,9 +480,6 @@
     <ClCompile Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWork.cpp">
       <Filter>Src\FileSystem\Work</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Core\FileSystem\Work\FileSystemWorkHandle.cpp">
-      <Filter>Src\FileSystem\Work</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\FileSystem\FileEnumerator\FileSystemFileEnumerator.cpp">
       <Filter>Src\FileSystem\FileEnumerator</Filter>
     </ClCompile>
@@ -595,12 +580,6 @@
     </None>
     <None Include="..\..\..\Modules\Core\Utility\StaticVector\StaticVector.inl">
       <Filter>Src\Utility\StaticVector</Filter>
-    </None>
-    <None Include="..\..\..\Modules\Core\Handle\Handle.inl">
-      <Filter>Src\Handle</Filter>
-    </None>
-    <None Include="..\..\..\Modules\Core\Handle\HandleSystem.inl">
-      <Filter>Src\Handle</Filter>
     </None>
     <None Include="..\..\..\Modules\Core\Debug\Log\Log.inl">
       <Filter>Src\Debug\Log</Filter>

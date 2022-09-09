@@ -43,8 +43,8 @@ namespace Component
 		// 後描画登録
 		void postRender();
 
-		void setOwnerEntity(Entity* const _ownerEntity);
-		Entity* getOwnerEntity()const;
+		void setOwnerEntity(const std::weak_ptr<Entity>& _ownerEntity) { m_OwnerEntity = _ownerEntity; }
+		std::weak_ptr<Entity> getOwnerEntity()const { return m_OwnerEntity; }
 
 	protected:
 		// 他コンポーネントに依存しない初期化の実装部
@@ -68,7 +68,7 @@ namespace Component
 		// 後描画登録の実装部
 		virtual void postRenderImpl() {}
 
-		Entity* m_OwnerEntity = nullptr;
+		std::weak_ptr<Entity> m_OwnerEntity;
 	};
 }
 

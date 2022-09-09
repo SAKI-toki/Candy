@@ -23,12 +23,11 @@ void TextureManager::Startup()
 	auto bufferInfo = std::make_shared<core::FileSystem::BufferInfo>();
 	core::FileSystem::RequestReadNoWait(path, bufferInfo);
 
-	auto result = graphic::Texture::DDS::ReadAlloc(bufferInfo->m_Buffer.get(), bufferInfo->m_BufferSize);
+	auto result = graphic::Texture::DDS::ReadAlloc(bufferInfo->m_Buffer, bufferInfo->m_BufferSize);
 	graphic::BufferStartupInfo dummyTextureBufferStartupInfo;
 	dummyTextureBufferStartupInfo.setTextureStartupInfo(graphic::types::GRAPHIC_FORMAT::BC3_UNORM, 1024, 1024);
 	m_DummyTextureInfo.m_Buffer.startup(graphicDevice, dummyTextureBufferStartupInfo);
-	graphic::TextureUploder::CreateTexture(m_DummyTextureInfo.m_Buffer, result, 1024 * 1024);
-	delete result;
+	graphic::TextureUploder::CreateTexture(m_DummyTextureInfo.m_Buffer, result.get(), 1024 * 1024);
 
 	m_DummyTextureInfo.m_Format = graphic::types::GRAPHIC_FORMAT::BC3_UNORM;
 	m_DummyTextureInfo.m_Width = 1024;

@@ -19,7 +19,6 @@
 #include "FileSystem/FileSystem.cpp"
 #include "FileSystem/FileEnumerator/FileSystemFileEnumerator.cpp"
 #include "FileSystem/Work/FileSystemWork.cpp"
-#include "FileSystem/Work/FileSystemWorkHandle.cpp"
 
 #include "Hardware/Hardware.cpp"
 

@@ -112,9 +112,6 @@
     <ClCompile Include="..\..\..\Application\App\Entity\Entity.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Entity\EntityHandle.cpp">
-      <Filter>Src\Entity</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Entity\EntityManager.cpp">
       <Filter>Src\Entity</Filter>
     </ClCompile>
@@ -250,9 +247,6 @@
       <Filter>Src\Debug\Draw\String</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Entity\Entity.h">
-      <Filter>Src\Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Application\App\Entity\EntityHandle.h">
       <Filter>Src\Entity</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Entity\EntityManager.h">

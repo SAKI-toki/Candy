@@ -10,7 +10,6 @@
 
 #include <App/AppInclude.h>
 
-#include "EntityHandle.h"
 #include <App/Component/System/List/ComponentList.h>
 
 CANDY_APP_NAMESPACE_BEGIN
@@ -31,38 +30,34 @@ public:
 	Entity& operator=(Entity&&)noexcept = delete;
 
 	// 初期化
-	void startup();
+	void startup(const std::weak_ptr<Entity>& _entity);
 	// 破棄
 	void cleanup();
 
-	const EntityHandle& getHandle()const { return m_Handle; }
-	void setHandle(const EntityHandle& _handle) { m_Handle = _handle; }
-	
 	const std::string& getName()const { return m_Name; }
 	void setName(std::string_view _name) { m_Name = _name; }
 
 	// コンポーネントの追加
 	template<typename T, typename ...ArgsT, Component::is_base_component_interface_t<T> = nullptr>
-	void addComponent(ArgsT&& ..._args) { m_ComponentList.addComponent<T>(std::forward<ArgsT>(_args)...); }
+	std::weak_ptr<T> addComponent(ArgsT&& ..._args) { return m_ComponentList.addComponent<T>(std::forward<ArgsT>(_args)...); }
 	// コンポーネントの削除
 	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
 	void removeComponent() { m_ComponentList.removeComponent<T>(); }
 	// コンポーネントの取得
 	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
-	T* getComponent() { return m_ComponentList.getComponent<T>(); }
+	std::weak_ptr<T> getComponent() { return m_ComponentList.getComponent<T>(); }
 	// コンポーネントの取得
 	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
-	const T* getComponent()const { return m_ComponentList.getComponent<T>(); }
+	const std::weak_ptr<T> getComponent()const { return m_ComponentList.getComponent<T>(); }
 
 	// Transformコンポーネントの取得
-	Component::Transform* getTransformComponent();
-	const Component::Transform* getTransformComponent()const;
+	std::weak_ptr<Component::Transform> getTransformComponent();
+	const std::weak_ptr<Component::Transform> getTransformComponent()const;
 
 	bool isAlive()const { return m_IsAlive; }
 	void setAlive(const bool _alive) { m_IsAlive = _alive; }
 
 private:
-	EntityHandle m_Handle{};
 	std::string m_Name{};
 	bool m_IsAlive = true;
 

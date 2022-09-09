@@ -13,7 +13,7 @@ CANDY_GRAPHIC_NAMESPACE_BEGIN
 namespace Texture::DDS
 {
 	// メモリ確保しつつ読み込み
-	std::byte* ReadAlloc(const std::byte* const _bytes, const u64 _byteSize);
+	std::shared_ptr<std::byte[]> ReadAlloc(const std::shared_ptr<std::byte[]>& _bytes, const u64 _byteSize);
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

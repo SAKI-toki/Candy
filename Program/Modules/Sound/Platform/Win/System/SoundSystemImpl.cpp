@@ -11,11 +11,8 @@ namespace System
 
 		struct SoundInfo
 		{
-			CANDY_DEFAULT_CONSTRUCTOR_DESTRUCTOR(SoundInfo);
-			CANDY_DELETE_COPY(SoundInfo);
-			CANDY_DEFAULT_MOVE(SoundInfo);
 			IXAudio2SourceVoice* m_SourceVoice = nullptr;
-			std::unique_ptr<std::byte[]> m_Buffer;
+			std::shared_ptr<std::byte[]> m_Buffer;
 			ComPtr<IUnknown> m_Apo;
 		};
 		std::vector<SoundInfo> m_SoundInfos;
@@ -132,7 +129,7 @@ namespace System
 			{
 				if (offset + chunk.m_Size > bufferInfo->m_BufferSize)break;
 				SoundInfo soundInfo;
-				soundInfo.m_Buffer = std::move(bufferInfo->m_Buffer);
+				soundInfo.m_Buffer = bufferInfo->m_Buffer;
 				CANDY_ASSERT_HRESULT(m_XAudio->CreateSourceVoice(&soundInfo.m_SourceVoice, &waveFormatEx));
 				XAUDIO2_BUFFER xaudio2Buffer{};
 				xaudio2Buffer.pAudioData = (const BYTE*)bufferInfo->m_Buffer.get() + offset;
@@ -141,7 +138,7 @@ namespace System
 				if (_callSeFlag & types::CALL_SE_FLAG_LOOP)xaudio2Buffer.LoopCount = XAUDIO2_LOOP_INFINITE;
 				soundInfo.m_SourceVoice->SubmitSourceBuffer(&xaudio2Buffer);
 				soundInfo.m_SourceVoice->Start();
-				m_SoundInfos.push_back(std::move(soundInfo));
+				m_SoundInfos.push_back(soundInfo);
 				return;
 			}
 			break;

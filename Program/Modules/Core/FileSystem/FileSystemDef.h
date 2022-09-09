@@ -16,7 +16,7 @@ namespace FileSystem
 {
 	struct BufferInfo
 	{
-		std::unique_ptr<std::byte[]> m_Buffer;
+		std::shared_ptr<std::byte[]> m_Buffer;
 		u64 m_BufferSize{};
 	};
 }

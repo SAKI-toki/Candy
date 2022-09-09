@@ -6,5 +6,4 @@
  *********************************************************************/
 
 #include "Entity.cpp"
-#include "EntityHandle.cpp"
 #include "EntityManager.cpp"

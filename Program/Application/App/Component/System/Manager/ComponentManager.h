@@ -33,9 +33,9 @@ namespace Component
 		void PostRender();
 
 		template<typename T, typename ...ArgsT, is_base_component_interface_t<T> = nullptr>
-		Base* addComponent(Entity* const _ownerEntity, ArgsT&& ..._args);
+		std::weak_ptr<Base> addComponent(const std::weak_ptr<Entity>& _ownerEntity, ArgsT&& ..._args);
 
-		void removeComponent(const Base* const _component);
+		void removeComponent(const std::weak_ptr<Base>& _component);
 	};
 }
 

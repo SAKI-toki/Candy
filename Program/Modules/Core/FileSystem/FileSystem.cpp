@@ -8,7 +8,6 @@
 #include "FileSystem.h"
 #include "FileEnumerator/FileSystemFileEnumerator.h"
 #include <Core/Thread/ThreadSystem.h>
-#include <Core/Handle/HandleSystem.h>
 #include <Core/Mutex/CriticalSection.h>
 
 #if PLATFORM_WIN
@@ -20,7 +19,6 @@ CANDY_CORE_NAMESPACE_BEGIN
 namespace FileSystem
 {
 	std::unordered_set<u32> m_FilePathHashes;
-	HandleSystem<Work, WorkHandle> m_WorkHandleSystem;
 	std::queue<std::shared_ptr<Work>> m_Works;
 	Thread m_FileReadThread;
 	CriticalSection m_Cs;
@@ -46,7 +44,6 @@ void FileSystem::Startup()
 	threadOption.m_Priority = THREAD_PRIORITY::LOWEST;
 	threadOption.m_CoreNo = 1;
 	m_FileReadThread.create([](void*) { FileReadThreadFunc(); }, nullptr, threadOption);
-	m_WorkHandleSystem.startup();
 }
 
 // 更新
@@ -55,24 +52,22 @@ void FileSystem::Cleanup()
 	m_EndFileReadThread = true;
 	m_FileReadThread.wait();
 	while (!m_Works.empty()) { m_Works.pop(); }
-	m_WorkHandleSystem.cleanup();
 	m_FilePathHashes.clear();
 	m_Cs.cleanup();
 }
 
 // 読み込みリクエスト
-FileSystem::WorkHandle FileSystem::RequestRead(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
+std::weak_ptr<FileSystem::Work> FileSystem::RequestRead(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
 	auto work = CreateRequestReadWork(_path, _bufferInfo);
-	if (!work)return WorkHandle{};
+	if (!work)return std::weak_ptr<FileSystem::Work>{};
 
-	work->setHandle(m_WorkHandleSystem.createHandle(work));
 	{
 		CANDY_CRITICAL_SECTION_SCOPE(m_Cs);
 		m_Works.push(work);
 	}
 
-	return work->getHandle();
+	return work;
 }
 
 // 読み込みリクエスト(即時)
@@ -86,9 +81,9 @@ bool FileSystem::RequestReadNoWait(std::string_view _path, const std::shared_ptr
 }
 
 // ファイル読み込み終了判定
-bool FileSystem::IsEndReadWork(const WorkHandle& _handle)
+bool FileSystem::IsEndReadWork(const std::weak_ptr<Work>& _work)
 {
-	return m_WorkHandleSystem.getPtr(_handle).expired();
+	return _work.expired();
 }
 
 // ファイル読み込みのスレッド実行関数
@@ -111,7 +106,6 @@ void FileSystem::FileReadThreadFunc()
 		
 		FileRead(work);
 
-		m_WorkHandleSystem.releaseHandle(work->getHandle());
 		m_Works.pop();
 	}
 }

@@ -11,7 +11,6 @@
 #include <Core/CoreInclude.h>
 
 #include <Core/FileSystem/FileSystemDef.h>
-#include "FileSystemWorkHandle.h"
 
 CANDY_CORE_NAMESPACE_BEGIN
 
@@ -25,8 +24,6 @@ namespace FileSystem
 		// 破棄
 		void cleanup();
 
-		// ワークハンドルの取得
-		WorkHandle getHandle()const;
 		// パスの取得
 		std::string getPath()const;
 		// ハッシュの取得
@@ -34,11 +31,7 @@ namespace FileSystem
 		// バッファ情報の取得
 		const std::shared_ptr<BufferInfo>& getBufferInfo();
 
-		// ハンドルのセット
-		void setHandle(const WorkHandle _handle);
-
 	private:
-		WorkHandle m_Handle{};
 		std::string m_Path{};
 		u32 m_Hash{};
 		std::shared_ptr<BufferInfo> m_BufferInfo{};

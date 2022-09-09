@@ -21,9 +21,9 @@ namespace Component
 	public:
 		void updateImpl()override;
 
-		void setEnemyEntityHandle(const EntityHandle& _handle) { m_EnemyHandle = _handle; }
+		void setEnemyEntity(const std::weak_ptr<Entity>& _entity) { m_EnemyEntity = _entity; }
 
-		EntityHandle m_EnemyHandle;
+		std::weak_ptr<Entity> m_EnemyEntity;
 	};
 }
 

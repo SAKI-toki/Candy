@@ -17,35 +17,46 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace GameFlow
 {
-	std::vector<EntityHandle> m_Entities;
+	std::vector<std::weak_ptr<Entity>> m_Entities;
 }
 
 // 初期化
 void GameFlow::Startup()
 {
 	auto player = EntityManager::CreateEntity("Player");
-	player->addComponent<Component::PlayerBehavior>();
-	player->addComponent<Component::Renderer>();
-	/*if (auto transform = player->getTransformComponent())
+	m_Entities.push_back(player);
+	auto lockPlayer = player.lock();
+	if (lockPlayer)
 	{
-		transform->setPos({ 100.0f, 100.0f, 0.0f });
-		transform->setScale({ 20.0f, 40.0f, 0.0f });
-	}*/
-	m_Entities.push_back(player->getHandle());
+		lockPlayer->addComponent<Component::PlayerBehavior>();
+		lockPlayer->addComponent<Component::Renderer>();
+		/*if (auto transform = player->getTransformComponent())
+		{
+			transform->setPos({ 100.0f, 100.0f, 0.0f });
+			transform->setScale({ 20.0f, 40.0f, 0.0f });
+		}*/
+	}
 
 	auto enemy = EntityManager::CreateEntity("Enemy");
-	enemy->addComponent<Component::EnemyBehavior>();
-	enemy->addComponent<Component::Renderer>();
-	/*if (auto transform = enemy->getTransformComponent())
+	m_Entities.push_back(enemy);
+	auto lockEnemy = player.lock();
+	if (lockEnemy)
 	{
-		transform->setPos({ 200.0f, 200.0f, 0.0f });
-		transform->setScale({ 70.0f, 30.0f, 0.0f });
-	}*/
-	m_Entities.push_back(enemy->getHandle());
+		lockEnemy->addComponent<Component::EnemyBehavior>();
+		lockEnemy->addComponent<Component::Renderer>();
+		/*if (auto transform = enemy->getTransformComponent())
+		{
+			transform->setPos({ 200.0f, 200.0f, 0.0f });
+			transform->setScale({ 70.0f, 30.0f, 0.0f });
+		}*/
+	}
 
-	if (auto component = player->getComponent<Component::PlayerBehavior>())
+	if (lockPlayer && lockEnemy)
 	{
-		component->setEnemyEntityHandle(enemy->getHandle());
+		if (auto component = lockPlayer->getComponent<Component::PlayerBehavior>().lock())
+		{
+			component->setEnemyEntity(enemy);
+		}
 	}
 }
 

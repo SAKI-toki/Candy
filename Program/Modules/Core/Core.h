@@ -23,10 +23,6 @@
 #include "FileSystem/FileSystem.h"
 #include "FileSystem/FileEnumerator/FileSystemFileEnumerator.h"
 #include "FileSystem/Work/FileSystemWork.h"
-#include "FileSystem/Work/FileSystemWorkHandle.h"
-
-#include "Handle/Handle.h"
-#include "Handle/HandleSystem.h"
 
 #include "Hardware/Hardware.h"
 

@@ -44,15 +44,19 @@ namespace Texture
 	}
 
     // メモリ確保しつつ読み込み
-    std::byte* DDS::ReadAlloc(const std::byte* const _bytes, const u64 _byteSize)
+    std::shared_ptr<std::byte[]> DDS::ReadAlloc(const std::shared_ptr<std::byte[]>& _bytes, const u64 _byteSize)
 	{
+        if (!_bytes)
+        {
+            return nullptr;
+        }
         if (_byteSize < HeaderSize)
         {
             CANDY_LOG("バイトサイズが足りません");
             return nullptr;
         }
 
-        const auto& header = *reinterpret_cast<const Header*>(_bytes);
+        const auto& header = *reinterpret_cast<const Header*>(_bytes.get());
 
         if (header.m_Magic != CANDY_MAKE_FOURCC('D', 'D', 'S', ' '))
         {
@@ -65,7 +69,7 @@ namespace Texture
             return nullptr;
         }
 
-        std::byte* result = nullptr;
+        std::shared_ptr<std::byte[]> result;
 
         switch (header.m_FourCC)
         {
@@ -73,8 +77,8 @@ namespace Texture
         {
             const u64 pixelSize = _byteSize - HeaderSize;
             const u64 resultSize = header.m_Width * header.m_Height * 8 / 16;
-            result = new std::byte[resultSize];
-            memcpy_s(result, resultSize, _bytes + HeaderSize, pixelSize);
+            result = std::make_shared<std::byte[]>(resultSize);
+            memcpy_s(result.get(), resultSize, _bytes.get() + HeaderSize, pixelSize);
             return result;
         }
         break;
@@ -82,8 +86,8 @@ namespace Texture
         {
             const u64 pixelSize = _byteSize - HeaderSize;
             const u64 resultSize = header.m_Width * header.m_Height * 16 / 16;
-            result = new std::byte[resultSize];
-            memcpy_s(result, resultSize, _bytes + HeaderSize, pixelSize);
+            result = std::make_shared<std::byte[]>(resultSize);
+            memcpy_s(result.get(), resultSize, _bytes.get() + HeaderSize, pixelSize);
             return result;
         }
         break;

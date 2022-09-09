@@ -16,7 +16,7 @@ namespace Component
 	{
 		core::JobSystem m_JobSystem;
 
-		void TransformComponentImpl(void(Base::* _baseFunc)(), std::vector<Base*>& _componentList, std::atomic<int>& _index)
+		void TransformComponentImpl(void(Base::* _baseFunc)(), std::vector<std::shared_ptr<Base>>& _componentList, std::atomic<int>& _index)
 		{
 			while (true)
 			{
@@ -26,11 +26,11 @@ namespace Component
 				auto& component = _componentList[localIndex];
 				if (!component)continue;
 
-				(component->*_baseFunc)();
+				((*component).*_baseFunc)();
 			}
 		}
 
-		void TransformComponent(void(Base::* _baseFunc)(), std::vector<std::vector<Base*>>& _componentLists)
+		void TransformComponent(void(Base::* _baseFunc)(), std::vector<std::vector<std::shared_ptr<Base>>>& _componentLists)
 		{
 			if (!_baseFunc)return;
 			
@@ -97,39 +97,41 @@ namespace Component
 		TransformComponent(&Base::postRender, m_RenderComponentLists);
 	}
 
-	void Manager::removeComponent(const Base* const _component)
+	void Manager::removeComponent(const std::weak_ptr<Base>& _component)
 	{
-		if (!_component)return;
-		
-		Base* deleteComponent = nullptr;
+		auto sharedComponent = _component.lock();
+		if (!sharedComponent)return;
 
-		const s32 updatePriority = PriorityTable::GetUpdatePriorityFromId(_component->getClassId());
+		for (s32 i = 0; i < (s32)m_AllComponentLists.size(); ++i)
+		{
+			if (sharedComponent != m_AllComponentLists[i])continue;
+			m_AllComponentLists.erase(m_AllComponentLists.begin() + i);
+			break;
+		}
+		
+		const s32 updatePriority = PriorityTable::GetUpdatePriorityFromId(sharedComponent->getClassId());
 		if (core::InRangeSize(updatePriority, 0, m_UpdateComponentLists.size()))
 		{
 			auto& componentList = m_UpdateComponentLists[updatePriority];
 			for (s32 i = 0; i < (s32)componentList.size(); ++i)
 			{
-				if (_component != componentList[i])continue;
-				if (!deleteComponent)deleteComponent = componentList[i];
+				if (sharedComponent != componentList[i])continue;
 				componentList.erase(componentList.begin() + i);
 				break;
 			}
 		}
 
-		const s32 renderPriority = PriorityTable::GetRenderPriorityFromId(_component->getClassId());
+		const s32 renderPriority = PriorityTable::GetRenderPriorityFromId(sharedComponent->getClassId());
 		if (core::InRangeSize(renderPriority, 0, m_RenderComponentLists.size()))
 		{
 			auto& componentList = m_RenderComponentLists[renderPriority];
 			for (s32 i = 0; i < (s32)componentList.size(); ++i)
 			{
-				if (_component != componentList[i])continue;
-				if (!deleteComponent)deleteComponent = componentList[i];
+				if (sharedComponent != componentList[i])continue;
 				componentList.erase(componentList.begin() + i);
 				break;
 			}
 		}
-
-		if(deleteComponent)delete deleteComponent;
 	}
 }
 

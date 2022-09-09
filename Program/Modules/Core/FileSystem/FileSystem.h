@@ -24,11 +24,11 @@ namespace FileSystem
 	void Cleanup();
 
 	// 読み込みリクエスト
-	WorkHandle RequestRead(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
+	std::weak_ptr<Work> RequestRead(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
 	// 読み込みリクエスト(即時)
 	bool RequestReadNoWait(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
 	// ファイル読み込み終了判定
-	bool IsEndReadWork(const WorkHandle& _handle);
+	bool IsEndReadWork(const std::weak_ptr<Work>& _work);
 }
 
 CANDY_CORE_NAMESPACE_END

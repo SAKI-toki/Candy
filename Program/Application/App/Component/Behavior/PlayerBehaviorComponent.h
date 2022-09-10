@@ -20,10 +20,6 @@ namespace Component
 
 	public:
 		void updateImpl()override;
-
-		void setEnemyEntity(const std::weak_ptr<Entity>& _entity) { m_EnemyEntity = _entity; }
-
-		std::weak_ptr<Entity> m_EnemyEntity;
 	};
 }
 

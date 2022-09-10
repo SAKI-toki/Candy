@@ -41,7 +41,7 @@ namespace impl
 		void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
 			const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation);
 
-		void copyTexture(ID3D12Device* const _device, ID3D12Resource* const _dstBuffer, ID3D12Resource* const _srcBuffer);
+		void copyTexture(ID3D12Device* const _device, ID3D12Resource* const _dstBuffer, ID3D12Resource* const _srcBuffer, const s32 _mipMapCount);
 
 		void setName(const std::string_view _name);
 

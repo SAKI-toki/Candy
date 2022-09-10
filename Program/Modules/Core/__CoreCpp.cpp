@@ -47,6 +47,7 @@
 #include "Time/Tick.cpp"
 #include "Time/Time.cpp"
 
+#include "Utility/AdjustAlign/CoreAdjustAlign.cpp"
 #include "Utility/StringSystem/Convert/StringSystemConvert.cpp"
 #include "Utility/StringSystem/Split/StringSystemSplit.cpp"
 #include "Utility/Path/Path.cpp"

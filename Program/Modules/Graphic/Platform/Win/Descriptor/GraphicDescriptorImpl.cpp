@@ -66,8 +66,8 @@ namespace impl
 		_device->CreateRenderTargetView(_buffer, nullptr, descriptorHandle);
 	}
 
-	void DescriptorImpl::bindingTexture2D(ID3D12Device* const _device, const s32 _index,
-		ID3D12Resource* const _buffer, const types::GRAPHIC_FORMAT _graphicFormat)
+	void DescriptorImpl::bindingTexture2D(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer, 
+		const types::GRAPHIC_FORMAT _graphicFormat, const s32 _mipMapCount)
 	{
 		D3D12_CPU_DESCRIPTOR_HANDLE descriptorHandle = m_DescriptorHeap->GetCPUDescriptorHandleForHeapStart();
 		descriptorHandle.ptr += GetDesciptorHandleIncrementSize(m_RealDescriptorType) * _index;
@@ -76,7 +76,7 @@ namespace impl
 		srvDesc.Shader4ComponentMapping = D3D12_DEFAULT_SHADER_4_COMPONENT_MAPPING;
 		srvDesc.Format = ConvGraphicFormat(_graphicFormat);
 		srvDesc.ViewDimension = D3D12_SRV_DIMENSION_TEXTURE2D;
-		srvDesc.Texture2D.MipLevels = 1;
+		srvDesc.Texture2D.MipLevels = static_cast<UINT>(_mipMapCount);
 
 		_device->CreateShaderResourceView(_buffer, &srvDesc, descriptorHandle);
 	}

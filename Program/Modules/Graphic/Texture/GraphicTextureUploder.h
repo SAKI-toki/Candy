@@ -25,7 +25,7 @@ namespace TextureUploder
 	// アップロードテクスチャの実行
 	void ExecuteUploadTexture(const CommandQueue& _commandQueue);
 	// テクスチャの作成
-	void CreateTexture(Buffer& _buffer, const std::byte* const _pixels, const u64 _size);
+	void CreateTexture(Buffer& _buffer, const std::byte* const _pixels, const u64 _size, const s32 _mipMapCount);
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

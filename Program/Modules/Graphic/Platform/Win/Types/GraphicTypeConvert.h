@@ -16,7 +16,6 @@ namespace impl
 {
 	D3D12_COMMAND_LIST_TYPE ConvCommandListType(const types::COMMAND_LIST_TYPE _commandListType);
 	DXGI_FORMAT ConvGraphicFormat(const types::GRAPHIC_FORMAT _graphicFormat);
-	u64 GetSizeGraphicFormat(const types::GRAPHIC_FORMAT _graphicFormat);
 	D3D12_RESOURCE_STATES ConvBarrierState(const types::BARRIER_STATE _barrierState);
 	D3D12_DESCRIPTOR_HEAP_TYPE ConvDescriptorType(const types::DESCRIPTOR_TYPE _descriptorType);
 	D3D12_DESCRIPTOR_RANGE_TYPE ConvDescriptorRangeType(const types::DESCRIPTOR_RANGE_TYPE _descriptorRangeType);

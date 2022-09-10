@@ -191,6 +191,9 @@
     <Filter Include="Src\Platform\Win\Matrix">
       <UniqueIdentifier>{3d9a9836-ba02-4b95-89e6-9f190432c6b7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Utility\AdjustAlign">
+      <UniqueIdentifier>{18f82586-7196-4dad-8057-7978d6e7c07b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Modules\Core\BuildConfig\BuildConfig.h">
@@ -406,6 +409,9 @@
     <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Matrix\MatrixImpl.h">
       <Filter>Src\Platform\Win\Matrix</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\AdjustAlign\CoreAdjustAlign.h">
+      <Filter>Src\Utility\AdjustAlign</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Core\Color\ConvColor.cpp">
@@ -551,6 +557,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Matrix\MatrixImpl.cpp">
       <Filter>Src\Platform\Win\Matrix</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Utility\AdjustAlign\CoreAdjustAlign.cpp">
+      <Filter>Src\Utility\AdjustAlign</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

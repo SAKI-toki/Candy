@@ -26,7 +26,7 @@ namespace DebugDraw::String
 	struct AddInfo
 	{
 		Vec4 m_Pos{};
-		Color m_Color{ 0.0f, 0.0f, 0.0f };
+		Color m_Color{ 1.0f, 1.0f, 1.0f };
 		f32 m_Scale{ 20.0f };
 	};
 

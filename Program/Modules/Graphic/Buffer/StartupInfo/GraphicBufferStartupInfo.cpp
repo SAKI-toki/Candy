@@ -17,9 +17,9 @@ void BufferStartupInfo::setDepthStencilStartupInfo(const types::GRAPHIC_FORMAT _
 	BufferStartupInfoImpl::setDepthStencilStartupInfo(_graphicFormat, _width, _height);
 }
 
-void BufferStartupInfo::setTextureStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height)
+void BufferStartupInfo::setTextureStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height, const s32 _mipMapCount)
 {
-	BufferStartupInfoImpl::setTextureStartupInfo(_graphicFormat, _width, _height);
+	BufferStartupInfoImpl::setTextureStartupInfo(_graphicFormat, _width, _height, _mipMapCount);
 }
 
 void BufferStartupInfo::setInitBarrierState(const types::BARRIER_STATE _barrierState)

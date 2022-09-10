@@ -99,11 +99,11 @@ void Font::LoadFont(const std::string& _fontName)
 		fontData.m_Uvs[uvInfo.m_Code].m_Rect.setPos(uvInfo.x0, uvInfo.y0, uvInfo.x1, uvInfo.y1);
 	}
 
+	auto dds = graphic::Texture::DDS::ReadAlloc(textureBufferInfo->m_Buffer, textureBufferInfo->m_BufferSize);
 	graphic::BufferStartupInfo textureBufferStartupInfo;
-	textureBufferStartupInfo.setTextureStartupInfo(graphic::types::GRAPHIC_FORMAT::BC3_UNORM, 4096, 4096);
+	textureBufferStartupInfo.setTextureStartupInfo(dds->m_Format, dds->m_Width, dds->m_Height, dds->m_MipMapCount);
 	fontData.m_TextureBuffer.startup(graphic::System::GetDevice(), textureBufferStartupInfo);
-	auto ddsBuf = graphic::Texture::DDS::ReadAlloc(textureBufferInfo->m_Buffer, textureBufferInfo->m_BufferSize);
-	graphic::TextureUploder::CreateTexture(fontData.m_TextureBuffer, ddsBuf.get(), 4096 * 4096);
+	graphic::TextureUploder::CreateTexture(fontData.m_TextureBuffer, dds->m_Buffer.get(), dds->m_BufferSize, dds->m_MipMapCount);
 
 	m_FontDatas.push_back(fontData);
 }

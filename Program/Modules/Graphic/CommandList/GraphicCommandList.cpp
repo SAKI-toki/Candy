@@ -143,9 +143,9 @@ void CommandList::drawIndexedInstanced(const u32 _indexCountPerInstance, const u
 		_startIndexLocation, _baseVertexLocation, _startInstanceLocation);
 }
 
-void CommandList::copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer)
+void CommandList::copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer, const s32 _mipMapCount)
 {
-	CommandListImpl::copyTexture(_device.getDevice(), _dstBuffer.getBuffer(), _srcBuffer.getBuffer());
+	CommandListImpl::copyTexture(_device.getDevice(), _dstBuffer.getBuffer(), _srcBuffer.getBuffer(), _mipMapCount);
 	ResourceLifetime::Regist(_dstBuffer);
 	ResourceLifetime::Regist(_srcBuffer);
 }

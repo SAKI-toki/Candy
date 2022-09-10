@@ -27,6 +27,9 @@ namespace Component
 		void setColor(const Color& _color) { m_Color = _color; }
 		const Color& getColor()const { return m_Color; }
 
+		void setDrawPriority(const s32 _priority) { m_Sprite.setDrawPriority(_priority); }
+		s32 getDrawPriority()const { return m_Sprite.getDrawPriority(); }
+
 	private:
 		Color m_Color{ OneVector };
 		Sprite m_Sprite;

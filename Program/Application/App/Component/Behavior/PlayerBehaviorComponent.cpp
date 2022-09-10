@@ -25,9 +25,22 @@ namespace Component
 		auto transform = ownerEntity->getTransformComponent().lock();
 		if (!transform)return;
 
-		if (core::Input::IsKeyOn('F'))
+
+		if (core::Input::IsKeyOn('D'))
 		{
-			transform->setPos(core::Input::GetClientMousePos());
+			transform->addPos(Vec4{ 0.1f * Global::GetAppTime() , 0.0f, 0.0f });
+		}
+		if (core::Input::IsKeyOn('A'))
+		{
+			transform->addPos(Vec4{ -0.1f * Global::GetAppTime() , 0.0f, 0.0f });
+		}
+		if (core::Input::IsKeyOn('W'))
+		{
+			transform->addPos(Vec4{ 0.0f, 0.1f * Global::GetAppTime(), 0.0f });
+		}
+		if (core::Input::IsKeyOn('S'))
+		{
+			transform->addPos(Vec4{ 0.0f, -0.1f * Global::GetAppTime(), 0.0f });
 		}
 
 		auto playerPos = transform->getPos();
@@ -35,24 +48,6 @@ namespace Component
 
 		Rect playerRect;
 		playerRect.setSize(playerPos.x, playerPos.y, playerScale.x, playerScale.y);
-
-		if (auto enemy = m_EnemyEntity.lock())
-		{
-			if (auto enemyTransformComponent = enemy->getTransformComponent().lock())
-			{
-				auto enemyPos = enemyTransformComponent->getPos();
-				auto enemyScale = enemyTransformComponent->getScale();
-
-				Rect enemyRect;
-				enemyRect.setSize(enemyPos.x, enemyPos.y, enemyScale.x, enemyScale.y);
-
-				if (physics::Collision2D::QuadQuad::IntersectConvex(playerRect, enemyRect))
-				{
-					EntityManager::ReleaseEntity(m_EnemyEntity);
-					m_EnemyEntity.reset();
-				}
-			}
-		}
 	}
 }
 

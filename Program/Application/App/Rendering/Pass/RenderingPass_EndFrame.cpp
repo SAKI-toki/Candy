@@ -16,7 +16,7 @@ namespace RenderingManager
 		auto& graphicDevice = graphic::System::GetDevice();
 
 		m_Descriptor.startup(graphic::System::GetDevice(), graphic::types::DESCRIPTOR_TYPE::CBV_SRV_UAV, 1);
-		m_Descriptor.bindingTexture2D(graphic::System::GetDevice(), 0, m_RenderTargetBuffer, graphic::types::GRAPHIC_FORMAT::R8G8B8A8_UNORM);
+		m_Descriptor.bindingTexture2D(graphic::System::GetDevice(), 0, m_RenderTargetBuffer, graphic::types::GRAPHIC_FORMAT::R8G8B8A8_UNORM, 1);
 
 		graphic::RootSignatureStartupInfo rootSignatureStartupInfo;
 		rootSignatureStartupInfo.initialize();

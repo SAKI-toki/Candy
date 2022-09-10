@@ -19,6 +19,7 @@ namespace TextureUploder
 	{
 		Buffer m_DstBuffer;
 		Buffer m_SrcBuffer;
+		s32 m_MipMapCount{};
 	};
 	std::vector<UploadBufferInfo> m_UploadBufferInfoLists[2];
 	CommandList m_CommandList;
@@ -47,7 +48,7 @@ void TextureUploder::ExecuteUploadTexture(const CommandQueue& _commandQueue)
 	m_CommandList.preDraw(System::GetBackBufferIndex());
 	for (auto& uploadBufferInfo : m_UploadBufferInfoList)
 	{
-		m_CommandList.copyTexture(System::GetDevice(), uploadBufferInfo.m_DstBuffer, uploadBufferInfo.m_SrcBuffer);
+		m_CommandList.copyTexture(System::GetDevice(), uploadBufferInfo.m_DstBuffer, uploadBufferInfo.m_SrcBuffer, uploadBufferInfo.m_MipMapCount);
 		m_CommandList.translationBufferBarrier(uploadBufferInfo.m_DstBuffer, types::BARRIER_STATE::COPY_DEST, types::BARRIER_STATE::PIXEL_SHADER_RESOURCE);
 	}
 	m_UploadBufferInfoList.clear();
@@ -56,7 +57,7 @@ void TextureUploder::ExecuteUploadTexture(const CommandQueue& _commandQueue)
 }
 
 // テクスチャの作成
-void TextureUploder::CreateTexture(Buffer& _buffer, const std::byte* const _pixels, const u64 _size)
+void TextureUploder::CreateTexture(Buffer& _buffer, const std::byte* const _pixels, const u64 _size, const s32 _mipMapCount)
 {
 	Buffer uploaderBuffer;
 	BufferStartupInfo uploaderBufferStartupInfo;
@@ -67,6 +68,7 @@ void TextureUploder::CreateTexture(Buffer& _buffer, const std::byte* const _pixe
 	UploadBufferInfo uploadBufferInfo;
 	uploadBufferInfo.m_SrcBuffer = uploaderBuffer;
 	uploadBufferInfo.m_DstBuffer = _buffer;
+	uploadBufferInfo.m_MipMapCount = _mipMapCount;
 	m_UploadBufferInfoLists[core::System::GetUpdateIndex()].push_back(uploadBufferInfo);
 }
 

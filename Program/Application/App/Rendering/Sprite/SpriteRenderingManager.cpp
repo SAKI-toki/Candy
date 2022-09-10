@@ -30,6 +30,14 @@ void SpriteRenderingManager::Draw()
 	auto& drawSpriteList = m_DrawSpriteLists[core::System::GetDrawIndex()];
 	if (drawSpriteList.empty())return;
 
+	std::sort(drawSpriteList.begin(), drawSpriteList.end(),
+		[](const std::shared_ptr<SpriteImpl>& _lhs, const std::shared_ptr<SpriteImpl>& _rhs)
+		{
+			if (!_rhs)return true;
+			if (!_lhs)return false;
+			return _lhs->getDrawPriority() < _rhs->getDrawPriority();
+		});
+
 	auto& commandList = RenderingManager::GetSpriteCommandList();
 
 	for (auto& drawSprite : drawSpriteList)

@@ -60,7 +60,7 @@ namespace DebugDraw
 		for (auto& indexBuffer : m_IndexBuffers)indexBuffer.startup(graphic::System::GetDevice(), indexBufferStartupInfo);
 
 		m_Descriptor.startup(graphic::System::GetDevice(), graphic::types::DESCRIPTOR_TYPE::CBV_SRV_UAV, 1);
-		m_Descriptor.bindingTexture2D(graphic::System::GetDevice(), 0, Font::GetFontTextureBuffer(DefaultFontType), graphic::types::GRAPHIC_FORMAT::BC3_UNORM);
+		m_Descriptor.bindingTexture2D(graphic::System::GetDevice(), 0, Font::GetFontTextureBuffer(DefaultFontType), graphic::types::GRAPHIC_FORMAT::BC3_UNORM, 1);
 
 		graphic::RootSignatureStartupInfo rootSignatureStartupInfo;
 		rootSignatureStartupInfo.initialize();

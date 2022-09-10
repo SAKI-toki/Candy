@@ -6,6 +6,7 @@
  *********************************************************************/
 
 #include "SpriteImpl.h"
+#include <App/Utility/UtilityConvertPosition.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -50,7 +51,7 @@ SpriteImpl::SpriteImpl()
 	}
 
 	auto& textureInfo = TextureManager::GetDummyTextureInfo();
-	m_Descriptor.bindingTexture2D(graphicDevice, graphic::Config::GetBackBufferCount(), textureInfo.m_Buffer, textureInfo.m_Format);
+	m_Descriptor.bindingTexture2D(graphicDevice, graphic::Config::GetBackBufferCount(), textureInfo.m_Buffer, textureInfo.m_Format, textureInfo.m_MipMapCount);
 }
 
 SpriteImpl::~SpriteImpl()

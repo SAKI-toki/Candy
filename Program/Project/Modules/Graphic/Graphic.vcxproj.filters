@@ -328,6 +328,9 @@
     <ClCompile Include="..\..\..\Modules\Graphic\ResourceLifetime\GraphicResourceLifetime.cpp">
       <Filter>Src\ResourceLifetime</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Graphic\Types\GraphicTypes.cpp">
+      <Filter>Src\Type</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Modules\Graphic\Buffer\StartupInfo\GraphicBufferStartupInfo.h">

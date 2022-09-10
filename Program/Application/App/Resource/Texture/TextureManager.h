@@ -17,9 +17,10 @@ namespace TextureManager
 	struct TextureInfo
 	{
 		graphic::Buffer m_Buffer;
-		f32 m_Width{};
-		f32 m_Height{};
+		u32 m_Width{};
+		u32 m_Height{};
 		graphic::types::GRAPHIC_FORMAT m_Format{};
+		s32 m_MipMapCount{};
 	};
 
 	void Startup();

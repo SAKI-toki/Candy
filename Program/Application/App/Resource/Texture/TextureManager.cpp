@@ -23,15 +23,16 @@ void TextureManager::Startup()
 	auto bufferInfo = std::make_shared<core::FileSystem::BufferInfo>();
 	core::FileSystem::RequestReadNoWait(path, bufferInfo);
 
-	auto result = graphic::Texture::DDS::ReadAlloc(bufferInfo->m_Buffer, bufferInfo->m_BufferSize);
+	auto dds = graphic::Texture::DDS::ReadAlloc(bufferInfo->m_Buffer, bufferInfo->m_BufferSize);
 	graphic::BufferStartupInfo dummyTextureBufferStartupInfo;
-	dummyTextureBufferStartupInfo.setTextureStartupInfo(graphic::types::GRAPHIC_FORMAT::BC3_UNORM, 1024, 1024);
+	dummyTextureBufferStartupInfo.setTextureStartupInfo(dds->m_Format, dds->m_Width, dds->m_Height, dds->m_MipMapCount);
 	m_DummyTextureInfo.m_Buffer.startup(graphicDevice, dummyTextureBufferStartupInfo);
-	graphic::TextureUploder::CreateTexture(m_DummyTextureInfo.m_Buffer, result.get(), 1024 * 1024);
+	graphic::TextureUploder::CreateTexture(m_DummyTextureInfo.m_Buffer, dds->m_Buffer.get(), dds->m_BufferSize, dds->m_MipMapCount);
 
-	m_DummyTextureInfo.m_Format = graphic::types::GRAPHIC_FORMAT::BC3_UNORM;
-	m_DummyTextureInfo.m_Width = 1024;
-	m_DummyTextureInfo.m_Height = 1024;
+	m_DummyTextureInfo.m_Format = dds->m_Format;
+	m_DummyTextureInfo.m_Width = dds->m_Width;
+	m_DummyTextureInfo.m_Height = dds->m_Height;
+	m_DummyTextureInfo.m_MipMapCount = dds->m_MipMapCount;
 }
 
 void TextureManager::Cleanup()

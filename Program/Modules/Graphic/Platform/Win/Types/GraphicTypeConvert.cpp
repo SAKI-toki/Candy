@@ -36,27 +36,6 @@ DXGI_FORMAT impl::ConvGraphicFormat(const types::GRAPHIC_FORMAT _graphicFormat)
 	return DXGI_FORMAT_UNKNOWN;
 }
 
-u64 impl::GetSizeGraphicFormat(const types::GRAPHIC_FORMAT _graphicFormat)
-{
-	switch (_graphicFormat)
-	{
-	case types::GRAPHIC_FORMAT::UNKNOWN:			return 0;
-	case types::GRAPHIC_FORMAT::R8G8B8A8_UNORM:		return 4;
-	case types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT:	return 16;
-	case types::GRAPHIC_FORMAT::R16_UINT:			return 2;
-	case types::GRAPHIC_FORMAT::D32_FLOAT:			return 4;
-	case types::GRAPHIC_FORMAT::D24_UNORM_S8_UINT:	return 4;
-	case types::GRAPHIC_FORMAT::R32_UINT:			return 4;
-	case types::GRAPHIC_FORMAT::BC1_UNORM:			return 4;
-	case types::GRAPHIC_FORMAT::BC1_UNORM_SRGB:		return 4;
-	case types::GRAPHIC_FORMAT::BC3_UNORM:			return 8;
-	case types::GRAPHIC_FORMAT::BC3_UNORM_SRGB:		return 8;
-	}
-
-	CANDY_LOG("未設定のグラフィックフォーマットです");
-	return 0;
-}
-
 D3D12_RESOURCE_STATES impl::ConvBarrierState(const types::BARRIER_STATE _barrierState)
 {
 	switch (_barrierState)

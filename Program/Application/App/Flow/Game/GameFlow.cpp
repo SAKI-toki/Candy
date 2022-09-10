@@ -29,7 +29,12 @@ void GameFlow::Startup()
 	if (lockPlayer)
 	{
 		lockPlayer->addComponent<Component::PlayerBehavior>();
-		lockPlayer->addComponent<Component::Renderer>();
+		auto renderer = lockPlayer->addComponent<Component::Renderer>();
+		if (auto lockRenderer = renderer.lock())
+		{
+			lockRenderer->setDrawPriority(-1);
+			lockRenderer->setColor(RedColor);
+		}
 		/*if (auto transform = player->getTransformComponent())
 		{
 			transform->setPos({ 100.0f, 100.0f, 0.0f });
@@ -39,7 +44,7 @@ void GameFlow::Startup()
 
 	auto enemy = EntityManager::CreateEntity("Enemy");
 	m_Entities.push_back(enemy);
-	auto lockEnemy = player.lock();
+	auto lockEnemy = enemy.lock();
 	if (lockEnemy)
 	{
 		lockEnemy->addComponent<Component::EnemyBehavior>();
@@ -49,14 +54,6 @@ void GameFlow::Startup()
 			transform->setPos({ 200.0f, 200.0f, 0.0f });
 			transform->setScale({ 70.0f, 30.0f, 0.0f });
 		}*/
-	}
-
-	if (lockPlayer && lockEnemy)
-	{
-		if (auto component = lockPlayer->getComponent<Component::PlayerBehavior>().lock())
-		{
-			component->setEnemyEntity(enemy);
-		}
 	}
 }
 

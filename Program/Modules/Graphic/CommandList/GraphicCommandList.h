@@ -61,7 +61,7 @@ public:
 	void drawIndexedInstanced(const u32 _indexCountPerInstance, const u32 _instanceCount,
 		const u32 _startIndexLocation, const u32 _baseVertexLocation, const u32 _startInstanceLocation);
 
-	void copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer);
+	void copyTexture(const Device& _device, const Buffer& _dstBuffer, const Buffer& _srcBuffer, const s32 _mipMapCount);
 
 	void setName(const std::string_view _name);
 };

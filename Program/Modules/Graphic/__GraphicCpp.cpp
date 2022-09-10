@@ -49,6 +49,8 @@
 #include "Texture/GraphicTextureUploder.cpp"
 #include "Texture/DDS/GraphicReadDDS.cpp"
 
+#include "Types/GraphicTypes.cpp"
+
 #include "Viewport/GraphicViewport.cpp"
 
 #if PLATFORM_WIN

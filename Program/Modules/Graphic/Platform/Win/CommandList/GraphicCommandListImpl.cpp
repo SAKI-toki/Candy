@@ -119,23 +119,25 @@ namespace impl
 			_startIndexLocation, _baseVertexLocation, _startInstanceLocation);
 	}
 
-	void CommandListImpl::copyTexture(ID3D12Device* const _device, ID3D12Resource* const _dstBuffer, ID3D12Resource* const _srcBuffer)
+	void CommandListImpl::copyTexture(ID3D12Device* const _device, ID3D12Resource* const _dstBuffer, ID3D12Resource* const _srcBuffer, const s32 _mipMapCount)
 	{
-		D3D12_TEXTURE_COPY_LOCATION  dstTextureCopyLocation{};
-		dstTextureCopyLocation.pResource = _dstBuffer;
-		dstTextureCopyLocation.Type = D3D12_TEXTURE_COPY_TYPE_SUBRESOURCE_INDEX;
-		dstTextureCopyLocation.SubresourceIndex = 0;
-
-		D3D12_RESOURCE_DESC dstBufferDesc = _dstBuffer->GetDesc();
-		D3D12_PLACED_SUBRESOURCE_FOOTPRINT  placedSubresourceFootprint;
+		auto placedSubresourceFootprint = std::make_unique<D3D12_PLACED_SUBRESOURCE_FOOTPRINT[]>(_mipMapCount);
 		u64 totalBytes = 0;
-		_device->GetCopyableFootprints(&dstBufferDesc, 0, 1, 0, &placedSubresourceFootprint, nullptr, nullptr, &totalBytes);
+		D3D12_RESOURCE_DESC dstBufferDesc = _dstBuffer->GetDesc();
+		_device->GetCopyableFootprints(&dstBufferDesc, 0, _mipMapCount, 0, placedSubresourceFootprint.get(), nullptr, nullptr, &totalBytes);
 
-		D3D12_TEXTURE_COPY_LOCATION  srcTextureCopyLocation{};
-		srcTextureCopyLocation.pResource = _srcBuffer;
-		srcTextureCopyLocation.Type = D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT;
-		srcTextureCopyLocation.PlacedFootprint = placedSubresourceFootprint;
-		m_CommandList->CopyTextureRegion(&dstTextureCopyLocation, 0, 0, 0, &srcTextureCopyLocation, nullptr);
+		for (s32 i = 0; i < _mipMapCount; ++i)
+		{
+			D3D12_TEXTURE_COPY_LOCATION  dstTextureCopyLocation{};
+			dstTextureCopyLocation.pResource = _dstBuffer;
+			dstTextureCopyLocation.Type = D3D12_TEXTURE_COPY_TYPE_SUBRESOURCE_INDEX;
+			dstTextureCopyLocation.SubresourceIndex = i;
+			D3D12_TEXTURE_COPY_LOCATION  srcTextureCopyLocation{};
+			srcTextureCopyLocation.pResource = _srcBuffer;
+			srcTextureCopyLocation.Type = D3D12_TEXTURE_COPY_TYPE_PLACED_FOOTPRINT;
+			srcTextureCopyLocation.PlacedFootprint = placedSubresourceFootprint[i];
+			m_CommandList->CopyTextureRegion(&dstTextureCopyLocation, 0, 0, 0, &srcTextureCopyLocation, nullptr);
+		}
 	}
 
 	void CommandListImpl::setName(const std::string_view _name)

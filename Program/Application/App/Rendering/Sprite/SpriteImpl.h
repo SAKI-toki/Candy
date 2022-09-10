@@ -22,6 +22,8 @@ public:
 	void draw(graphic::CommandList& _commandList);
 
 	void setTexture(const u32 _hash);
+	void setDrawPriority(const s32 _priority) { m_DrawPriority = _priority; }
+	s32 getDrawPriority()const { return m_DrawPriority; }
 
 private:
 	graphic::Buffer m_VertexBuffer;
@@ -33,6 +35,8 @@ private:
 	graphic::Buffer m_ConstantBuffer;
 
 	graphic::Descriptor m_Descriptor;
+
+	s32 m_DrawPriority{};
 };
 
 CANDY_APP_NAMESPACE_END

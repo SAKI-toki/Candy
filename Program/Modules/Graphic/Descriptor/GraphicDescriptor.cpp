@@ -29,10 +29,10 @@ void Descriptor::bindingBackBuffer(const Device& _device, const s32 _index, cons
 	DescriptorImpl::bindingBackBuffer(_device.getDevice(), _index, _buffer.getBuffer());
 }
 
-void Descriptor::bindingTexture2D(const Device& _device, const s32 _index,
-	const Buffer& _buffer, const types::GRAPHIC_FORMAT _graphicFormat)
+void Descriptor::bindingTexture2D(const Device& _device, const s32 _index, const Buffer& _buffer, 
+	const types::GRAPHIC_FORMAT _graphicFormat, const s32 _mipMapCount)
 {
-	DescriptorImpl::bindingTexture2D(_device.getDevice(), _index, _buffer.getBuffer(), _graphicFormat);
+	DescriptorImpl::bindingTexture2D(_device.getDevice(), _index, _buffer.getBuffer(), _graphicFormat, _mipMapCount);
 }
 
 void Descriptor::bindingConstantBuffer(const Device& _device, const u32 _index,

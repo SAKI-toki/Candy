@@ -19,8 +19,8 @@ namespace impl
 		void bindingRenderTarget(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer, const types::GRAPHIC_FORMAT _graphicFormat);
 		void bindingDepthStencil(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer, const types::GRAPHIC_FORMAT _graphicFormat);
 		void bindingBackBuffer(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer);
-		void bindingTexture2D(ID3D12Device* const _device, const s32 _index,
-			ID3D12Resource* const _buffer, const types::GRAPHIC_FORMAT _graphicFormat);
+		void bindingTexture2D(ID3D12Device* const _device, const s32 _index, ID3D12Resource* const _buffer, 
+			const types::GRAPHIC_FORMAT _graphicFormat, const s32 _mipMapCount);
 		void bindingConstantBuffer(ID3D12Device* const _device, const u32 _index,
 			ID3D12Resource* const _buffer, const u32 _offset, const u32 _size);
 

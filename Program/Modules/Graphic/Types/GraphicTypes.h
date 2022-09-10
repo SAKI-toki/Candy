@@ -130,6 +130,8 @@ namespace types
 		s32 m_RegisterSpace{ 0 };
 		SHADER_VISIBILITY_TYPE m_ShaderVisibilityType{ SHADER_VISIBILITY_TYPE::ALL };
 	};
+
+	u64 GetBppGraphicFormat(const types::GRAPHIC_FORMAT _graphicFormat);
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

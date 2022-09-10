@@ -76,7 +76,7 @@ namespace impl
 		m_InitState = D3D12_RESOURCE_STATE_DEPTH_WRITE;
 	}
 
-	void BufferStartupInfoImpl::setTextureStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height)
+	void BufferStartupInfoImpl::setTextureStartupInfo(const types::GRAPHIC_FORMAT _graphicFormat, const u64 _width, const u64 _height, const s32 _mipMapCount)
 	{
 		reset();
 
@@ -90,7 +90,7 @@ namespace impl
 		m_ResourceDesc.Height = static_cast<UINT>(_height);
 		m_ResourceDesc.DepthOrArraySize = 1;
 		m_ResourceDesc.SampleDesc.Count = 1;
-		m_ResourceDesc.MipLevels = 1;
+		m_ResourceDesc.MipLevels = static_cast<UINT16>(_mipMapCount);
 		m_ResourceDesc.Flags = D3D12_RESOURCE_FLAG_NONE;
 
 		m_UseClearValue = false;

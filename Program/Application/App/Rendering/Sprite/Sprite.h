@@ -24,6 +24,9 @@ public:
 	void setTexture(const std::string_view _path);
 	void setTexture(const u32 _hash);
 
+	void setDrawPriority(const s32 _priority) { if (m_Impl)m_Impl->setDrawPriority(_priority); }
+	s32 getDrawPriority()const { return m_Impl ? m_Impl->getDrawPriority() : 0; }
+
 private:
 	std::shared_ptr<SpriteImpl> m_Impl;
 };

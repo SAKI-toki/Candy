@@ -39,6 +39,7 @@ inline void DummyFunc(...) {}
 
 #include "Library/nameof/nameof.hpp"
 
+#include "Utility/AdjustAlign/CoreAdjustAlign.h"
 #include "Utility/ArraySize/ArraySize.h"
 #include "Utility/Clamp/Clamp.h"
 #include "Utility/Endian/Endian.h"

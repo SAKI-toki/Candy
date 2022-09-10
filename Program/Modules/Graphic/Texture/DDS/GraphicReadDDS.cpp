@@ -41,10 +41,12 @@ namespace Texture
         };
         constexpr u64 HeaderSize = sizeof(Header);
         static_assert(HeaderSize == 128);
+
+        void ReadBcFormatImpl(std::shared_ptr<DDS::ReadTextureInfo>& _readTextureInfo, const std::shared_ptr<std::byte[]>& _bytes, const Header& _header);
 	}
 
     // メモリ確保しつつ読み込み
-    std::shared_ptr<std::byte[]> DDS::ReadAlloc(const std::shared_ptr<std::byte[]>& _bytes, const u64 _byteSize)
+    std::shared_ptr<DDS::ReadTextureInfo> DDS::ReadAlloc(const std::shared_ptr<std::byte[]>& _bytes, const u64 _byteSize)
 	{
         if (!_bytes)
         {
@@ -69,25 +71,24 @@ namespace Texture
             return nullptr;
         }
 
-        std::shared_ptr<std::byte[]> result;
+        auto result = std::make_shared<ReadTextureInfo>();
+        result->m_Width = header.m_Width;
+        result->m_Height = header.m_Height;
+        result->m_MipMapCount = header.m_MipMapCount;
 
         switch (header.m_FourCC)
         {
         case CANDY_MAKE_FOURCC('D', 'X', 'T', '1'):
         {
-            const u64 pixelSize = _byteSize - HeaderSize;
-            const u64 resultSize = header.m_Width * header.m_Height * 8 / 16;
-            result = std::make_shared<std::byte[]>(resultSize);
-            memcpy_s(result.get(), resultSize, _bytes.get() + HeaderSize, pixelSize);
+            result->m_Format = graphic::types::GRAPHIC_FORMAT::BC1_UNORM;
+            ReadBcFormatImpl(result, _bytes, header);
             return result;
         }
         break;
         case CANDY_MAKE_FOURCC('D', 'X', 'T', '5'):
         {
-            const u64 pixelSize = _byteSize - HeaderSize;
-            const u64 resultSize = header.m_Width * header.m_Height * 16 / 16;
-            result = std::make_shared<std::byte[]>(resultSize);
-            memcpy_s(result.get(), resultSize, _bytes.get() + HeaderSize, pixelSize);
+            result->m_Format = graphic::types::GRAPHIC_FORMAT::BC3_UNORM;
+            ReadBcFormatImpl(result, _bytes, header);
             return result;
         }
         break;
@@ -103,7 +104,66 @@ namespace Texture
         break;
         }
 
-        return result;
+        return nullptr;
+    }
+
+    void DDS::ReadBcFormatImpl(std::shared_ptr<DDS::ReadTextureInfo>& _readTextureInfo, const std::shared_ptr<std::byte[]>& _bytes, const Header& _header)
+    {
+        const u64 bpp = graphic::types::GetBppGraphicFormat(_readTextureInfo->m_Format);
+
+        u64 resultSize = 0;
+
+        for (u32 i = 1; i <= _header.m_MipMapCount; ++i)
+        {
+            u64 rate = (u64)std::pow(2, i - 1);
+            const u64 width = core::Max(_header.m_Width / rate, 4);
+            const u64 height = core::Max(_header.m_Height / rate, 4);
+            const u64 size = width * height * bpp / 8;
+            const u64 rowPitch = width * 4 * bpp / 8;
+            if (rowPitch > 256)
+            {
+                resultSize += size;
+            }
+            else
+            {
+                resultSize += core::AlignAdjust(height / 4 * 256, 512);
+            }
+        }
+        _readTextureInfo->m_Buffer = std::make_unique<std::byte[]>(resultSize);
+        _readTextureInfo->m_BufferSize = resultSize;
+        resultSize = 0;
+
+        std::byte* p = _bytes.get() + HeaderSize;
+        for (u32 i = 1; i <= _header.m_MipMapCount; ++i)
+        {
+            u64 rate = (u64)std::pow(2, i - 1);
+            const u64 width = core::Max(_header.m_Width / rate, 4);
+            const u64 height = core::Max(_header.m_Height / rate, 4);
+            const u64 size = width * height * bpp / 8;
+            const u64 rowPitch = width * 4 * bpp / 8;
+            if (rowPitch > 256)
+            {
+                memcpy_s(
+                    _readTextureInfo->m_Buffer.get() + resultSize, 
+                    size, 
+                    p, 
+                    size);
+                resultSize += size;
+            }
+            else
+            {
+                for (s32 j = 0; j < height / 4; ++j)
+                {
+                    memcpy_s(
+                        _readTextureInfo->m_Buffer.get() + resultSize + 256 * j,
+                        rowPitch,
+                        p + rowPitch * j,
+                        rowPitch);
+                }
+                resultSize += core::AlignAdjust(height / 4 * 256, 512);
+            }
+            p += size;
+        }
     }
 }
 

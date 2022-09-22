@@ -46,7 +46,7 @@ void EntityManager::Flip()
 	}
 }
 
-std::weak_ptr<Entity> EntityManager::CreateEntity(std::string_view _name)
+std::weak_ptr<Entity> EntityManager::CreateEntity(const std::string_view _name)
 {
 	auto entity = std::make_shared<Entity>();
 	if (!entity)return std::weak_ptr<Entity>{};

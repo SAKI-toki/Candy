@@ -19,12 +19,12 @@ namespace Component
 	{
 		template<typename T, is_base_component_interface_t<T> = nullptr>
 		s32 GetUpdatePriorityFromType();
-		s32 GetUpdatePriorityFromId(const void* const _id);
+		s32 GetUpdatePriorityFromId(const Component::ClassIdType _id);
 		s32 GetUpdatePriorityCount();
 
 		template<typename T, is_base_component_interface_t<T> = nullptr>
 		s32 GetRenderPriorityFromType();
-		s32 GetRenderPriorityFromId(const void* const _id);
+		s32 GetRenderPriorityFromId(const Component::ClassIdType _id);
 		s32 GetRenderPriorityCount();
 	}
 }

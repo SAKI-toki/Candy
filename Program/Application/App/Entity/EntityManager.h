@@ -20,7 +20,7 @@ namespace EntityManager
 
 	void Flip();
 
-	std::weak_ptr<Entity> CreateEntity(std::string_view _name);
+	std::weak_ptr<Entity> CreateEntity(const std::string_view _name);
 	void ReleaseEntity(const std::weak_ptr<Entity>& _entity);
 }
 

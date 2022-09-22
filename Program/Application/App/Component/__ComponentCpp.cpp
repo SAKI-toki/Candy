@@ -15,6 +15,6 @@
 #include "Behavior/PlayerBehaviorComponent.cpp"
 #include "Behavior/EnemyBehaviorComponent.cpp"
 
-#include "Renderer/RendererComponent.cpp"
+#include "Renderer/SpriteRendererComponent.cpp"
 
 #include "Transform/TransformComponent.cpp"

@@ -1,12 +1,12 @@
 ﻿/*****************************************************************//**
- * \file   RendererComponent.h
- * \brief  レンダラーコンポーネント
+ * \file   SpriteRendererComponent.h
+ * \brief  Spriteレンダラーコンポーネント
  * \author Yu Ishiyama.
  * \date   2022/08/27
  *********************************************************************/
 
-#ifndef CANDY_APP_RENDERER_COMPONENT_H
-#define CANDY_APP_RENDERER_COMPONENT_H
+#ifndef CANDY_APP_SPRITE_RENDERER_COMPONENT_H
+#define CANDY_APP_SPRITE_RENDERER_COMPONENT_H
 
 #include <App/Component/ComponentHeaderInclude.h>
 #include <App/Rendering/Sprite/Sprite.h>
@@ -15,9 +15,9 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	class Renderer : public Base
+	class SpriteRenderer : public Base
 	{
-		CANDY_COMPONENT_DECLARE(Renderer, Base);
+		CANDY_COMPONENT_DECLARE(SpriteRenderer, Base);
 
 	public:
 		void startupImpl()override;
@@ -38,4 +38,4 @@ namespace Component
 
 CANDY_APP_NAMESPACE_END
 
-#endif // CANDY_APP_RENDERER_COMPONENT_H
+#endif // CANDY_APP_SPRITE_RENDERER_COMPONENT_H

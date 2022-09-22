@@ -11,7 +11,7 @@
 #include <App/Component/Behavior/PlayerBehaviorComponent.h>
 #include <App/Component/Behavior/EnemyBehaviorComponent.h>
 
-#include <App/Component/Renderer/RendererComponent.h>
+#include <App/Component/Renderer/SpriteRendererComponent.h>
 
 #include <App/Component/Transform/TransformComponent.h>
 

@@ -23,7 +23,7 @@ namespace Component
 
 		template<typename T>
 		void GetRequireFuncListFromType(RequireFuncListType& _result);
-		const RequireFuncListType& GetRequireFuncListFromId(const void* const _id);
+		const RequireFuncListType& GetRequireFuncListFromId(const Component::ClassIdType _id);
 	}
 }
 

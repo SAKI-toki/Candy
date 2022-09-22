@@ -14,7 +14,7 @@ namespace Component
 {
 	namespace PriorityTable::Impl
 	{
-		using PriorityTableType = std::vector<std::vector<const void*>>;
+		using PriorityTableType = std::vector<std::vector<Component::ClassIdType>>;
 
 		// 更新処理優先度テーブル
 		const PriorityTableType UpdatePriorityTable =
@@ -34,11 +34,11 @@ namespace Component
 		{
 			// 0
 			{
-				Renderer::GetStaticClassId(),
+				SpriteRenderer::GetStaticClassId(),
 			},
 		};
 
-		s32 GetPriorityFromId(const void* const _id, const PriorityTableType& _priorityTable)
+		s32 GetPriorityFromId(const Component::ClassIdType _id, const PriorityTableType& _priorityTable)
 		{
 			for (s32 i = 0; i < static_cast<s32>(_priorityTable.size()); ++i)
 			{
@@ -52,7 +52,7 @@ namespace Component
 		}
 	}
 
-	s32 PriorityTable::GetUpdatePriorityFromId(const void* const _id)
+	s32 PriorityTable::GetUpdatePriorityFromId(const Component::ClassIdType _id)
 	{
 		return Impl::GetPriorityFromId(_id, Impl::UpdatePriorityTable);
 	}
@@ -62,7 +62,7 @@ namespace Component
 		return static_cast<s32>(Impl::UpdatePriorityTable.size());
 	}
 
-	s32 PriorityTable::GetRenderPriorityFromId(const void* const _id)
+	s32 PriorityTable::GetRenderPriorityFromId(const Component::ClassIdType _id)
 	{
 		return Impl::GetPriorityFromId(_id, Impl::RenderPriorityTable);
 	}

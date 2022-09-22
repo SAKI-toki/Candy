@@ -35,7 +35,7 @@ public:
 	void cleanup();
 
 	const std::string& getName()const { return m_Name; }
-	void setName(std::string_view _name) { m_Name = _name; }
+	void setName(const std::string_view _name) { m_Name = _name; }
 
 	// コンポーネントの追加
 	template<typename T, typename ...ArgsT, Component::is_base_component_interface_t<T> = nullptr>

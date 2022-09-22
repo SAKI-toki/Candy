@@ -29,9 +29,9 @@ namespace FileSystem
 	// ファイル読み込み
 	bool FileRead(const std::shared_ptr<Work>& _work);
 	// ファイルパスのハッシュリストの作成
-	void CreateFilePathHashList(std::string_view _basePath);
+	void CreateFilePathHashList(const std::string_view _basePath);
 	// 読み込みリクエストのワーク作成
-	std::shared_ptr<Work> CreateRequestReadWork(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
+	std::shared_ptr<Work> CreateRequestReadWork(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo);
 }
 
 // 初期化
@@ -57,7 +57,7 @@ void FileSystem::Cleanup()
 }
 
 // 読み込みリクエスト
-std::weak_ptr<FileSystem::Work> FileSystem::RequestRead(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
+std::weak_ptr<FileSystem::Work> FileSystem::RequestRead(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
 	auto work = CreateRequestReadWork(_path, _bufferInfo);
 	if (!work)return std::weak_ptr<FileSystem::Work>{};
@@ -71,7 +71,7 @@ std::weak_ptr<FileSystem::Work> FileSystem::RequestRead(std::string_view _path, 
 }
 
 // 読み込みリクエスト(即時)
-bool FileSystem::RequestReadNoWait(std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
+bool FileSystem::RequestReadNoWait(const std::string_view _path, const std::shared_ptr<BufferInfo>& _bufferInfo)
 {
 	auto work = CreateRequestReadWork(_path, _bufferInfo);
 	if (!work)return false;

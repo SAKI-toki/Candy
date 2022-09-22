@@ -181,7 +181,7 @@
     <ClCompile Include="..\..\..\Application\App\Component\Behavior\PlayerBehaviorComponent.cpp">
       <Filter>Src\Component\Behavior</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Component\Renderer\RendererComponent.cpp">
+    <ClCompile Include="..\..\..\Application\App\Component\Renderer\SpriteRendererComponent.cpp">
       <Filter>Src\Component\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Component\Transform\TransformComponent.cpp">
@@ -297,7 +297,7 @@
     <ClInclude Include="..\..\..\Application\App\Component\Behavior\PlayerBehaviorComponent.h">
       <Filter>Src\Component\Behavior</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Application\App\Component\Renderer\RendererComponent.h">
+    <ClInclude Include="..\..\..\Application\App\Component\Renderer\SpriteRendererComponent.h">
       <Filter>Src\Component\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Component\Transform\TransformComponent.h">

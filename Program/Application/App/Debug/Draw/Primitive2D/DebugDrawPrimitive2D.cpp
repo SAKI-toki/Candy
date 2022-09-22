@@ -128,20 +128,30 @@ namespace DebugDraw
 	}
 
 	// 2D三角形の描画登録
-	void Primitive2D::AddTriangle2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Color _color)
+	void Primitive2D::AddTriangle2D(
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point1,
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point2,
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point3,
+		CANDY_UNUSED_VALUE_ATTR const Color _color)
 	{
 #if BUILD_DEBUG
 		AddTriangle2D(_point1, _point2, _point3, _color, _color, _color);
 #endif // BUILD_DEBUG
 	}
-	void Primitive2D::AddTriangle2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3,
-		const Color _color1, const Color _color2, const Color _color3)
+	void Primitive2D::AddTriangle2D(
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point1,
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point2,
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point3,
+		CANDY_UNUSED_VALUE_ATTR const Color _color1,
+		CANDY_UNUSED_VALUE_ATTR const Color _color2,
+		CANDY_UNUSED_VALUE_ATTR const Color _color3)
 	{
 #if BUILD_DEBUG
 		AddTriangle2D({ VertexInfo{ _point1, _color1 }, VertexInfo{ _point2, _color2 }, VertexInfo{ _point3, _color3 } });
 #endif // BUILD_DEBUG
 	}
-	void Primitive2D::AddTriangle2D(const VertexInfo(&_vertices)[3])
+	void Primitive2D::AddTriangle2D(
+		CANDY_UNUSED_VALUE_ATTR const VertexInfo(&_vertices)[3])
 	{
 #if BUILD_DEBUG
 		const u16 indices[] = { 0, 1, 2 };
@@ -150,14 +160,26 @@ namespace DebugDraw
 	}
 
 	// 2Dクアッドの描画登録
-	void Primitive2D::AddQuad2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4, const Color _color)
+	void Primitive2D::AddQuad2D(
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point1, 
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point2, 
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point3, 
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point4, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color)
 	{
 #if BUILD_DEBUG
 		AddQuad2D(_point1, _point2, _point3, _point4, _color, _color, _color, _color);
 #endif // BUILD_DEBUG
 	}
-	void Primitive2D::AddQuad2D(const Vec4 _point1, const Vec4 _point2, const Vec4 _point3, const Vec4 _point4,
-		const Color _color1, const Color _color2, const Color _color3, const Color _color4)
+	void Primitive2D::AddQuad2D(
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point1, 
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point2, 
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point3, 
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _point4,
+		CANDY_UNUSED_VALUE_ATTR const Color _color1, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color2, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color3, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color4)
 	{
 #if BUILD_DEBUG
 		AddQuad2D({ 
@@ -167,7 +189,8 @@ namespace DebugDraw
 			VertexInfo{ _point4, _color4 } });
 #endif // BUILD_DEBUG
 	}
-	void Primitive2D::AddQuad2D(const VertexInfo(&_vertices)[4])
+	void Primitive2D::AddQuad2D(
+		CANDY_UNUSED_VALUE_ATTR const VertexInfo(&_vertices)[4])
 	{
 #if BUILD_DEBUG
 		const u16 indices[] = { 0, 1, 3, 1, 2, 3 };
@@ -176,13 +199,20 @@ namespace DebugDraw
 	}
 
 	// 2D矩形の描画登録
-	void Primitive2D::AddRect2D(const Rect _rect, const Color _color)
+	void Primitive2D::AddRect2D(
+		CANDY_UNUSED_VALUE_ATTR const Rect _rect,
+		CANDY_UNUSED_VALUE_ATTR const Color _color)
 	{
 #if BUILD_DEBUG
 		AddRect2D(_rect, _color, _color, _color, _color);
 #endif // BUILD_DEBUG
 	}
-	void Primitive2D::AddRect2D(const Rect _rect, const Color _color1, const Color _color2, const Color _color3, const Color _color4)
+	void Primitive2D::AddRect2D(
+		CANDY_UNUSED_VALUE_ATTR const Rect _rect, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color1, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color2, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color3, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color4)
 	{
 #if BUILD_DEBUG
 		const f32 left = _rect.m_X;
@@ -197,7 +227,8 @@ namespace DebugDraw
 			VertexInfo{ rightDown, _color3 }, VertexInfo{ leftDown, _color4 } });
 #endif // BUILD_DEBUG
 	}
-	void Primitive2D::AddRect2D(const VertexInfo(&_vertices)[4])
+	void Primitive2D::AddRect2D(
+		CANDY_UNUSED_VALUE_ATTR const VertexInfo(&_vertices)[4])
 	{
 #if BUILD_DEBUG
 		const u16 indices[] = { 0, 1, 3, 1, 2, 3 };
@@ -206,7 +237,11 @@ namespace DebugDraw
 	}
 
 	// 2D線分の描画登録
-	void Primitive2D::AddLine2D(const Vec4 _begin, const Vec4 _end, const f32 _width, const Color _color)
+	void Primitive2D::AddLine2D(
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _begin, 
+		CANDY_UNUSED_VALUE_ATTR const Vec4 _end, 
+		CANDY_UNUSED_VALUE_ATTR const f32 _width, 
+		CANDY_UNUSED_VALUE_ATTR const Color _color)
 	{
 #if BUILD_DEBUG
 		const Vec4 dir = (_end - _begin);
@@ -219,7 +254,8 @@ namespace DebugDraw
 			VertexInfo{ endRight, _color }, VertexInfo{ endLeft, _color } });
 #endif // BUILD_DEBUG
 	}
-	void Primitive2D::AddLine2D(const VertexInfo(&_vertices)[4])
+	void Primitive2D::AddLine2D(
+		CANDY_UNUSED_VALUE_ATTR const VertexInfo(&_vertices)[4])
 	{
 #if BUILD_DEBUG
 		const u16 indices[] = { 0, 1, 2, 1, 3, 2 };
@@ -228,7 +264,11 @@ namespace DebugDraw
 	}
 
 	// 2Dの描画登録
-	void Primitive2D::Add2D(const VertexInfo* const _vertices, const s32 _vertexCount, const u16* const _indices, const s32 _indexCount)
+	void Primitive2D::Add2D(
+		CANDY_UNUSED_VALUE_ATTR const VertexInfo* const _vertices, 
+		CANDY_UNUSED_VALUE_ATTR const s32 _vertexCount, 
+		CANDY_UNUSED_VALUE_ATTR const u16* const _indices, 
+		CANDY_UNUSED_VALUE_ATTR const s32 _indexCount)
 	{
 #if BUILD_DEBUG
 		auto& vertexInfos2D = m_VertexInfo2DLists[core::System::GetUpdateIndex()];

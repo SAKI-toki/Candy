@@ -22,6 +22,6 @@ namespace RenderingManager
 	}
 }
 
-#endif // BUILD_DEBUG
-
 CANDY_APP_NAMESPACE_END
+
+#endif // BUILD_DEBUG

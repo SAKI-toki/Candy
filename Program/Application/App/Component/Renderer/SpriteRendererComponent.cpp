@@ -1,30 +1,30 @@
 ﻿/*****************************************************************//**
- * \file   RendererComponent.cpp
- * \brief  レンダラーコンポーネント
+ * \file   SpriteRendererComponent.cpp
+ * \brief  Spriteレンダラーコンポーネント
  * \author Yu Ishiyama.
  * \date   2022/08/27
  *********************************************************************/
 
-#include "RendererComponent.h"
+#include "SpriteRendererComponent.h"
 #include <App/Debug/Draw/DebugDraw.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	CANDY_COMPONENT_DEFINE(Renderer, Base);
+	CANDY_COMPONENT_DEFINE(SpriteRenderer, Base);
 
-	void Renderer::startupImpl()
+	void SpriteRenderer::startupImpl()
 	{
 		m_Sprite.startup();
 	}
 
-	void Renderer::cleanupImpl()
+	void SpriteRenderer::cleanupImpl()
 	{
 		m_Sprite.cleanup();
 	}
 
-	void Renderer::renderImpl()
+	void SpriteRenderer::renderImpl()
 	{
 		auto ownerEntity = getOwnerEntity().lock();
 		if (!ownerEntity)return;

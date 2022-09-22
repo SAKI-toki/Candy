@@ -20,7 +20,8 @@ namespace Component
 	template<typename T, typename ...ArgsT, is_base_component_interface_t<T>>
 	std::weak_ptr<T> List::addComponent(ArgsT&& ..._args)
 	{
-		if (!getComponent<T>().expired())
+		auto c = getComponent<T>();
+		if (!c.expired())
 		{
 			return std::weak_ptr<T>{};
 		}

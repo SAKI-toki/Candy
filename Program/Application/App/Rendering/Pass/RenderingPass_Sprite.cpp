@@ -5,8 +5,6 @@
  * \date   2022/07/19
  *********************************************************************/
 
-#if BUILD_DEBUG
-
 #include "RenderingPass_Sprite.h"
 #include <App/Rendering/RenderingParam.h>
 
@@ -62,7 +60,5 @@ namespace RenderingManager
 		_commandList.setPipeline(m_Pipeline);
 	}
 }
-
-#endif // BUILD_DEBUG
 
 CANDY_APP_NAMESPACE_END

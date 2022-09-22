@@ -16,7 +16,7 @@ namespace Component
 	{
 #define REQUIRE_COMPONENT_FUNC_DEFINE(CLASS_NAME, ...) [](List& _list){ return _list.addComponentFromRequire<CLASS_NAME>(__VA_ARGS__); }
 
-		const std::vector<std::pair<const void*, RequireFuncListType>> RequireComponentTable = 
+		const std::vector<std::pair<Component::ClassIdType, RequireFuncListType>> RequireComponentTable = 
 		{
 			{
 				Base::GetStaticClassId(),
@@ -41,7 +41,7 @@ namespace Component
 #undef REQUIRE_COMPONENT_FUNC_DEFINE
 	}
 
-	const RequireTable::RequireFuncListType& RequireTable::GetRequireFuncListFromId(const void* const _id)
+	const RequireTable::RequireFuncListType& RequireTable::GetRequireFuncListFromId(const Component::ClassIdType _id)
 	{
 		if (!_id)return NullRequireFuncList;
 

@@ -28,7 +28,8 @@
 
 #include "JobSystem/CoreJobSystem.cpp"
 
-#include "Matrix/Matrix.cpp"
+#include "Mtx/Mtx.cpp"
+#include "Mtx/MtxFunction.cpp"
 
 #include "Module/CoreModule.cpp"
 #include "Module/CoreModuleBase.cpp"
@@ -67,7 +68,8 @@
 #include "Platform/Win/Input/Keyboard/InputKeyboardImpl.cpp"
 #include "Platform/Win/Input/Mouse/InputMouseImpl.cpp"
 
-#include "Platform/Win/Matrix/MatrixImpl.cpp"
+#include "Platform/Win/Mtx/MtxImpl.cpp"
+#include "Platform/Win/Mtx/MtxFunctionImpl.cpp"
 
 #include "Platform/Win/Mutex/CriticalSectionImpl.cpp"
 #include "Platform/Win/Mutex/ThreadEventImpl.cpp"

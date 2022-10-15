@@ -1,5 +1,5 @@
 ﻿/*****************************************************************//**
- * \file   MatrixImpl.h
+ * \file   MtxImpl.h
  * \brief  Matrixの実装部(Win)
  * \author Yu Ishiyama.
  * \date   2022/07/09
@@ -14,8 +14,15 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
-struct alignas(16) MatrixImpl
+struct alignas(16) MtxImpl
 {
+	MtxImpl();
+
+	MtxImpl(const MtxImpl&);
+	MtxImpl(MtxImpl&&)noexcept;
+	void copy(const MtxImpl& _other);
+	void move(MtxImpl&& _other)noexcept;
+
 	union
 	{
         struct
@@ -25,7 +32,10 @@ struct alignas(16) MatrixImpl
             f32 _31, _32, _33, _34;
             f32 _41, _42, _43, _44;
         };
-		Vec4 v[4];
+
+		vector_type vector[4];
+		
+		Vec4 vec4[4];
 	};
 };
 

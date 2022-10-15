@@ -42,9 +42,9 @@ namespace Debug
 #if BUILD_DEBUG
 #define CANDY_LOG_COLOR(COLOR, MESSAGE_FMT, ...)		candy::core::Debug::Log::AddLog((COLOR), __FILE__, __LINE__, __func__, (MESSAGE_FMT), __VA_ARGS__)
 
-#define CANDY_LOG(MESSAGE_FMT, ...)					CANDY_LOG_COLOR(WhiteColor,		(MESSAGE_FMT), __VA_ARGS__)
-#define CANDY_LOG_ERR(MESSAGE_FMT, ...)				CANDY_LOG_COLOR(RedColor,		(MESSAGE_FMT), __VA_ARGS__)
-#define CANDY_LOG_WARN(MESSAGE_FMT, ...)			CANDY_LOG_COLOR(YellowColor,	(MESSAGE_FMT), __VA_ARGS__)
+#define CANDY_LOG(MESSAGE_FMT, ...)						CANDY_LOG_COLOR(WhiteColor,		(MESSAGE_FMT), __VA_ARGS__)
+#define CANDY_LOG_ERR(MESSAGE_FMT, ...)					CANDY_LOG_COLOR(RedColor,		(MESSAGE_FMT), __VA_ARGS__)
+#define CANDY_LOG_WARN(MESSAGE_FMT, ...)				CANDY_LOG_COLOR(YellowColor,	(MESSAGE_FMT), __VA_ARGS__)
 #else
 #define CANDY_LOG_COLOR(...)
 

@@ -12,9 +12,13 @@
 #include "System/Table/ComponentPriorityTable.cpp"
 #include "System/Table/ComponentRequireTable.cpp"
 
+#include "Behavior/BehaviorBaseComponent.cpp"
 #include "Behavior/PlayerBehaviorComponent.cpp"
 #include "Behavior/EnemyBehaviorComponent.cpp"
 
+#include "Renderer/RendererBaseComponent.cpp"
 #include "Renderer/SpriteRendererComponent.cpp"
 
 #include "Transform/TransformComponent.cpp"
+
+#include "Camera/Camera2dComponent.cpp"

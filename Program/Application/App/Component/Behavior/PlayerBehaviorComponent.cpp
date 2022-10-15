@@ -14,7 +14,7 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	CANDY_COMPONENT_DEFINE(PlayerBehavior, Base);
+	CANDY_COMPONENT_DEFINE(PlayerBehavior, BehaviorBase);
 
 	void PlayerBehavior::updateImpl()
 	{

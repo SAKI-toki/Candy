@@ -35,5 +35,6 @@
 #include <cstdio>
 #include <cmath>
 #include <cassert>
+#include <numbers>
 
 #endif // CANDY_CORE_STD_INCLUDE_H

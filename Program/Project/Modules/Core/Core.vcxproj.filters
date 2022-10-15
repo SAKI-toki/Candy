@@ -185,14 +185,17 @@
     <Filter Include="Src\System">
       <UniqueIdentifier>{ec7a9652-34a7-4ec1-b3f9-4075a912fe9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Matrix">
-      <UniqueIdentifier>{02886289-970f-4fbd-b23d-350e7973e996}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Platform\Win\Matrix">
-      <UniqueIdentifier>{3d9a9836-ba02-4b95-89e6-9f190432c6b7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Utility\AdjustAlign">
       <UniqueIdentifier>{18f82586-7196-4dad-8057-7978d6e7c07b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Mtx">
+      <UniqueIdentifier>{02886289-970f-4fbd-b23d-350e7973e996}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Mtx">
+      <UniqueIdentifier>{3d9a9836-ba02-4b95-89e6-9f190432c6b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Utility\Factorial">
+      <UniqueIdentifier>{18ddf026-9382-47f9-ae44-22fe359e8c24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -403,14 +406,26 @@
     <ClInclude Include="..\..\..\Modules\Core\System\CoreSystem.h">
       <Filter>Src\System</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Core\Matrix\Matrix.h">
-      <Filter>Src\Matrix</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Matrix\MatrixImpl.h">
-      <Filter>Src\Platform\Win\Matrix</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\Utility\AdjustAlign\CoreAdjustAlign.h">
       <Filter>Src\Utility\AdjustAlign</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Mtx\Mtx.h">
+      <Filter>Src\Mtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Mtx\MtxFunction.h">
+      <Filter>Src\Mtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Mtx\MtxFunctionImpl.h">
+      <Filter>Src\Platform\Win\Mtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Mtx\MtxImpl.h">
+      <Filter>Src\Platform\Win\Mtx</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4ConstantValues.h">
+      <Filter>Src\Platform\Win\Vec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\Factorial\CoreFactorial.h">
+      <Filter>Src\Utility\Factorial</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -552,14 +567,20 @@
     <ClCompile Include="..\..\..\Modules\Core\System\CoreSystem.cpp">
       <Filter>Src\System</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Core\Matrix\Matrix.cpp">
-      <Filter>Src\Matrix</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Matrix\MatrixImpl.cpp">
-      <Filter>Src\Platform\Win\Matrix</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Utility\AdjustAlign\CoreAdjustAlign.cpp">
       <Filter>Src\Utility\AdjustAlign</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Mtx\Mtx.cpp">
+      <Filter>Src\Mtx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Mtx\MtxFunction.cpp">
+      <Filter>Src\Mtx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Mtx\MtxFunctionImpl.cpp">
+      <Filter>Src\Platform\Win\Mtx</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Mtx\MtxImpl.cpp">
+      <Filter>Src\Platform\Win\Mtx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -598,6 +619,15 @@
     </None>
     <None Include="..\..\..\Modules\Core\Utility\InRange\CoreInRange.inl">
       <Filter>Src\Utility\InRange</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Vec\Vec4Function.inl">
+      <Filter>Src\Vec</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4FunctionImpl.inl">
+      <Filter>Src\Platform\Win\Vec</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\Factorial\CoreFactorial.inl">
+      <Filter>Src\Utility\Factorial</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

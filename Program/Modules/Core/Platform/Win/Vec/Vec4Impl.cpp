@@ -14,29 +14,28 @@ Vec4Impl::Vec4Impl()
 
 }
 
-Vec4Impl::Vec4Impl(const __m128 _v) : m128{ _v }
+Vec4Impl::Vec4Impl(const vector_type _v) : vector{ _v }
 {
 	
 }
 
-Vec4Impl::Vec4Impl(const Vec4Impl& _other) :m128{ _other.m128 }
+Vec4Impl::Vec4Impl(const Vec4Impl& _other) : vector{ _other.vector }
 {
 
 }
-Vec4Impl::Vec4Impl(Vec4Impl&& _other)noexcept : m128{ std::move(_other.m128) }
+Vec4Impl::Vec4Impl(Vec4Impl&& _other)noexcept : vector{ std::move(_other.vector) }
 {
 
 }
 
 void Vec4Impl::copy(const Vec4Impl& _other)
 {
-
-	m128 = _other.m128;
+	vector = _other.vector;
 }
 
 void Vec4Impl::move(Vec4Impl&& _other)noexcept
 {
-	m128 = std::move(_other.m128);
+	vector = std::move(_other.vector);
 }
 
 CANDY_CORE_NAMESPACE_END

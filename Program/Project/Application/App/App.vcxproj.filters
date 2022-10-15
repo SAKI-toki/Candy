@@ -89,6 +89,9 @@
     <Filter Include="Src\Resource\Texture">
       <UniqueIdentifier>{52ab0203-a3a7-43cf-a052-54a769ed7b12}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Component\Camera">
+      <UniqueIdentifier>{0eab92ae-d552-49b2-8e21-11f7d6c00da8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Application\App\__RootCpp.cpp">
@@ -232,6 +235,15 @@
     <ClCompile Include="..\..\..\Application\App\Rendering\Sprite\SpriteImpl.cpp">
       <Filter>Src\Rendering\Sprite</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Behavior\BehaviorBaseComponent.cpp">
+      <Filter>Src\Component\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Renderer\RendererBaseComponent.cpp">
+      <Filter>Src\Component\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Camera\Camera2dComponent.cpp">
+      <Filter>Src\Component\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Application\App\AppInclude.h">
@@ -353,6 +365,15 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Rendering\Sprite\SpriteImpl.h">
       <Filter>Src\Rendering\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Behavior\BehaviorBaseComponent.h">
+      <Filter>Src\Component\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Renderer\RendererBaseComponent.h">
+      <Filter>Src\Component\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Camera\Camera2dComponent.h">
+      <Filter>Src\Component\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

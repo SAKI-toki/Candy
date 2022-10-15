@@ -12,7 +12,7 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	CANDY_COMPONENT_DEFINE(EnemyBehavior, Base);
+	CANDY_COMPONENT_DEFINE(EnemyBehavior, BehaviorBase);
 
 	void EnemyBehavior::updateImpl()
 	{

@@ -9,29 +9,26 @@
 #define CANDY_APP_SPRITE_RENDERER_COMPONENT_H
 
 #include <App/Component/ComponentHeaderInclude.h>
+#include "RendererBaseComponent.h"
 #include <App/Rendering/Sprite/Sprite.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	class SpriteRenderer : public Base
+	class SpriteRenderer : public RendererBase
 	{
-		CANDY_COMPONENT_DECLARE(SpriteRenderer, Base);
+		CANDY_COMPONENT_DECLARE(SpriteRenderer, RendererBase);
 
 	public:
 		void startupImpl()override;
 		void cleanupImpl()override;
 		void renderImpl()override;
 
-		void setColor(const Color& _color) { m_Color = _color; }
-		const Color& getColor()const { return m_Color; }
-
 		void setDrawPriority(const s32 _priority) { m_Sprite.setDrawPriority(_priority); }
 		s32 getDrawPriority()const { return m_Sprite.getDrawPriority(); }
 
 	private:
-		Color m_Color{ OneVector };
 		Sprite m_Sprite;
 	};
 }

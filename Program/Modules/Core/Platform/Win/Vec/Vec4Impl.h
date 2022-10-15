@@ -15,7 +15,7 @@ CANDY_CORE_NAMESPACE_BEGIN
 struct alignas(16) Vec4Impl
 {
 	Vec4Impl();
-	Vec4Impl(const __m128 _v);
+	Vec4Impl(const vector_type _v);
 
 	Vec4Impl(const Vec4Impl& _other);
 	Vec4Impl(Vec4Impl&& _other)noexcept;
@@ -35,7 +35,7 @@ struct alignas(16) Vec4Impl
 		
 		f32 m_f32Array[4];
 
-		__m128 m128;
+		vector_type vector;
 	};
 };
 

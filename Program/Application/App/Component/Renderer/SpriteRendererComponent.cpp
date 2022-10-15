@@ -12,7 +12,7 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	CANDY_COMPONENT_DEFINE(SpriteRenderer, Base);
+	CANDY_COMPONENT_DEFINE(SpriteRenderer, RendererBase);
 
 	void SpriteRenderer::startupImpl()
 	{
@@ -34,7 +34,7 @@ namespace Component
 
 		auto pos = transform->getPos();
 
-		m_Sprite.render(pos, m_Color);
+		m_Sprite.render(pos, getColor());
 	}
 }
 

@@ -43,6 +43,7 @@ inline void DummyFunc(...) {}
 #include "Utility/ArraySize/ArraySize.h"
 #include "Utility/Clamp/Clamp.h"
 #include "Utility/Endian/Endian.h"
+#include "Utility/Factorial/CoreFactorial.h"
 #include "Utility/Hash/Hash.h"
 #include "Utility/Loop/Loop.h"
 #include "Utility/MinMax/MinMax.h"
@@ -54,6 +55,8 @@ inline void DummyFunc(...) {}
 #include "Utility/StringSystem/UpperLower/StringSystemToUpperLower.h"
 #include "Vec/Vec4.h"
 #include "Vec/Vec4Function.h"
+#include "Mtx/Mtx.h"
+#include "Mtx/MtxFunction.h"
 #include "Color/Color.h"
 #include "Color/ConvColor.h"
 

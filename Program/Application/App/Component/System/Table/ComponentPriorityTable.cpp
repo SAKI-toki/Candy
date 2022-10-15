@@ -27,6 +27,11 @@ namespace Component
 			{
 				EnemyBehavior::GetStaticClassId(),
 			},
+
+			// 最後
+			{
+				Camera2d::GetStaticClassId(),
+			},
 		};
 
 		// 描画登録処理優先度テーブル

@@ -9,14 +9,15 @@
 #define CANDY_APP_ENEMY_BEHAVIOR_COMPONENT_H
 
 #include <App/Component/ComponentHeaderInclude.h>
+#include "BehaviorBaseComponent.h"
 
 CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	class EnemyBehavior : public Base
+	class EnemyBehavior : public BehaviorBase
 	{
-		CANDY_COMPONENT_DECLARE(EnemyBehavior, Base);
+		CANDY_COMPONENT_DECLARE(EnemyBehavior, BehaviorBase);
 
 	protected:
 		void updateImpl()override;

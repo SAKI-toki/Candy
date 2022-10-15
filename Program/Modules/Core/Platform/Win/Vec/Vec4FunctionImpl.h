@@ -12,28 +12,57 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
-Vec4 VecSetImpl(const f32 _x, const f32 _y, const f32 _z, const f32 _w);
-Vec4 VecSetZeroImpl();
+vector_type VecSetImpl(const f32 _x, const f32 _y, const f32 _z, const f32 _w);
+vector_type VecSetZeroImpl();
+vector_type VecSetOneImpl();
+vector_type VecSetXImpl(const vector_type _v, const f32 _x);
+vector_type VecSetYImpl(const vector_type _v, const f32 _y);
+vector_type VecSetZImpl(const vector_type _v, const f32 _z);
+vector_type VecSetWImpl(const vector_type _v, const f32 _w);
+vector_type VecSetZeroWImpl(const vector_type _v);
+vector_type VecSetOneWImpl(const vector_type _v);
 
-Vec4 VecAddImpl(const Vec4& _v1, const Vec4& _v2);
-Vec4 VecSubImpl(const Vec4& _v1, const Vec4& _v2);
-Vec4 VecMulImpl(const Vec4& _v1, const Vec4& _v2);
-Vec4 VecDivImpl(const Vec4& _v1, const Vec4& _v2);
+vector_type VecAddImpl(const vector_type _v1, const vector_type _v2);
+vector_type VecSubImpl(const vector_type _v1, const vector_type _v2);
+vector_type VecMulImpl(const vector_type _v1, const vector_type _v2);
+vector_type VecDivImpl(const vector_type _v1, const vector_type _v2);
+
+vector_type VecSelectXImpl(const vector_type _v);
+vector_type VecSelectYImpl(const vector_type _v);
+vector_type VecSelectZImpl(const vector_type _v);
+vector_type VecSelectWImpl(const vector_type _v);
 
 // 内積の実装部
-f32 VecDotImpl(const Vec4& _v1, const Vec4& _v2);
+vector_type VecDotImpl(const vector_type _v1, const vector_type _v2);
 
 // 外積の実装部
-Vec4 VecCrossImpl(const Vec4& _v1, const Vec4& _v2);
+vector_type VecCrossImpl(const vector_type _v1, const vector_type _v2);
 
-f32 VecMagImpl(const Vec4& _v);
-f32 VecMagSqrImpl(const Vec4& _v);
+vector_type VecMagImpl(const vector_type _v);
+vector_type VecMagSqrImpl(const vector_type _v);
 
-f32 VecDistImpl(const Vec4& _v1, const Vec4& _v2);
-f32 VecDistSqrImpl(const Vec4& _v1, const Vec4& _v2);
+vector_type VecDistImpl(const vector_type _v1, const vector_type _v2);
+vector_type VecDistSqrImpl(const vector_type _v1, const vector_type _v2);
 
-Vec4 VecNormalizeImpl(const Vec4& _v);
+vector_type VecNormalizeImpl(const vector_type _v);
+
+void VecSinCosImpl(vector_type& _outSin, vector_type& _outCos, const vector_type _v);
+
+vector_type VecRoundImpl(const vector_type _v);
+
+vector_type VecAdjustAngleImpl(const vector_type _v);
+
+template<u32 MM>
+vector_type VecPermuteImpl(const vector_type _v);
+template<u32 MM>
+vector_type VecShuffleImpl(const vector_type _v1, const vector_type _v2);
+
+// 判定の実装部
+bool IsVecZeroImpl(const vector_type _v);
+bool IsVecZeroXYZWImpl(const vector_type _v);
 
 CANDY_CORE_NAMESPACE_END
+
+#include "Vec4FunctionImpl.inl"
 
 #endif // CANDY_CORE_VEC4_FUNCTION_IMPL_H

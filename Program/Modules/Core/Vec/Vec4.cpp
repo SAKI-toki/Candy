@@ -31,14 +31,6 @@ Vec4::Vec4(Vec4&& _other)noexcept : core::Vec4Impl{ std::move(_other) }
 {
 
 }
-Vec4::Vec4(const core::Vec4Impl& _other) : core::Vec4Impl{ _other }
-{
-
-}
-Vec4::Vec4(core::Vec4Impl&& _other)noexcept : core::Vec4Impl{ std::move(_other) }
-{
-
-}
 Vec4::Vec4(const f32 _x, const f32 _y, const f32 _z, const f32 _w)
 {
 	set(_x, _y, _z, _w);
@@ -63,25 +55,25 @@ Vec4 Vec4::getXY()const
 Vec4 Vec4::operator+(const Vec4& _other)const
 {
 	auto v = VecAdd(*this, _other);
-	v.w = 1.0f;
+	v = VecSetOneW(v);
 	return v;
 }
 Vec4 Vec4::operator-(const Vec4& _other)const
 {
 	auto v = VecSub(*this, _other);
-	v.w = 1.0f;
+	v = VecSetOneW(v);
 	return v;
 }
 Vec4 Vec4::operator*(const Vec4& _other)const
 {
 	auto v = VecMul(*this, _other);
-	v.w = 1.0f;
+	v = VecSetOneW(v);
 	return v;
 }
 Vec4 Vec4::operator/(const Vec4& _other)const
 {
 	auto v = VecDiv(*this, _other);
-	v.w = 1.0f;
+	v = VecSetOneW(v);
 	return v;
 }
 Vec4 Vec4::operator*(const f32& _other)const

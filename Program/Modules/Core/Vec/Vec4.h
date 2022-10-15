@@ -18,13 +18,13 @@ CANDY_NAMESPACE_BEGIN
 
 struct Vec4 : core::Vec4Impl
 {
+	using Vec4Impl::Vec4Impl;
+
 	Vec4();
 	Vec4& operator=(const Vec4& _other);
 	Vec4(const Vec4& _other);
 	Vec4& operator=(Vec4&& _other)noexcept;
 	Vec4(Vec4&& _other)noexcept;
-	Vec4(const core::Vec4Impl& _other);
-	Vec4(core::Vec4Impl&& _other)noexcept;
 	Vec4(const f32 _x, const f32 _y, const f32 _z, const f32 _w = 1.0f);
 
 	Vec4& set(const f32 _x, const f32 _y, const f32 _z, const f32 _w = 1.0f);

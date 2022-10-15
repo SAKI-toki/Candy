@@ -15,4 +15,6 @@
 
 #include <App/Component/Transform/TransformComponent.h>
 
+#include <App/Component/Camera/Camera2dComponent.h>
+
 #endif // CANDY_APP_ALL_COMPONENT_INCLUDE_H

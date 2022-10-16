@@ -23,6 +23,24 @@ namespace GameFlow
 // 初期化
 void GameFlow::Startup()
 {
+	Mtx m1, m2;
+	MtxSet(m1,
+		{ 0, 1, 2, 3 },
+		{ 8, 4, 5, 2 },
+		{ 6, 3, 2, 3 },
+		{ 2, 5, 8, 1 });
+	MtxSet(m2,
+		{ 9, 4, 6, 6 },
+		{ 2, 3, 7, 2 },
+		{ 8, 2, 1, 1 },
+		{ 8, 2, 0, 0 });
+	Mtx result;
+	MtxMul(result, m1, m2);
+	CANDY_LOG("{},{},{},{}", result.vec4[0].x, result.vec4[0].y, result.vec4[0].z, result.vec4[0].w);
+	CANDY_LOG("{},{},{},{}", result.vec4[1].x, result.vec4[1].y, result.vec4[1].z, result.vec4[1].w);
+	CANDY_LOG("{},{},{},{}", result.vec4[2].x, result.vec4[2].y, result.vec4[2].z, result.vec4[2].w);
+	CANDY_LOG("{},{},{},{}", result.vec4[3].x, result.vec4[3].y, result.vec4[3].z, result.vec4[3].w);
+
 	auto player = EntityManager::CreateEntity("Player");
 	m_Entities.push_back(player);
 	auto lockPlayer = player.lock();

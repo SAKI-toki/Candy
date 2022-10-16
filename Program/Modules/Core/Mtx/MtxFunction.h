@@ -20,6 +20,8 @@ CANDY_NAMESPACE_BEGIN
 void MtxSet(Mtx& _out, const Vec4& _v1, const Vec4& _v2, const Vec4& _v3, const Vec4& _v4);
 void MtxSetIdentity(Mtx& _out);
 
+void MtxMul(Mtx& _out, const Mtx& _m1, const Mtx& _m2);
+
 void MtxTranspose(Mtx& _out, const Mtx& _m);
 
 CANDY_NAMESPACE_END

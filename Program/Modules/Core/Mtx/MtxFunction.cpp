@@ -19,6 +19,11 @@ void MtxSetIdentity(Mtx& _out)
 	return core::MtxSetIdentityImpl(_out.vector);
 }
 
+void MtxMul(Mtx& _out, const Mtx& _m1, const Mtx& _m2)
+{
+	return core::MtxMulImpl(_out.vector, _m1.vector, _m2.vector);
+}
+
 void MtxTranspose(Mtx& _out, const Mtx& _m)
 {
 	return core::MtxTransposeImpl(_out.vector, _m.vector);

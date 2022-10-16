@@ -15,6 +15,8 @@ CANDY_CORE_NAMESPACE_BEGIN
 void MtxSetImpl(vector_type (&_out)[4], const vector_type _v1, const vector_type _v2, const vector_type _v3, const vector_type _v4);
 void MtxSetIdentityImpl(vector_type (&_out)[4]);
 
+void MtxMulImpl(vector_type(&_out)[4], const vector_type(&_m1)[4], const vector_type(&_m2)[4]);
+
 void MtxTransposeImpl(vector_type (&_out)[4], const vector_type (&_m)[4]);
 
 void MtxTransformationImpl(vector_type (&_out)[4], const vector_type _pos, const vector_type _rot, const vector_type _scale);

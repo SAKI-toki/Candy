@@ -21,7 +21,7 @@ void MtxSetImpl(vector_type(&_out)[4], const vector_type _v1, const vector_type 
 
 void MtxSetIdentityImpl(vector_type(&_out)[4])
 {
-	return MtxSetImpl(_out,
+	MtxSetImpl(_out,
 		VecSetImpl(1.0f, 0.0f, 0.0f, 0.0f),
 		VecSetImpl(0.0f, 1.0f, 0.0f, 0.0f),
 		VecSetImpl(0.0f, 0.0f, 1.0f, 0.0f),
@@ -29,14 +29,32 @@ void MtxSetIdentityImpl(vector_type(&_out)[4])
 	);
 }
 
+void MtxMulImpl(vector_type(&_out)[4], const vector_type(&_m1)[4], const vector_type(&_m2)[4])
+{
+	for (s32 i = 0; i < 4; ++i)
+	{
+		vector_type x = VecPermuteImpl<CANDY_MM_SHUFFLE(0, 0, 0, 0)>(_m1[i]);
+		vector_type y = VecPermuteImpl<CANDY_MM_SHUFFLE(1, 1, 1, 1)>(_m1[i]);
+		vector_type z = VecPermuteImpl<CANDY_MM_SHUFFLE(2, 2, 2, 2)>(_m1[i]);
+		vector_type w = VecPermuteImpl<CANDY_MM_SHUFFLE(3, 3, 3, 3)>(_m1[i]);
+
+		x = VecMulImpl(x, _m2[0]);
+		y = VecMulImpl(y, _m2[1]);
+		z = VecMulImpl(z, _m2[2]);
+		w = VecMulImpl(w, _m2[3]);
+
+		_out[i] = VecAddImpl(x, VecAddImpl(y, VecAddImpl(z, w)));
+	}
+}
+
 void MtxTransposeImpl(vector_type(&_out)[4], const vector_type(&_m)[4])
 {
-	auto v1 = VecShuffleImpl<CANDY_MM_SHUFFLE(0, 1, 0, 1)>(_m[0], _m[1]);
-	auto v2 = VecShuffleImpl<CANDY_MM_SHUFFLE(2, 3, 2, 3)>(_m[0], _m[1]);
-	auto v3 = VecShuffleImpl<CANDY_MM_SHUFFLE(0, 1, 0, 1)>(_m[2], _m[3]);
-	auto v4 = VecShuffleImpl<CANDY_MM_SHUFFLE(2, 3, 2, 3)>(_m[2], _m[3]);
+	const vector_type v1 = VecShuffleImpl<CANDY_MM_SHUFFLE(0, 1, 0, 1)>(_m[0], _m[1]);
+	const vector_type v2 = VecShuffleImpl<CANDY_MM_SHUFFLE(2, 3, 2, 3)>(_m[0], _m[1]);
+	const vector_type v3 = VecShuffleImpl<CANDY_MM_SHUFFLE(0, 1, 0, 1)>(_m[2], _m[3]);
+	const vector_type v4 = VecShuffleImpl<CANDY_MM_SHUFFLE(2, 3, 2, 3)>(_m[2], _m[3]);
 
-	return MtxSetImpl(_out,
+	MtxSetImpl(_out,
 		VecShuffleImpl<CANDY_MM_SHUFFLE(0, 2, 0, 2)>(v1, v3),
 		VecShuffleImpl<CANDY_MM_SHUFFLE(1, 3, 1, 3)>(v1, v3),
 		VecShuffleImpl<CANDY_MM_SHUFFLE(0, 2, 0, 2)>(v2, v4),

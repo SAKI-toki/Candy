@@ -17,34 +17,30 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace GameFlow
 {
-	std::vector<std::weak_ptr<Entity>> m_Entities;
+
 }
 
 // 初期化
 void GameFlow::Startup()
 {
-	Mtx m1, m2;
-	MtxSet(m1,
-		{ 0, 1, 2, 3 },
-		{ 8, 4, 5, 2 },
-		{ 6, 3, 2, 3 },
-		{ 2, 5, 8, 1 });
-	MtxSet(m2,
-		{ 9, 4, 6, 6 },
-		{ 2, 3, 7, 2 },
-		{ 8, 2, 1, 1 },
-		{ 8, 2, 0, 0 });
-	Mtx result;
-	MtxMul(result, m1, m2);
-	CANDY_LOG("{},{},{},{}", result.vec4[0].x, result.vec4[0].y, result.vec4[0].z, result.vec4[0].w);
-	CANDY_LOG("{},{},{},{}", result.vec4[1].x, result.vec4[1].y, result.vec4[1].z, result.vec4[1].w);
-	CANDY_LOG("{},{},{},{}", result.vec4[2].x, result.vec4[2].y, result.vec4[2].z, result.vec4[2].w);
-	CANDY_LOG("{},{},{},{}", result.vec4[3].x, result.vec4[3].y, result.vec4[3].z, result.vec4[3].w);
+	Mtx m;
+	Vec4 v{ 2.0f, -1.5f, 1.0f };
+	MtxRotationZXY(m, v);
+	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._11, m._12, m._13, m._14);
+	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._21, m._22, m._23, m._24);
+	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._31, m._32, m._33, m._34);
+	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._41, m._42, m._43, m._44);
+
+	CANDY_LOG("");
+
+	auto mm = DirectX::XMMatrixRotationRollPitchYaw(v.x, v.y, v.z);
+	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[0].m128_f32[0], mm.r[0].m128_f32[1], mm.r[0].m128_f32[2], mm.r[0].m128_f32[3]);
+	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[1].m128_f32[0], mm.r[1].m128_f32[1], mm.r[1].m128_f32[2], mm.r[1].m128_f32[3]);
+	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[2].m128_f32[0], mm.r[2].m128_f32[1], mm.r[2].m128_f32[2], mm.r[2].m128_f32[3]);
+	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[3].m128_f32[0], mm.r[3].m128_f32[1], mm.r[3].m128_f32[2], mm.r[3].m128_f32[3]);
 
 	auto player = EntityManager::CreateEntity("Player");
-	m_Entities.push_back(player);
-	auto lockPlayer = player.lock();
-	if (lockPlayer)
+	if (auto lockPlayer = player.lock())
 	{
 		lockPlayer->addComponent<Component::PlayerBehavior>();
 		auto renderer = lockPlayer->addComponent<Component::SpriteRenderer>();
@@ -56,9 +52,7 @@ void GameFlow::Startup()
 	}
 
 	auto enemy = EntityManager::CreateEntity("Enemy");
-	m_Entities.push_back(enemy);
-	auto lockEnemy = enemy.lock();
-	if (lockEnemy)
+	if (auto lockEnemy = enemy.lock())
 	{
 		lockEnemy->addComponent<Component::EnemyBehavior>();
 		lockEnemy->addComponent<Component::SpriteRenderer>();
@@ -73,8 +67,7 @@ void GameFlow::Startup()
 // 破棄
 void GameFlow::Cleanup()
 {
-	for (const auto& entity : m_Entities)EntityManager::ReleaseEntity(entity);
-	m_Entities.clear();
+
 }
 
 // 更新

@@ -23,7 +23,7 @@ namespace Component
 		const Color& getColor()const { return m_Color; }
 
 	private:
-		Color m_Color{ OneVector };
+		Color m_Color{ WhiteColor };
 	};
 }
 

@@ -7,6 +7,7 @@
 
 #include "Core.h"
 
+#include "Color/Color.cpp"
 #include "Color/ConvColor.cpp"
 
 #include "Config/CoreConfig.cpp"
@@ -37,6 +38,10 @@
 
 #include "Mutex/CriticalSection.cpp"
 #include "Mutex/ThreadEvent.cpp"
+
+#include "Quat/Quat.cpp"
+
+#include "Rect/Rect.cpp"
 
 #include "System/CoreSystem.cpp"
 #include "System/CoreSystemUpdateDrawIndex.cpp"

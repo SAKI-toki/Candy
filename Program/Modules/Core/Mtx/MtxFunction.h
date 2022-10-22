@@ -24,6 +24,10 @@ void MtxMul(Mtx& _out, const Mtx& _m1, const Mtx& _m2);
 
 void MtxTranspose(Mtx& _out, const Mtx& _m);
 
+void MtxTranslation(Mtx& _out, const Vec4& _v);
+void MtxRotationZXY(Mtx& _out, const Vec4& _v);
+void MtxScaling(Mtx& _out, const Vec4& _v);
+
 CANDY_NAMESPACE_END
 
 #endif // CANDY_CORE_MTX_FUNCTION_H

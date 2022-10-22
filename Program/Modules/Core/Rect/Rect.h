@@ -36,6 +36,4 @@ struct alignas(16) Rect
 
 CANDY_NAMESPACE_END
 
-#include "Rect.inl"
-
 #endif // CANDY_CORE_RECT_H

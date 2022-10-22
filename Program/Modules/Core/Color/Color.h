@@ -14,7 +14,10 @@
 
 CANDY_NAMESPACE_BEGIN
 
-using Color = Vec4;
+struct Color : Vec4
+{
+	using Vec4::Vec4;
+};
 
 inline const Color WhiteColor		= Color{ 1.0f, 1.0f, 1.0f };
 inline const Color BlackColor		= Color{ 0.0f, 0.0f, 0.0f };

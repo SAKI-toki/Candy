@@ -11,6 +11,54 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
+namespace MtxFunctionImpl
+{
+	void MtxRotationXImpl(vector_type(&_out)[4], const vector_type _sin, const vector_type _cos)
+	{
+		const vector_type selectSinX = VecSelectXImpl(_sin);
+		const vector_type selectCosX = VecSelectXImpl(_cos);
+
+		const vector_type negativeSelectSinX = VecMulImpl(selectSinX, Vec4ConstantValues::NegativeX);
+
+		MtxSetImpl(_out,
+			Vec4ConstantValues::Vec1000,
+			VecShuffleImpl<CANDY_MM_SHUFFLE(3, 0, 0, 3)>(selectCosX, selectSinX),
+			VecShuffleImpl<CANDY_MM_SHUFFLE(3, 0, 0, 3)>(negativeSelectSinX, selectCosX),
+			Vec4ConstantValues::Vec0001
+		);
+	}
+	void MtxRotationYImpl(vector_type(&_out)[4], const vector_type _sin, const vector_type _cos)
+	{
+		const vector_type selectSinY = VecSelectYImpl(_sin);
+		const vector_type selectCosY = VecSelectYImpl(_cos);
+
+		const vector_type negativeSelectSinY = VecMulImpl(selectSinY, Vec4ConstantValues::NegativeY);
+
+		MtxSetImpl(_out,
+			VecShuffleImpl<CANDY_MM_SHUFFLE(1, 3, 1, 3)>(selectCosY, negativeSelectSinY),
+			Vec4ConstantValues::Vec0100,
+			VecShuffleImpl<CANDY_MM_SHUFFLE(1, 3, 1, 3)>(selectSinY, selectCosY),
+			Vec4ConstantValues::Vec0001
+		);
+	}
+	void MtxRotationZImpl(vector_type(&_out)[4], const vector_type _sin, const vector_type _cos)
+	{
+		const vector_type selectSinZ = VecSelectZImpl(_sin);
+		const vector_type selectCosZ = VecSelectZImpl(_cos);
+
+		const vector_type sinCosZ = VecShuffleImpl<CANDY_MM_SHUFFLE(2, 3, 2, 3)>(selectSinZ, selectCosZ);
+
+		const vector_type negativeSinCosZ = VecMulImpl(sinCosZ, Vec4ConstantValues::NegativeX);
+
+		MtxSetImpl(_out,
+			VecPermuteImpl<CANDY_MM_SHUFFLE(2, 0, 3, 3)>(sinCosZ),
+			VecPermuteImpl<CANDY_MM_SHUFFLE(0, 2, 3, 3)>(negativeSinCosZ),
+			Vec4ConstantValues::Vec0010,
+			Vec4ConstantValues::Vec0001
+		);
+	}
+}
+
 void MtxSetImpl(vector_type(&_out)[4], const vector_type _v1, const vector_type _v2, const vector_type _v3, const vector_type _v4)
 {
 	_out[0] = _v1;
@@ -62,11 +110,6 @@ void MtxTransposeImpl(vector_type(&_out)[4], const vector_type(&_m)[4])
 	);
 }
 
-//void MtxTransformationImpl(vector_type (&_out)[4], const vector_type _pos, const vector_type _rot, const vector_type _scale)
-//{
-//
-//}
-
 void MtxTranslationImpl(vector_type(&_out)[4], const vector_type _v)
 {
 	_out[0] = Vec4ConstantValues::Vec1000;
@@ -75,12 +118,19 @@ void MtxTranslationImpl(vector_type(&_out)[4], const vector_type _v)
 	_out[3] = VecSetOneWImpl(_v);
 }
 
-void MtxRotationZYXImpl(vector_type(&_out)[4], const vector_type /*_v*/)
+void MtxRotationZXYImpl(vector_type(&_out)[4], const vector_type _v)
 {
-	_out[0] = Vec4ConstantValues::Vec1000;
-	_out[1] = Vec4ConstantValues::Vec0100;
-	_out[2] = Vec4ConstantValues::Vec0010;
-	_out[3] = Vec4ConstantValues::Vec0001;
+	vector_type outSin, outCos;
+	VecSinCosImpl(outSin, outCos, _v);
+
+	vector_type mtxX[4], mtxY[4], mtxZ[4];
+	MtxFunctionImpl::MtxRotationXImpl(mtxX, outSin, outCos);
+	MtxFunctionImpl::MtxRotationYImpl(mtxY, outSin, outCos);
+	MtxFunctionImpl::MtxRotationZImpl(mtxZ, outSin, outCos);
+
+	vector_type mtxZY[4];
+	MtxMulImpl(mtxZY, mtxZ, mtxX);
+	MtxMulImpl(_out, mtxZY, mtxY);
 }
 
 void MtxScalingImpl(vector_type(&_out)[4], const vector_type _v)

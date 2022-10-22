@@ -15,10 +15,10 @@
 CANDY_CORE_NAMESPACE_BEGIN
 
 // 色の取得(RGBA32)
-Vec4 GetColorRGBA32(const u32 _r, const u32 _g, const u32 _b, const u32 _a);
+Color GetColorRGBA32(const u32 _r, const u32 _g, const u32 _b, const u32 _a);
 
 // 色の取得(RGB32)
-Vec4 GetColorRGB32(const u32 _r, const u32 _g, const u32 _b);
+Color GetColorRGB32(const u32 _r, const u32 _g, const u32 _b);
 
 CANDY_CORE_NAMESPACE_END
 

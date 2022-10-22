@@ -11,22 +11,37 @@ CANDY_NAMESPACE_BEGIN
 
 void MtxSet(Mtx& _out, const Vec4& _v1, const Vec4& _v2, const Vec4& _v3, const Vec4& _v4)
 {
-	return core::MtxSetImpl(_out.vector, _v1.vector, _v2.vector, _v3.vector, _v4.vector);
+	core::MtxSetImpl(_out.vector, _v1.vector, _v2.vector, _v3.vector, _v4.vector);
 }
 
 void MtxSetIdentity(Mtx& _out)
 {
-	return core::MtxSetIdentityImpl(_out.vector);
+	core::MtxSetIdentityImpl(_out.vector);
 }
 
 void MtxMul(Mtx& _out, const Mtx& _m1, const Mtx& _m2)
 {
-	return core::MtxMulImpl(_out.vector, _m1.vector, _m2.vector);
+	core::MtxMulImpl(_out.vector, _m1.vector, _m2.vector);
 }
 
 void MtxTranspose(Mtx& _out, const Mtx& _m)
 {
-	return core::MtxTransposeImpl(_out.vector, _m.vector);
+	core::MtxTransposeImpl(_out.vector, _m.vector);
+}
+
+void MtxTranslation(Mtx& _out, const Vec4& _v)
+{
+	core::MtxTranslationImpl(_out.vector, _v.vector);
+}
+
+void MtxRotationZXY(Mtx& _out, const Vec4& _v)
+{
+	core::MtxRotationZXYImpl(_out.vector, _v.vector);
+}
+
+void MtxScaling(Mtx& _out, const Vec4& _v)
+{
+	core::MtxScalingImpl(_out.vector, _v.vector);
 }
 
 CANDY_NAMESPACE_END

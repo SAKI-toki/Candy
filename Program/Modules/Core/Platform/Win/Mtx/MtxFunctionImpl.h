@@ -19,9 +19,8 @@ void MtxMulImpl(vector_type(&_out)[4], const vector_type(&_m1)[4], const vector_
 
 void MtxTransposeImpl(vector_type (&_out)[4], const vector_type (&_m)[4]);
 
-void MtxTransformationImpl(vector_type (&_out)[4], const vector_type _pos, const vector_type _rot, const vector_type _scale);
 void MtxTranslationImpl(vector_type (&_out)[4], const vector_type _v);
-void MtxRotationZYXImpl(vector_type (&_out)[4], const vector_type _v);
+void MtxRotationZXYImpl(vector_type (&_out)[4], const vector_type _v);
 void MtxScalingImpl(vector_type (&_out)[4], const vector_type _v);
 
 CANDY_CORE_NAMESPACE_END

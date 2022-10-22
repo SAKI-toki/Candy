@@ -43,6 +43,8 @@
 
 #include "Platform/Platform.h"
 
+#include "Quat/Quat.h"
+
 #include "Rect/Rect.h"
 
 #include "Std/StdInclude.h"

@@ -28,6 +28,9 @@ void MtxTranslation(Mtx& _out, const Vec4& _v);
 void MtxRotationZXY(Mtx& _out, const Vec4& _v);
 void MtxScaling(Mtx& _out, const Vec4& _v);
 
+void MtxOrthographic(Mtx& _out, const f32 _width, const f32 _height, const f32 _near, const f32 _far);
+void MtxLookAt(Mtx& _out, const Vec4& _view, const Vec4& _lookAt, const Vec4& _up);
+
 CANDY_NAMESPACE_END
 
 #endif // CANDY_CORE_MTX_FUNCTION_H

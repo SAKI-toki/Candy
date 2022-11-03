@@ -24,8 +24,10 @@ namespace GameFlow
 void GameFlow::Startup()
 {
 	Mtx m;
-	Vec4 v{ 2.0f, -1.5f, 1.0f };
-	MtxRotationZXY(m, v);
+	Vec4 view{ 0.0f, 0.0f, 0.0f };
+	Vec4 lookat{ 5.0f, -10.0f, 56.0f };
+	Vec4 up{ 0.0f, 1.0f, 0.0f };
+	MtxLookAt(m, view, lookat, up);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._11, m._12, m._13, m._14);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._21, m._22, m._23, m._24);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._31, m._32, m._33, m._34);
@@ -33,7 +35,7 @@ void GameFlow::Startup()
 
 	CANDY_LOG("");
 
-	auto mm = DirectX::XMMatrixRotationRollPitchYaw(v.x, v.y, v.z);
+	auto mm = DirectX::XMMatrixLookAtLH(view.vector, lookat.vector, up.vector);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[0].m128_f32[0], mm.r[0].m128_f32[1], mm.r[0].m128_f32[2], mm.r[0].m128_f32[3]);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[1].m128_f32[0], mm.r[1].m128_f32[1], mm.r[1].m128_f32[2], mm.r[1].m128_f32[3]);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[2].m128_f32[0], mm.r[2].m128_f32[1], mm.r[2].m128_f32[2], mm.r[2].m128_f32[3]);

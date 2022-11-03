@@ -12,16 +12,16 @@
 
 CANDY_NAMESPACE_BEGIN
 
-template<u32 MM>
+template<u32 FP1, u32 FP2, u32 FP3, u32 FP4>
 inline Vec4 VecPermute(const Vec4& _v)
 {
-	return core::VecPermuteImpl<MM>(_v.r);
+	return core::VecPermuteImpl<FP1, FP2, FP3, FP4>(_v.r);
 }
 
-template<u32 MM>
+template<u32 FP1, u32 FP2, u32 FP3, u32 FP4>
 inline Vec4 VecShuffle(const Vec4& _v1, const Vec4& _v2)
 {
-	return core::VecShuffleImpl<MM>(_v1.r, _v2.r);
+	return core::VecShuffleImpl<FP1, FP2, FP3, FP4>(_v1.r, _v2.r);
 }
 
 CANDY_NAMESPACE_END

@@ -52,9 +52,9 @@ void VecSinCos(Vec4& _outSin, Vec4& _outCos, const Vec4& _v);
 
 Vec4 VecRound(const Vec4& _v);
 
-template<u32 MM>
+template<u32 FP1, u32 FP2, u32 FP3, u32 FP4>
 Vec4 VecPermute(const Vec4& _v);
-template<u32 MM>
+template<u32 FP1, u32 FP2, u32 FP3, u32 FP4>
 Vec4 VecShuffle(const Vec4& _v1, const Vec4& _v2);
 
 CANDY_NAMESPACE_END

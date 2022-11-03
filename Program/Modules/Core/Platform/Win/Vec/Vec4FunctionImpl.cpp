@@ -47,36 +47,36 @@ vector_type VecSetXImpl(const vector_type _v, const f32 _x)
 }
 vector_type VecSetYImpl(const vector_type _v, const f32 _y)
 {
-	vector_type v = VecPermuteImpl<CANDY_MM_SHUFFLE(1, 0, 2, 3)>(_v);
+	vector_type v = VecPermuteImpl<1, 0, 2, 3>(_v);
 	vector_type temp = _mm_set_ss(_y);
 	v = _mm_move_ss(v, temp);
-	return VecPermuteImpl<CANDY_MM_SHUFFLE(1, 0, 2, 3)>(v);
+	return VecPermuteImpl<1, 0, 2, 3>(v);
 }
 vector_type VecSetZImpl(const vector_type _v, const f32 _z)
 {
-	vector_type v = VecPermuteImpl<CANDY_MM_SHUFFLE(2, 1, 0, 3)>(_v);
+	vector_type v = VecPermuteImpl<2, 1, 0, 3>(_v);
 	vector_type temp = _mm_set_ss(_z);
 	v = _mm_move_ss(v, temp);
-	return VecPermuteImpl<CANDY_MM_SHUFFLE(2, 1, 0, 3)>(v);
+	return VecPermuteImpl<2, 1, 0, 3>(v);
 }
 vector_type VecSetWImpl(const vector_type _v, const f32 _w)
 {
-	vector_type v = VecPermuteImpl<CANDY_MM_SHUFFLE(3, 1, 2, 0)>(_v);
+	vector_type v = VecPermuteImpl<3, 1, 2, 0>(_v);
 	vector_type temp = _mm_set_ss(_w);
 	v = _mm_move_ss(v, temp);
-	return VecPermuteImpl<CANDY_MM_SHUFFLE(3, 1, 2, 0)>(v);
+	return VecPermuteImpl<3, 1, 2, 0>(v);
 }
 vector_type VecSetZeroWImpl(const vector_type _v)
 {
-	vector_type v = VecPermuteImpl<CANDY_MM_SHUFFLE(3, 1, 2, 0)>(_v);
+	vector_type v = VecPermuteImpl<3, 1, 2, 0>(_v);
 	v = _mm_move_ss(v, Vec4ConstantValues::Zero);
-	return VecPermuteImpl<CANDY_MM_SHUFFLE(3, 1, 2, 0)>(v);
+	return VecPermuteImpl<3, 1, 2, 0>(v);
 }
 vector_type VecSetOneWImpl(const vector_type _v)
 {
-	vector_type v = VecPermuteImpl<CANDY_MM_SHUFFLE(3, 1, 2, 0)>(_v);
+	vector_type v = VecPermuteImpl<3, 1, 2, 0>(_v);
 	v = _mm_move_ss(v, Vec4ConstantValues::One);
-	return VecPermuteImpl<CANDY_MM_SHUFFLE(3, 1, 2, 0)>(v);
+	return VecPermuteImpl<3, 1, 2, 0>(v);
 }
 
 vector_type VecAddImpl(const vector_type _v1, const vector_type _v2)
@@ -98,19 +98,28 @@ vector_type VecDivImpl(const vector_type _v1, const vector_type _v2)
 
 vector_type VecSelectXImpl(const vector_type _v)
 {
-	return _mm_and_ps(_v, Vec4ConstantValues::SelectXMask);
+	return VecAndImpl(_v, Vec4ConstantValues::SelectXMask);
 }
 vector_type VecSelectYImpl(const vector_type _v)
 {
-	return _mm_and_ps(_v, Vec4ConstantValues::SelectYMask);
+	return VecAndImpl(_v, Vec4ConstantValues::SelectYMask);
 }
 vector_type VecSelectZImpl(const vector_type _v)
 {
-	return _mm_and_ps(_v, Vec4ConstantValues::SelectZMask);
+	return VecAndImpl(_v, Vec4ConstantValues::SelectZMask);
 }
 vector_type VecSelectWImpl(const vector_type _v)
 {
-	return _mm_and_ps(_v, Vec4ConstantValues::SelectWMask);
+	return VecAndImpl(_v, Vec4ConstantValues::SelectWMask);
+}
+
+vector_type VecAndImpl(const vector_type _v1, const vector_type _v2)
+{
+	return _mm_and_ps(_v1, _v2);
+}
+vector_type VecOrImpl(const vector_type _v1, const vector_type _v2)
+{
+	return _mm_or_ps(_v1, _v2);
 }
 
 // 内積の実装部
@@ -118,9 +127,9 @@ vector_type VecDotImpl(const vector_type _v1, const vector_type _v2)
 {
 	vector_type v, temp;
 	v = VecMulImpl(_v1, _v2);
-	temp = VecPermuteImpl<CANDY_MM_SHUFFLE(1, 2, 1, 2)>(v);
+	temp = VecPermuteImpl<1, 2, 1, 2>(v);
 	v = _mm_add_ss(v, temp);
-	temp = VecPermuteImpl<CANDY_MM_SHUFFLE(2, 2, 2, 2)>(v);
+	temp = VecPermuteImpl<2, 2, 2, 2>(v);
 	v = _mm_add_ss(v, temp);
 	return v;
 }
@@ -129,11 +138,11 @@ vector_type VecDotImpl(const vector_type _v1, const vector_type _v2)
 vector_type VecCrossImpl(const vector_type _v1, const vector_type _v2)
 {
 	vector_type result1, result2, temp1, temp2;
-	temp1 = VecPermuteImpl<CANDY_MM_SHUFFLE(1, 2, 0, 3)>(_v1);
-	temp2 = VecPermuteImpl<CANDY_MM_SHUFFLE(2, 0, 1, 3)>(_v2);
+	temp1 = VecPermuteImpl<1, 2, 0, 3>(_v1);
+	temp2 = VecPermuteImpl<2, 0, 1, 3>(_v2);
 	result1 = VecMulImpl(temp1, temp2);
-	temp1 = VecPermuteImpl<CANDY_MM_SHUFFLE(2, 0, 1, 3)>(_v1);
-	temp2 = VecPermuteImpl<CANDY_MM_SHUFFLE(1, 2, 0, 3)>(_v2);
+	temp1 = VecPermuteImpl<2, 0, 1, 3>(_v1);
+	temp2 = VecPermuteImpl<1, 2, 0, 3>(_v2);
 	result2 = VecMulImpl(temp1, temp2);
 	return VecSubImpl(result1, result2);
 }
@@ -169,7 +178,7 @@ vector_type VecNormalizeImpl(const vector_type _v)
 	}
 
 	v = _mm_div_ss(Vec4ConstantValues::One, v);
-	v = VecPermuteImpl<CANDY_MM_SHUFFLE(0, 0, 0, 0)>(v);
+	v = VecPermuteImpl<0, 0, 0, 0>(v);
 	v = VecSetOneWImpl(v);
 
 	return VecMulImpl(_v, v);

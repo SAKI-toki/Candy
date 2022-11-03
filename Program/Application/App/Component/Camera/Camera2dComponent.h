@@ -25,7 +25,7 @@ namespace Component
 		void postUpdateImpl()override;
 
 	private:
-		Vec4 m_Pos{};
+		Mtx m_Mtx;
 	};
 }
 

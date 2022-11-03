@@ -32,6 +32,9 @@ vector_type VecSelectYImpl(const vector_type _v);
 vector_type VecSelectZImpl(const vector_type _v);
 vector_type VecSelectWImpl(const vector_type _v);
 
+vector_type VecAndImpl(const vector_type _v1, const vector_type _v2);
+vector_type VecOrImpl(const vector_type _v1, const vector_type _v2);
+
 // 内積の実装部
 vector_type VecDotImpl(const vector_type _v1, const vector_type _v2);
 
@@ -52,9 +55,9 @@ vector_type VecRoundImpl(const vector_type _v);
 
 vector_type VecAdjustAngleImpl(const vector_type _v);
 
-template<u32 MM>
+template<u32 FP1, u32 FP2, u32 FP3, u32 FP4>
 vector_type VecPermuteImpl(const vector_type _v);
-template<u32 MM>
+template<u32 FP1, u32 FP2, u32 FP3, u32 FP4>
 vector_type VecShuffleImpl(const vector_type _v1, const vector_type _v2);
 
 // 判定の実装部

@@ -22,8 +22,8 @@ namespace MtxFunctionImpl
 
 		MtxSetImpl(_out,
 			Vec4ConstantValues::Vec1000,
-			VecShuffleImpl<CANDY_MM_SHUFFLE(3, 0, 0, 3)>(selectCosX, selectSinX),
-			VecShuffleImpl<CANDY_MM_SHUFFLE(3, 0, 0, 3)>(negativeSelectSinX, selectCosX),
+			VecShuffleImpl<3, 0, 0, 3>(selectCosX, selectSinX),
+			VecShuffleImpl<3, 0, 0, 3>(negativeSelectSinX, selectCosX),
 			Vec4ConstantValues::Vec0001
 		);
 	}
@@ -35,9 +35,9 @@ namespace MtxFunctionImpl
 		const vector_type negativeSelectSinY = VecMulImpl(selectSinY, Vec4ConstantValues::NegativeY);
 
 		MtxSetImpl(_out,
-			VecShuffleImpl<CANDY_MM_SHUFFLE(1, 3, 1, 3)>(selectCosY, negativeSelectSinY),
+			VecShuffleImpl<1, 3, 1, 3>(selectCosY, negativeSelectSinY),
 			Vec4ConstantValues::Vec0100,
-			VecShuffleImpl<CANDY_MM_SHUFFLE(1, 3, 1, 3)>(selectSinY, selectCosY),
+			VecShuffleImpl<1, 3, 1, 3>(selectSinY, selectCosY),
 			Vec4ConstantValues::Vec0001
 		);
 	}
@@ -46,13 +46,13 @@ namespace MtxFunctionImpl
 		const vector_type selectSinZ = VecSelectZImpl(_sin);
 		const vector_type selectCosZ = VecSelectZImpl(_cos);
 
-		const vector_type sinCosZ = VecShuffleImpl<CANDY_MM_SHUFFLE(2, 3, 2, 3)>(selectSinZ, selectCosZ);
+		const vector_type sinCosZ = VecShuffleImpl<2, 3, 2, 3>(selectSinZ, selectCosZ);
 
 		const vector_type negativeSinCosZ = VecMulImpl(sinCosZ, Vec4ConstantValues::NegativeX);
 
 		MtxSetImpl(_out,
-			VecPermuteImpl<CANDY_MM_SHUFFLE(2, 0, 3, 3)>(sinCosZ),
-			VecPermuteImpl<CANDY_MM_SHUFFLE(0, 2, 3, 3)>(negativeSinCosZ),
+			VecPermuteImpl<2, 0, 3, 3>(sinCosZ),
+			VecPermuteImpl<0, 2, 3, 3>(negativeSinCosZ),
 			Vec4ConstantValues::Vec0010,
 			Vec4ConstantValues::Vec0001
 		);
@@ -81,10 +81,10 @@ void MtxMulImpl(vector_type(&_out)[4], const vector_type(&_m1)[4], const vector_
 {
 	for (s32 i = 0; i < 4; ++i)
 	{
-		vector_type x = VecPermuteImpl<CANDY_MM_SHUFFLE(0, 0, 0, 0)>(_m1[i]);
-		vector_type y = VecPermuteImpl<CANDY_MM_SHUFFLE(1, 1, 1, 1)>(_m1[i]);
-		vector_type z = VecPermuteImpl<CANDY_MM_SHUFFLE(2, 2, 2, 2)>(_m1[i]);
-		vector_type w = VecPermuteImpl<CANDY_MM_SHUFFLE(3, 3, 3, 3)>(_m1[i]);
+		vector_type x = VecPermuteImpl<0, 0, 0, 0>(_m1[i]);
+		vector_type y = VecPermuteImpl<1, 1, 1, 1>(_m1[i]);
+		vector_type z = VecPermuteImpl<2, 2, 2, 2>(_m1[i]);
+		vector_type w = VecPermuteImpl<3, 3, 3, 3>(_m1[i]);
 
 		x = VecMulImpl(x, _m2[0]);
 		y = VecMulImpl(y, _m2[1]);
@@ -97,25 +97,27 @@ void MtxMulImpl(vector_type(&_out)[4], const vector_type(&_m1)[4], const vector_
 
 void MtxTransposeImpl(vector_type(&_out)[4], const vector_type(&_m)[4])
 {
-	const vector_type v1 = VecShuffleImpl<CANDY_MM_SHUFFLE(0, 1, 0, 1)>(_m[0], _m[1]);
-	const vector_type v2 = VecShuffleImpl<CANDY_MM_SHUFFLE(2, 3, 2, 3)>(_m[0], _m[1]);
-	const vector_type v3 = VecShuffleImpl<CANDY_MM_SHUFFLE(0, 1, 0, 1)>(_m[2], _m[3]);
-	const vector_type v4 = VecShuffleImpl<CANDY_MM_SHUFFLE(2, 3, 2, 3)>(_m[2], _m[3]);
+	const vector_type v1 = VecShuffleImpl<0, 1, 0, 1>(_m[0], _m[1]);
+	const vector_type v2 = VecShuffleImpl<2, 3, 2, 3>(_m[0], _m[1]);
+	const vector_type v3 = VecShuffleImpl<0, 1, 0, 1>(_m[2], _m[3]);
+	const vector_type v4 = VecShuffleImpl<2, 3, 2, 3>(_m[2], _m[3]);
 
 	MtxSetImpl(_out,
-		VecShuffleImpl<CANDY_MM_SHUFFLE(0, 2, 0, 2)>(v1, v3),
-		VecShuffleImpl<CANDY_MM_SHUFFLE(1, 3, 1, 3)>(v1, v3),
-		VecShuffleImpl<CANDY_MM_SHUFFLE(0, 2, 0, 2)>(v2, v4),
-		VecShuffleImpl<CANDY_MM_SHUFFLE(1, 3, 1, 3)>(v2, v4)
+		VecShuffleImpl<0, 2, 0, 2>(v1, v3),
+		VecShuffleImpl<1, 3, 1, 3>(v1, v3),
+		VecShuffleImpl<0, 2, 0, 2>(v2, v4),
+		VecShuffleImpl<1, 3, 1, 3>(v2, v4)
 	);
 }
 
 void MtxTranslationImpl(vector_type(&_out)[4], const vector_type _v)
 {
-	_out[0] = Vec4ConstantValues::Vec1000;
-	_out[1] = Vec4ConstantValues::Vec0100;
-	_out[2] = Vec4ConstantValues::Vec0010;
-	_out[3] = VecSetOneWImpl(_v);
+	MtxSetImpl(_out,
+		Vec4ConstantValues::Vec1000,
+		Vec4ConstantValues::Vec0100,
+		Vec4ConstantValues::Vec0010,
+		VecSetOneWImpl(_v)
+	);
 }
 
 void MtxRotationZXYImpl(vector_type(&_out)[4], const vector_type _v)
@@ -135,10 +137,46 @@ void MtxRotationZXYImpl(vector_type(&_out)[4], const vector_type _v)
 
 void MtxScalingImpl(vector_type(&_out)[4], const vector_type _v)
 {
-	_out[0] = VecSelectXImpl(_v);
-	_out[1] = VecSelectYImpl(_v);
-	_out[2] = VecSelectZImpl(_v);
-	_out[3] = Vec4ConstantValues::Vec0001;
+	MtxSetImpl(_out,
+		VecSelectXImpl(_v),
+		VecSelectYImpl(_v),
+		VecSelectZImpl(_v),
+		Vec4ConstantValues::Vec0001
+	);
+}
+
+void MtxOrthographicImpl(vector_type(&_out)[4], const f32 _width, const f32 _height, const f32 _near, const f32 _far)
+{
+	const f32 range = 1.0f / (_far - _near);
+
+	MtxSetImpl(_out,
+		VecSetImpl(2.0f / _width, 0.0f, 0.0f, 0.0f),
+		VecSetImpl(0.0f, 2.0f / _height, 0.0f, 0.0f),
+		VecSetImpl(0.0f, 0.0f, range, 0.0f),
+		VecSetImpl(0.0f, 0.0f, -range * _near, 1.0f)
+	);
+}
+
+void MtxLookAtImpl(vector_type(&_out)[4], const vector_type _view, const vector_type _lookAt, const vector_type _up)
+{
+	const vector_type axisZ = VecNormalizeImpl(VecSubImpl(_lookAt, _view));
+	const vector_type axisX = VecNormalizeImpl(VecCrossImpl(_up, axisZ));
+	const vector_type axisY = VecCrossImpl(axisZ, axisX);
+
+	const vector_type negativeView = VecMulImpl(_view, Vec4ConstantValues::NegativeOne);
+
+	const vector_type dotX = VecShuffleImpl<2, 2, 0, 0>(axisX, VecSelectXImpl(VecDotImpl(axisX, negativeView)));
+	const vector_type dotY = VecShuffleImpl<2, 2, 0, 0>(axisY, VecSelectXImpl(VecDotImpl(axisY, negativeView)));
+	const vector_type dotZ = VecShuffleImpl<2, 2, 0, 0>(axisZ, VecSelectXImpl(VecDotImpl(axisZ, negativeView)));
+
+	MtxSetImpl(_out,
+		VecShuffleImpl<0, 1, 0, 2>(axisX, dotX),
+		VecShuffleImpl<0, 1, 0, 2>(axisY, dotY),
+		VecShuffleImpl<0, 1, 0, 2>(axisZ, dotZ),
+		Vec4ConstantValues::Vec0001
+	);
+
+	MtxTransposeImpl(_out, _out);
 }
 
 CANDY_CORE_NAMESPACE_END

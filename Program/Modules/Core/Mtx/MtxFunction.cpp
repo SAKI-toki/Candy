@@ -44,4 +44,14 @@ void MtxScaling(Mtx& _out, const Vec4& _v)
 	core::MtxScalingImpl(_out.vector, _v.vector);
 }
 
+void MtxOrthographic(Mtx& _out, const f32 _width, const f32 _height, const f32 _near, const f32 _far)
+{
+	core::MtxOrthographicImpl(_out.vector, _width, _height, _near, _far);
+}
+
+void MtxLookAt(Mtx& _out, const Vec4& _view, const Vec4& _lookAt, const Vec4& _up)
+{
+	core::MtxLookAtImpl(_out.vector, _view.vector, _lookAt.vector, _up.vector);
+}
+
 CANDY_NAMESPACE_END

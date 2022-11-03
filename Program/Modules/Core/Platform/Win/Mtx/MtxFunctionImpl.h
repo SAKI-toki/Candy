@@ -23,6 +23,9 @@ void MtxTranslationImpl(vector_type (&_out)[4], const vector_type _v);
 void MtxRotationZXYImpl(vector_type (&_out)[4], const vector_type _v);
 void MtxScalingImpl(vector_type (&_out)[4], const vector_type _v);
 
+void MtxOrthographicImpl(vector_type(&_out)[4], const f32 _width, const f32 _height, const f32 _near, const f32 _far);
+void MtxLookAtImpl(vector_type(&_out)[4], const vector_type _view, const vector_type _lookAt, const vector_type _up);
+
 CANDY_CORE_NAMESPACE_END
 
 #endif // CANDY_CORE_MATRIX_FUNCTION_IMPL_H

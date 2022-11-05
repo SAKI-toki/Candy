@@ -12,13 +12,10 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+class BehaviorComponentBase : public ComponentBase
 {
-	class BehaviorBase : public ComponentBase
-	{
-		CANDY_COMPONENT_DECLARE(BehaviorBase, ComponentBase);
-	};
-}
+	CANDY_COMPONENT_DECLARE(BehaviorComponentBase, ComponentBase);
+};
 
 CANDY_APP_NAMESPACE_END
 

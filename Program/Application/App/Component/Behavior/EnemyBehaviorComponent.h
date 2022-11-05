@@ -13,16 +13,13 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+class EnemyBehaviorComponent : public BehaviorComponentBase
 {
-	class EnemyBehavior : public BehaviorBase
-	{
-		CANDY_COMPONENT_DECLARE(EnemyBehavior, BehaviorBase);
+	CANDY_COMPONENT_DECLARE(EnemyBehaviorComponent, BehaviorComponentBase);
 
-	protected:
-		void updateImpl()override;
-	};
-}
+protected:
+	void updateImpl()override;
+};
 
 CANDY_APP_NAMESPACE_END
 

@@ -13,20 +13,17 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+namespace PriorityTable
 {
-	namespace PriorityTable
-	{
-		template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
-		s32 GetUpdatePriorityFromType();
-		s32 GetUpdatePriorityFromId(const Component::ClassIdType _id);
-		s32 GetUpdatePriorityCount();
+	template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
+	s32 GetUpdatePriorityFromType();
+	s32 GetUpdatePriorityFromId(const ComponentClassIdType _id);
+	s32 GetUpdatePriorityCount();
 
-		template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
-		s32 GetRenderPriorityFromType();
-		s32 GetRenderPriorityFromId(const Component::ClassIdType _id);
-		s32 GetRenderPriorityCount();
-	}
+	template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
+	s32 GetRenderPriorityFromType();
+	s32 GetRenderPriorityFromId(const ComponentClassIdType _id);
+	s32 GetRenderPriorityCount();
 }
 
 CANDY_APP_NAMESPACE_END

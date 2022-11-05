@@ -12,31 +12,29 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+using ComponentClassIdType = u32;
+
+class ComponentInterface
 {
-    using ClassIdType = u32;
+public:
+	virtual ~ComponentInterface() = default;
+	virtual bool isInheritedeClassId(const ComponentClassIdType /*_classNameId*/)const { return false; }
+	virtual ComponentClassIdType getClassId()const { return 0; }
+};
 
-	class ComponentInterface
-	{
-    public:
-        virtual ~ComponentInterface() = default;
-        virtual bool isInheritedeClassId(const ClassIdType /*_classNameId*/)const { return false; }
-        virtual Component::ClassIdType getClassId()const { return 0; }
-	};
-
-    template<typename T>
-    using IsBaseComponentComponentInterfaceT = std::enable_if_t<std::is_base_of_v<ComponentInterface, T>, std::nullptr_t>;
+template<typename T>
+using IsBaseComponentComponentInterfaceT = std::enable_if_t<std::is_base_of_v<ComponentInterface, T>, std::nullptr_t>;
 
 #define CANDY_COMPONENT_DECLARE(CLASS_NAME, BASE_TYPE) \
 private: \
 static constexpr const char* const ClassName = #CLASS_NAME; \
-static constexpr ClassIdType InternalId = CANDY_STATIC_FNV_HASH32(#CLASS_NAME); \
+static constexpr ComponentClassIdType InternalId = CANDY_STATIC_FNV_HASH32(#CLASS_NAME); \
 public: \
 using Super = BASE_TYPE; \
-virtual bool isInheritedeClassId(const ClassIdType _id)const override; \
-virtual ClassIdType getClassId()const override; \
+virtual bool isInheritedeClassId(const ComponentClassIdType _id)const override; \
+virtual ComponentClassIdType getClassId()const override; \
 static constexpr const char* GetStaticClassName(){ return ClassName; } \
-static constexpr ClassIdType GetStaticClassId(){ return InternalId; } \
+static constexpr ComponentClassIdType GetStaticClassId(){ return InternalId; } \
 template<typename T, typename ReturnT = std::conditional_t<std::is_const_v<T>, const std::shared_ptr<CLASS_NAME>, std::shared_ptr<CLASS_NAME>>, IsBaseComponentComponentInterfaceT<T> = nullptr> \
 static ReturnT Cast(const std::shared_ptr<T>& _v) \
 { \
@@ -52,16 +50,14 @@ static ReturnT Cast(const std::weak_ptr<T>& _v) \
 private:
 
 #define CANDY_COMPONENT_DEFINE(CLASS_NAME, Super) \
-bool CLASS_NAME::isInheritedeClassId(const ClassIdType _id)const \
+bool CLASS_NAME::isInheritedeClassId(const ComponentClassIdType _id)const \
 { \
     if(Super::isInheritedeClassId(_id))return true; \
     return getClassId() == _id; \
 } \
-ClassIdType CLASS_NAME::getClassId()const \
+ComponentClassIdType CLASS_NAME::getClassId()const \
 { \
     return InternalId; \
-}
-
 }
 
 CANDY_APP_NAMESPACE_END

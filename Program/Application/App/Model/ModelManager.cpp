@@ -1,27 +1,27 @@
 ﻿/*****************************************************************//**
- * \file   Model.cpp
- * \brief  モデル
+ * \file   ModelManager.cpp
+ * \brief  モデルの管理
  * \author Yu Ishiyama.
  * \date   2022/06/02
  *********************************************************************/
 
-#include "Model.h"
+#include "ModelManager.h"
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Model
+namespace ModelManager
 {
 
 }
 
 // 初期化
-void Model::Startup()
+void ModelManager::Startup()
 {
 	Primitive::Startup();
 }
 
 // 破棄
-void Model::Cleanup()
+void ModelManager::Cleanup()
 {
 	Primitive::Cleanup();
 }

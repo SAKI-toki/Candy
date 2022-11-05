@@ -10,32 +10,29 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+CANDY_COMPONENT_DEFINE(SpriteRendererComponent, RendererComponentBase);
+
+void SpriteRendererComponent::startupImpl()
 {
-	CANDY_COMPONENT_DEFINE(SpriteRenderer, RendererBase);
+	m_Sprite.startup();
+}
 
-	void SpriteRenderer::startupImpl()
-	{
-		m_Sprite.startup();
-	}
+void SpriteRendererComponent::cleanupImpl()
+{
+	m_Sprite.cleanup();
+}
 
-	void SpriteRenderer::cleanupImpl()
-	{
-		m_Sprite.cleanup();
-	}
+void SpriteRendererComponent::renderImpl()
+{
+	auto ownerEntity = getOwnerEntity().lock();
+	if (!ownerEntity)return;
 
-	void SpriteRenderer::renderImpl()
-	{
-		auto ownerEntity = getOwnerEntity().lock();
-		if (!ownerEntity)return;
+	auto transform = ownerEntity->getTransformComponent().lock();
+	if (!transform)return;
 
-		auto transform = ownerEntity->getTransformComponent().lock();
-		if (!transform)return;
+	auto pos = transform->getPos();
 
-		auto pos = transform->getPos();
-
-		m_Sprite.render(pos, getColor());
-	}
+	m_Sprite.render(pos, getColor());
 }
 
 CANDY_APP_NAMESPACE_END

@@ -21,15 +21,15 @@ void Entity::cleanup()
 }
 
 // Transformコンポーネントの取得
-std::weak_ptr<Component::Transform> Entity::getTransformComponent()
+std::weak_ptr<TransformComponent> Entity::getTransformComponent()
 {
-	return m_ComponentList.getComponent<Component::Transform>();
+	return m_ComponentList.getComponent<TransformComponent>();
 }
 
 // Transformコンポーネントの取得
-const std::weak_ptr<Component::Transform> Entity::getTransformComponent()const
+const std::weak_ptr<TransformComponent> Entity::getTransformComponent()const
 {
-	return m_ComponentList.getComponent<Component::Transform>();
+	return m_ComponentList.getComponent<TransformComponent>();
 }
 
 CANDY_APP_NAMESPACE_END

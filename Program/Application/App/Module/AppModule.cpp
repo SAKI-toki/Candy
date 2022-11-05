@@ -12,7 +12,7 @@
 #include <App/Flow/Game/GameFlow.h>
 #include <App/Entity/EntityManager.h>
 #include <App/Component/System/Manager/ComponentManager.h>
-#include <App/Model/Model.h>
+#include <App/Model/ModelManager.h>
 #include <App/Font/Font.h>
 #include <App/Debug/Debug.h>
 
@@ -30,10 +30,10 @@ void Module::startupImpl()
 	TextureManager::Startup();
 	RenderingManager::Startup();
 	SpriteRenderingManager::Startup();
-	Model::Startup();
+	ModelManager::Startup();
 	Font::Startup();
 	Debug::Startup();
-	Component::Manager::Startup();
+	ComponentManager::Startup();
 	EntityManager::Startup();
 	GameFlow::Startup();
 }
@@ -43,10 +43,10 @@ void Module::cleanupImpl()
 {
 	GameFlow::Cleanup();
 	EntityManager::Cleanup();
-	Component::Manager::Cleanup();
+	ComponentManager::Cleanup();
 	Debug::Cleanup();
 	Font::Cleanup();
-	Model::Cleanup();
+	ModelManager::Cleanup();
 	SpriteRenderingManager::Cleanup();
 	RenderingManager::Cleanup();
 	TextureManager::Cleanup();
@@ -68,38 +68,38 @@ void Module::beginFrameImpl()
 void Module::preUpdateImpl()
 {
 	GameFlow::Update();
-	Component::Manager::PreUpdate();
+	ComponentManager::PreUpdate();
 }
 
 // 更新の実装部
 void Module::updateImpl()
 {
-	Component::Manager::Update();
+	ComponentManager::Update();
 }
 
 // 後更新の実装部
 void Module::postUpdateImpl()
 {
-	Component::Manager::PostUpdate();
+	ComponentManager::PostUpdate();
 	Debug::Update();
 }
 
 // 前描画登録の実装部
 void Module::preRenderImpl()
 {
-	Component::Manager::PreRender();
+	ComponentManager::PreRender();
 }
 
 // 描画登録の実装部
 void Module::renderImpl()
 {
-	Component::Manager::Render();
+	ComponentManager::Render();
 }
 
 // 後描画登録の実装部
 void Module::postRenderImpl()
 {
-	Component::Manager::PostRender();
+	ComponentManager::PostRender();
 }
 
 // 前描画の実装部
@@ -111,7 +111,7 @@ void Module::preDrawImpl()
 // 描画の実装部
 void Module::drawImpl()
 {
-	Model::Primitive::Draw();
+	ModelManager::Primitive::Draw();
 	SpriteRenderingManager::Draw();
 	Debug::Draw();
 }

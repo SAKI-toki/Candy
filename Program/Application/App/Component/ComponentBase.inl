@@ -14,25 +14,22 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+// コンポーネントの取得
+template<typename T, IsBaseComponentComponentInterfaceT<T>>
+std::weak_ptr<T> ComponentBase::getComponent()
 {
-	// コンポーネントの取得
-	template<typename T, IsBaseComponentComponentInterfaceT<T>>
-	std::weak_ptr<T> ComponentBase::getComponent()
-	{
-		auto entity = m_OwnerEntity.lock();
-		if (!entity)return std::weak_ptr<T>{};
-		return entity->getComponent<T>();
-	}
+	auto entity = m_OwnerEntity.lock();
+	if (!entity)return std::weak_ptr<T>{};
+	return entity->getComponent<T>();
+}
 
-	// コンポーネントの取得
-	template<typename T, IsBaseComponentComponentInterfaceT<T>>
-	const std::weak_ptr<T> ComponentBase::getComponent()const
-	{
-		auto entity = m_OwnerEntity.lock();
-		if (!entity)return std::weak_ptr<T>{};
-		return entity->getComponent<T>();
-	}
+// コンポーネントの取得
+template<typename T, IsBaseComponentComponentInterfaceT<T>>
+const std::weak_ptr<T> ComponentBase::getComponent()const
+{
+	auto entity = m_OwnerEntity.lock();
+	if (!entity)return std::weak_ptr<T>{};
+	return entity->getComponent<T>();
 }
 
 CANDY_APP_NAMESPACE_END

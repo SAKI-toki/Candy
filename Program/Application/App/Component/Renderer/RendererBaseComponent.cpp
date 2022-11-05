@@ -9,9 +9,6 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
-{
-	CANDY_COMPONENT_DEFINE(RendererBase, ComponentBase);
-}
+CANDY_COMPONENT_DEFINE(RendererComponentBase, ComponentBase);
 
 CANDY_APP_NAMESPACE_END

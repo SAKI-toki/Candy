@@ -10,31 +10,28 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+CANDY_COMPONENT_DEFINE(Camera2dComponent, CameraComponentBase);
+
+void Camera2dComponent::startupImpl()
 {
-	CANDY_COMPONENT_DEFINE(Camera2d, CameraBase);
+	Super::startupImpl();
+}
 
-	void Camera2d::startupImpl()
-	{
-		Super::startupImpl();
-	}
+void Camera2dComponent::cleanupImpl()
+{
+	Super::cleanupImpl();
+}
 
-	void Camera2d::cleanupImpl()
-	{
-		Super::cleanupImpl();
-	}
+void Camera2dComponent::renderImpl()
+{
+	Super::renderImpl();
 
-	void Camera2d::renderImpl()
-	{
-		Super::renderImpl();
+	SpriteRenderingManager::SetCamera(*this);
+}
 
-		SpriteRenderingManager::SetCamera(*this);
-	}
-
-	void Camera2d::updateProjectionMtx()
-	{
-		MtxOrthographic(m_ProjectionMtx, m_Width, m_Height, m_Near, m_Far);
-	}
+void Camera2dComponent::updateProjectionMtx()
+{
+	MtxOrthographic(m_ProjectionMtx, m_Width, m_Height, m_Near, m_Far);
 }
 
 CANDY_APP_NAMESPACE_END

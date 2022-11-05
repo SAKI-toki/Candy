@@ -14,17 +14,14 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+namespace RequireTable
 {
-	namespace RequireTable
-	{
-		using RequireFuncType = std::function<std::weak_ptr<ComponentBase> (List&)>;
-		using RequireFuncListType = std::vector<RequireFuncType>;
+	using RequireFuncType = std::function<std::weak_ptr<ComponentBase>(ComponentList&)>;
+	using RequireFuncListType = std::vector<RequireFuncType>;
 
-		template<typename T>
-		void GetRequireFuncListFromType(RequireFuncListType& _result);
-		const RequireFuncListType& GetRequireFuncListFromId(const Component::ClassIdType _id);
-	}
+	template<typename T>
+	void GetRequireFuncListFromType(RequireFuncListType& _result);
+	const RequireFuncListType& GetRequireFuncListFromId(const ComponentClassIdType _id);
 }
 
 CANDY_APP_NAMESPACE_END

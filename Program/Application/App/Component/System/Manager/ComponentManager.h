@@ -15,29 +15,26 @@ CANDY_APP_NAMESPACE_BEGIN
 
 class Entity;
 
-namespace Component
+class ComponentBase;
+
+namespace ComponentManager
 {
-	class Base;
+	void Startup();
+	void Cleanup();
 
-	namespace Manager
-	{
-		void Startup();
-		void Cleanup();
+	void PreUpdate();
+	void Update();
+	void PostUpdate();
 
-		void PreUpdate();
-		void Update();
-		void PostUpdate();
+	void PreRender();
+	void Render();
+	void PostRender();
 
-		void PreRender();
-		void Render();
-		void PostRender();
+	template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T> = nullptr>
+	std::weak_ptr<ComponentBase> addComponent(const std::weak_ptr<Entity>& _ownerEntity, ArgsT&& ..._args);
 
-		template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T> = nullptr>
-		std::weak_ptr<ComponentBase> addComponent(const std::weak_ptr<Entity>& _ownerEntity, ArgsT&& ..._args);
-
-		void removeComponent(const std::weak_ptr<ComponentBase>& _component);
-	};
-}
+	void removeComponent(const std::weak_ptr<ComponentBase>& _component);
+};
 
 CANDY_APP_NAMESPACE_END
 

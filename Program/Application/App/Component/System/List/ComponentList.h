@@ -15,15 +15,13 @@ CANDY_APP_NAMESPACE_BEGIN
 
 class Entity;
 
-namespace Component
-{
 	class ComponentBase;
 
-	class List
+	class ComponentList
 	{
 	public:
-		List();
-		~List();
+		ComponentList();
+		~ComponentList();
 
 		// クリア
 		void clear();
@@ -58,7 +56,6 @@ namespace Component
 		std::vector<std::weak_ptr<ComponentBase>> m_Components;
 		std::weak_ptr<Entity> m_OwnerEntity;
 	};
-}
 
 CANDY_APP_NAMESPACE_END
 

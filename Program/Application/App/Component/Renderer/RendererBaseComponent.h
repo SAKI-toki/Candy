@@ -12,20 +12,17 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+class RendererComponentBase : public ComponentBase
 {
-	class RendererBase : public ComponentBase
-	{
-		CANDY_COMPONENT_DECLARE(RendererBase, ComponentBase);
+	CANDY_COMPONENT_DECLARE(RendererComponentBase, ComponentBase);
 
-	public:
-		void setColor(const Color& _color) { m_Color = _color; }
-		const Color& getColor()const { return m_Color; }
+public:
+	void setColor(const Color& _color) { m_Color = _color; }
+	const Color& getColor()const { return m_Color; }
 
-	private:
-		Color m_Color{ WhiteColor };
-	};
-}
+private:
+	Color m_Color{ WhiteColor };
+};
 
 CANDY_APP_NAMESPACE_END
 

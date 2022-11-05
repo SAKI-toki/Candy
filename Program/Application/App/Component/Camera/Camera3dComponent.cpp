@@ -9,29 +9,26 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+CANDY_COMPONENT_DEFINE(Camera3dComponent, CameraComponentBase);
+
+void Camera3dComponent::startupImpl()
 {
-	CANDY_COMPONENT_DEFINE(Camera3d, ComponentBase);
+	Super::startupImpl();
+}
 
-	void Camera3d::startupImpl()
-	{
-		Super::startupImpl();
-	}
+void Camera3dComponent::cleanupImpl()
+{
+	Super::cleanupImpl();
+}
 
-	void Camera3d::cleanupImpl()
-	{
-		Super::cleanupImpl();
-	}
+void Camera3dComponent::renderImpl()
+{
+	Super::renderImpl();
+}
 
-	void Camera3d::renderImpl()
-	{
-		Super::renderImpl();
-	}
-
-	void Camera3d::updateProjectionMtx()
-	{
-		MtxPerspective(m_ProjectionMtx, m_Fov, m_AspectRatio, m_Near, m_Far);
-	}
+void Camera3dComponent::updateProjectionMtx()
+{
+	MtxPerspective(m_ProjectionMtx, m_Fov, m_AspectRatio, m_Near, m_Far);
 }
 
 CANDY_APP_NAMESPACE_END

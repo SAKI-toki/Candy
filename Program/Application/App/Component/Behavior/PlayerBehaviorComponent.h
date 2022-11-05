@@ -13,16 +13,13 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+class PlayerBehaviorComponent : public BehaviorComponentBase
 {
-	class PlayerBehavior : public BehaviorBase
-	{
-		CANDY_COMPONENT_DECLARE(PlayerBehavior, BehaviorBase);
+	CANDY_COMPONENT_DECLARE(PlayerBehaviorComponent, BehaviorComponentBase);
 
-	public:
-		void updateImpl()override;
-	};
-}
+public:
+	void updateImpl()override;
+};
 
 CANDY_APP_NAMESPACE_END
 

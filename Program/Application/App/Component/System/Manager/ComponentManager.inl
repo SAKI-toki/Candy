@@ -13,36 +13,33 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+namespace ComponentManager
 {
-	namespace Manager
+	inline std::vector<std::shared_ptr<ComponentBase>> m_AllComponentLists;
+	inline std::vector<std::vector<std::shared_ptr<ComponentBase>>> m_UpdateComponentLists;
+	inline std::vector<std::vector<std::shared_ptr<ComponentBase>>> m_RenderComponentLists;
+}
+
+template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T>>
+std::weak_ptr<ComponentBase> ComponentManager::addComponent(const std::weak_ptr<Entity>& _ownerEntity, ArgsT&& ..._args)
+{
+	auto component = std::make_shared<T>(std::forward<ArgsT>(_args)...);
+	component->setOwnerEntity(_ownerEntity);
+	m_AllComponentLists.push_back(component);
+
+	const s32 updatePriority = PriorityTable::template GetUpdatePriorityFromType<T>();
+	if (core::InRangeSize(updatePriority, 0, m_UpdateComponentLists.size()))
 	{
-		inline std::vector<std::shared_ptr<ComponentBase>> m_AllComponentLists;
-		inline std::vector<std::vector<std::shared_ptr<ComponentBase>>> m_UpdateComponentLists;
-		inline std::vector<std::vector<std::shared_ptr<ComponentBase>>> m_RenderComponentLists;
+		m_UpdateComponentLists[updatePriority].push_back(component);
 	}
 
-	template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T>>
-	std::weak_ptr<ComponentBase> Manager::addComponent(const std::weak_ptr<Entity>& _ownerEntity, ArgsT&& ..._args)
+	const s32 renderPriority = PriorityTable::template GetRenderPriorityFromType<T>();
+	if (core::InRangeSize(renderPriority, 0, m_RenderComponentLists.size()))
 	{
-		auto component = std::make_shared<T>(std::forward<ArgsT>(_args)...);
-		component->setOwnerEntity(_ownerEntity);
-		m_AllComponentLists.push_back(component);
-
-		const s32 updatePriority = PriorityTable::template GetUpdatePriorityFromType<T>();
-		if (core::InRangeSize(updatePriority, 0, m_UpdateComponentLists.size()))
-		{
-			m_UpdateComponentLists[updatePriority].push_back(component);
-		}
-
-		const s32 renderPriority = PriorityTable::template GetRenderPriorityFromType<T>();
-		if (core::InRangeSize(renderPriority, 0, m_RenderComponentLists.size()))
-		{
-			m_RenderComponentLists[renderPriority].push_back(component);
-		}
-
-		return component;
+		m_RenderComponentLists[renderPriority].push_back(component);
 	}
+
+	return component;
 }
 
 CANDY_APP_NAMESPACE_END

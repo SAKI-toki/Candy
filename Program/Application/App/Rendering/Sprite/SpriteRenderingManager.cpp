@@ -76,7 +76,7 @@ void SpriteRenderingManager::AddSprite(const std::shared_ptr<SpriteImpl>& _sprit
 	updateSpriteList.push_back(_sprite);
 }
 
-void SpriteRenderingManager::SetCamera(const Component::Camera2d& _camera2dComponent)
+void SpriteRenderingManager::SetCamera(const Camera2dComponent& _camera2dComponent)
 {
 	struct Constant
 	{

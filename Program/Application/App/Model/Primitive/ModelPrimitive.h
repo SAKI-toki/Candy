@@ -12,7 +12,7 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Model::Primitive
+namespace ModelManager::Primitive
 {
 	struct VertexInfo
 	{

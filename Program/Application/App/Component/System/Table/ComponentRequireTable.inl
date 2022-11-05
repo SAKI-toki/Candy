@@ -12,21 +12,18 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+template<typename T>
+void RequireTable::GetRequireFuncListFromType(RequireFuncListType& _result)
 {
-	template<typename T>
-	void RequireTable::GetRequireFuncListFromType(RequireFuncListType& _result)
-	{
-		const auto& requireFuncList = GetRequireFuncListFromId(T::GetStaticClassId());
-		_result.insert(_result.end(), requireFuncList.begin(), requireFuncList.end());
-		GetRequireFuncListFromType<typename T::Super>(_result);
-	}
+	const auto& requireFuncList = GetRequireFuncListFromId(T::GetStaticClassId());
+	_result.insert(_result.end(), requireFuncList.begin(), requireFuncList.end());
+	GetRequireFuncListFromType<typename T::Super>(_result);
+}
 
-	template<>
-	inline void RequireTable::GetRequireFuncListFromType<ComponentInterface>(RequireFuncListType&)
-	{
+template<>
+inline void RequireTable::GetRequireFuncListFromType<ComponentInterface>(RequireFuncListType&)
+{
 
-	}
 }
 
 CANDY_APP_NAMESPACE_END

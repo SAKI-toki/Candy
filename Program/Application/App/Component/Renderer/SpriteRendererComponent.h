@@ -14,24 +14,21 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+class SpriteRendererComponent : public RendererComponentBase
 {
-	class SpriteRenderer : public RendererBase
-	{
-		CANDY_COMPONENT_DECLARE(SpriteRenderer, RendererBase);
+	CANDY_COMPONENT_DECLARE(SpriteRendererComponent, RendererComponentBase);
 
-	public:
-		void startupImpl()override;
-		void cleanupImpl()override;
-		void renderImpl()override;
+public:
+	void startupImpl()override;
+	void cleanupImpl()override;
+	void renderImpl()override;
 
-		void setDrawPriority(const s32 _priority) { m_Sprite.setDrawPriority(_priority); }
-		s32 getDrawPriority()const { return m_Sprite.getDrawPriority(); }
+	void setDrawPriority(const s32 _priority) { m_Sprite.setDrawPriority(_priority); }
+	s32 getDrawPriority()const { return m_Sprite.getDrawPriority(); }
 
-	private:
-		Sprite m_Sprite;
-	};
-}
+private:
+	Sprite m_Sprite;
+};
 
 CANDY_APP_NAMESPACE_END
 

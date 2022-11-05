@@ -12,76 +12,73 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+ComponentList::ComponentList()
 {
-	List::List()
+
+}
+
+ComponentList::~ComponentList()
+{
+	clear();
+}
+
+// クリア
+void ComponentList::clear()
+{
+	for (s32 i = (s32)m_Components.size() - 1; i >= 0; --i)
 	{
-
+		removeComponentInternal(i);
 	}
+}
 
-	List::~List()
+// コンポーネントの追加
+void ComponentList::addComponentInternal(const std::weak_ptr<ComponentBase>& _component)
+{
+	auto sharedComponent = _component.lock();
+	if (!sharedComponent)return;
+
+	const s32 addPriority = PriorityTable::GetUpdatePriorityFromId(sharedComponent->getClassId());
+
+	auto itr = m_Components.begin();
+	while (itr != m_Components.end())
 	{
-		clear();
+		auto component = itr->lock();
+		++itr;
+		if (!component)continue;
+		const s32 priority = PriorityTable::GetUpdatePriorityFromId(component->getClassId());
+		if (priority < addPriority)continue;
+		break;
 	}
+	m_Components.insert(itr, _component);
+	sharedComponent->initialize();
+}
 
-	// クリア
-	void List::clear()
+// コンポーネントの削除
+void ComponentList::removeComponent(const std::weak_ptr<ComponentBase>& _component)
+{
+	auto sharedComponent = _component.lock();
+	if (!sharedComponent)return;
+	for (s32 i = 0; i < (s32)m_Components.size(); ++i)
 	{
-		for (s32 i = (s32)m_Components.size() - 1; i >= 0; --i)
-		{
-			removeComponentInternal(i);
-		}
+		auto component = m_Components[i].lock();
+		if (!component)continue;
+		if (sharedComponent != component)continue;
+		removeComponentInternal(i);
+		return;
 	}
+}
 
-	// コンポーネントの追加
-	void List::addComponentInternal(const std::weak_ptr<ComponentBase>& _component)
+// コンポーネントの削除
+void ComponentList::removeComponentInternal(const s32 _index)
+{
+	if (_index < 0 || _index >= (s32)m_Components.size())return;
+	auto itr = m_Components.begin() + _index;
+	if (auto sharedComponent = itr->lock())
 	{
-		auto sharedComponent = _component.lock();
-		if (!sharedComponent)return;
-
-		const s32 addPriority = PriorityTable::GetUpdatePriorityFromId(sharedComponent->getClassId());
-
-		auto itr = m_Components.begin();
-		while (itr != m_Components.end())
-		{
-			auto component = itr->lock();
-			++itr;
-			if (!component)continue;
-			const s32 priority = PriorityTable::GetUpdatePriorityFromId(component->getClassId());
-			if (priority < addPriority)continue;
-			break;
-		}
-		m_Components.insert(itr, _component);
-		sharedComponent->initialize();
+		sharedComponent->cleanup();
 	}
-
-	// コンポーネントの削除
-	void List::removeComponent(const std::weak_ptr<ComponentBase>& _component)
-	{
-		auto sharedComponent = _component.lock();
-		if (!sharedComponent)return;
-		for (s32 i = 0; i < (s32)m_Components.size(); ++i)
-		{
-			auto component = m_Components[i].lock();
-			if (!component)continue;
-			if (sharedComponent != component)continue;
-			removeComponentInternal(i);
-			return;
-		}
-	}
-
-	// コンポーネントの削除
-	void List::removeComponentInternal(const s32 _index)
-	{
-		if (_index < 0 || _index >= (s32)m_Components.size())return;
-		auto itr = m_Components.begin() + _index;
-		if (auto sharedComponent = itr->lock())
-		{
-			sharedComponent->cleanup();
-		}
-		Manager::removeComponent(m_Components[_index]);
-		m_Components.erase(itr);
-	}
+	ComponentManager::removeComponent(m_Components[_index]);
+	m_Components.erase(itr);
 }
 
 CANDY_APP_NAMESPACE_END

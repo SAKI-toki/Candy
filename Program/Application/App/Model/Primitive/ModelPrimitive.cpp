@@ -11,7 +11,7 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Model
+namespace ModelManager
 {
 	namespace Primitive
 	{

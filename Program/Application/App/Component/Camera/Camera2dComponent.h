@@ -13,31 +13,28 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Component
+class Camera2dComponent : public CameraComponentBase
 {
-	class Camera2d : public CameraBase
-	{
-		CANDY_COMPONENT_DECLARE(Camera2d, CameraBase);
+	CANDY_COMPONENT_DECLARE(Camera2dComponent, CameraComponentBase);
 
-	public:
-		void startupImpl()override;
-		void cleanupImpl()override;
+public:
+	void startupImpl()override;
+	void cleanupImpl()override;
 
-		void renderImpl()override;
+	void renderImpl()override;
 
-		void updateProjectionMtx()override;
+	void updateProjectionMtx()override;
 
-		void setHeight(const f32 _height) { m_Height = _height; }
-		f32 getHeight()const { return m_Height; }
+	void setHeight(const f32 _height) { m_Height = _height; }
+	f32 getHeight()const { return m_Height; }
 
-		void setWidth(const f32 _widht) { m_Width = _widht; }
-		f32 getWidth()const { return m_Width; }
+	void setWidth(const f32 _widht) { m_Width = _widht; }
+	f32 getWidth()const { return m_Width; }
 
-	private:
-		f32 m_Height{};
-		f32 m_Width{};
-	};
-}
+private:
+	f32 m_Height{};
+	f32 m_Width{};
+};
 
 CANDY_APP_NAMESPACE_END
 

@@ -1,12 +1,12 @@
 ﻿/*****************************************************************//**
- * \file   Model.h
- * \brief  モデル
+ * \file   ModelManager.h
+ * \brief  モデルの管理
  * \author Yu Ishiyama.
  * \date   2022/06/02
  *********************************************************************/
 
-#ifndef CANDY_MODEL_H
-#define CANDY_MODEL_H
+#ifndef CANDY_MODEL_MANAGER_H
+#define CANDY_MODEL_MANAGER_H
 
 #include <App/AppInclude.h>
 
@@ -14,7 +14,7 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-namespace Model
+namespace ModelManager
 {
 	// 初期化
 	void Startup();
@@ -24,4 +24,4 @@ namespace Model
 
 CANDY_APP_NAMESPACE_END
 
-#endif // CANDY_MODEL_H
+#endif // CANDY_MODEL_MANAGER_H

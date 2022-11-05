@@ -43,8 +43,8 @@ void GameFlow::Startup()
 	auto player = EntityManager::CreateEntity("Player");
 	if (auto lockPlayer = player.lock())
 	{
-		lockPlayer->addComponent<Component::PlayerBehavior>();
-		auto renderer = lockPlayer->addComponent<Component::SpriteRenderer>();
+		lockPlayer->addComponent<PlayerBehaviorComponent>();
+		auto renderer = lockPlayer->addComponent<SpriteRendererComponent>();
 		if (auto lockRenderer = renderer.lock())
 		{
 			lockRenderer->setDrawPriority(-1);
@@ -55,8 +55,8 @@ void GameFlow::Startup()
 	auto enemy = EntityManager::CreateEntity("Enemy");
 	if (auto lockEnemy = enemy.lock())
 	{
-		lockEnemy->addComponent<Component::EnemyBehavior>();
-		lockEnemy->addComponent<Component::SpriteRenderer>();
+		lockEnemy->addComponent<EnemyBehaviorComponent>();
+		lockEnemy->addComponent<SpriteRendererComponent>();
 		/*if (auto transform = enemy->getTransformComponent())
 		{
 			transform->setPos({ 200.0f, 200.0f, 0.0f });
@@ -67,7 +67,7 @@ void GameFlow::Startup()
 	auto camera = EntityManager::CreateEntity("Camera");
 	if (auto lockCamera = camera.lock())
 	{
-		if (auto camera2d = lockCamera->addComponent<Component::Camera2d>().lock())
+		if (auto camera2d = lockCamera->addComponent<Camera2dComponent>().lock())
 		{
 			camera2d->setWidth(16.0f);
 			camera2d->setHeight(9.0f);

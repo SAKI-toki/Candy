@@ -49,9 +49,19 @@ void MtxOrthographic(Mtx& _out, const f32 _width, const f32 _height, const f32 _
 	core::MtxOrthographicImpl(_out.vector, _width, _height, _near, _far);
 }
 
+void MtxPerspective(Mtx& _out, const f32 _fov, const f32 _aspectRatio, const f32 _near, const f32 _far)
+{
+	core::MtxPerspectiveImpl(_out.vector, _fov, _aspectRatio, _near, _far);
+}
+
 void MtxLookAt(Mtx& _out, const Vec4& _view, const Vec4& _lookAt, const Vec4& _up)
 {
-	core::MtxLookAtImpl(_out.vector, _view.vector, _lookAt.vector, _up.vector);
+	core::MtxLookToImpl(_out.vector, _view.vector, VecSub(_lookAt, _view).vector, _up.vector);
+}
+
+void MtxLookTo(Mtx& _out, const Vec4& _view, const Vec4& _lookDir, const Vec4& _up)
+{
+	core::MtxLookToImpl(_out.vector, _view.vector, _lookDir.vector, _up.vector);
 }
 
 CANDY_NAMESPACE_END

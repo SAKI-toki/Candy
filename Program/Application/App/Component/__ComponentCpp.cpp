@@ -21,4 +21,6 @@
 
 #include "Transform/TransformComponent.cpp"
 
+#include "Camera/CameraBaseComponent.cpp"
 #include "Camera/Camera2dComponent.cpp"
+#include "Camera/Camera3dComponent.cpp"

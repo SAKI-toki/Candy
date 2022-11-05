@@ -13,6 +13,7 @@
 CANDY_CORE_NAMESPACE_BEGIN
 
 vector_type VecSetImpl(const f32 _x, const f32 _y, const f32 _z, const f32 _w);
+vector_type VecSetAllImpl(const f32 _v);
 vector_type VecSetZeroImpl();
 vector_type VecSetOneImpl();
 vector_type VecSetXImpl(const vector_type _v, const f32 _x);

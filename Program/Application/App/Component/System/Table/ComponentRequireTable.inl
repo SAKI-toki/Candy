@@ -19,11 +19,11 @@ namespace Component
 	{
 		const auto& requireFuncList = GetRequireFuncListFromId(T::GetStaticClassId());
 		_result.insert(_result.end(), requireFuncList.begin(), requireFuncList.end());
-		GetRequireFuncListFromType<typename T::base_type>(_result);
+		GetRequireFuncListFromType<typename T::Super>(_result);
 	}
 
 	template<>
-	inline void RequireTable::GetRequireFuncListFromType<Interface>(RequireFuncListType&)
+	inline void RequireTable::GetRequireFuncListFromType<ComponentInterface>(RequireFuncListType&)
 	{
 
 	}

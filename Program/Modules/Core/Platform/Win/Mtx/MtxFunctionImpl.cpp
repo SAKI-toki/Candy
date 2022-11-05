@@ -157,9 +157,29 @@ void MtxOrthographicImpl(vector_type(&_out)[4], const f32 _width, const f32 _hei
 	);
 }
 
-void MtxLookAtImpl(vector_type(&_out)[4], const vector_type _view, const vector_type _lookAt, const vector_type _up)
+void MtxPerspectiveImpl(vector_type(&_out)[4], const f32 _fov, const f32 _aspectRatio, const f32 _near, const f32 _far)
 {
-	const vector_type axisZ = VecNormalizeImpl(VecSubImpl(_lookAt, _view));
+	const float range = _far / (_far - _near);
+	const float negativeRangeDivNear = -range * _near;
+
+	const vector_type fovVec = VecSetAllImpl(_fov * 0.5f);
+	vector_type outSin, outCos;
+	VecSinCosImpl(outSin, outCos, fovVec);
+
+	const vector_type height = VecDivImpl(outCos, outSin);
+	const vector_type width = VecDivImpl(height, VecSetAllImpl(_aspectRatio));
+
+	MtxSetImpl(_out,
+		VecSelectXImpl(width),
+		VecSelectYImpl(height),
+		VecSetImpl(0.0f, 0.0f, range, 1.0f),
+		VecSetImpl(0.0f, 0.0f, negativeRangeDivNear, 0.0f)
+	);
+}
+
+void MtxLookToImpl(vector_type(&_out)[4], const vector_type _view, const vector_type _lookDir, const vector_type _up)
+{
+	const vector_type axisZ = VecNormalizeImpl(_lookDir);
 	const vector_type axisX = VecNormalizeImpl(VecCrossImpl(_up, axisZ));
 	const vector_type axisY = VecCrossImpl(axisZ, axisX);
 

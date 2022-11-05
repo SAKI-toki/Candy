@@ -19,25 +19,29 @@ namespace Component
 		// 更新処理優先度テーブル
 		const PriorityTableType UpdatePriorityTable =
 		{
-			// 0
 			{
 				PlayerBehavior::GetStaticClassId(),
 			},
-			// 1
 			{
 				EnemyBehavior::GetStaticClassId(),
 			},
-
-			// 最後
 			{
 				Camera2d::GetStaticClassId(),
+			},
+			{
+				Camera3d::GetStaticClassId(),
 			},
 		};
 
 		// 描画登録処理優先度テーブル
 		const PriorityTableType RenderPriorityTable =
 		{
-			// 0
+			{
+				Camera2d::GetStaticClassId(),
+			},
+			{
+				Camera3d::GetStaticClassId(),
+			},
 			{
 				SpriteRenderer::GetStaticClassId(),
 			},

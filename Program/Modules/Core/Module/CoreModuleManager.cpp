@@ -54,10 +54,8 @@ void ModuleManager::cleanup()
 void ModuleManager::update()
 {
 	transformModuleNormalOrder(&ModuleBase::beginFrame);
-	updateModule();
-	drawModule();
-	/*m_JobSystem.execute();
-	m_JobSystem.wait();*/
+	m_JobSystem.execute();
+	m_JobSystem.wait();
 	transformModuleReverseOrder(&ModuleBase::endFrame);
 }
 

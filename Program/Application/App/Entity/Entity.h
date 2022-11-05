@@ -38,16 +38,16 @@ public:
 	void setName(const std::string_view _name) { m_Name = _name; }
 
 	// コンポーネントの追加
-	template<typename T, typename ...ArgsT, Component::is_base_component_interface_t<T> = nullptr>
+	template<typename T, typename ...ArgsT, Component::IsBaseComponentComponentInterfaceT<T> = nullptr>
 	std::weak_ptr<T> addComponent(ArgsT&& ..._args) { return m_ComponentList.addComponent<T>(std::forward<ArgsT>(_args)...); }
 	// コンポーネントの削除
-	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
+	template<typename T, Component::IsBaseComponentComponentInterfaceT<T> = nullptr>
 	void removeComponent() { m_ComponentList.removeComponent<T>(); }
 	// コンポーネントの取得
-	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
+	template<typename T, Component::IsBaseComponentComponentInterfaceT<T> = nullptr>
 	std::weak_ptr<T> getComponent() { return m_ComponentList.getComponent<T>(); }
 	// コンポーネントの取得
-	template<typename T, Component::is_base_component_interface_t<T> = nullptr>
+	template<typename T, Component::IsBaseComponentComponentInterfaceT<T> = nullptr>
 	const std::weak_ptr<T> getComponent()const { return m_ComponentList.getComponent<T>(); }
 
 	// Transformコンポーネントの取得

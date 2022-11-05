@@ -17,7 +17,7 @@ class Entity;
 
 namespace Component
 {
-	class Base;
+	class ComponentBase;
 
 	class List
 	{
@@ -29,33 +29,33 @@ namespace Component
 		void clear();
 
 		// コンポーネントの追加(同じコンポーネントの追加はできない)
-		template<typename T, typename ...ArgsT, is_base_component_interface_t<T> = nullptr>
+		template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T> = nullptr>
 		std::weak_ptr<T> addComponent(ArgsT&& ..._args);
 		// コンポーネントの削除
-		template<typename T, is_base_component_interface_t<T> = nullptr>
+		template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
 		void removeComponent();
 		// コンポーネントの削除
-		void removeComponent(const std::weak_ptr<Base>& _component);
+		void removeComponent(const std::weak_ptr<ComponentBase>& _component);
 		// コンポーネントの取得
-		template<typename T, is_base_component_interface_t<T> = nullptr>
+		template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
 		std::weak_ptr<T> getComponent();
 		// コンポーネントの取得
-		template<typename T, is_base_component_interface_t<T> = nullptr>
+		template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
 		const std::weak_ptr<T> getComponent()const;
 
 		void setOwnerEntity(const std::weak_ptr<Entity>& _ownerEntity) { m_OwnerEntity = _ownerEntity; }
 
 		// コンポーネントの追加(RequireTable以外からの呼び出し禁止)
-		template<typename T, typename ...ArgsT, is_base_component_interface_t<T> = nullptr>
+		template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T> = nullptr>
 		std::weak_ptr<T> addComponentFromRequire(ArgsT&& ..._args);
 
 	private:
 		// コンポーネントの追加
-		void addComponentInternal(const std::weak_ptr<Base>& _component);
+		void addComponentInternal(const std::weak_ptr<ComponentBase>& _component);
 		// コンポーネントの削除
 		void removeComponentInternal(const s32 _index);
 
-		std::vector<std::weak_ptr<Base>> m_Components;
+		std::vector<std::weak_ptr<ComponentBase>> m_Components;
 		std::weak_ptr<Entity> m_OwnerEntity;
 	};
 }

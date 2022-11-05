@@ -17,9 +17,16 @@ class Entity;
 
 namespace Component
 {
-	class Base : public Interface
+	class Transform;
+
+	enum class COMPONENT_STATUS_FLAG
 	{
-		CANDY_COMPONENT_DECLARE(Base, Interface);
+
+	};
+
+	class ComponentBase : public ComponentInterface
+	{
+		CANDY_COMPONENT_DECLARE(ComponentBase, ComponentInterface);
 
 	public:
 		// 他コンポーネントに依存しない初期化
@@ -68,10 +75,23 @@ namespace Component
 		// 後描画登録の実装部
 		virtual void postRenderImpl() {}
 
+		// コンポーネントの取得
+		template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
+		std::weak_ptr<T> getComponent();
+		// コンポーネントの取得
+		template<typename T, IsBaseComponentComponentInterfaceT<T> = nullptr>
+		const std::weak_ptr<T> getComponent()const;
+
+		// Transformコンポーネントの取得
+		std::weak_ptr<Transform> getTransformComponent();
+		const std::weak_ptr<Transform> getTransformComponent()const;
+
 		std::weak_ptr<Entity> m_OwnerEntity;
 	};
 }
 
 CANDY_APP_NAMESPACE_END
+
+#include "ComponentBase.inl"
 
 #endif // CANDY_APP_COMPONENT_BASE_H

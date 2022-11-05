@@ -14,13 +14,13 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	template<typename T, is_base_component_interface_t<T>>
+	template<typename T, IsBaseComponentComponentInterfaceT<T>>
 	s32 PriorityTable::GetUpdatePriorityFromType()
 	{
 		return GetUpdatePriorityFromId(T::GetStaticClassId());
 	}
 
-	template<typename T, is_base_component_interface_t<T>>
+	template<typename T, IsBaseComponentComponentInterfaceT<T>>
 	s32 PriorityTable::GetRenderPriorityFromType()
 	{
 		return GetRenderPriorityFromId(T::GetStaticClassId());

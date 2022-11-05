@@ -6,65 +6,79 @@
  *********************************************************************/
 
 #include "ComponentBase.h"
+#include "Transform/TransformComponent.h"
 
 CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	CANDY_COMPONENT_DEFINE(Base, Interface);
+	CANDY_COMPONENT_DEFINE(ComponentBase, ComponentInterface);
 
 	// 他コンポーネントに依存しない初期化
-	void Base::initialize()
+	void ComponentBase::initialize()
 	{
 		initializeImpl();
 	}
 
 	// 他コンポーネントに依存する初期化
-	void Base::startup()
+	void ComponentBase::startup()
 	{
 		startupImpl();
 	}
 
 	// 破棄
-	void Base::cleanup()
+	void ComponentBase::cleanup()
 	{
 		cleanupImpl();
 	}
 
 	// 前更新
-	void Base::preUpdate()
+	void ComponentBase::preUpdate()
 	{
 		preUpdateImpl();
 	}
 
 	// 更新
-	void Base::update()
+	void ComponentBase::update()
 	{
 		updateImpl();
 	}
 
 	// 後更新
-	void Base::postUpdate()
+	void ComponentBase::postUpdate()
 	{
 		postUpdateImpl();
 	}
 
 	// 前描画登録
-	void Base::preRender()
+	void ComponentBase::preRender()
 	{
 		preRenderImpl();
 	}
 
 	// 描画登録
-	void Base::render()
+	void ComponentBase::render()
 	{
 		renderImpl();
 	}
 
 	// 後描画登録
-	void Base::postRender()
+	void ComponentBase::postRender()
 	{
 		postRenderImpl();
+	}
+
+
+	// Transformコンポーネントの取得
+	std::weak_ptr<Transform> ComponentBase::getTransformComponent()
+	{
+		return getComponent<Transform>();
+	}
+
+	// Transformコンポーネントの取得
+	const std::weak_ptr<Transform> ComponentBase::getTransformComponent()const
+	{
+		return getComponent<Transform>();
 	}
 }
 

@@ -24,7 +24,8 @@ void MtxRotationZXYImpl(vector_type (&_out)[4], const vector_type _v);
 void MtxScalingImpl(vector_type (&_out)[4], const vector_type _v);
 
 void MtxOrthographicImpl(vector_type(&_out)[4], const f32 _width, const f32 _height, const f32 _near, const f32 _far);
-void MtxLookAtImpl(vector_type(&_out)[4], const vector_type _view, const vector_type _lookAt, const vector_type _up);
+void MtxPerspectiveImpl(vector_type(&_out)[4], const f32 _fov, const f32 _aspectRatio, const f32 _near, const f32 _far);
+void MtxLookToImpl(vector_type(&_out)[4], const vector_type _view, const vector_type _lookDir, const vector_type _up);
 
 CANDY_CORE_NAMESPACE_END
 

@@ -29,7 +29,9 @@ void MtxRotationZXY(Mtx& _out, const Vec4& _v);
 void MtxScaling(Mtx& _out, const Vec4& _v);
 
 void MtxOrthographic(Mtx& _out, const f32 _width, const f32 _height, const f32 _near, const f32 _far);
+void MtxPerspective(Mtx& _out, const f32 _fov, const f32 _aspectRatio, const f32 _near, const f32 _far);
 void MtxLookAt(Mtx& _out, const Vec4& _view, const Vec4& _lookAt, const Vec4& _up);
+void MtxLookTo(Mtx& _out, const Vec4& _view, const Vec4& _lookDir, const Vec4& _up);
 
 CANDY_NAMESPACE_END
 

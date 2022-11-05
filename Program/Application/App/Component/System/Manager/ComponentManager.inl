@@ -17,13 +17,13 @@ namespace Component
 {
 	namespace Manager
 	{
-		inline std::vector<std::shared_ptr<Base>> m_AllComponentLists;
-		inline std::vector<std::vector<std::shared_ptr<Base>>> m_UpdateComponentLists;
-		inline std::vector<std::vector<std::shared_ptr<Base>>> m_RenderComponentLists;
+		inline std::vector<std::shared_ptr<ComponentBase>> m_AllComponentLists;
+		inline std::vector<std::vector<std::shared_ptr<ComponentBase>>> m_UpdateComponentLists;
+		inline std::vector<std::vector<std::shared_ptr<ComponentBase>>> m_RenderComponentLists;
 	}
 
-	template<typename T, typename ...ArgsT, is_base_component_interface_t<T>>
-	std::weak_ptr<Base> Manager::addComponent(const std::weak_ptr<Entity>& _ownerEntity, ArgsT&& ..._args)
+	template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T>>
+	std::weak_ptr<ComponentBase> Manager::addComponent(const std::weak_ptr<Entity>& _ownerEntity, ArgsT&& ..._args)
 	{
 		auto component = std::make_shared<T>(std::forward<ArgsT>(_args)...);
 		component->setOwnerEntity(_ownerEntity);

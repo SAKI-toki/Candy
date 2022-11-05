@@ -16,7 +16,7 @@ namespace Component
 	{
 		core::JobSystem m_JobSystem;
 
-		void TransformComponentImpl(void(Base::* _baseFunc)(), std::vector<std::shared_ptr<Base>>& _componentList, std::atomic<int>& _index)
+		void TransformComponentImpl(void(ComponentBase::* _baseFunc)(), std::vector<std::shared_ptr<ComponentBase>>& _componentList, std::atomic<int>& _index)
 		{
 			while (true)
 			{
@@ -30,7 +30,7 @@ namespace Component
 			}
 		}
 
-		void TransformComponent(void(Base::* _baseFunc)(), std::vector<std::vector<std::shared_ptr<Base>>>& _componentLists)
+		void TransformComponent(void(ComponentBase::* _baseFunc)(), std::vector<std::vector<std::shared_ptr<ComponentBase>>>& _componentLists)
 		{
 			if (!_baseFunc)return;
 			
@@ -69,35 +69,35 @@ namespace Component
 
 	void Manager::PreUpdate()
 	{
-		TransformComponent(&Base::preUpdate, m_UpdateComponentLists);
+		TransformComponent(&ComponentBase::preUpdate, m_UpdateComponentLists);
 	}
 
 	void Manager::Update()
 	{
-		TransformComponent(&Base::update, m_UpdateComponentLists);
+		TransformComponent(&ComponentBase::update, m_UpdateComponentLists);
 	}
 
 	void Manager::PostUpdate()
 	{
-		TransformComponent(&Base::postUpdate, m_UpdateComponentLists);
+		TransformComponent(&ComponentBase::postUpdate, m_UpdateComponentLists);
 	}
 
 	void Manager::PreRender()
 	{
-		TransformComponent(&Base::preRender, m_RenderComponentLists);
+		TransformComponent(&ComponentBase::preRender, m_RenderComponentLists);
 	}
 
 	void Manager::Render()
 	{
-		TransformComponent(&Base::render, m_RenderComponentLists);
+		TransformComponent(&ComponentBase::render, m_RenderComponentLists);
 	}
 
 	void Manager::PostRender()
 	{
-		TransformComponent(&Base::postRender, m_RenderComponentLists);
+		TransformComponent(&ComponentBase::postRender, m_RenderComponentLists);
 	}
 
-	void Manager::removeComponent(const std::weak_ptr<Base>& _component)
+	void Manager::removeComponent(const std::weak_ptr<ComponentBase>& _component)
 	{
 		auto sharedComponent = _component.lock();
 		if (!sharedComponent)return;

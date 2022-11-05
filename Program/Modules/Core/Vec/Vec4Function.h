@@ -17,6 +17,7 @@
 CANDY_NAMESPACE_BEGIN
 
 Vec4 VecSet(const f32 _x, const f32 _y, const f32 _z, const f32 _w);
+Vec4 VecSetAll(const f32 _v);
 Vec4 VecSetZero();
 Vec4 VecSetOne();
 Vec4 VecSetX(const Vec4& _v, const f32 _x);

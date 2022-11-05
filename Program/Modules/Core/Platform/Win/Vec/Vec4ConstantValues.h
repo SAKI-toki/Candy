@@ -30,7 +30,9 @@ namespace Vec4ConstantValues
 	inline const vector_type NegativeZ = _mm_setr_ps(1.0f, 1.0f, -1.0f, 1.0f);
 	inline const vector_type NegativeW = _mm_setr_ps(1.0f, 1.0f, 1.0f, -1.0f);
 
-#define CONSTANT_VECTOR_DEFINE(X, Y, Z, W) inline const vector_type Vec##X##Y##Z##W = _mm_setr_ps(X, Y, Z, W)
+#define CONSTANT_VECTOR_DEFINE(X, Y, Z, W) \
+inline const vector_type Vec##X##Y##Z##W = _mm_setr_ps(X, Y, Z, W);\
+inline const vector_type SelectMask##X##Y##Z##W = _mm_cmpeq_ps(Vec##X##Y##Z##W, One)
 	CONSTANT_VECTOR_DEFINE(0, 0, 0, 0);
 	CONSTANT_VECTOR_DEFINE(0, 0, 0, 1);
 	CONSTANT_VECTOR_DEFINE(0, 0, 1, 0);
@@ -57,11 +59,6 @@ namespace Vec4ConstantValues
 	inline const vector_type Pi2 = _mm_set_ps1(std::numbers::pi_v<float> *2.0f);
 	inline const vector_type InvPi = _mm_set_ps1(std::numbers::inv_pi_v<float>);
 	inline const vector_type InvPi2 = _mm_set_ps1(std::numbers::inv_pi_v<float> *0.5f);
-
-	inline const vector_type SelectXMask = _mm_cmpeq_ps(Vec1000, One);
-	inline const vector_type SelectYMask = _mm_cmpeq_ps(Vec0100, One);
-	inline const vector_type SelectZMask = _mm_cmpeq_ps(Vec0010, One);
-	inline const vector_type SelectWMask = _mm_cmpeq_ps(Vec0001, One);
 
 	inline const vector_type SinCoefficient1 = _mm_set_ps1(1.0f / static_cast<float>(Factorial(3)));
 	inline const vector_type SinCoefficient2 = _mm_set_ps1(1.0f / static_cast<float>(Factorial(5)));

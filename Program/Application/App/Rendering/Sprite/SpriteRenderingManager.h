@@ -13,6 +13,11 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
+namespace Component
+{
+	class Camera2d;
+}
+
 namespace SpriteRenderingManager
 {
 	void Startup();
@@ -20,7 +25,8 @@ namespace SpriteRenderingManager
 
 	void Draw();
 
-	void Add(const std::shared_ptr<SpriteImpl>& _sprite);
+	void AddSprite(const std::shared_ptr<SpriteImpl>& _sprite);
+	void SetCamera(const Component::Camera2d& _camera2dComponent);
 }
 
 CANDY_APP_NAMESPACE_END

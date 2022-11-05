@@ -24,10 +24,9 @@ namespace GameFlow
 void GameFlow::Startup()
 {
 	Mtx m;
-	Vec4 view{ 0.0f, 0.0f, 0.0f };
-	Vec4 lookat{ 5.0f, -10.0f, 56.0f };
-	Vec4 up{ 0.0f, 1.0f, 0.0f };
-	MtxLookAt(m, view, lookat, up);
+	float fov = 60.0f;
+	float aspect = 9.0f / 16.0f;
+	MtxPerspective(m, fov, aspect, 1.0f, 10.0f);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._11, m._12, m._13, m._14);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._21, m._22, m._23, m._24);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", m._31, m._32, m._33, m._34);
@@ -35,7 +34,7 @@ void GameFlow::Startup()
 
 	CANDY_LOG("");
 
-	auto mm = DirectX::XMMatrixLookAtLH(view.vector, lookat.vector, up.vector);
+	auto mm = DirectX::XMMatrixPerspectiveFovLH(fov, aspect, 1, 10);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[0].m128_f32[0], mm.r[0].m128_f32[1], mm.r[0].m128_f32[2], mm.r[0].m128_f32[3]);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[1].m128_f32[0], mm.r[1].m128_f32[1], mm.r[1].m128_f32[2], mm.r[1].m128_f32[3]);
 	CANDY_LOG("{:.3f}, {:.3f}, {:.3f}, {:.3f}", mm.r[2].m128_f32[0], mm.r[2].m128_f32[1], mm.r[2].m128_f32[2], mm.r[2].m128_f32[3]);
@@ -63,6 +62,22 @@ void GameFlow::Startup()
 			transform->setPos({ 200.0f, 200.0f, 0.0f });
 			transform->setScale({ 70.0f, 30.0f, 0.0f });
 		}*/
+	}
+
+	auto camera = EntityManager::CreateEntity("Camera");
+	if (auto lockCamera = camera.lock())
+	{
+		if (auto camera2d = lockCamera->addComponent<Component::Camera2d>().lock())
+		{
+			camera2d->setWidth(16.0f);
+			camera2d->setHeight(9.0f);
+			camera2d->setNear(0.1f);
+			camera2d->setFar(100.0f);
+
+			camera2d->setViewPos(Vec4{ 0.0f, 0.0f, -10.0f });
+			camera2d->setTargetPos(ZeroVector);
+			camera2d->setUp(UpVector);
+		}
 	}
 }
 

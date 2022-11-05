@@ -14,9 +14,9 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	class RendererBase : public Base
+	class RendererBase : public ComponentBase
 	{
-		CANDY_COMPONENT_DECLARE(RendererBase, Base);
+		CANDY_COMPONENT_DECLARE(RendererBase, ComponentBase);
 
 	public:
 		void setColor(const Color& _color) { m_Color = _color; }

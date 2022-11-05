@@ -34,7 +34,7 @@ namespace Component
 	}
 
 	// コンポーネントの追加
-	void List::addComponentInternal(const std::weak_ptr<Base>& _component)
+	void List::addComponentInternal(const std::weak_ptr<ComponentBase>& _component)
 	{
 		auto sharedComponent = _component.lock();
 		if (!sharedComponent)return;
@@ -56,7 +56,7 @@ namespace Component
 	}
 
 	// コンポーネントの削除
-	void List::removeComponent(const std::weak_ptr<Base>& _component)
+	void List::removeComponent(const std::weak_ptr<ComponentBase>& _component)
 	{
 		auto sharedComponent = _component.lock();
 		if (!sharedComponent)return;

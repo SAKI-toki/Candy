@@ -200,6 +200,9 @@
     <Filter Include="Src\Quat">
       <UniqueIdentifier>{792b3961-1a3a-4362-9647-934346549daf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Utility\Flag">
+      <UniqueIdentifier>{112ae12a-f041-4158-b6d3-e1a7342c73fe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Modules\Core\BuildConfig\BuildConfig.h">
@@ -433,6 +436,9 @@
     <ClInclude Include="..\..\..\Modules\Core\Quat\Quat.h">
       <Filter>Src\Quat</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Utility\Flag\CoreFlag.h">
+      <Filter>Src\Utility\Flag</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Core\Color\ConvColor.cpp">
@@ -640,6 +646,9 @@
     </None>
     <None Include="..\..\..\Modules\Core\Utility\Factorial\CoreFactorial.inl">
       <Filter>Src\Utility\Factorial</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\Flag\CoreFlag.inl">
+      <Filter>Src\Utility\Flag</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -32,6 +32,10 @@ vector_type VecSetImpl(const f32 _x, const f32 _y, const f32 _z, const f32 _w)
 {
 	return _mm_setr_ps(_x, _y, _z, _w);
 }
+vector_type VecSetAllImpl(const f32 _v)
+{
+	return _mm_set_ps1(_v);
+}
 vector_type VecSetZeroImpl()
 {
 	return Vec4ConstantValues::Zero;
@@ -98,19 +102,19 @@ vector_type VecDivImpl(const vector_type _v1, const vector_type _v2)
 
 vector_type VecSelectXImpl(const vector_type _v)
 {
-	return VecAndImpl(_v, Vec4ConstantValues::SelectXMask);
+	return VecAndImpl(_v, Vec4ConstantValues::SelectMask1000);
 }
 vector_type VecSelectYImpl(const vector_type _v)
 {
-	return VecAndImpl(_v, Vec4ConstantValues::SelectYMask);
+	return VecAndImpl(_v, Vec4ConstantValues::SelectMask0100);
 }
 vector_type VecSelectZImpl(const vector_type _v)
 {
-	return VecAndImpl(_v, Vec4ConstantValues::SelectZMask);
+	return VecAndImpl(_v, Vec4ConstantValues::SelectMask0010);
 }
 vector_type VecSelectWImpl(const vector_type _v)
 {
-	return VecAndImpl(_v, Vec4ConstantValues::SelectWMask);
+	return VecAndImpl(_v, Vec4ConstantValues::SelectMask0001);
 }
 
 vector_type VecAndImpl(const vector_type _v1, const vector_type _v2)

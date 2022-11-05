@@ -11,7 +11,7 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	CANDY_COMPONENT_DEFINE(BehaviorBase, Base);
+	CANDY_COMPONENT_DEFINE(BehaviorBase, ComponentBase);
 }
 
 CANDY_APP_NAMESPACE_END

@@ -25,13 +25,12 @@ SpriteImpl::SpriteImpl()
 	graphic::BufferStartupInfo indexBufferStartupInfo;
 	indexBufferStartupInfo.setBufferStartupInfo(sizeof(u16) * 6);
 	m_IndexBuffer.startup(graphicDevice, indexBufferStartupInfo);
-	constexpr f32 size = 0.5f;
 	VertexInfo vertices[4] =
 	{
-		{ Vec4{ -size / 16.0f * 9.0f, +size, 0.0f }, Vec4{ 0.0f, 0.0f, 0.0f } },
-		{ Vec4{ +size / 16.0f * 9.0f, +size, 0.0f }, Vec4{ 1.0f, 0.0f, 0.0f } },
-		{ Vec4{ +size / 16.0f * 9.0f, -size, 0.0f }, Vec4{ 1.0f, 1.0f, 0.0f } },
-		{ Vec4{ -size / 16.0f * 9.0f, -size, 0.0f }, Vec4{ 0.0f, 1.0f, 0.0f } },
+		{ Vec4{ -1.0f, +1.0f, 0.0f }, Vec4{ 0.0f, 0.0f, 0.0f } },
+		{ Vec4{ +1.0f, +1.0f, 0.0f }, Vec4{ 1.0f, 0.0f, 0.0f } },
+		{ Vec4{ +1.0f, -1.0f, 0.0f }, Vec4{ 1.0f, 1.0f, 0.0f } },
+		{ Vec4{ -1.0f, -1.0f, 0.0f }, Vec4{ 0.0f, 1.0f, 0.0f } },
 	};
 	m_VertexBuffer.store(reinterpret_cast<std::byte*>(vertices), sizeof(VertexInfo) * 4, 0);
 	u16 indices[6] = { 0, 1, 2, 0, 2, 3 };
@@ -67,9 +66,11 @@ void SpriteImpl::render(const Vec4& _pos, const Color& _col)
 {
 	struct Constant
 	{
-		Vec4 pos, col;
+		Mtx world;
+		Vec4 col;
 	}c;
-	c.pos = _pos;
+	MtxTranslation(c.world, _pos);
+	MtxTranspose(c.world, c.world);
 	c.col = _col;
 	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&c), sizeof(c), 0x100 * graphic::System::GetNextBackBufferIndex());
 }
@@ -78,8 +79,8 @@ void SpriteImpl::draw(graphic::CommandList& _commandList)
 {
 	_commandList.setDescriptor(0, m_Descriptor);
 	_commandList.registDescriptors(1, 0);
-	_commandList.setDescriptorTable(0, m_Descriptor, graphic::System::GetBackBufferIndex());
-	_commandList.setDescriptorTable(1, m_Descriptor, graphic::Config::GetBackBufferCount() + 0);
+	_commandList.setDescriptorTable(1, m_Descriptor, graphic::System::GetBackBufferIndex());
+	_commandList.setDescriptorTable(2, m_Descriptor, graphic::Config::GetBackBufferCount() + 0);
 
 	_commandList.setVertexBuffer(0, m_VertexBufferView);
 	_commandList.registVertexBuffers(1);

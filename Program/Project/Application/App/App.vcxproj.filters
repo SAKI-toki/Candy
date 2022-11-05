@@ -244,6 +244,12 @@
     <ClCompile Include="..\..\..\Application\App\Component\Camera\Camera2dComponent.cpp">
       <Filter>Src\Component\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Camera\Camera3dComponent.cpp">
+      <Filter>Src\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Camera\CameraBaseComponent.cpp">
+      <Filter>Src\Component\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Application\App\AppInclude.h">
@@ -375,6 +381,12 @@
     <ClInclude Include="..\..\..\Application\App\Component\Camera\Camera2dComponent.h">
       <Filter>Src\Component\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Camera\Camera3dComponent.h">
+      <Filter>Src\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Camera\CameraBaseComponent.h">
+      <Filter>Src\Component\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\Application\App\Component\System\List\ComponentList.inl">
@@ -391,6 +403,9 @@
     </None>
     <None Include="..\..\..\Application\App\Debug\Draw\String\DebugDrawString.inl">
       <Filter>Src\Debug\Draw\String</Filter>
+    </None>
+    <None Include="..\..\..\Application\App\Component\ComponentBase.inl">
+      <Filter>Src\Component</Filter>
     </None>
   </ItemGroup>
 </Project>

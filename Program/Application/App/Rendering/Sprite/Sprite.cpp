@@ -26,7 +26,7 @@ void Sprite::render(const Vec4& _pos, const Color& _col)
 	if (!m_Impl)return;
 
 	m_Impl->render(_pos, _col);
-	SpriteRenderingManager::Add(m_Impl);
+	SpriteRenderingManager::AddSprite(m_Impl);
 }
 
 void Sprite::setTexture(const std::string_view _path)

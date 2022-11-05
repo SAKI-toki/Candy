@@ -17,7 +17,7 @@ CANDY_APP_NAMESPACE_BEGIN
 namespace Component
 {
 	// コンポーネントの追加(同じコンポーネントの追加はできない)
-	template<typename T, typename ...ArgsT, is_base_component_interface_t<T>>
+	template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T>>
 	std::weak_ptr<T> List::addComponent(ArgsT&& ..._args)
 	{
 		auto c = getComponent<T>();
@@ -32,7 +32,7 @@ namespace Component
 			return std::weak_ptr<T>{};
 		}
 		addComponentInternal(p);
-		std::vector<std::shared_ptr<Base>> requireComponents;
+		std::vector<std::shared_ptr<ComponentBase>> requireComponents;
 		RequireTable::RequireFuncListType requireFuncList;
 		RequireTable::GetRequireFuncListFromType<T>(requireFuncList);
 		for (const auto& requireFunc : requireFuncList)
@@ -47,7 +47,7 @@ namespace Component
 	}
 
 	// コンポーネントの追加(RequireTable以外からの呼び出し禁止)
-	template<typename T, typename ...ArgsT, is_base_component_interface_t<T>>
+	template<typename T, typename ...ArgsT, IsBaseComponentComponentInterfaceT<T>>
 	std::weak_ptr<T> List::addComponentFromRequire(ArgsT&& ..._args)
 	{
 		if (!getComponent<T>().expired())
@@ -66,7 +66,7 @@ namespace Component
 	}
 
 	// コンポーネントの削除
-	template<typename T, is_base_component_interface_t<T>>
+	template<typename T, IsBaseComponentComponentInterfaceT<T>>
 	void List::removeComponent()
 	{
 		for (s32 i = 0; i < (s32)m_Components.size(); ++i)
@@ -79,7 +79,7 @@ namespace Component
 	}
 
 	// コンポーネントの取得
-	template<typename T, is_base_component_interface_t<T>>
+	template<typename T, IsBaseComponentComponentInterfaceT<T>>
 	std::weak_ptr<T> List::getComponent()
 	{
 		for (auto& component : m_Components)
@@ -92,7 +92,7 @@ namespace Component
 	}
 
 	// コンポーネントの取得
-	template<typename T, is_base_component_interface_t<T>>
+	template<typename T, IsBaseComponentComponentInterfaceT<T>>
 	const std::weak_ptr<T> List::getComponent()const
 	{
 		for (auto& component : m_Components)

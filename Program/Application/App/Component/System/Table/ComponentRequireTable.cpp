@@ -19,7 +19,7 @@ namespace Component
 		const std::vector<std::pair<Component::ClassIdType, RequireFuncListType>> RequireComponentTable = 
 		{
 			{
-				Base::GetStaticClassId(),
+				ComponentBase::GetStaticClassId(),
 				{
 				}
 			},

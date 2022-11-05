@@ -14,9 +14,9 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	class Transform : public Base
+	class Transform : public ComponentBase
 	{
-		CANDY_COMPONENT_DECLARE(Transform, Base);
+		CANDY_COMPONENT_DECLARE(Transform, ComponentBase);
 
 	public:
 		const Vec4& getPos()const { return m_Pos; }

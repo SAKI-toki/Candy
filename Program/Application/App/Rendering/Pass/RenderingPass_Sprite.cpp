@@ -19,11 +19,12 @@ namespace RenderingManager
 
 		graphic::RootSignatureStartupInfo rootSignatureStartupInfo;
 		rootSignatureStartupInfo.initialize();
-		rootSignatureStartupInfo.setDescriptorRange(0, { 0, 0, graphic::types::SHADER_VISIBILITY_TYPE::ALL }, graphic::Config::GetBackBufferCount(), graphic::types::DESCRIPTOR_RANGE_TYPE::CONSTANT_BUFFER);
-		rootSignatureStartupInfo.setDescriptorRange(1, { 0, 0, graphic::types::SHADER_VISIBILITY_TYPE::PIXEL }, 1, graphic::types::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
+		rootSignatureStartupInfo.setDescriptorRange(0, { 0, 0, graphic::types::SHADER_VISIBILITY_TYPE::ALL }, 1, graphic::types::DESCRIPTOR_RANGE_TYPE::CONSTANT_BUFFER);
+		rootSignatureStartupInfo.setDescriptorRange(1, { 1, 0, graphic::types::SHADER_VISIBILITY_TYPE::ALL }, 1, graphic::types::DESCRIPTOR_RANGE_TYPE::CONSTANT_BUFFER);
+		rootSignatureStartupInfo.setDescriptorRange(2, { 0, 0, graphic::types::SHADER_VISIBILITY_TYPE::PIXEL }, 1, graphic::types::DESCRIPTOR_RANGE_TYPE::SHADER_RESOURCE);
 		rootSignatureStartupInfo.setStaticSampler(0, { 0, 0, graphic::types::SHADER_VISIBILITY_TYPE::PIXEL },
 			graphic::types::FILTER_TYPE::ANISOTROPIC, graphic::types::TEXTURE_ADDRESS_MODE::CLAMP);
-		rootSignatureStartupInfo.setRootParameterCount(2);
+		rootSignatureStartupInfo.setRootParameterCount(3);
 		rootSignatureStartupInfo.setStaticSamplerCount(1);
 		rootSignatureStartupInfo.onRootSignatureFlag(graphic::types::ROOT_SIGNATURE_FLAG::ALLOW_INPUT_ASSEMBLER_INPUT_LAYOUT);
 		m_RootSignature.startup(graphicDevice, rootSignatureStartupInfo);
@@ -34,8 +35,7 @@ namespace RenderingManager
 		pipelineStartupInfo.setPixelShader(graphic::ShaderManager::GetPixelShader(graphic::SHADER_TYPE::SPRITE));
 		pipelineStartupInfo.setInputLayoutElement(0, graphic::types::SHADER_SEMANTIC_TYPE::POSITION, 0, graphic::types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
 		pipelineStartupInfo.setInputLayoutElement(1, graphic::types::SHADER_SEMANTIC_TYPE::TEXCOORD, 0, graphic::types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
-		pipelineStartupInfo.setInputLayoutElement(2, graphic::types::SHADER_SEMANTIC_TYPE::COLOR, 0, graphic::types::GRAPHIC_FORMAT::R32G32B32A32_FLOAT);
-		pipelineStartupInfo.setInputLayoutCount(3);
+		pipelineStartupInfo.setInputLayoutCount(2);
 		pipelineStartupInfo.setDepthStencilFormat(graphic::types::GRAPHIC_FORMAT::D24_UNORM_S8_UINT);
 		pipelineStartupInfo.setRenderTaretFormat(0, graphic::types::GRAPHIC_FORMAT::R8G8B8A8_UNORM);
 		pipelineStartupInfo.setRenderTaretCount(1);

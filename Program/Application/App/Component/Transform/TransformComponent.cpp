@@ -11,7 +11,7 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace Component
 {
-	CANDY_COMPONENT_DEFINE(Transform, Base);
+	CANDY_COMPONENT_DEFINE(Transform, ComponentBase);
 
 	void Transform::updateMatrix()
 	{

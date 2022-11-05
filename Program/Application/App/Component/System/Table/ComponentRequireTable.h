@@ -18,7 +18,7 @@ namespace Component
 {
 	namespace RequireTable
 	{
-		using RequireFuncType = std::function<std::weak_ptr<Base> (List&)>;
+		using RequireFuncType = std::function<std::weak_ptr<ComponentBase> (List&)>;
 		using RequireFuncListType = std::vector<RequireFuncType>;
 
 		template<typename T>

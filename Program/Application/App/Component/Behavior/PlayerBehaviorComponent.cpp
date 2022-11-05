@@ -18,7 +18,7 @@ namespace Component
 
 	void PlayerBehavior::updateImpl()
 	{
-		base_type::updateImpl();
+		Super::updateImpl();
 
 		auto ownerEntity = getOwnerEntity().lock();
 		if (!ownerEntity)return;

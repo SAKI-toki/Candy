@@ -5,4 +5,6 @@
  * \date   2022/05/31
  *********************************************************************/
 
-#include "Texture/TextureManager.cpp"
+#include "Model/ModelResourceManager.cpp"
+
+#include "Texture/TextureResourceManager.cpp"

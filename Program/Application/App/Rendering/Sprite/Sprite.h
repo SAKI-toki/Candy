@@ -19,7 +19,7 @@ public:
 	void startup();
 	void cleanup();
 
-	void render(const Vec4& _pos, const Color& _col);
+	void render(const Mtx& _worldMtx, const Mtx& _rotMtx, const Color& _col);
 
 	void setTexture(const std::string_view _path);
 	void setTexture(const u32 _hash);

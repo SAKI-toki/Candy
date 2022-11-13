@@ -1,5 +1,5 @@
 ﻿/*****************************************************************//**
- * \file   TextureUploder.cpp
+ * \file   GraphicTextureUploder.cpp
  * \brief  テクスチャのアップローダー
  * \author Yu Ishiyama.
  * \date   2022/06/03

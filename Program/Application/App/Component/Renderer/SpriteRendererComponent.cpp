@@ -24,15 +24,18 @@ void SpriteRendererComponent::cleanupImpl()
 
 void SpriteRendererComponent::renderImpl()
 {
-	auto ownerEntity = getOwnerEntity().lock();
-	if (!ownerEntity)return;
-
-	auto transform = ownerEntity->getTransformComponent().lock();
+	auto transform = getTransformComponent().lock();
 	if (!transform)return;
 
-	auto pos = transform->getPos();
+	Mtx scalingMtx, rotationMtx, translationMtx, worldMtx;
+	MtxScaling(scalingMtx, transform->getScale());
+	MtxRotationZXY(rotationMtx, transform->getRot());
+	MtxTranslation(translationMtx, transform->getPos());
+	Mtx scalingMulRotationMtx;
+	MtxMul(scalingMulRotationMtx, scalingMtx, rotationMtx);
+	MtxMul(worldMtx, scalingMulRotationMtx, translationMtx);
 
-	m_Sprite.render(pos, getColor());
+	m_Sprite.render(worldMtx, rotationMtx, getColor());
 }
 
 CANDY_APP_NAMESPACE_END

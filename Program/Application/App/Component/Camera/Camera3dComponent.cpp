@@ -6,6 +6,7 @@
  *********************************************************************/
 
 #include "Camera3dComponent.h"
+#include <App/Rendering/Model/ModelRenderingManager.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -24,6 +25,8 @@ void Camera3dComponent::cleanupImpl()
 void Camera3dComponent::renderImpl()
 {
 	Super::renderImpl();
+
+	ModelRenderingManager::SetCamera(*this);
 }
 
 void Camera3dComponent::updateProjectionMtx()

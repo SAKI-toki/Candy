@@ -17,6 +17,15 @@ namespace RenderingManager
 {
 	class ModelPass : public PassBase
 	{
+	public:
+		void startup()override;
+		void cleanup()override;
+
+		void beginPass(graphic::CommandList& _commandList)override;
+
+	private:
+		graphic::RootSignature m_RootSignature;
+		graphic::Pipeline m_Pipeline;
 	};
 }
 

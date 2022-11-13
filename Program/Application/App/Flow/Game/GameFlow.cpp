@@ -7,7 +7,7 @@
 
 #include "GameFlow.h"
 #include <App/Flow/Scene/SceneFlow.h>
-#include <App/Model/Model.h>
+#include <App/Model/ModelManager.h>
 #include <App/Debug/Draw/DebugDraw.h>
 #include <App/Entity/EntityManager.h>
 #include <App/Component/System/AllComponentInclude.h>
@@ -17,7 +17,7 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace GameFlow
 {
-
+	std::weak_ptr<Camera3dComponent> m_Camera3dComponent;
 }
 
 // 初期化
@@ -44,39 +44,44 @@ void GameFlow::Startup()
 	if (auto lockPlayer = player.lock())
 	{
 		lockPlayer->addComponent<PlayerBehaviorComponent>();
-		auto renderer = lockPlayer->addComponent<SpriteRendererComponent>();
+		/*auto renderer = lockPlayer->addComponent<SpriteRendererComponent>();
 		if (auto lockRenderer = renderer.lock())
 		{
 			lockRenderer->setDrawPriority(-1);
 			lockRenderer->setColor(RedColor);
-		}
+		}*/
 	}
 
-	auto enemy = EntityManager::CreateEntity("Enemy");
-	if (auto lockEnemy = enemy.lock())
+	for (s32 i = 0; i < 30; ++i)
 	{
-		lockEnemy->addComponent<EnemyBehaviorComponent>();
-		lockEnemy->addComponent<SpriteRendererComponent>();
-		/*if (auto transform = enemy->getTransformComponent())
+		auto enemy = EntityManager::CreateEntity("Enemy");
+		if (auto lockEnemy = enemy.lock())
 		{
-			transform->setPos({ 200.0f, 200.0f, 0.0f });
-			transform->setScale({ 70.0f, 30.0f, 0.0f });
-		}*/
+			lockEnemy->addComponent<EnemyBehaviorComponent>();
+			lockEnemy->addComponent<ModelRendererComponent>();
+			if (auto transform = lockEnemy->getTransformComponent().lock())
+			{
+				transform->setPos({ i * 10.0f, 0.0f, 0.0f });
+			}
+		}
 	}
 
 	auto camera = EntityManager::CreateEntity("Camera");
 	if (auto lockCamera = camera.lock())
 	{
-		if (auto camera2d = lockCamera->addComponent<Camera2dComponent>().lock())
+		m_Camera3dComponent = lockCamera->addComponent<Camera3dComponent>();
+		if (auto camera3d = m_Camera3dComponent.lock())
 		{
-			camera2d->setWidth(16.0f);
-			camera2d->setHeight(9.0f);
-			camera2d->setNear(0.1f);
-			camera2d->setFar(100.0f);
+			//camera3d->setWidth(16.0f);
+			//camera3d->setHeight(9.0f);
+			camera3d->setFov(1.0f);
+			camera3d->setAspectRatio(16.0f / 9.0f);
+			camera3d->setNear(0.1f);
+			camera3d->setFar(10000.0f);
 
-			camera2d->setViewPos(Vec4{ 0.0f, 0.0f, -10.0f });
-			camera2d->setTargetPos(ZeroVector);
-			camera2d->setUp(UpVector);
+			camera3d->setViewPos(Vec4{ 50.0f, 10.0f, -150.0f });
+			camera3d->setTargetPos(Vec4{ 50.0f, 10.0f, 0.0f });
+			camera3d->setUp(UpVector);
 		}
 	}
 }
@@ -90,7 +95,12 @@ void GameFlow::Cleanup()
 // 更新
 void GameFlow::Update()
 {
-
+	if (auto camera3d = m_Camera3dComponent.lock())
+	{
+		auto targetPos = camera3d->getTargetPos();
+		targetPos.x = core::Loop(targetPos.x + 1.0f, 0.0f, 100.0f);
+		camera3d->setTargetPos(targetPos);
+	}
 }
 
 // 描画

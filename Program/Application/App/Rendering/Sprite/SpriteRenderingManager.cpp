@@ -6,7 +6,7 @@
  *********************************************************************/
 
 #include "SpriteRenderingManager.h"
-#include <App/Component/Camera/Camera2dComponent.h>
+#include <App/Component/Camera/CameraBaseComponent.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -76,7 +76,7 @@ void SpriteRenderingManager::AddSprite(const std::shared_ptr<SpriteImpl>& _sprit
 	updateSpriteList.push_back(_sprite);
 }
 
-void SpriteRenderingManager::SetCamera(const Camera2dComponent& _camera2dComponent)
+void SpriteRenderingManager::SetCamera(const CameraComponentBase& _cameraComponentBase)
 {
 	struct Constant
 	{
@@ -84,10 +84,10 @@ void SpriteRenderingManager::SetCamera(const Camera2dComponent& _camera2dCompone
 		Mtx projectionMtx;
 		Mtx viewProjectionMtx;
 	}c;
-	MtxTranspose(c.viewMtx, _camera2dComponent.getViewMtx());
-	MtxTranspose(c.projectionMtx, _camera2dComponent.getProjectionMtx());
+	MtxTranspose(c.viewMtx, _cameraComponentBase.getViewMtx());
+	MtxTranspose(c.projectionMtx, _cameraComponentBase.getProjectionMtx());
 	MtxMul(c.viewProjectionMtx, c.viewMtx, c.projectionMtx);
-	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&c), sizeof(c), 0x100 * graphic::System::GetNextBackBufferIndex());
+	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&c), sizeof(c), 0x100 * graphic::System::GetBackBufferIndex());
 }
 
 CANDY_APP_NAMESPACE_END

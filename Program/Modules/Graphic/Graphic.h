@@ -30,6 +30,8 @@
 
 #include "Fence/GraphicFence.h"
 
+#include "Model/GraphicReadModel.h"
+
 #include "Module/GraphicModule.h"
 
 #include "Pipeline/GraphicPipeline.h"

@@ -1,12 +1,14 @@
 ﻿/*****************************************************************//**
- * \file   ReadDDS.h
+ * \file   GraphicReadDDS.h
  * \brief  DDSの読み込み
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
 
-#ifndef CANDY_TEXTURE_READ_DDS_H
-#define CANDY_TEXTURE_READ_DDS_H
+#ifndef CANDY_GRAPHIC_READ_DDS_H
+#define CANDY_GRAPHIC_READ_DDS_H
+
+#include <Graphic/GraphicInclude.h>
 
 CANDY_GRAPHIC_NAMESPACE_BEGIN
 
@@ -27,4 +29,4 @@ namespace Texture::DDS
 
 CANDY_GRAPHIC_NAMESPACE_END
 
-#endif // CANDY_TEXTURE_READ_DDS_H
+#endif // CANDY_GRAPHIC_READ_DDS_H

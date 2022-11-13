@@ -176,6 +176,9 @@
     <Filter Include="Src\ResourceLifetime">
       <UniqueIdentifier>{0fb2641f-68ee-42b2-a0d0-35098571a759}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Model">
+      <UniqueIdentifier>{40d3d4b2-d12a-47fa-8ca0-9b903eab7a43}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Modules\Graphic\__GraphicCpp.cpp">
@@ -330,6 +333,9 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Graphic\Types\GraphicTypes.cpp">
       <Filter>Src\Type</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Graphic\Model\GraphicReadModel.cpp">
+      <Filter>Src\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -488,6 +494,9 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Graphic\ResourceLifetime\GraphicResourceLifetime.h">
       <Filter>Src\ResourceLifetime</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Graphic\Model\GraphicReadModel.h">
+      <Filter>Src\Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

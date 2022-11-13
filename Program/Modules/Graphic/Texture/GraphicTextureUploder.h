@@ -1,12 +1,12 @@
 ﻿/*****************************************************************//**
- * \file   TextureUploder.h
+ * \file   GraphicTextureUploder.h
  * \brief  テクスチャのアップローダー
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
 
-#ifndef CANDY_GRAPHIC_TEXTURE_H
-#define CANDY_GRAPHIC_TEXTURE_H
+#ifndef CANDY_GRAPHIC_TEXTURE_UPLODER_H
+#define CANDY_GRAPHIC_TEXTURE_UPLODER_H
 
 #include <Graphic/GraphicInclude.h>
 
@@ -30,4 +30,4 @@ namespace TextureUploder
 
 CANDY_GRAPHIC_NAMESPACE_END
 
-#endif // CANDY_GRAPHIC_TEXTURE_H
+#endif // CANDY_GRAPHIC_TEXTURE_UPLODER_H

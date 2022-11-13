@@ -23,6 +23,7 @@ enum class SHADER_TYPE
 	TEST_MASK,
 	TO_BACK_BUFFER,
 	SPRITE,
+	MODEL,
 
 #if BUILD_DEBUG
 	DEBUG_STRING,
@@ -39,6 +40,7 @@ inline constexpr const char* const ShaderFileNames[] =
 	"TestMask",
 	"ToBackBuffer",
 	"Sprite/Sprite",
+	"Model/Model",
 
 #if BUILD_DEBUG
 	"Debug/String",

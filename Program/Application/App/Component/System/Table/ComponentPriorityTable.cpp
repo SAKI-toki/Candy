@@ -42,6 +42,7 @@ namespace PriorityTable::Impl
 		},
 		{
 			SpriteRendererComponent::GetStaticClassId(),
+			ModelRendererComponent::GetStaticClassId(),
 		},
 	};
 

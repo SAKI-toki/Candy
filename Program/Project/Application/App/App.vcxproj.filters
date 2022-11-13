@@ -92,6 +92,15 @@
     <Filter Include="Src\Component\Camera">
       <UniqueIdentifier>{0eab92ae-d552-49b2-8e21-11f7d6c00da8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Rendering\Model">
+      <UniqueIdentifier>{fc7c3a49-d62b-46bc-a0ea-b5b29dd462bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Resource\Model">
+      <UniqueIdentifier>{9511102f-f792-4c0e-9093-d63a7d51519b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Defines">
+      <UniqueIdentifier>{946f444d-b310-4831-995b-cdd0cee0c420}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Application\App\__RootCpp.cpp">
@@ -208,10 +217,10 @@
     <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Debug2D.cpp">
       <Filter>Src\Rendering\Pass</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Sprite.cpp">
+    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Model.cpp">
       <Filter>Src\Rendering\Pass</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Model.cpp">
+    <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_Sprite.cpp">
       <Filter>Src\Rendering\Pass</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Rendering\Pass\RenderingPass_BeginFrame.cpp">
@@ -226,7 +235,7 @@
     <ClCompile Include="..\..\..\Application\App\Rendering\Sprite\Sprite.cpp">
       <Filter>Src\Rendering\Sprite</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Resource\Texture\TextureManager.cpp">
+    <ClCompile Include="..\..\..\Application\App\Resource\Texture\TextureResourceManager.cpp">
       <Filter>Src\Resource\Texture</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Resource\__ResourceCpp.cpp">
@@ -249,6 +258,21 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Component\Camera\CameraBaseComponent.cpp">
       <Filter>Src\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Model\Model.cpp">
+      <Filter>Src\Rendering\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Model\ModelImpl.cpp">
+      <Filter>Src\Rendering\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Rendering\Model\ModelRenderingManager.cpp">
+      <Filter>Src\Rendering\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Resource\Model\ModelResourceManager.cpp">
+      <Filter>Src\Resource\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Application\App\Component\Renderer\ModelRendererComponent.cpp">
+      <Filter>Src\Component\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -366,7 +390,7 @@
     <ClInclude Include="..\..\..\Application\App\Rendering\Sprite\Sprite.h">
       <Filter>Src\Rendering\Sprite</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Application\App\Resource\Texture\TextureManager.h">
+    <ClInclude Include="..\..\..\Application\App\Resource\Texture\TextureResourceManager.h">
       <Filter>Src\Resource\Texture</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Rendering\Sprite\SpriteImpl.h">
@@ -386,6 +410,24 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Component\Camera\CameraBaseComponent.h">
       <Filter>Src\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Model\Model.h">
+      <Filter>Src\Rendering\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Model\ModelImpl.h">
+      <Filter>Src\Rendering\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Rendering\Model\ModelRenderingManager.h">
+      <Filter>Src\Rendering\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Resource\Model\ModelResourceManager.h">
+      <Filter>Src\Resource\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Defines\ModelDefine.h">
+      <Filter>Src\Defines</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Application\App\Component\Renderer\ModelRendererComponent.h">
+      <Filter>Src\Component\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

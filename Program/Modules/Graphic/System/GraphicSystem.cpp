@@ -145,9 +145,4 @@ s32 System::GetBackBufferIndex()
 	return m_BackBufferIndex;
 }
 
-s32 System::GetNextBackBufferIndex()
-{
-	return core::LoopSize(m_BackBufferIndex + 1, 0, Config::GetBackBufferCount());
-}
-
 CANDY_GRAPHIC_NAMESPACE_END

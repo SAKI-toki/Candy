@@ -12,6 +12,7 @@
 #include <App/Component/Behavior/EnemyBehaviorComponent.h>
 
 #include <App/Component/Renderer/SpriteRendererComponent.h>
+#include <App/Component/Renderer/ModelRendererComponent.h>
 
 #include <App/Component/Transform/TransformComponent.h>
 

@@ -25,6 +25,8 @@
 
 #include "Fence/GraphicFence.cpp"
 
+#include "Model/GraphicReadModel.cpp"
+
 #include "Module/GraphicModule.cpp"
 
 #include "Pipeline/GraphicPipeline.cpp"

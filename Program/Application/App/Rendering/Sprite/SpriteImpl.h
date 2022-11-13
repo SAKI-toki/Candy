@@ -18,7 +18,7 @@ public:
 	SpriteImpl();
 	~SpriteImpl();
 
-	void render(const Vec4& _pos, const Color& _col);
+	void render(const Mtx& _worldMtx, const Mtx& _rotMtx, const Color& _col);
 	void draw(graphic::CommandList& _commandList);
 
 	void setTexture(const u32 _hash);

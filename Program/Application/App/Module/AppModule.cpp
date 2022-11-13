@@ -8,7 +8,9 @@
 #include "AppModule.h"
 #include <App/Rendering/RenderingManager.h>
 #include <App/Rendering/Sprite/SpriteRenderingManager.h>
-#include <App/Resource/Texture/TextureManager.h>
+#include <App/Rendering/Model/ModelRenderingManager.h>
+#include <App/Resource/Texture/TextureResourceManager.h>
+#include <App/Resource/Model/ModelResourceManager.h>
 #include <App/Flow/Game/GameFlow.h>
 #include <App/Entity/EntityManager.h>
 #include <App/Component/System/Manager/ComponentManager.h>
@@ -27,9 +29,11 @@ void Module::initializeImpl()
 // 他モジュールに依存する初期化の実装部
 void Module::startupImpl()
 {
-	TextureManager::Startup();
+	TextureResourceManager::Startup();
+	ModelResourceManager::Startup();
 	RenderingManager::Startup();
 	SpriteRenderingManager::Startup();
+	ModelRenderingManager::Startup();
 	ModelManager::Startup();
 	Font::Startup();
 	Debug::Startup();
@@ -47,9 +51,11 @@ void Module::cleanupImpl()
 	Debug::Cleanup();
 	Font::Cleanup();
 	ModelManager::Cleanup();
+	ModelRenderingManager::Cleanup();
 	SpriteRenderingManager::Cleanup();
 	RenderingManager::Cleanup();
-	TextureManager::Cleanup();
+	ModelResourceManager::Cleanup();
+	TextureResourceManager::Cleanup();
 }
 
 // 他モジュールに依存しない破棄の実装部
@@ -112,6 +118,7 @@ void Module::preDrawImpl()
 void Module::drawImpl()
 {
 	ModelManager::Primitive::Draw();
+	ModelRenderingManager::Draw();
 	SpriteRenderingManager::Draw();
 	Debug::Draw();
 }

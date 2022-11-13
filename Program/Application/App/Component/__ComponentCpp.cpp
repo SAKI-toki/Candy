@@ -18,6 +18,7 @@
 
 #include "Renderer/RendererBaseComponent.cpp"
 #include "Renderer/SpriteRendererComponent.cpp"
+#include "Renderer/ModelRendererComponent.cpp"
 
 #include "Transform/TransformComponent.cpp"
 

@@ -13,6 +13,10 @@
 #include "Pass/RenderingPass_Model.cpp"
 #include "Pass/RenderingPass_Sprite.cpp"
 
+#include "Model/Model.cpp"
+#include "Model/ModelImpl.cpp"
+#include "Model/ModelRenderingManager.cpp"
+
 #include "Sprite/Sprite.cpp"
 #include "Sprite/SpriteImpl.cpp"
 #include "Sprite/SpriteRenderingManager.cpp"

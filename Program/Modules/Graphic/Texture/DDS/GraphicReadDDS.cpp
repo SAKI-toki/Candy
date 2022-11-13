@@ -1,5 +1,5 @@
 ﻿/*****************************************************************//**
- * \file   ReadDDS.cpp
+ * \file   GraphicReadDDS.cpp
  * \brief  DDSの読み込み
  * \author Yu Ishiyama.
  * \date   2022/06/03

@@ -29,7 +29,6 @@ namespace System
 	const Viewport& GetBackBufferViewport();
 	const ScissorRect& GetBackBufferScissorRect();
 	s32 GetBackBufferIndex();
-	s32 GetNextBackBufferIndex();
 }
 
 CANDY_GRAPHIC_NAMESPACE_END

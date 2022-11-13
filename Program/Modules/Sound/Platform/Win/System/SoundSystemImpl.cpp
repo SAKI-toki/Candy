@@ -83,7 +83,7 @@ namespace System
 
 		while (offset + sizeof(Chunk) <= bufferInfo->m_BufferSize)
 		{
-			const Chunk& chunk = *(Chunk*)(bufferInfo->m_Buffer.get() + offset);
+			const Chunk& chunk = *reinterpret_cast<Chunk*>(bufferInfo->m_Buffer.get() + offset);
 			offset += sizeof(Chunk);
 
 			switch (chunk.m_Id)
@@ -92,7 +92,7 @@ namespace System
 			{
 				if (offset + sizeof(RiffChunk) > bufferInfo->m_BufferSize)break;
 
-				const RiffChunk& riffChunk = *(RiffChunk*)(bufferInfo->m_Buffer.get() + offset);
+				const RiffChunk& riffChunk = *reinterpret_cast<RiffChunk*>(bufferInfo->m_Buffer.get() + offset);
 				offset += sizeof(RiffChunk);
 				switch (riffChunk.m_FileFormat)
 				{
@@ -110,7 +110,7 @@ namespace System
 			{
 				if (offset + sizeof(FmtChunk) > bufferInfo->m_BufferSize)break;
 
-				const FmtChunk& fmtChunk = *(FmtChunk*)(bufferInfo->m_Buffer.get() + offset);
+				const FmtChunk& fmtChunk = *reinterpret_cast<FmtChunk*>(bufferInfo->m_Buffer.get() + offset);
 				offset += chunk.m_Size;
 				waveFormatEx.wFormatTag = fmtChunk.m_WaveFormat.wFormatTag;
 				waveFormatEx.nChannels = fmtChunk.m_WaveFormat.nChannels;

@@ -24,7 +24,8 @@ cbuffer CameraParam : register(b0)
 
 cbuffer SpriteParam: register(b1)
 {
-    float4x4 g_World;
+    float4x4 g_WorldMtx;
+    float4x4 g_RotMtx;
     float4 g_Color;
 };
 
@@ -35,7 +36,7 @@ VS_OUTPUT vsMain(VS_INPUT _vsInput)
 {
 	VS_OUTPUT vsOutput;
 	
-    vsOutput.m_Position = mul(_vsInput.m_Position, mul(g_World, mul(g_ViewMtx, g_ProjectionMtx)));
+    vsOutput.m_Position = mul(_vsInput.m_Position, mul(g_WorldMtx, mul(g_ViewMtx, g_ProjectionMtx)));
     vsOutput.m_TexCoord = _vsInput.m_TexCoord;
     
 	return vsOutput;

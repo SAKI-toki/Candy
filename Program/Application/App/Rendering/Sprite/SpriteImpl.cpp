@@ -6,6 +6,7 @@
  *********************************************************************/
 
 #include "SpriteImpl.h"
+#include <App/Resource/Texture/TextureResourceManager.h>
 #include <App/Utility/UtilityConvertPosition.h>
 
 CANDY_APP_NAMESPACE_BEGIN
@@ -39,17 +40,17 @@ SpriteImpl::SpriteImpl()
 	m_VertexBufferView.startup(m_VertexBuffer, 0, 4, sizeof(VertexInfo));
 	m_IndexBufferView.startup(m_IndexBuffer, 0, 6, sizeof(u16), graphic::types::GRAPHIC_FORMAT::R16_UINT);
 
-	m_Descriptor.startup(graphic::System::GetDevice(), graphic::types::DESCRIPTOR_TYPE::CBV_SRV_UAV, graphic::Config::GetBackBufferCount() + 1);
+	m_Descriptor.startup(graphicDevice, graphic::types::DESCRIPTOR_TYPE::CBV_SRV_UAV, graphic::Config::GetBackBufferCount() + 1);
 
 	graphic::BufferStartupInfo constantBufferStartupInfo;
 	constantBufferStartupInfo.setBufferStartupInfo(0x100 * graphic::Config::GetBackBufferCount());
-	m_ConstantBuffer.startup(graphic::System::GetDevice(), constantBufferStartupInfo);
+	m_ConstantBuffer.startup(graphicDevice, constantBufferStartupInfo);
 	for (s32 i = 0; i < graphic::Config::GetBackBufferCount(); ++i)
 	{
-		m_Descriptor.bindingConstantBuffer(graphic::System::GetDevice(), i, m_ConstantBuffer, 0x100 * i, 0x100);
+		m_Descriptor.bindingConstantBuffer(graphicDevice, i, m_ConstantBuffer, 0x100 * i, 0x100);
 	}
 
-	auto& textureInfo = TextureManager::GetDummyTextureInfo();
+	auto& textureInfo = TextureResourceManager::GetDummyTextureInfo();
 	m_Descriptor.bindingTexture2D(graphicDevice, graphic::Config::GetBackBufferCount(), textureInfo.m_Buffer, textureInfo.m_Format, textureInfo.m_MipMapCount);
 }
 
@@ -60,19 +61,21 @@ SpriteImpl::~SpriteImpl()
 	m_VertexBufferView.cleanup();
 	m_IndexBufferView.cleanup();
 	m_ConstantBuffer.cleanup();
+	m_Descriptor.cleanup();
 }
 
-void SpriteImpl::render(const Vec4& _pos, const Color& _col)
+void SpriteImpl::render(const Mtx& _worldMtx, const Mtx& _rotMtx, const Color& _col)
 {
 	struct Constant
 	{
-		Mtx world;
+		Mtx worldMtx;
+		Mtx rotMtx;
 		Vec4 col;
 	}c;
-	MtxTranslation(c.world, _pos);
-	MtxTranspose(c.world, c.world);
+	MtxTranspose(c.worldMtx, _worldMtx);
+	MtxTranspose(c.rotMtx, _rotMtx);
 	c.col = _col;
-	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&c), sizeof(c), 0x100 * graphic::System::GetNextBackBufferIndex());
+	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&c), sizeof(c), 0x100 * graphic::System::GetBackBufferIndex());
 }
 
 void SpriteImpl::draw(graphic::CommandList& _commandList)
@@ -96,7 +99,7 @@ void SpriteImpl::draw(graphic::CommandList& _commandList)
 void SpriteImpl::setTexture(const u32 _hash)
 {
 	auto& graphicDevice = graphic::System::GetDevice();
-	auto& textureInfo = TextureManager::GetTextureInfo(_hash);
+	auto& textureInfo = TextureResourceManager::GetTextureInfo(_hash);
 
 	m_Descriptor.bindingRenderTarget(graphicDevice, graphic::Config::GetBackBufferCount(), textureInfo.m_Buffer, textureInfo.m_Format);
 }

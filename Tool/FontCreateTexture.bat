@@ -1,7 +1,7 @@
 @echo off
 set FONTCREATETEXTURE_PATH=D:\Candy\Tool\Font\CreateFontTexture.exe
 set TARGET_TEXTURE=D:\Candy\RawData\Font\%1
-set FONT_TEXTURE_PATH=D:\Candy\RawData\Font\Texture\%2.bmp
+set FONT_TEXTURE_PATH=D:\Candy\Temp\%2.bmp
 set OUTPUT_PATH=D:\Candy\Data\Win\Font\
 
 echo font create texture start

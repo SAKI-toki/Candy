@@ -155,7 +155,7 @@
       <AdditionalDependencies>C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.2\lib\vs2019\x64\release\libfbxsdk-md.lib;C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.2\lib\vs2019\x64\release\libxml2-md.lib;C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.2\lib\vs2019\x64\release\zlib-md.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>echo F | xcopy "C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.2\lib\vs2019\x64\debug\libfbxsdk.dll" $(SolutionDir)Build\Bin\$(ProjectName)\$(Platform)\$(Configuration)\libfbxsdk.dll /Y</Command>
+      <Command>echo F | xcopy "C:\Program Files\Autodesk\FBX\FBX SDK\2020.3.2\lib\vs2019\x64\release\libfbxsdk.dll" $(SolutionDir)Build\Bin\$(ProjectName)\$(Platform)\$(Configuration)\libfbxsdk.dll /Y</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

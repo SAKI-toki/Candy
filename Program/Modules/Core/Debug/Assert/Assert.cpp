@@ -20,6 +20,12 @@ namespace Debug
 		coreProxy::Debug::Assert::CallAssertProxy(_expr, _fileName, _lineNo, _funcName, _msg);
 
 		std::abort();
+#else // BUILD_DEBUG
+		CANDY_UNUSED_VALUE(_expr);
+		CANDY_UNUSED_VALUE(_fileName);
+		CANDY_UNUSED_VALUE(_lineNo);
+		CANDY_UNUSED_VALUE(_funcName);
+		CANDY_UNUSED_VALUE(_msg);
 #endif // BUILD_DEBUG
 	}
 }

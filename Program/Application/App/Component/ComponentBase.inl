@@ -19,7 +19,7 @@ template<typename T, IsBaseComponentComponentInterfaceT<T>>
 std::weak_ptr<T> ComponentBase::getComponent()
 {
 	auto entity = m_OwnerEntity.lock();
-	if (!entity)return std::weak_ptr<T>{};
+	if (!entity)return {};
 	return entity->getComponent<T>();
 }
 
@@ -28,7 +28,7 @@ template<typename T, IsBaseComponentComponentInterfaceT<T>>
 const std::weak_ptr<T> ComponentBase::getComponent()const
 {
 	auto entity = m_OwnerEntity.lock();
-	if (!entity)return std::weak_ptr<T>{};
+	if (!entity)return {};
 	return entity->getComponent<T>();
 }
 

@@ -27,15 +27,15 @@ void ModelRendererComponent::renderImpl()
 	auto transform = getTransformComponent().lock();
 	if (!transform)return;
 
-	Mtx scalingMtx, rotationMtx, translationMtx, worldMtx;
-	MtxScaling(scalingMtx, transform->getScale());
-	MtxRotationZXY(rotationMtx, transform->getRot());
-	MtxTranslation(translationMtx, transform->getPos());
-	Mtx scalingMulRotationMtx;
-	MtxMul(scalingMulRotationMtx, scalingMtx, rotationMtx);
-	MtxMul(worldMtx, scalingMulRotationMtx, translationMtx);
+	Mtx rotationMtx;
+	rotationMtx = MtxRotationZXY(transform->getRot());
 
-	m_Model.render(worldMtx, rotationMtx);
+	m_Model.render(MtxScaling(transform->getScale()) * rotationMtx * MtxTranslation(transform->getPos()), rotationMtx);
+}
+
+void ModelRendererComponent::setModel(const std::string_view _path)
+{
+	m_Model.setModel(_path);
 }
 
 CANDY_APP_NAMESPACE_END

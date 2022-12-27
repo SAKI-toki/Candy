@@ -27,18 +27,20 @@ namespace ModelResourceManager
 	struct ModelInfo
 	{
 		std::vector<MeshInfo> m_MeshInfoList;
+		void clear()
+		{
+			m_MeshInfoList.clear();
+		}
 	};
 
 	void Startup();
 	void Cleanup();
 
-	void Add(const std::string_view _path, const ModelInfo& _info);
+	void Add(const std::string_view _path, const std::shared_ptr<core::FileSystem::BufferInfo> _bufferInfo);
 	void Remove(const std::string_view _path);
 
-	const ModelInfo& GetModelInfo(const std::string_view _path);
-	const ModelInfo& GetModelInfo(const u32 _hash);
-
-	const ModelInfo& GetDummyModelInfo();
+	std::weak_ptr<const ModelInfo> GetModelInfo(const std::string_view _path);
+	std::weak_ptr<const ModelInfo> GetModelInfo(const u32 _hash);
 }
 
 CANDY_APP_NAMESPACE_END

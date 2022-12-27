@@ -21,13 +21,13 @@ std::weak_ptr<T> ComponentList::addComponent(ArgsT&& ..._args)
 	auto c = getComponent<T>();
 	if (!c.expired())
 	{
-		return std::weak_ptr<T>{};
+		return {};
 	}
 	auto p = ComponentManager::template addComponent<T>(m_OwnerEntity, std::forward<ArgsT>(_args)...);
 	auto sharedComponent = p.lock();
 	if (!sharedComponent)
 	{
-		return std::weak_ptr<T>{};
+		return {};
 	}
 	addComponentInternal(p);
 	std::vector<std::shared_ptr<ComponentBase>> requireComponents;
@@ -50,13 +50,13 @@ std::weak_ptr<T> ComponentList::addComponentFromRequire(ArgsT&& ..._args)
 {
 	if (!getComponent<T>().expired())
 	{
-		return std::weak_ptr<T>{};
+		return {};
 	}
 	auto p = ComponentManager::template addComponent<T>(m_OwnerEntity, std::forward<ArgsT>(_args)...);
 	auto sharedComponent = p.lock();
 	if (!sharedComponent)
 	{
-		return std::weak_ptr<T>{};
+		return {};
 	}
 	addComponentInternal(p);
 	// startupはここではしない
@@ -86,7 +86,7 @@ std::weak_ptr<T> ComponentList::getComponent()
 		if (!castComponent)continue;
 		return castComponent;
 	}
-	return std::weak_ptr<T>{};
+	return {};
 }
 
 // コンポーネントの取得
@@ -99,7 +99,7 @@ const std::weak_ptr<T> ComponentList::getComponent()const
 		if (!castComponent)continue;
 		return castComponent;
 	}
-	return std::weak_ptr<T>{};
+	return {};
 }
 
 CANDY_APP_NAMESPACE_END

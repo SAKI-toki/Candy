@@ -32,11 +32,13 @@ inline void DummyFunc(...) {}
 #include "Types/ClassDefine.h"
 #include "Platform/Platform.h"
 #include "Types/CoreTypes.h"
+#include "Types/MathTypes.h"
 #include "Config/CoreConfig.h"
 
 #include "Debug/Assert/Assert.h"
 #include "Debug/Log/Log.h"
 
+#include "Library/imgui/imgui.h"
 #include "Library/nameof/nameof.hpp"
 
 #include "Utility/AdjustAlign/CoreAdjustAlign.h"
@@ -54,10 +56,12 @@ inline void DummyFunc(...) {}
 #include "Utility/StringSystem/Split/StringSystemSplit.h"
 #include "Utility/StringSystem/UpperLower/StringSystemToUpperLower.h"
 #include "Vec/Vec4.h"
-#include "Vec/Vec4Function.h"
 #include "Mtx/Mtx.h"
-#include "Mtx/MtxFunction.h"
+#include "Quat/Quat.h"
 #include "Color/Color.h"
+#include "Vec/Vec4Function.h"
+#include "Mtx/MtxFunction.h"
+#include "Quat/QuatFunction.h"
 #include "Color/ConvColor.h"
 
 #include "System/CoreSystem.h"

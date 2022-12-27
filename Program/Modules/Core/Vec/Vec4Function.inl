@@ -10,6 +10,10 @@
 
 #include "Vec4Function.h"
 
+#if PLATFORM_WIN
+#include <Core/Platform/Win/Vec/Vec4FunctionImpl.h>
+#endif // PLATFORM_WIN
+
 CANDY_NAMESPACE_BEGIN
 
 template<u32 FP1, u32 FP2, u32 FP3, u32 FP4>

@@ -203,6 +203,21 @@
     <Filter Include="Src\Utility\Flag">
       <UniqueIdentifier>{112ae12a-f041-4158-b6d3-e1a7342c73fe}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Src\Library\imgui">
+      <UniqueIdentifier>{6ebc2306-8f3b-41bc-a451-b8306e23a978}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Debug\Imgui">
+      <UniqueIdentifier>{90c3ed7c-3e44-4281-9cb7-239cddf8980a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Deserialize">
+      <UniqueIdentifier>{3127df6d-2dd4-4fdb-97f7-5ebbe674f43a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Quat">
+      <UniqueIdentifier>{a43f0ee3-b0cd-48a6-9465-d26703bc085e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Src\Platform\Win\Constant">
+      <UniqueIdentifier>{7180cb2e-b58f-4402-b756-58c210ec9a67}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\Modules\Core\BuildConfig\BuildConfig.h">
@@ -427,9 +442,6 @@
     <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Mtx\MtxImpl.h">
       <Filter>Src\Platform\Win\Mtx</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Vec\Vec4ConstantValues.h">
-      <Filter>Src\Platform\Win\Vec</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\Utility\Factorial\CoreFactorial.h">
       <Filter>Src\Utility\Factorial</Filter>
     </ClInclude>
@@ -438,6 +450,42 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Modules\Core\Utility\Flag\CoreFlag.h">
       <Filter>Src\Utility\Flag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Library\imgui\imgui_internal.h">
+      <Filter>Src\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Library\imgui\imstb_rectpack.h">
+      <Filter>Src\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Library\imgui\imstb_textedit.h">
+      <Filter>Src\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Library\imgui\imstb_truetype.h">
+      <Filter>Src\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Library\imgui\imconfig.h">
+      <Filter>Src\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Library\imgui\imgui.h">
+      <Filter>Src\Library\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Debug\Imgui\ImguiManager.h">
+      <Filter>Src\Debug\Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Deserialize\CoreDeserialize.h">
+      <Filter>Src\Deserialize</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Quat\QuatFunction.h">
+      <Filter>Src\Quat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Quat\QuatFunctionImpl.h">
+      <Filter>Src\Platform\Win\Quat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Platform\Win\Constant\VectorConstant.h">
+      <Filter>Src\Platform\Win\Constant</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\Modules\Core\Types\MathTypes.h">
+      <Filter>Src\Types</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -534,9 +582,6 @@
     <ClCompile Include="..\..\..\Modules\Core\Debug\Log\Log.cpp">
       <Filter>Src\Debug\Log</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Core\Debug\Assert\Assert.cpp">
-      <Filter>Src\Debug\Assert</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Platform\Win\FileSystem\FileSystemImpl.cpp">
       <Filter>Src\Platform\Win\FileSystem</Filter>
     </ClCompile>
@@ -579,9 +624,6 @@
     <ClCompile Include="..\..\..\Modules\Core\System\CoreSystem.cpp">
       <Filter>Src\System</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\Modules\Core\Utility\AdjustAlign\CoreAdjustAlign.cpp">
-      <Filter>Src\Utility\AdjustAlign</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Mtx\Mtx.cpp">
       <Filter>Src\Mtx</Filter>
     </ClCompile>
@@ -602,6 +644,36 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Modules\Core\Rect\Rect.cpp">
       <Filter>Src\Rect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Debug\Assert\Assert.cpp">
+      <Filter>Src\Debug\Assert</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Library\imgui\imgui_demo.cpp">
+      <Filter>Src\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Library\imgui\imgui_draw.cpp">
+      <Filter>Src\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Library\imgui\imgui_tables.cpp">
+      <Filter>Src\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Library\imgui\imgui_widgets.cpp">
+      <Filter>Src\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Library\imgui\imgui.cpp">
+      <Filter>Src\Library\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Debug\Imgui\ImguiManager.cpp">
+      <Filter>Src\Debug\Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Deserialize\CoreDeserialize.cpp">
+      <Filter>Src\Deserialize</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Quat\QuatFunction.cpp">
+      <Filter>Src\Quat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\Modules\Core\Platform\Win\Quat\QuatFunctionImpl.cpp">
+      <Filter>Src\Platform\Win\Quat</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -649,6 +721,12 @@
     </None>
     <None Include="..\..\..\Modules\Core\Utility\Flag\CoreFlag.inl">
       <Filter>Src\Utility\Flag</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Debug\Assert\Assert.inl">
+      <Filter>Src\Debug\Assert</Filter>
+    </None>
+    <None Include="..\..\..\Modules\Core\Utility\AdjustAlign\CoreAdjustAlign.inl">
+      <Filter>Src\Utility\AdjustAlign</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -11,46 +11,45 @@ CANDY_APP_NAMESPACE_BEGIN
 
 namespace TextureResourceManager
 {
+	bool CreateTextureInfo(TextureInfo& _outTextureInfo, const std::shared_ptr<core::FileSystem::BufferInfo> _bufferInfo);
+
 	std::map<u32, TextureInfo> m_TextureInfoMap;
 	TextureInfo m_DummyTextureInfo;
 }
 
 void TextureResourceManager::Startup()
 {
-	auto& graphicDevice = graphic::System::GetDevice();
-
-	auto path = std::string{ core::Config::GetDataPath() } + "Texture\\Dummy.dds";
+	auto path = std::string{ core::Config::GetDataPath() } + "Texture\\CesiumMan_img0.dds";
 	auto bufferInfo = std::make_shared<core::FileSystem::BufferInfo>();
 	CANDY_ASSERT(core::FileSystem::RequestReadNoWait(path, bufferInfo));
-
-	auto textureBin = graphic::Texture::DDS::ReadAlloc(bufferInfo->m_Buffer, bufferInfo->m_BufferSize);
-	CANDY_ASSERT(textureBin);
-	graphic::BufferStartupInfo dummyTextureBufferStartupInfo;
-	dummyTextureBufferStartupInfo.setTextureStartupInfo(textureBin->m_Format, textureBin->m_Width, textureBin->m_Height, textureBin->m_MipMapCount);
-	m_DummyTextureInfo.m_Buffer.startup(graphicDevice, dummyTextureBufferStartupInfo);
-	graphic::TextureUploder::CreateTexture(m_DummyTextureInfo.m_Buffer, textureBin->m_Buffer.get(), textureBin->m_BufferSize, textureBin->m_MipMapCount);
-
-	m_DummyTextureInfo.m_Format = textureBin->m_Format;
-	m_DummyTextureInfo.m_Width = textureBin->m_Width;
-	m_DummyTextureInfo.m_Height = textureBin->m_Height;
-	m_DummyTextureInfo.m_MipMapCount = textureBin->m_MipMapCount;
+	CreateTextureInfo(m_DummyTextureInfo, bufferInfo);
 }
 
 void TextureResourceManager::Cleanup()
 {
+	for (auto [hash, textureInfo] : m_TextureInfoMap)
+	{
+		textureInfo.clear();
+	}
+	m_TextureInfoMap.clear();
 
+	m_DummyTextureInfo.clear();
 }
 
-void TextureResourceManager::Add(const std::string_view _path, const TextureInfo& _info)
+void TextureResourceManager::Add(const std::string_view _path, const std::shared_ptr<core::FileSystem::BufferInfo> _bufferInfo)
 {
-	const u32 hash = core::Fnv::Hash32(core::Path::FormatPath(_path));
-	m_TextureInfoMap.insert({ hash, _info });
+	TextureInfo textureInfo;
+	if (!CreateTextureInfo(textureInfo, _bufferInfo))
+	{
+		CANDY_LOG_ERR("テクスチャの読み込みに失敗[{0}]", _path);
+		return;
+	}
+	m_TextureInfoMap.insert({ core::Fnv::Hash32(core::Path::FormatPath(_path)), textureInfo });
 }
 
 void TextureResourceManager::Remove(const std::string_view _path)
 {
-	const u32 hash = core::Fnv::Hash32(core::Path::FormatPath(_path));
-	m_TextureInfoMap.erase(hash);
+	m_TextureInfoMap.erase(core::Fnv::Hash32(core::Path::FormatPath(_path)));
 }
 
 const TextureResourceManager::TextureInfo& TextureResourceManager::GetTextureInfo(const std::string_view _path)
@@ -72,6 +71,28 @@ const TextureResourceManager::TextureInfo& TextureResourceManager::GetTextureInf
 const TextureResourceManager::TextureInfo& TextureResourceManager::GetDummyTextureInfo()
 {
 	return m_DummyTextureInfo;
+}
+
+bool TextureResourceManager::CreateTextureInfo(TextureInfo& _outTextureInfo, const std::shared_ptr<core::FileSystem::BufferInfo> _bufferInfo)
+{
+	_outTextureInfo.clear();
+
+	auto& graphicDevice = graphic::System::GetDevice();
+
+	auto textureBin = graphic::Texture::DDS::ReadAlloc(_bufferInfo->m_Buffer, _bufferInfo->m_BufferSize);
+	if (!textureBin)return false;
+	
+	graphic::BufferStartupInfo dummyTextureBufferStartupInfo;
+	dummyTextureBufferStartupInfo.setTextureStartupInfo(textureBin->m_Format, textureBin->m_Width, textureBin->m_Height, textureBin->m_MipMapCount);
+	_outTextureInfo.m_Buffer.startup(graphicDevice, dummyTextureBufferStartupInfo);
+	graphic::TextureUploder::CreateTexture(_outTextureInfo.m_Buffer, textureBin->m_Buffer.get(), textureBin->m_BufferSize, textureBin->m_MipMapCount);
+
+	_outTextureInfo.m_Format = textureBin->m_Format;
+	_outTextureInfo.m_Width = textureBin->m_Width;
+	_outTextureInfo.m_Height = textureBin->m_Height;
+	_outTextureInfo.m_MipMapCount = textureBin->m_MipMapCount;
+
+	return true;
 }
 
 CANDY_APP_NAMESPACE_END

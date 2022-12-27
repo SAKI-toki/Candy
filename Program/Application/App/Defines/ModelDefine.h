@@ -12,13 +12,19 @@
 
 CANDY_APP_NAMESPACE_BEGIN
 
-struct ModelVertexInfo
+struct StaticMeshVertexInfo
 {
 	Vec4 m_Position;
 	Vec4 m_Normal;
 	Vec4 m_TexCoord0;
 	Vec4 m_TexCoord1;
 };
+struct StaticMeshConstantBufferInfo
+{
+	Mtx worldMtx;
+	Mtx rotMtx;
+};
+inline constexpr u64 StaticMeshConstantBufferInfoAlignSize = core::AlignAdjust(sizeof(StaticMeshConstantBufferInfo), 0x100);
 
 using ModelIndexType = u32;
 inline constexpr graphic::types::GRAPHIC_FORMAT ModelIndexGraphicFormat = graphic::types::GRAPHIC_FORMAT::R32_UINT;

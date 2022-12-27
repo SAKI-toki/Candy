@@ -31,7 +31,7 @@ void Camera2dComponent::renderImpl()
 
 void Camera2dComponent::updateProjectionMtx()
 {
-	MtxOrthographic(m_ProjectionMtx, m_Width, m_Height, m_Near, m_Far);
+	m_ProjectionMtx = MtxOrthographic(m_Width, m_Height, m_Near, m_Far);
 }
 
 CANDY_APP_NAMESPACE_END

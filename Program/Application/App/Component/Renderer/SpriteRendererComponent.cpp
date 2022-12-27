@@ -27,15 +27,10 @@ void SpriteRendererComponent::renderImpl()
 	auto transform = getTransformComponent().lock();
 	if (!transform)return;
 
-	Mtx scalingMtx, rotationMtx, translationMtx, worldMtx;
-	MtxScaling(scalingMtx, transform->getScale());
-	MtxRotationZXY(rotationMtx, transform->getRot());
-	MtxTranslation(translationMtx, transform->getPos());
-	Mtx scalingMulRotationMtx;
-	MtxMul(scalingMulRotationMtx, scalingMtx, rotationMtx);
-	MtxMul(worldMtx, scalingMulRotationMtx, translationMtx);
+	Mtx rotationMtx;
+	rotationMtx = MtxRotationZXY(transform->getRot());
 
-	m_Sprite.render(worldMtx, rotationMtx, getColor());
+	m_Sprite.render(MtxScaling(transform->getScale()) * rotationMtx * MtxTranslation(transform->getPos()), rotationMtx, getColor());
 }
 
 CANDY_APP_NAMESPACE_END

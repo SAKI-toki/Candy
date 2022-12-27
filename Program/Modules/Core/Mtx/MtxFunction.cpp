@@ -7,61 +7,114 @@
 
 #include "MtxFunction.h"
 
+#if PLATFORM_WIN
+#include <Core/Platform/Win/Mtx/MtxFunctionImpl.h>
+#endif // PLATFORM_WIN
+
 CANDY_NAMESPACE_BEGIN
 
-void MtxSet(Mtx& _out, const Vec4& _v1, const Vec4& _v2, const Vec4& _v3, const Vec4& _v4)
+Mtx MtxSet(const Vec4& _v1, const Vec4& _v2, const Vec4& _v3, const Vec4& _v4)
 {
-	core::MtxSetImpl(_out.vector, _v1.vector, _v2.vector, _v3.vector, _v4.vector);
+	Mtx outMtx;
+	core::MtxSetImpl(outMtx.vector, _v1.vector, _v2.vector, _v3.vector, _v4.vector);
+	return outMtx;
 }
 
-void MtxSetIdentity(Mtx& _out)
+Mtx MtxSetIdentity()
 {
-	core::MtxSetIdentityImpl(_out.vector);
+	Mtx outMtx;
+	core::MtxSetIdentityImpl(outMtx.vector);
+	return outMtx;
 }
 
-void MtxMul(Mtx& _out, const Mtx& _m1, const Mtx& _m2)
+Mtx MtxMul(const Mtx& _m1, const Mtx& _m2)
 {
-	core::MtxMulImpl(_out.vector, _m1.vector, _m2.vector);
+	Mtx outMtx;
+	core::MtxMulImpl(outMtx.vector, _m1.vector, _m2.vector);
+	return outMtx;
 }
 
-void MtxTranspose(Mtx& _out, const Mtx& _m)
+Mtx MtxTranspose(const Mtx& _m)
 {
-	core::MtxTransposeImpl(_out.vector, _m.vector);
+	Mtx outMtx;
+	core::MtxTransposeImpl(outMtx.vector, _m.vector);
+	return outMtx;
 }
 
-void MtxTranslation(Mtx& _out, const Vec4& _v)
+Mtx MtxTranslation(const Vec4& _v)
 {
-	core::MtxTranslationImpl(_out.vector, _v.vector);
+	Mtx outMtx;
+	core::MtxTranslationImpl(outMtx.vector, _v.vector);
+	return outMtx;
 }
 
-void MtxRotationZXY(Mtx& _out, const Vec4& _v)
+Mtx MtxRotation(const Vec4& _v, const ROTATION_ORDER _rotationOrder)
 {
-	core::MtxRotationZXYImpl(_out.vector, _v.vector);
+	Mtx outMtx;
+	switch (_rotationOrder)
+	{
+	case ROTATION_ORDER::XYZ:	core::MtxRotationXYZImpl(outMtx.vector, _v.vector);	break;
+	case ROTATION_ORDER::XZY:	core::MtxRotationXZYImpl(outMtx.vector, _v.vector);	break;
+	case ROTATION_ORDER::YXZ:	core::MtxRotationYXZImpl(outMtx.vector, _v.vector);	break;
+	case ROTATION_ORDER::YZX:	core::MtxRotationYZXImpl(outMtx.vector, _v.vector);	break;
+	case ROTATION_ORDER::ZXY:	core::MtxRotationZXYImpl(outMtx.vector, _v.vector);	break;
+	case ROTATION_ORDER::ZYX:	core::MtxRotationZYXImpl(outMtx.vector, _v.vector);	break;
+	}
+	return outMtx;
+}
+Mtx MtxRotationZXY(const Vec4& _v)
+{
+	Mtx outMtx;
+	core::MtxRotationZXYImpl(outMtx.vector, _v.vector);
+	return outMtx;
+}
+Mtx MtxRotationZYX(const Vec4& _v)
+{
+	Mtx outMtx;
+	core::MtxRotationZYXImpl(outMtx.vector, _v.vector);
+	return outMtx;
 }
 
-void MtxScaling(Mtx& _out, const Vec4& _v)
+Mtx MtxRotationQuat(const Quat& _q)
 {
-	core::MtxScalingImpl(_out.vector, _v.vector);
+	Mtx outMtx;
+	core::MtxRotationQuatImpl(outMtx.vector, _q.vector);
+	return outMtx;
 }
 
-void MtxOrthographic(Mtx& _out, const f32 _width, const f32 _height, const f32 _near, const f32 _far)
+Mtx MtxScaling(const Vec4& _v)
 {
-	core::MtxOrthographicImpl(_out.vector, _width, _height, _near, _far);
+	Mtx outMtx;
+	core::MtxScalingImpl(outMtx.vector, _v.vector);
+	return outMtx;
 }
 
-void MtxPerspective(Mtx& _out, const f32 _fov, const f32 _aspectRatio, const f32 _near, const f32 _far)
+Mtx MtxOrthographic(const f32 _width, const f32 _height, const f32 _near, const f32 _far)
 {
-	core::MtxPerspectiveImpl(_out.vector, _fov, _aspectRatio, _near, _far);
+	Mtx outMtx;
+	core::MtxOrthographicImpl(outMtx.vector, _width, _height, _near, _far);
+	return outMtx;
 }
 
-void MtxLookAt(Mtx& _out, const Vec4& _view, const Vec4& _lookAt, const Vec4& _up)
+Mtx MtxPerspective(const f32 _fov, const f32 _aspectRatio, const f32 _near, const f32 _far)
 {
-	core::MtxLookToImpl(_out.vector, _view.vector, VecSub(_lookAt, _view).vector, _up.vector);
+	Mtx outMtx;
+	core::MtxPerspectiveImpl(outMtx.vector, _fov, _aspectRatio, _near, _far);
+	return outMtx;
 }
 
-void MtxLookTo(Mtx& _out, const Vec4& _view, const Vec4& _lookDir, const Vec4& _up)
+Mtx MtxLookAt(const Vec4& _view, const Vec4& _lookAt, const Vec4& _up)
 {
-	core::MtxLookToImpl(_out.vector, _view.vector, _lookDir.vector, _up.vector);
+	Mtx outMtx;
+	core::MtxLookToImpl(outMtx.vector, _view.vector, VecSub(_lookAt, _view).vector, _up.vector);
+	return outMtx;
+}
+
+Mtx MtxLookTo(const Vec4& _view, const Vec4& _lookDir, const Vec4& _up)
+{
+	Mtx outMtx;
+	core::MtxLookToImpl(outMtx.vector, _view.vector, _lookDir.vector, _up.vector);
+	return outMtx;
 }
 
 CANDY_NAMESPACE_END

@@ -76,9 +76,9 @@ void ModelRenderingManager::SetCamera(const CameraComponentBase& _cameraComponen
 		Mtx projectionMtx;
 		Mtx viewProjectionMtx;
 	}c;
-	MtxTranspose(c.viewMtx, _cameraComponentBase.getViewMtx());
-	MtxTranspose(c.projectionMtx, _cameraComponentBase.getProjectionMtx());
-	MtxMul(c.viewProjectionMtx, c.viewMtx, c.projectionMtx);
+	c.viewMtx = MtxTranspose(_cameraComponentBase.getViewMtx());
+	c.projectionMtx = MtxTranspose(_cameraComponentBase.getProjectionMtx());
+	c.viewProjectionMtx = MtxTranspose(_cameraComponentBase.getViewMtx() * _cameraComponentBase.getProjectionMtx());
 	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&c), sizeof(c), 0x100 * graphic::System::GetBackBufferIndex());
 }
 

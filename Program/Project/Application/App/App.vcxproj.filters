@@ -20,9 +20,6 @@
     <Filter Include="Src\Global">
       <UniqueIdentifier>{1138c50e-be49-451b-ad92-e8c739c9d63d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Src\Model">
-      <UniqueIdentifier>{c3f069e6-38e9-4a8a-bd85-a2b93e7ee3b6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Src\Module">
       <UniqueIdentifier>{a0db87be-9c98-4ce9-bbcb-b7fcb42a3f74}</UniqueIdentifier>
     </Filter>
@@ -40,9 +37,6 @@
     </Filter>
     <Filter Include="Src\Flow\Scene">
       <UniqueIdentifier>{3bbd7299-07f3-452a-8113-684d272d8f96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Src\Model\Primitive">
-      <UniqueIdentifier>{eefea170-bf20-4221-999a-d154650683b4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Src\Utility">
       <UniqueIdentifier>{62c0268a-bdba-41ba-af54-e821d36e94c9}</UniqueIdentifier>
@@ -147,15 +141,6 @@
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Global\Global.cpp">
       <Filter>Src\Global</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Model\__ModelCpp.cpp">
-      <Filter>Src\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Model\ModelManager.cpp">
-      <Filter>Src\Model</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\Application\App\Model\Primitive\ModelPrimitive.cpp">
-      <Filter>Src\Model\Primitive</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\Application\App\Module\AppModule.cpp">
       <Filter>Src\Module</Filter>
@@ -305,12 +290,6 @@
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Global\Global.h">
       <Filter>Src\Global</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Application\App\Model\ModelManager.h">
-      <Filter>Src\Model</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\..\Application\App\Model\Primitive\ModelPrimitive.h">
-      <Filter>Src\Model\Primitive</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\Application\App\Module\AppModule.h">
       <Filter>Src\Module</Filter>

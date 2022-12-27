@@ -31,7 +31,7 @@ void CameraComponentBase::renderImpl()
 
 void CameraComponentBase::updateViewMtx()
 {
-	MtxLookAt(m_ViewMtx, m_ViewPos, m_TargetPos, m_Up);
+	m_ViewMtx = MtxLookAt(m_ViewPos, m_TargetPos, m_Up);
 }
 
 CANDY_APP_NAMESPACE_END

@@ -22,6 +22,8 @@ namespace EntityManager
 
 	std::weak_ptr<Entity> CreateEntity(const std::string_view _name);
 	void ReleaseEntity(const std::weak_ptr<Entity>& _entity);
+
+	std::weak_ptr<Entity> FindEntity(const std::string_view _name);
 }
 
 CANDY_APP_NAMESPACE_END

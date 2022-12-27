@@ -12,8 +12,10 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
-u64 AlignAdjust(const u64 _size, const u64 _alignment);
+constexpr u64 AlignAdjust(const u64 _size, const u64 _alignment);
 
 CANDY_CORE_NAMESPACE_END
+
+#include "CoreAdjustAlign.inl"
 
 #endif // CANDY_CORE_ADJUST_ALIGN_H

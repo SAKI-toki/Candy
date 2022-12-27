@@ -10,6 +10,7 @@
 
 #include <App/AppInclude.h>
 #include <App/Resource/Model/ModelResourceManager.h>
+#include <App/Defines/ModelDefine.h>
 
 CANDY_APP_NAMESPACE_BEGIN
 
@@ -25,7 +26,7 @@ public:
 	void setModel(const u32 _hash);
 
 private:
-	void setModelImpl(const ModelResourceManager::ModelInfo& _modelInfo);
+	void setModelImpl(std::weak_ptr<const ModelResourceManager::ModelInfo> _modelInfo);
 
 	struct BufferViewInfo
 	{
@@ -37,6 +38,9 @@ private:
 	graphic::Buffer m_ConstantBuffer;
 
 	graphic::Descriptor m_Descriptor;
+	StaticMeshConstantBufferInfo m_StaticMeshConstantBufferInfo;
+
+	std::weak_ptr<const ModelResourceManager::ModelInfo> m_ModelInfoResource;
 };
 
 CANDY_APP_NAMESPACE_END

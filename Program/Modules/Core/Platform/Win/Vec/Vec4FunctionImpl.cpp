@@ -7,7 +7,7 @@
 
 #include "Vec4FunctionImpl.h"
 
-#include <Core/Platform/Win/Vec/Vec4ConstantValues.h>
+#include <Core/Platform/Win/Constant/VectorConstant.h>
 
 CANDY_CORE_NAMESPACE_BEGIN
 
@@ -38,11 +38,11 @@ vector_type VecSetAllImpl(const f32 _v)
 }
 vector_type VecSetZeroImpl()
 {
-	return Vec4ConstantValues::Zero;
+	return VectorConstant::Zero;
 }
 vector_type VecSetOneImpl()
 {
-	return Vec4ConstantValues::One;
+	return VectorConstant::One;
 }
 vector_type VecSetXImpl(const vector_type _v, const f32 _x)
 {
@@ -73,13 +73,13 @@ vector_type VecSetWImpl(const vector_type _v, const f32 _w)
 vector_type VecSetZeroWImpl(const vector_type _v)
 {
 	vector_type v = VecPermuteImpl<3, 1, 2, 0>(_v);
-	v = _mm_move_ss(v, Vec4ConstantValues::Zero);
+	v = _mm_move_ss(v, VectorConstant::Zero);
 	return VecPermuteImpl<3, 1, 2, 0>(v);
 }
 vector_type VecSetOneWImpl(const vector_type _v)
 {
 	vector_type v = VecPermuteImpl<3, 1, 2, 0>(_v);
-	v = _mm_move_ss(v, Vec4ConstantValues::One);
+	v = _mm_move_ss(v, VectorConstant::One);
 	return VecPermuteImpl<3, 1, 2, 0>(v);
 }
 
@@ -102,19 +102,19 @@ vector_type VecDivImpl(const vector_type _v1, const vector_type _v2)
 
 vector_type VecSelectXImpl(const vector_type _v)
 {
-	return VecAndImpl(_v, Vec4ConstantValues::SelectMask1000);
+	return VecAndImpl(_v, VectorConstant::SelectMask1000);
 }
 vector_type VecSelectYImpl(const vector_type _v)
 {
-	return VecAndImpl(_v, Vec4ConstantValues::SelectMask0100);
+	return VecAndImpl(_v, VectorConstant::SelectMask0100);
 }
 vector_type VecSelectZImpl(const vector_type _v)
 {
-	return VecAndImpl(_v, Vec4ConstantValues::SelectMask0010);
+	return VecAndImpl(_v, VectorConstant::SelectMask0010);
 }
 vector_type VecSelectWImpl(const vector_type _v)
 {
-	return VecAndImpl(_v, Vec4ConstantValues::SelectMask0001);
+	return VecAndImpl(_v, VectorConstant::SelectMask0001);
 }
 
 vector_type VecAndImpl(const vector_type _v1, const vector_type _v2)
@@ -176,12 +176,12 @@ vector_type VecNormalizeImpl(const vector_type _v)
 {
 	vector_type v = VecMagImpl(_v);
 
-	if (VecFunctionImpl::VecToBoolImpl(_mm_cmple_ss(v, Vec4ConstantValues::Zero), 0x1))
+	if (VecFunctionImpl::VecToBoolImpl(_mm_cmple_ss(v, VectorConstant::Zero), 0x1))
 	{
-		return Vec4ConstantValues::Up;
+		return VectorConstant::Up;
 	}
 
-	v = _mm_div_ss(Vec4ConstantValues::One, v);
+	v = _mm_div_ss(VectorConstant::One, v);
 	v = VecPermuteImpl<0, 0, 0, 0>(v);
 	v = VecSetOneWImpl(v);
 
@@ -199,43 +199,43 @@ void VecSinCosImpl(vector_type& _outSin, vector_type& _outCos, const vector_type
 	const vector_type v6 = VecMulImpl(v3, v3);
 
 	vector_type resultSin = adjustV;
-	resultSin = VecSubImpl(resultSin, VecMulImpl(Vec4ConstantValues::SinCoefficient1, v3));
-	resultSin = VecAddImpl(resultSin, VecMulImpl(Vec4ConstantValues::SinCoefficient2, v5));
-	resultSin = VecSubImpl(resultSin, VecMulImpl(Vec4ConstantValues::SinCoefficient3, VecMulImpl(v3, v4)));
-	resultSin = VecAddImpl(resultSin, VecMulImpl(Vec4ConstantValues::SinCoefficient4, VecMulImpl(v4, v5)));
-	resultSin = VecSubImpl(resultSin, VecMulImpl(Vec4ConstantValues::SinCoefficient5, VecMulImpl(v5, v6)));
+	resultSin = VecSubImpl(resultSin, VecMulImpl(VectorConstant::SinCoefficient1, v3));
+	resultSin = VecAddImpl(resultSin, VecMulImpl(VectorConstant::SinCoefficient2, v5));
+	resultSin = VecSubImpl(resultSin, VecMulImpl(VectorConstant::SinCoefficient3, VecMulImpl(v3, v4)));
+	resultSin = VecAddImpl(resultSin, VecMulImpl(VectorConstant::SinCoefficient4, VecMulImpl(v4, v5)));
+	resultSin = VecSubImpl(resultSin, VecMulImpl(VectorConstant::SinCoefficient5, VecMulImpl(v5, v6)));
 	_outSin = resultSin;
 
-	vector_type resultCos = Vec4ConstantValues::One;
-	resultCos = VecSubImpl(resultCos, VecMulImpl(Vec4ConstantValues::CosCoefficient1, v2));
-	resultCos = VecAddImpl(resultCos, VecMulImpl(Vec4ConstantValues::CosCoefficient2, v4));
-	resultCos = VecSubImpl(resultCos, VecMulImpl(Vec4ConstantValues::CosCoefficient3, v6));
-	resultCos = VecAddImpl(resultCos, VecMulImpl(Vec4ConstantValues::CosCoefficient4, VecMulImpl(v2, v6)));
-	resultCos = VecSubImpl(resultCos, VecMulImpl(Vec4ConstantValues::CosCoefficient5, VecMulImpl(v4, v6)));
+	vector_type resultCos = VectorConstant::One;
+	resultCos = VecSubImpl(resultCos, VecMulImpl(VectorConstant::CosCoefficient1, v2));
+	resultCos = VecAddImpl(resultCos, VecMulImpl(VectorConstant::CosCoefficient2, v4));
+	resultCos = VecSubImpl(resultCos, VecMulImpl(VectorConstant::CosCoefficient3, v6));
+	resultCos = VecAddImpl(resultCos, VecMulImpl(VectorConstant::CosCoefficient4, VecMulImpl(v2, v6)));
+	resultCos = VecSubImpl(resultCos, VecMulImpl(VectorConstant::CosCoefficient5, VecMulImpl(v4, v6)));
 	_outCos = resultCos;
 }
 
 vector_type VecRoundImpl(const vector_type _v)
 {
-	const vector_type cmp = _mm_cmpge_ps(_v, Vec4ConstantValues::Zero);
-	const vector_type signHalf = _mm_blendv_ps(Vec4ConstantValues::NegativeHalf, Vec4ConstantValues::Half, cmp);
+	const vector_type cmp = _mm_cmpge_ps(_v, VectorConstant::Zero);
+	const vector_type signHalf = _mm_blendv_ps(VectorConstant::NegativeHalf, VectorConstant::Half, cmp);
 	const vector_type v = VecAddImpl(_v, signHalf);
 	return _mm_round_ps(v, _MM_FROUND_TO_ZERO);
 }
 
 vector_type VecAdjustAngleImpl(const vector_type _v)
 {
-	const vector_type roundDivPi2 = VecRoundImpl(VecMulImpl(_v, Vec4ConstantValues::InvPi2));
-	return VecSubImpl(_v, VecMulImpl(roundDivPi2, Vec4ConstantValues::Pi2));
+	const vector_type roundDivPi2 = VecRoundImpl(VecMulImpl(_v, VectorConstant::InvPi2));
+	return VecSubImpl(_v, VecMulImpl(roundDivPi2, VectorConstant::Pi2));
 }
 
 bool IsVecZeroImpl(const vector_type _v)
 {
-	return VecFunctionImpl::VecToBoolXYZ(_mm_cmpeq_ps(_v, Vec4ConstantValues::Zero));
+	return VecFunctionImpl::VecToBoolXYZ(_mm_cmpeq_ps(_v, VectorConstant::Zero));
 }
 bool IsVecZeroXYZWImpl(const vector_type _v)
 {
-	return VecFunctionImpl::VecToBoolXYZW(_mm_cmpeq_ps(_v, Vec4ConstantValues::Zero));
+	return VecFunctionImpl::VecToBoolXYZW(_mm_cmpeq_ps(_v, VectorConstant::Zero));
 }
 
 CANDY_CORE_NAMESPACE_END

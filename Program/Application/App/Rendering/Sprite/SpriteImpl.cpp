@@ -72,8 +72,8 @@ void SpriteImpl::render(const Mtx& _worldMtx, const Mtx& _rotMtx, const Color& _
 		Mtx rotMtx;
 		Vec4 col;
 	}c;
-	MtxTranspose(c.worldMtx, _worldMtx);
-	MtxTranspose(c.rotMtx, _rotMtx);
+	c.worldMtx = MtxTranspose(_worldMtx);
+	c.rotMtx = MtxTranspose(_rotMtx);
 	c.col = _col;
 	m_ConstantBuffer.store(reinterpret_cast<std::byte*>(&c), sizeof(c), 0x100 * graphic::System::GetBackBufferIndex());
 }

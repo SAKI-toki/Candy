@@ -10,10 +10,6 @@
 
 #include <Core/CoreInclude.h>
 
-#if PLATFORM_WIN
-#include <Core/Platform/Win/Vec/Vec4FunctionImpl.h>
-#endif // PLATFORM_WIN
-
 CANDY_NAMESPACE_BEGIN
 
 Vec4 VecSet(const f32 _x, const f32 _y, const f32 _z, const f32 _w);

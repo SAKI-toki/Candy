@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Src">
+      <UniqueIdentifier>{b51f5e8e-fce3-4518-993a-ca2ea30e2893}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External">
+      <UniqueIdentifier>{88ee0f15-3308-4d83-b511-5e51dd6a1334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\GLTFSDK">
+      <UniqueIdentifier>{71161d82-6be7-472b-ba72-d51e2121e0e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="External\GLTFSDK\Cpp">
+      <UniqueIdentifier>{8772b5af-c527-4097-9a7d-9fef720f1b40}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Src\Main.cpp">
+      <Filter>Src</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\GLTFResourceWriter.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Math.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\MeshPrimitiveUtils.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\MicrosoftGeneratorVersion.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\PBRUtils.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\ResourceWriter.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Schema.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\SchemaValidation.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Serialize.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Validation.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Version.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\AnimationUtils.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\BufferBuilder.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Color.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Deserialize.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Document.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\Extension.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\ExtensionHandlers.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\ExtensionsKHR.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\GLBResourceReader.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\GLBResourceWriter.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="External\GLTFSDK\Cpp\GLTFResourceReader.cpp">
+      <Filter>External\GLTFSDK\Cpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Src\Common.h">
+      <Filter>Src</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\AnimationUtils.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\BufferBuilder.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Color.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Constants.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Deserialize.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Document.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Exceptions.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Extension.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\ExtensionHandlers.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\ExtensionsKHR.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\ExtrasDocument.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\GLBResourceReader.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\GLBResourceWriter.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\GLTF.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\GLTFResourceReader.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\GLTFResourceWriter.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\IndexedContainer.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\IStreamCache.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\IStreamReader.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\IStreamWriter.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Math.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\MeshPrimitiveUtils.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\MicrosoftGeneratorVersion.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Optional.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\PBRUtils.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\RapidJsonUtils.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\ResourceReaderUtils.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\ResourceWriter.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Schema.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\SchemaValidation.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Serialize.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\StreamCache.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\StreamCacheLRU.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\StreamUtils.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Traverse.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Validation.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Version.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+    <ClInclude Include="External\GLTFSDK\Visitor.h">
+      <Filter>External\GLTFSDK</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

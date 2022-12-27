@@ -21,12 +21,13 @@ namespace TextureResourceManager
 		u32 m_Height{};
 		graphic::types::GRAPHIC_FORMAT m_Format{};
 		s32 m_MipMapCount{};
+		void clear() { m_Buffer.cleanup(); }
 	};
 
 	void Startup();
 	void Cleanup();
 
-	void Add(const std::string_view _path, const TextureInfo& _info);
+	void Add(const std::string_view _path, const std::shared_ptr<core::FileSystem::BufferInfo> _bufferInfo);
 	void Remove(const std::string_view _path);
 
 	const TextureInfo& GetTextureInfo(const std::string_view _path);

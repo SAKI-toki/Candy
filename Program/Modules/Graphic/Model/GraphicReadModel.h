@@ -1,6 +1,6 @@
 ﻿/*****************************************************************//**
  * \file   GraphicReadModel.h
- * \brief  DDSの読み込み
+ * \brief  モデルの読み込み
  * \author Yu Ishiyama.
  * \date   2022/06/03
  *********************************************************************/
@@ -14,26 +14,37 @@ CANDY_GRAPHIC_NAMESPACE_BEGIN
 
 namespace Model
 {
+	// メッシュ
 	struct ReadVertexInfo
 	{
+		Vec4 m_Position;
 		Vec4 m_Normal;
+		Vec4 m_Tangent;
 		Vec4 m_TexCoord0;
 		Vec4 m_TexCoord1;
 	};
 
 	struct ReadMeshHeader
 	{
-		u32 m_ControlPointCount{};
-		u32 m_VertexCount{};
+		u32 m_ReadVertexInfoCount{};
+		u32 m_VertexIndexCount{};
 		char m_Name[128]{ "" };
-		char m_MaterialName[128]{ "" };
+		u32 m_MaterialIndex{};
 	};
 	struct ReadMeshInfo
 	{
 		ReadMeshHeader m_Header;
-		std::vector<Vec4> m_ControlPointList;
 		std::vector<ReadVertexInfo> m_ReadVertexInfoList;
-		std::vector<u32> m_ControlPointIndexList;
+		std::vector<u32> m_VertexIndexList;
+	};
+
+	// マテリアル
+	enum class MATERIAL_TEXTURE_TYPE : s32
+	{
+		ALBEDO,
+		NORMAL,
+
+		NONE = -1,
 	};
 	struct ReadMaterialHeader
 	{
@@ -42,7 +53,8 @@ namespace Model
 	};
 	struct ReadTextureInfo
 	{
-		char m_FilePath[256]{ "" };
+		MATERIAL_TEXTURE_TYPE m_Type = MATERIAL_TEXTURE_TYPE::NONE;
+		char m_FileName[256]{ "" };
 	};
 	struct ReadMaterialInfo
 	{

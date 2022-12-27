@@ -17,6 +17,8 @@
 
 #include "EntryPoint/Main.cpp"
 
+#include "Deserialize/CoreDeserialize.cpp"
+
 #include "FileSystem/FileSystem.cpp"
 #include "FileSystem/FileEnumerator/FileSystemFileEnumerator.cpp"
 #include "FileSystem/Work/FileSystemWork.cpp"
@@ -29,6 +31,12 @@
 
 #include "JobSystem/CoreJobSystem.cpp"
 
+#include "Library/imgui/imgui.cpp"
+#include "Library/imgui/imgui_demo.cpp"
+#include "Library/imgui/imgui_draw.cpp"
+#include "Library/imgui/imgui_tables.cpp"
+#include "Library/imgui/imgui_widgets.cpp"
+
 #include "Mtx/Mtx.cpp"
 #include "Mtx/MtxFunction.cpp"
 
@@ -40,6 +48,7 @@
 #include "Mutex/ThreadEvent.cpp"
 
 #include "Quat/Quat.cpp"
+#include "Quat/QuatFunction.cpp"
 
 #include "Rect/Rect.cpp"
 
@@ -53,7 +62,6 @@
 #include "Time/Tick.cpp"
 #include "Time/Time.cpp"
 
-#include "Utility/AdjustAlign/CoreAdjustAlign.cpp"
 #include "Utility/StringSystem/Convert/StringSystemConvert.cpp"
 #include "Utility/StringSystem/Split/StringSystemSplit.cpp"
 #include "Utility/Path/Path.cpp"
@@ -78,6 +86,8 @@
 
 #include "Platform/Win/Mutex/CriticalSectionImpl.cpp"
 #include "Platform/Win/Mutex/ThreadEventImpl.cpp"
+
+#include "Platform/Win/Quat/QuatFunctionImpl.cpp"
 
 #include "Platform/Win/Utility/StringSystem/Convert/StringSystemConvertImpl.cpp"
 

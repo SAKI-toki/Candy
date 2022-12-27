@@ -20,6 +20,8 @@
 #include "Debug/Assert/Assert.h"
 #include "Debug/Log/Log.h"
 
+#include "Deserialize/CoreDeserialize.h"
+
 #include "FileSystem/FileSystem.h"
 #include "FileSystem/FileEnumerator/FileSystemFileEnumerator.h"
 #include "FileSystem/Work/FileSystemWork.h"
@@ -32,6 +34,7 @@
 
 #include "JobSystem/CoreJobSystem.h"
 
+#include "Library/imgui/imgui.h"
 #include "Library/nameof/nameof.hpp"
 
 #include "Module/CoreModule.h"
@@ -44,6 +47,7 @@
 #include "Platform/Platform.h"
 
 #include "Quat/Quat.h"
+#include "Quat/QuatFunction.h"
 
 #include "Rect/Rect.h"
 

@@ -16,10 +16,11 @@ namespace Debug
 		CANDY_UNUSED_VALUE_ATTR const std::string_view _expr, 
 		CANDY_UNUSED_VALUE_ATTR const std::string_view _fileName, 
 		CANDY_UNUSED_VALUE_ATTR const u32 _lineNo, 
-		CANDY_UNUSED_VALUE_ATTR const std::string_view _funcName)
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _funcName,
+		CANDY_UNUSED_VALUE_ATTR const std::string_view _msg)
 	{
 #if BUILD_DEBUG
-		const auto message = std::format({ "場所:{0}({1}){2}\n不正:{3}" }, _fileName, _lineNo, _funcName, _expr);
+		const auto message = std::format({ "場所:{0}({1}){2}\n不正:{3},{4}" }, _fileName, _lineNo, _funcName, _expr, _msg);
 		::MessageBox(NULL, message.c_str(), "エラー", MB_OK);
 #endif // BUILD_DEBUG
 	}

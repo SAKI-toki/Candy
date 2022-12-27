@@ -28,6 +28,9 @@ struct Mtx : core::MtxImpl
 	Mtx(Mtx&&)noexcept;
 	Mtx& operator=(Mtx&&)noexcept;
 
+	Mtx operator*(const Mtx& _other)const;
+	Mtx& operator*=(const Mtx& _other);
+
 	void setIdentity();
 };
 

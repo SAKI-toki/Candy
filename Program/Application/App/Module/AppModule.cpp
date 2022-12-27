@@ -14,7 +14,6 @@
 #include <App/Flow/Game/GameFlow.h>
 #include <App/Entity/EntityManager.h>
 #include <App/Component/System/Manager/ComponentManager.h>
-#include <App/Model/ModelManager.h>
 #include <App/Font/Font.h>
 #include <App/Debug/Debug.h>
 
@@ -34,7 +33,6 @@ void Module::startupImpl()
 	RenderingManager::Startup();
 	SpriteRenderingManager::Startup();
 	ModelRenderingManager::Startup();
-	ModelManager::Startup();
 	Font::Startup();
 	Debug::Startup();
 	ComponentManager::Startup();
@@ -50,7 +48,6 @@ void Module::cleanupImpl()
 	ComponentManager::Cleanup();
 	Debug::Cleanup();
 	Font::Cleanup();
-	ModelManager::Cleanup();
 	ModelRenderingManager::Cleanup();
 	SpriteRenderingManager::Cleanup();
 	RenderingManager::Cleanup();
@@ -117,7 +114,6 @@ void Module::preDrawImpl()
 // 描画の実装部
 void Module::drawImpl()
 {
-	ModelManager::Primitive::Draw();
 	ModelRenderingManager::Draw();
 	SpriteRenderingManager::Draw();
 	Debug::Draw();

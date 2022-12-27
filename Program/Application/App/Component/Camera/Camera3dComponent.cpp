@@ -31,7 +31,7 @@ void Camera3dComponent::renderImpl()
 
 void Camera3dComponent::updateProjectionMtx()
 {
-	MtxPerspective(m_ProjectionMtx, m_Fov, m_AspectRatio, m_Near, m_Far);
+	m_ProjectionMtx = MtxPerspective(m_Fov, m_AspectRatio, m_Near, m_Far);
 }
 
 CANDY_APP_NAMESPACE_END

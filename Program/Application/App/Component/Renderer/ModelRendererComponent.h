@@ -23,6 +23,8 @@ public:
 	void cleanupImpl()override;
 	void renderImpl()override;
 
+	void setModel(const std::string_view _path);
+
 private:
 	Model m_Model;
 };

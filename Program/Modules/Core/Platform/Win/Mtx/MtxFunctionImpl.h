@@ -12,16 +12,22 @@
 
 CANDY_CORE_NAMESPACE_BEGIN
 
-void MtxSetImpl(vector_type (&_out)[4], const vector_type _v1, const vector_type _v2, const vector_type _v3, const vector_type _v4);
-void MtxSetIdentityImpl(vector_type (&_out)[4]);
+void MtxSetImpl(vector_type(&_out)[4], const vector_type _v1, const vector_type _v2, const vector_type _v3, const vector_type _v4);
+void MtxSetIdentityImpl(vector_type(&_out)[4]);
 
 void MtxMulImpl(vector_type(&_out)[4], const vector_type(&_m1)[4], const vector_type(&_m2)[4]);
 
-void MtxTransposeImpl(vector_type (&_out)[4], const vector_type (&_m)[4]);
+void MtxTransposeImpl(vector_type(&_out)[4], const vector_type(&_m)[4]);
 
-void MtxTranslationImpl(vector_type (&_out)[4], const vector_type _v);
-void MtxRotationZXYImpl(vector_type (&_out)[4], const vector_type _v);
-void MtxScalingImpl(vector_type (&_out)[4], const vector_type _v);
+void MtxTranslationImpl(vector_type(&_out)[4], const vector_type _v);
+void MtxRotationXYZImpl(vector_type(&_out)[4], const vector_type _v);
+void MtxRotationXZYImpl(vector_type(&_out)[4], const vector_type _v);
+void MtxRotationYXZImpl(vector_type(&_out)[4], const vector_type _v);
+void MtxRotationYZXImpl(vector_type(&_out)[4], const vector_type _v);
+void MtxRotationZXYImpl(vector_type(&_out)[4], const vector_type _v);
+void MtxRotationZYXImpl(vector_type(&_out)[4], const vector_type _v);
+void MtxRotationQuatImpl(vector_type(&_out)[4], const vector_type _q);
+void MtxScalingImpl(vector_type(&_out)[4], const vector_type _v);
 
 void MtxOrthographicImpl(vector_type(&_out)[4], const f32 _width, const f32 _height, const f32 _near, const f32 _far);
 void MtxPerspectiveImpl(vector_type(&_out)[4], const f32 _fov, const f32 _aspectRatio, const f32 _near, const f32 _far);
